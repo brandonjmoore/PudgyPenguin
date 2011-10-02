@@ -22,12 +22,14 @@
 //
 // Define here the type of autorotation that you want for your game
 //
+#define GAME_AUTOROTATION kGameAutorotationNone
 
 // 3rd generation and newer devices: Rotate using UIViewController. Rotation should be supported on iPad apps.
 // TIP:
 // To improve the performance, you should set this value to "kGameAutorotationNone" or "kGameAutorotationCCDirector"
 #if defined(__ARM_NEON__) || TARGET_IPHONE_SIMULATOR
-#define GAME_AUTOROTATION kGameAutorotationUIViewController
+//#define GAME_AUTOROTATION kGameAutorotationUIViewController
+#define GAME_AUTOROTATION kGameAutorotationNone
 
 // ARMv6 (1st and 2nd generation devices): Don't rotate. It is very expensive
 #elif __arm__
