@@ -33,14 +33,17 @@
         
         //Handle Animations
         CCAnimation *angryPenguinAnim = [CCAnimation animation];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
         
-        id animateAction = [CCAnimate actionWithDuration:0.5f animation:angryPenguinAnim restoreOriginalFrame:NO];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"penguino_fr.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"penguino_fr.png"]];
+        
+        id animateAction = [CCAnimate actionWithDuration:1.0f animation:angryPenguinAnim restoreOriginalFrame:YES];
         id repeatAction = [CCRepeatForever actionWithAction:animateAction];
         
         [penguinSprite runAction:repeatAction];

@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF143A63143BF192002A2DC3 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A61143BF192002A2DC3 /* scene1atlas-hd.plist */; };
-		BF143A64143BF192002A2DC3 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A62143BF192002A2DC3 /* scene1atlas-hd.png */; };
 		BF143A67143BF199002A2DC3 /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A65143BF199002A2DC3 /* scene1atlas.plist */; };
 		BF143A68143BF199002A2DC3 /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A66143BF199002A2DC3 /* scene1atlas.png */; };
+		BF143A6F143BF64D002A2DC3 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A6D143BF64D002A2DC3 /* scene1atlas-hd.plist */; };
+		BF143A70143BF64D002A2DC3 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -134,10 +134,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BF143A61143BF192002A2DC3 /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
-		BF143A62143BF192002A2DC3 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BF143A65143BF199002A2DC3 /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
 		BF143A66143BF199002A2DC3 /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
+		BF143A6D143BF64D002A2DC3 /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
+		BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -840,8 +840,8 @@
 		BF51CB221438248900B64181 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BF143A61143BF192002A2DC3 /* scene1atlas-hd.plist */,
-				BF143A62143BF192002A2DC3 /* scene1atlas-hd.png */,
+				BF143A6D143BF64D002A2DC3 /* scene1atlas-hd.plist */,
+				BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */,
 				BF143A65143BF199002A2DC3 /* scene1atlas.plist */,
 				BF143A66143BF199002A2DC3 /* scene1atlas.png */,
 				BF51CB23143824C600B64181 /* background-hd.png */,
@@ -909,10 +909,10 @@
 				BF51CB2B143824C600B64181 /* background-hd.png in Resources */,
 				BF51CB2C143824C600B64181 /* background.png in Resources */,
 				BF396957143B595200EC7DBA /* Penguin.plist in Resources */,
-				BF143A63143BF192002A2DC3 /* scene1atlas-hd.plist in Resources */,
-				BF143A64143BF192002A2DC3 /* scene1atlas-hd.png in Resources */,
 				BF143A67143BF199002A2DC3 /* scene1atlas.plist in Resources */,
 				BF143A68143BF199002A2DC3 /* scene1atlas.png in Resources */,
+				BF143A6F143BF64D002A2DC3 /* scene1atlas-hd.plist in Resources */,
+				BF143A70143BF64D002A2DC3 /* scene1atlas-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
