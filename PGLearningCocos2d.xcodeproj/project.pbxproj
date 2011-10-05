@@ -11,6 +11,7 @@
 		BF143A68143BF199002A2DC3 /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A66143BF199002A2DC3 /* scene1atlas.png */; };
 		BF143A6F143BF64D002A2DC3 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A6D143BF64D002A2DC3 /* scene1atlas-hd.plist */; };
 		BF143A70143BF64D002A2DC3 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */; };
+		BF143A73143BFA25002A2DC3 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A72143BFA25002A2DC3 /* GameObject.m */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -138,6 +139,8 @@
 		BF143A66143BF199002A2DC3 /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
 		BF143A6D143BF64D002A2DC3 /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
 		BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
+		BF143A71143BFA25002A2DC3 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		BF143A72143BFA25002A2DC3 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 		BF39696E143B60F600EC7DBA /* GameObject */ = {
 			isa = PBXGroup;
 			children = (
+				BF143A71143BFA25002A2DC3 /* GameObject.h */,
+				BF143A72143BFA25002A2DC3 /* GameObject.m */,
 			);
 			name = GameObject;
 			sourceTree = "<group>";
@@ -1023,6 +1028,7 @@
 				BF51CB351438250D00B64181 /* BackgroundLayer.m in Sources */,
 				BF51CB381438261E00B64181 /* GameplayLayer.m in Sources */,
 				BF51CB43143828A200B64181 /* GameScene.m in Sources */,
+				BF143A73143BFA25002A2DC3 /* GameObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
