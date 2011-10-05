@@ -17,8 +17,8 @@
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
         CCSpriteBatchNode *chapter2SpriteBatchNode;
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
-        chapter2SpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlasz.plist"];
+        chapter2SpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlasz.png"];
         
         penguinSprite = [CCSprite spriteWithSpriteFrameName:@"penguino_fr.png"];
         

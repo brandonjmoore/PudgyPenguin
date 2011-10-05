@@ -4,23 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Start-hd.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{0,0},{55,30}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{55,30}}</string>
-                <key>sourceSize</key>
-                <string>{55,30}</string>
-            </dict>
             <key>elephant-hd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{55,0},{40,40}}</string>
+                <string>{{0,0},{40,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +20,7 @@
             <key>penguino_fr-hd.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,0},{150,175}}</string>
+                <string>{{40,0},{150,175}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -53,7 +40,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:12c96ecd65dce50ad5738427a737f102$</string>
+            <string>$TexturePacker:SmartUpdate:499f45c231ff22d588593ac041bcef23$</string>
             <key>textureFileName</key>
             <string>scene1atlas-hd.png</string>
         </dict>
