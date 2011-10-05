@@ -12,6 +12,8 @@
 		BF143A6F143BF64D002A2DC3 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A6D143BF64D002A2DC3 /* scene1atlas-hd.plist */; };
 		BF143A70143BF64D002A2DC3 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */; };
 		BF143A73143BFA25002A2DC3 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A72143BFA25002A2DC3 /* GameObject.m */; };
+		BF143A76143C0708002A2DC3 /* GameCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A75143C0708002A2DC3 /* GameCharacter.m */; };
+		BF143A7A143C0BA2002A2DC3 /* Fish.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A79143C0BA2002A2DC3 /* Fish.m */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -141,6 +143,10 @@
 		BF143A6E143BF64D002A2DC3 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BF143A71143BFA25002A2DC3 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		BF143A72143BFA25002A2DC3 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		BF143A74143C0708002A2DC3 /* GameCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCharacter.h; sourceTree = "<group>"; };
+		BF143A75143C0708002A2DC3 /* GameCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCharacter.m; sourceTree = "<group>"; };
+		BF143A78143C0BA2002A2DC3 /* Fish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish.h; sourceTree = "<group>"; };
+		BF143A79143C0BA2002A2DC3 /* Fish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fish.m; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -406,6 +412,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF143A77143C0B6D002A2DC3 /* Fish Object */ = {
+			isa = PBXGroup;
+			children = (
+				BF143A78143C0BA2002A2DC3 /* Fish.h */,
+				BF143A79143C0BA2002A2DC3 /* Fish.m */,
+			);
+			name = "Fish Object";
+			sourceTree = "<group>";
+		};
 		BF396955143B591400EC7DBA /* Plists */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +464,8 @@
 			children = (
 				BF143A71143BFA25002A2DC3 /* GameObject.h */,
 				BF143A72143BFA25002A2DC3 /* GameObject.m */,
+				BF143A74143C0708002A2DC3 /* GameCharacter.h */,
+				BF143A75143C0708002A2DC3 /* GameCharacter.m */,
 			);
 			name = GameObject;
 			sourceTree = "<group>";
@@ -498,6 +515,7 @@
 			isa = PBXGroup;
 			children = (
 				BF39696F143B60FF00EC7DBA /* Singletons */,
+				BF143A77143C0B6D002A2DC3 /* Fish Object */,
 				BF39696E143B60F600EC7DBA /* GameObject */,
 				BF39696C143B60E900EC7DBA /* Layers */,
 				BF39696B143B60E300EC7DBA /* Scenes */,
@@ -1029,6 +1047,8 @@
 				BF51CB381438261E00B64181 /* GameplayLayer.m in Sources */,
 				BF51CB43143828A200B64181 /* GameScene.m in Sources */,
 				BF143A73143BFA25002A2DC3 /* GameObject.m in Sources */,
+				BF143A76143C0708002A2DC3 /* GameCharacter.m in Sources */,
+				BF143A7A143C0BA2002A2DC3 /* Fish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
