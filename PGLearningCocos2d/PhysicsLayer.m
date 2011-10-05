@@ -10,13 +10,21 @@
 
 @implementation PhysicsLayer
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
+//Shortcut to create a scene
++ (id)scene {
+    CCScene *scene = [CCScene node];
+    PhysicsLayer *layer = [self node];
+    [scene addChild:layer];
+    return scene;
+}
+
+- (id)init {
+    if ((self = [super init])) {
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello, this is the Physics Layer" fontName:@"Helvetica" fontSize:24.0];
+        label.position = ccp(winSize.width/2, winSize.height/2);
+        [self addChild:label];
     }
-    
     return self;
 }
 

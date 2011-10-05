@@ -84,7 +84,12 @@
         return; //Nothing to do if the Penguin is satisfied
     
     //if
-    //TODO: finish this method
+    //TODO: finish this method (pg 100)
+    
+}
+
+#pragma mark -
+-(CGRect)adjustedBoundingBox {
     
 }
 
