@@ -11,12 +11,12 @@
 
 @interface Fish : GameCharacter {
     //TODO: Insert fish animations here (smiling, gettingEaten, etc.) pg 84
-    CCAnimation *blinkingAnim;
-    CCAnimation *becomeScared;
+    CCAnimation *fishBlinkingAnim;
+    CCAnimation *becomeScaredAnim;
     GameCharacter *penguinCharacter;
 }
 
-@property (nonatomic, retain) CCAnimation *blinkingAnim;
-@property (nonatomic, retain) CCAnimation *becomeScared;
+@property (nonatomic, retain) CCAnimation *fishBlinkingAnim;
+@property (nonatomic, retain) CCAnimation *becomeScaredAnim;
 
 @end

@@ -39,7 +39,7 @@
     return [self boundingBox];
 }
 
-//TODO: Change image names to match the "filenameframenumber" convention listed on line 85
+//TODO: The Plists have to be named after their corresponding class (RadarDish.plist). The filename prefix is the prefix of the individual sprite. The animation frame is the file name suffix.
 //This method is responsible for setting up the animations based on the data stored in plists.
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString *)animationName andClassName:(NSString *)className {
     

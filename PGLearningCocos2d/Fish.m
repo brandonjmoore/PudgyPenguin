@@ -9,11 +9,11 @@
 #import "Fish.h"
 
 @implementation Fish
-@synthesize blinkingAnim;
-@synthesize becomeScared;
+@synthesize fishBlinkingAnim;
+@synthesize becomeScaredAnim;
 -(void)dealloc {
     //TODO: Be sure to release animations here
-    [blinkingAnim release];
+    [fishBlinkingAnim release];
     [super dealloc];
 }
 
@@ -75,6 +75,21 @@
         return;
     }
     
+}
+
+-(void)initAnimations {
+    [self setFishBlinkingAnim:[self loadPlistForAnimationWithName:@"blinkingAnim" andClassName:NSStringFromClass([self class])]];
+    [self setBecomeScaredAnim:[self loadPlistForAnimationWithName:@"becomeScaredAnim" andClassName:NSStringFromClass([self class])]];
+}
+
+-(id) init {
+    if ((self=[super init])) {
+        CCLOG(@"### Fish initialized");
+        [self initAnimations];
+        gameObjectType = kFishType;
+        [self changeState:kStateIdle];
+    }
+    return self;
 }
 
 @end
