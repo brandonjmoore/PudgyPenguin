@@ -78,6 +78,16 @@
     }
 }
 
+#pragma mark -
+-(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
+    if (self.characterState == kStateSatisfied) 
+        return; //Nothing to do if the Penguin is satisfied
+    
+    //if
+    //TODO: finish this method
+    
+}
+
 - (id)init
 {
     self = [super init];

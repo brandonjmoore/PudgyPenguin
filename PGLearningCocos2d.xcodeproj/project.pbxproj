@@ -135,6 +135,7 @@
 		BF51CB381438261E00B64181 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB371438261E00B64181 /* GameplayLayer.m */; };
 		BF51CB43143828A200B64181 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB42143828A200B64181 /* GameScene.m */; };
 		BFE9ED7C143CC7170096509D /* Penguin.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE9ED7B143CC7170096509D /* Penguin.m */; };
+		BFE9ED80143CD4B00096509D /* PhysicsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE9ED7F143CD4B00096509D /* PhysicsLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,6 +395,8 @@
 		BF51CB42143828A200B64181 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		BFE9ED7A143CC7170096509D /* Penguin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin.h; sourceTree = "<group>"; };
 		BFE9ED7B143CC7170096509D /* Penguin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Penguin.m; sourceTree = "<group>"; };
+		BFE9ED7E143CD4B00096509D /* PhysicsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsLayer.h; sourceTree = "<group>"; };
+		BFE9ED7F143CD4B00096509D /* PhysicsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +448,7 @@
 		BF39696B143B60E300EC7DBA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				BFE9ED7D143CD48D0096509D /* Scene3 */,
 				BF51CB41143828A200B64181 /* GameScene.h */,
 				BF51CB42143828A200B64181 /* GameScene.m */,
 			);
@@ -878,6 +882,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		BFE9ED7D143CD48D0096509D /* Scene3 */ = {
+			isa = PBXGroup;
+			children = (
+				BFE9ED7E143CD4B00096509D /* PhysicsLayer.h */,
+				BFE9ED7F143CD4B00096509D /* PhysicsLayer.m */,
+			);
+			name = Scene3;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1055,6 +1068,7 @@
 				BF143A76143C0708002A2DC3 /* GameCharacter.m in Sources */,
 				BF143A7A143C0BA2002A2DC3 /* Fish.m in Sources */,
 				BFE9ED7C143CC7170096509D /* Penguin.m in Sources */,
+				BFE9ED80143CD4B00096509D /* PhysicsLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
