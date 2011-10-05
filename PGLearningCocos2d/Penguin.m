@@ -9,6 +9,24 @@
 #import "Penguin.h"
 
 @implementation Penguin
+//Standing, blinking, walking, eating
+@synthesize penguinBlinkingAnim;
+@synthesize penguinWalkingAnim;
+
+//Eating Animations
+@synthesize penguinEatingAnim;
+@synthesize penguinAngryAnim;
+@synthesize penguinSatisfiedAnim;
+
+-(void) dealloc {
+    [penguinBlinkingAnim release];
+    [penguinWalkingAnim release];
+    [penguinEatingAnim release];
+    [penguinAngryAnim release];
+    [penguinSatisfiedAnim release];
+    
+    [super dealloc];
+}
 
 - (id)init
 {

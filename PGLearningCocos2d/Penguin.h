@@ -19,6 +19,16 @@
     //Eating animations
     CCAnimation *penguinEatingAnim;
     CCAnimation *penguinAngryAnim;
+    CCAnimation *penguinSatisfiedAnim;
+    
+    float millisecondsStayingIdle;
 }
+
+//Standing
+@property (nonatomic,retain) CCAnimation *penguinBlinkingAnim;
+@property (nonatomic,retain) CCAnimation *penguinWalkingAnim;
+@property (nonatomic,retain) CCAnimation *penguinEatingAnim;
+@property (nonatomic,retain) CCAnimation *penguinAngryAnim;
+@property (nonatomic,retain) CCAnimation *penguinSatisfiedAnim;
 
 @end
