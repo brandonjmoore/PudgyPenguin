@@ -23,7 +23,19 @@ typedef enum {
 } CharacterStates;
 
 typedef enum {
-    k
-}
+    kObjectTypeNone,
+    kFishType,
+    kPenguinTypeBlack,
+    kPenguinTypePink,
+    kPenguinTypeGreen,
+    kTrashType,
+    kLineType
+} GameObjectType;
+
+@protocol GAmeplayLayerDelegate
+
+-(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue; 
+
+@end
 
 #endif
