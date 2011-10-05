@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF143A63143BF192002A2DC3 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A61143BF192002A2DC3 /* scene1atlas-hd.plist */; };
+		BF143A64143BF192002A2DC3 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A62143BF192002A2DC3 /* scene1atlas-hd.png */; };
+		BF143A67143BF199002A2DC3 /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF143A65143BF199002A2DC3 /* scene1atlas.plist */; };
+		BF143A68143BF199002A2DC3 /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BF143A66143BF199002A2DC3 /* scene1atlas.png */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -124,22 +128,16 @@
 		BF51CB181438244F00B64181 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB171438244F00B64181 /* RootViewController.m */; };
 		BF51CB2B143824C600B64181 /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB23143824C600B64181 /* background-hd.png */; };
 		BF51CB2C143824C600B64181 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB24143824C600B64181 /* background.png */; };
-		BF51CB2D143824C600B64181 /* elephant-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB25143824C600B64181 /* elephant-hd.png */; };
-		BF51CB2E143824C600B64181 /* elephant.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB26143824C600B64181 /* elephant.png */; };
-		BF51CB2F143824C600B64181 /* penguino_fr-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB27143824C600B64181 /* penguino_fr-hd.png */; };
-		BF51CB30143824C600B64181 /* penguino_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB28143824C600B64181 /* penguino_fr.png */; };
-		BF51CB31143824C600B64181 /* Start-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB29143824C600B64181 /* Start-hd.png */; };
-		BF51CB32143824C600B64181 /* Start.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB2A143824C600B64181 /* Start.png */; };
 		BF51CB351438250D00B64181 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB341438250D00B64181 /* BackgroundLayer.m */; };
 		BF51CB381438261E00B64181 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB371438261E00B64181 /* GameplayLayer.m */; };
 		BF51CB43143828A200B64181 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB42143828A200B64181 /* GameScene.m */; };
-		BF51CB5C143835EE00B64181 /* scene1atlasz-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB58143835EE00B64181 /* scene1atlasz-hd.plist */; };
-		BF51CB5D143835EE00B64181 /* scene1atlasz-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB59143835EE00B64181 /* scene1atlasz-hd.png */; };
-		BF51CB5E143835EE00B64181 /* scene1atlasz.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB5A143835EE00B64181 /* scene1atlasz.plist */; };
-		BF51CB5F143835EE00B64181 /* scene1atlasz.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51CB5B143835EE00B64181 /* scene1atlasz.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF143A61143BF192002A2DC3 /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
+		BF143A62143BF192002A2DC3 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
+		BF143A65143BF199002A2DC3 /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
+		BF143A66143BF199002A2DC3 /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -378,22 +376,12 @@
 		BF51CB1C1438244F00B64181 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		BF51CB23143824C600B64181 /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		BF51CB24143824C600B64181 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		BF51CB25143824C600B64181 /* elephant-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elephant-hd.png"; sourceTree = "<group>"; };
-		BF51CB26143824C600B64181 /* elephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephant.png; sourceTree = "<group>"; };
-		BF51CB27143824C600B64181 /* penguino_fr-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "penguino_fr-hd.png"; sourceTree = "<group>"; };
-		BF51CB28143824C600B64181 /* penguino_fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = penguino_fr.png; sourceTree = "<group>"; };
-		BF51CB29143824C600B64181 /* Start-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start-hd.png"; sourceTree = "<group>"; };
-		BF51CB2A143824C600B64181 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start.png; sourceTree = "<group>"; };
 		BF51CB331438250D00B64181 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		BF51CB341438250D00B64181 /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		BF51CB361438261E00B64181 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
 		BF51CB371438261E00B64181 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
 		BF51CB41143828A200B64181 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BF51CB42143828A200B64181 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		BF51CB58143835EE00B64181 /* scene1atlasz-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlasz-hd.plist"; sourceTree = "<group>"; };
-		BF51CB59143835EE00B64181 /* scene1atlasz-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlasz-hd.png"; sourceTree = "<group>"; };
-		BF51CB5A143835EE00B64181 /* scene1atlasz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlasz.plist; sourceTree = "<group>"; };
-		BF51CB5B143835EE00B64181 /* scene1atlasz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlasz.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -852,18 +840,12 @@
 		BF51CB221438248900B64181 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BF51CB58143835EE00B64181 /* scene1atlasz-hd.plist */,
-				BF51CB59143835EE00B64181 /* scene1atlasz-hd.png */,
-				BF51CB5A143835EE00B64181 /* scene1atlasz.plist */,
-				BF51CB5B143835EE00B64181 /* scene1atlasz.png */,
+				BF143A61143BF192002A2DC3 /* scene1atlas-hd.plist */,
+				BF143A62143BF192002A2DC3 /* scene1atlas-hd.png */,
+				BF143A65143BF199002A2DC3 /* scene1atlas.plist */,
+				BF143A66143BF199002A2DC3 /* scene1atlas.png */,
 				BF51CB23143824C600B64181 /* background-hd.png */,
 				BF51CB24143824C600B64181 /* background.png */,
-				BF51CB25143824C600B64181 /* elephant-hd.png */,
-				BF51CB26143824C600B64181 /* elephant.png */,
-				BF51CB27143824C600B64181 /* penguino_fr-hd.png */,
-				BF51CB28143824C600B64181 /* penguino_fr.png */,
-				BF51CB29143824C600B64181 /* Start-hd.png */,
-				BF51CB2A143824C600B64181 /* Start.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -926,17 +908,11 @@
 				BF51C9D51438244D00B64181 /* iTunesArtwork in Resources */,
 				BF51CB2B143824C600B64181 /* background-hd.png in Resources */,
 				BF51CB2C143824C600B64181 /* background.png in Resources */,
-				BF51CB2D143824C600B64181 /* elephant-hd.png in Resources */,
-				BF51CB2E143824C600B64181 /* elephant.png in Resources */,
-				BF51CB2F143824C600B64181 /* penguino_fr-hd.png in Resources */,
-				BF51CB30143824C600B64181 /* penguino_fr.png in Resources */,
-				BF51CB31143824C600B64181 /* Start-hd.png in Resources */,
-				BF51CB32143824C600B64181 /* Start.png in Resources */,
-				BF51CB5C143835EE00B64181 /* scene1atlasz-hd.plist in Resources */,
-				BF51CB5D143835EE00B64181 /* scene1atlasz-hd.png in Resources */,
-				BF51CB5E143835EE00B64181 /* scene1atlasz.plist in Resources */,
-				BF51CB5F143835EE00B64181 /* scene1atlasz.png in Resources */,
 				BF396957143B595200EC7DBA /* Penguin.plist in Resources */,
+				BF143A63143BF192002A2DC3 /* scene1atlas-hd.plist in Resources */,
+				BF143A64143BF192002A2DC3 /* scene1atlas-hd.png in Resources */,
+				BF143A67143BF199002A2DC3 /* scene1atlas.plist in Resources */,
+				BF143A68143BF199002A2DC3 /* scene1atlas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,19 +16,36 @@
     if (self != nil) {
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
-        CCSpriteBatchNode *chapter2SpriteBatchNode;
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlasz.plist"];
-        chapter2SpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlasz.png"];
+        CCSpriteBatchNode *mySpriteBatchNode;
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
+        mySpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         
         penguinSprite = [CCSprite spriteWithSpriteFrameName:@"penguino_fr.png"];
         
-        [chapter2SpriteBatchNode addChild:penguinSprite];
+        [mySpriteBatchNode addChild:penguinSprite];
         
-        [self addChild:chapter2SpriteBatchNode];
+        [self addChild:mySpriteBatchNode];
         
         [penguinSprite setPosition:
          CGPointMake(screenSize.width/2,
                      screenSize.height*0.17f)];
+        
+        
+        //Handle Animations
+        CCAnimation *angryPenguinAnim = [CCAnimation animation];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
+        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
+        
+        id animateAction = [CCAnimate actionWithDuration:0.5f animation:angryPenguinAnim restoreOriginalFrame:NO];
+        id repeatAction = [CCRepeatForever actionWithAction:animateAction];
+        
+        [penguinSprite runAction:repeatAction];
+        
+        
     }
     
     return self;
