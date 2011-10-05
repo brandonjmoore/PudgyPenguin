@@ -28,6 +28,56 @@
     [super dealloc];
 }
 
+//TODO: make sure this was written correctly
+-(int)addEatenFish {
+    characterFullness++;
+    return characterFullness;
+}
+
+//TODO: Might need to add the checkAndClampSpritePosition method (pg 94)
+
+//TODO: Add penguin walking method (page 93 dont forget to flip when walking a certain direction)
+
+-(void)changeState:(CharacterStates)newState {
+    [self stopAllActions];
+    
+    //TODO: what are these two variables for?
+    id action = nil;
+    //TODO: We might be able to use movement action and new position for walking (see pg 97)
+    //id movementAction = nil;
+    //CGPoint newPosition;
+    [self setCharacterState:newState];
+    
+    switch (newState) {
+        case kStateIdle:
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"penguino_fr.png"]];
+            break;
+        case kStateWalking:
+            action = [CCAnimate actionWithAnimation:penguinWalkingAnim restoreOriginalFrame:YES];
+            break;
+        case kStateBlinking:
+            action = [CCAnimate actionWithAnimation:penguinBlinkingAnim restoreOriginalFrame:YES];
+            break;
+        case kStateEating:
+            action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+            break;
+        case kStateAngry:
+            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:YES];
+            break;
+        case kStateSatisfied:
+            //restoreOriginalFrame is set to no here because we want him to remain satisfied
+            action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
+            break;
+            
+        default:
+            CCLOG(@"Unhandled state %d in Penguin", newState);
+            break;
+    }
+    if (action != nil) {
+        [self runAction:action];
+    }
+}
+
 - (id)init
 {
     self = [super init];

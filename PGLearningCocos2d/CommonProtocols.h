@@ -24,7 +24,8 @@ typedef enum {
     kStateBreathing,
     kStateSmiling,
     kStateHasBeenEaten,
-    kStateAboutToBeEaten
+    kStateAboutToBeEaten,
+    kStateBlinking
 } CharacterStates;
 
 typedef enum {
