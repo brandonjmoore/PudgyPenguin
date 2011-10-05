@@ -27,7 +27,7 @@
 @property (readwrite) GameObjectType gameObjectType;
 -(void)changeState: (CharacterStates)newState;
 -(void)updateStateWithDeltaTime: (ccTime)deltaTime andListOfGameObjects: (CCArray*)listOfGameObjects;
--(CGRect)adjustBoundingBox;
+-(CGRect)adjustedBoundingBox;
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andClassName:(NSString*)className;
 
 @end

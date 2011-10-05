@@ -34,7 +34,7 @@
     CCLOG(@"GameObject->updateStateWithDeltaTime method should be overridden");
 }
 
--(CGRect)adjustBoundingBox {
+-(CGRect)adjustedBoundingBox {
     CCLOG(@"GameObject->adjustBoundingBox method should be overridden");
     return [self boundingBox];
 }

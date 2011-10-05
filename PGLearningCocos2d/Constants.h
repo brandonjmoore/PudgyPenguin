@@ -10,7 +10,7 @@
 #define PGLearningCocos2d_Constants_h
 
 #define kNumFishCreated         10
-#define kPenguinSpriteTag       0
+#define kPenguinSpriteTagValue  0
 #define kPenguinZValue          100
 //Idle time is used for idle actions (blinking, yawning, etc.)
 #define kPenguinIdleTime        3.0f

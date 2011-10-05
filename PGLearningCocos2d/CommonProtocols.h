@@ -19,7 +19,12 @@ typedef enum {
     kStateAngry,
     kStateEating,
     kStateWalking,
-    kStateSatisfied
+    kStateSatisfied,
+    kStateBeingEaten,
+    kStateBreathing,
+    kStateSmiling,
+    kStateHasBeenEaten,
+    kStateAboutToBeEaten
 } CharacterStates;
 
 typedef enum {
