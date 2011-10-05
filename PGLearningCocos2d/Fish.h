@@ -6,8 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "GameCharacter.h"
 
-@interface Fish : GameCharacter
+@interface Fish : GameCharacter {
+    //TODO: Insert fish animations here (smiling, gettingEaten, etc.) pg 84
+    GameCharacter *penguinCharacter;
+}
 
 @end
