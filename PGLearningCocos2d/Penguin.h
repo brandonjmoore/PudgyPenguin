@@ -20,9 +20,17 @@
     CCAnimation *penguinEatingAnim;
     CCAnimation *penguinAngryAnim;
     CCAnimation *penguinSatisfiedAnim;
+    CCAnimation *penguinOpenMouthAnim;
     
     float millisecondsStayingIdle;
+    
+    BOOL isFishWithinSight;
+    
+    GameCharacter *fishCharacter;
+    id <GameplayLayerDelegate> delegate;
 }
+
+@property (nonatomic,assign)id <GameplayLayerDelegate> delegate;
 
 //Standing
 @property (nonatomic,retain) CCAnimation *penguinBlinkingAnim;
@@ -30,5 +38,8 @@
 @property (nonatomic,retain) CCAnimation *penguinEatingAnim;
 @property (nonatomic,retain) CCAnimation *penguinAngryAnim;
 @property (nonatomic,retain) CCAnimation *penguinSatisfiedAnim;
+@property (nonatomic,retain) CCAnimation *penguinOpenMouthAnim;
+
+-(void)initAnimations;
 
 @end

@@ -7,28 +7,44 @@
 //
 
 #import "GameplayLayer.h"
+#import "Penguin.h"
+#import "Fish.h"
 
 @implementation GameplayLayer
 
-- (id)init
-{
+-(void)dealloc {
+    //TODO: Release buttons here
+    
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Update Method
+//Calls the update method on all the characters in the scene
+-(void) update:(ccTime)deltaTime {
+    CCArray *listOfGameObjects = [sceneSpriteBatchNode children];
+    for (GameCharacter *tempChar in listOfGameObjects) {
+        [tempChar updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
+    }
+}
+
+- (id)init {
     self = [super init];
     if (self != nil) {
         CGSize screenSize = [CCDirector sharedDirector].winSize;
+        self.isTouchEnabled = YES;
         
-        CCSpriteBatchNode *mySpriteBatchNode;
+        srandom(time(NULL));
+        
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
-        mySpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         
-        penguinSprite = [CCSprite spriteWithSpriteFrameName:@"penguino_fr.png"];
+        [self addChild:sceneSpriteBatchNode z:0];
         
-        [mySpriteBatchNode addChild:penguinSprite];
+        Penguin *penguin = [[Penguin alloc]initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"penguino_fr.png"]];
+        [penguin setPosition:ccp(screenSize.width * 0.35f,screenSize.height * 0.14f)];
+        [sceneSpriteBatchNode addChild:penguin z:kPenguinZValue tag:kPenguinSpriteTagValue];
         
-        [self addChild:mySpriteBatchNode];
-        
-        [penguinSprite setPosition:
-         CGPointMake(screenSize.width/2,
-                     screenSize.height*0.17f)];
         
         
         //Handle Animations
@@ -49,9 +65,23 @@
         [penguinSprite runAction:repeatAction];
         
         
+        [self createObjectOfType:kPenguinTypeBlack atLocation:ccp(screenSize.width * 0.878f, screenSize.height * 0.13f) withZValue:kPenguinZValue];
+        
+        [self scheduleUpdate];
+        
     }
     
     return self;
+}
+
+-(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue {
+    if (objectType == kPenguinTypeBlack) {
+        CCLOG(@"Creating the Penguin");
+        Penguin *penguin = [[Penguin alloc] initWithSpriteFrameName:@"penguino_fr.png"];
+        [penguin setPosition:startLocation];
+        [sceneSpriteBatchNode addChild:penguin z:ZValue];
+        [penguin release];
+    }
 }
 
 @end

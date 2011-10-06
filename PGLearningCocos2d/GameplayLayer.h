@@ -6,11 +6,16 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CCLayer.h"
+#import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Constants.h"
+#import "CommonProtocols.h"
+#import "Fish.h"
+#import "Penguin.h"
 
-@interface GameplayLayer : CCLayer {
+@interface GameplayLayer : CCLayer <GameplayLayerDelegate>{
     CCSprite *penguinSprite;
+    CCSpriteBatchNode *sceneSpriteBatchNode;
 }
 
 @end

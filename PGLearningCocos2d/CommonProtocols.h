@@ -25,7 +25,8 @@ typedef enum {
     kStateSmiling,
     kStateHasBeenEaten,
     kStateAboutToBeEaten,
-    kStateBlinking
+    kStateBlinking,
+    kStateMouthOpen
 } CharacterStates;
 
 typedef enum {
@@ -38,7 +39,7 @@ typedef enum {
     kLineType
 } GameObjectType;
 
-@protocol GAmeplayLayerDelegate
+@protocol GameplayLayerDelegate
 
 -(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue; 
 
