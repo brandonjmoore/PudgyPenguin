@@ -30,15 +30,27 @@ static GameManager* _sharedGameManager = nil;
     return nil;
 }
 
-
-
-- (id)init
++(id)alloc
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
+    @synchronized ([GameManager class])
+    {
+        NSAsser(_sharedGameManager == nil, @"attempted to allocate a second instance of the Game Manager singleton");
+        _sharedGameManager = [super alloc];
+        return _sharedGameManager;
     }
-    
+    return nil;
+}
+
+- (id)init {
+    self = [super init];
+    if (self != nil) {
+        //Game Manager initialized
+        CCLOG(@"Game Manager Singleton, init");
+        isMusicON = YES;
+        isSoundEffectsON = YES;
+        hasPlayerBeenDefeated = NO;
+        currentScene = kNoSceneUninitialized;
+    }
     return self;
 }
 

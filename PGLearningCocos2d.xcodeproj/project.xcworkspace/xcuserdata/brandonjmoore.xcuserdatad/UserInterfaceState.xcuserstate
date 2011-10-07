@@ -1283,11 +1283,11 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>339661833.01921898</real>
-		<string>{0, 826}</string>
+		<real>339662032.11292899</real>
+		<string>{0, 1292}</string>
 		<false/>
-		<string>{697, 0}</string>
-		<string>@implementation GameManager</string>
+		<string>{1283, 0}</string>
+		<string>-init</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -4190,7 +4190,7 @@
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/SpriteSheet/SD/.DS_Store</string>
-		<real>339657344.64652699</real>
+		<real>339662032.11238402</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -8589,9 +8589,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339661833.01827598</real>
-		<string>{0, 826}</string>
-		<string>{697, 0}</string>
+		<real>339662032.112297</real>
+		<string>{0, 1292}</string>
+		<string>{1283, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10263,37 +10263,54 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>850</integer>
+					<integer>849</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>852</integer>
+					<integer>851</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>854</integer>
+					<integer>853</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>856</integer>
+					<integer>855</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>858</integer>
+					<integer>857</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>860</integer>
+					<integer>859</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>862</integer>
+					<integer>861</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>864</integer>
+					<integer>863</integer>
 				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>132</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>383</integer>
+			</dict>
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -10326,7 +10343,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>849</integer>
+				<integer>850</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/GameManager.m</string>
@@ -10344,7 +10361,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>851</integer>
+				<integer>852</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/AppDelegate.m</string>
@@ -10362,7 +10379,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>853</integer>
+				<integer>854</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/GameManager.h</string>
@@ -10380,7 +10397,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>855</integer>
+				<integer>856</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/GameplayLayer.m</string>
@@ -10398,7 +10415,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>857</integer>
+				<integer>858</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Constants.h</string>
@@ -10416,7 +10433,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>859</integer>
+				<integer>860</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/BackgroundLayer.m</string>
@@ -10434,7 +10451,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>861</integer>
+				<integer>862</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Fish.m</string>
@@ -10452,28 +10469,10 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>863</integer>
+				<integer>864</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Penguin.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>132</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>865</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/Penguin.plist</string>
 	</array>
 	<key>$top</key>
 	<dict>
