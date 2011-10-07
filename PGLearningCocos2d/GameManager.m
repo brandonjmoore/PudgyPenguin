@@ -60,19 +60,19 @@ static GameManager* _sharedGameManager = nil;
     id sceneToRun = nil;
     switch (sceneID) {
         case kMainMenuScene:
-            sceneToRun = [MainMenuScene node];
+            //TODO: sceneToRun = [MainMenuScene node];
             break;
         case kOptionsScene:
-            sceneToRun = [OptionsScene node];
+            //TODO: sceneToRun = [OptionsScene node];
             break;
         case kCreditsScene:
-            sceneToRun = [CreditsScene node];
+            //TODO: sceneToRun = [CreditsScene node];
             break;
         case kIntroScene:
-            sceneToRun = [IntroScene node];
+            //TODO: sceneToRun = [IntroScene node];
             break;
         case kLevelCompleteScene:
-            sceneToRun = [LevelCompleteScene node];
+            //TODO: sceneToRun = [LevelCompleteScene node];
             break;
         case kGameLevel1:
             sceneToRun = [GameScene node];
