@@ -7,7 +7,6 @@
 //
 
 #import "GameplayLayer.h"
-#import "Penguin.h"
 #import "Fish.h"
 
 @implementation GameplayLayer
@@ -28,6 +27,25 @@
     }
 }
 
+-(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue {
+    if (objectType == kPenguinTypeBlack) {
+        CCLOG(@"Creating the Penguin");
+        Penguin *penguin = [[Penguin alloc] initWithSpriteFrameName:@"penguino_fr.png"];
+        [penguin setPosition:startLocation];
+        [sceneSpriteBatchNode addChild:penguin z:ZValue tag:kPenguinSpriteTagValue];
+        [penguin release];
+    }else if (objectType == kFishType) {
+        CCLOG(@"Creating a fish");
+        Fish *fish = [[Fish alloc]initWithSpriteFrameName:@"elephant.png"];
+        [fish setPosition:startLocation];
+        [fish changeState:kStateIdle];
+        [sceneSpriteBatchNode addChild:fish z:ZValue];
+        //TODO: Look into Fish delegate method might have something to do with page 127
+        //[fish setDelegate:self];
+        [fish release];
+    }
+}
+
 - (id)init {
     self = [super init];
     if (self != nil) {
@@ -41,47 +59,32 @@
         
         [self addChild:sceneSpriteBatchNode z:0];
         
-        Penguin *penguin = [[Penguin alloc]initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"penguino_fr.png"]];
-        [penguin setPosition:ccp(screenSize.width * 0.35f,screenSize.height * 0.14f)];
-        [sceneSpriteBatchNode addChild:penguin z:kPenguinZValue tag:kPenguinSpriteTagValue];
         
-        
-        
-        //Handle Animations
-        CCAnimation *angryPenguinAnim = [CCAnimation animation];
-        
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"penguino_fr.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim2.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim3.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"angryAnim1.png"]];
-        [angryPenguinAnim addFrame: [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"penguino_fr.png"]];
-        
-        id animateAction = [CCAnimate actionWithDuration:1.0f animation:angryPenguinAnim restoreOriginalFrame:YES];
-        id repeatAction = [CCRepeatForever actionWithAction:animateAction];
-        
-        [penguinSprite runAction:repeatAction];
-        
-        
-        [self createObjectOfType:kPenguinTypeBlack atLocation:ccp(screenSize.width * 0.878f, screenSize.height * 0.13f) withZValue:kPenguinZValue];
+        [self createObjectOfType:kPenguinTypeBlack atLocation:ccp(screenSize.width * 0.35f,screenSize.height * 0.14f) withZValue:kPenguinZValue];
         
         [self scheduleUpdate];
         
+        //Create fish every so many seconds.
+        [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
     }
     
     return self;
 }
 
--(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue {
-    if (objectType == kPenguinTypeBlack) {
-        CCLOG(@"Creating the Penguin");
-        Penguin *penguin = [[Penguin alloc] initWithSpriteFrameName:@"penguino_fr.png"];
-        [penguin setPosition:startLocation];
-        [sceneSpriteBatchNode addChild:penguin z:ZValue];
-        [penguin release];
-    }
+-(void)addFish {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    Penguin *penguin = (Penguin*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+    if (penguin != nil) {
+        if (penguin.characterState != kStateSatisfied) {
+            [self createObjectOfType:kFishType atLocation:ccp(screenSize.width * 0.195f, screenSize.height * 0.1432f) withZValue:kFishZValue];
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addFish)];
+        }
+    }    
 }
+
+
 
 @end

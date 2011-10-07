@@ -2,14 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>angryAnim</key>
+	<key>penguinAngryAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2,3,4</string>
+		<string>1,2,3</string>
 		<key>Delay</key>
 		<real>0.25</real>
 		<key>filenamePrefix</key>
-		<string>penguin_</string>
+		<string>angryAnim</string>
 	</dict>
+	<key>penguinBlinkingAnim</key>
+	<string></string>
 </dict>
 </plist>

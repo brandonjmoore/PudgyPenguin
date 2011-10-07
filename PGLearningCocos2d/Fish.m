@@ -54,22 +54,22 @@
     if (characterState == kStateHasBeenEaten)
         return;
     
-    penguinCharacter = (GameCharacter*)[[self parent]getChildByTag:kPenguinSpriteTagValue];
+//    penguinCharacter = (GameCharacter*)[[self parent]getChildByTag:kPenguinSpriteTagValue];
+//    
+//    CGRect penguinBoundingBox = [penguinCharacter adjustedBoundingBox];
+//    //The book had the following line to determine if the viking was attacking
+//    //CharacterStates penguinState = [penguinCharacter characterState];
+//    
+//    //Calculate if the penguin is nearby
+//    if (CGRectIntersectsRect([self adjustedBoundingBox], penguinBoundingBox)) {
+//        if (characterState != kStateAboutToBeEaten) {
+//            //If fish is NOT already scared
+//            [self changeState:kStateAboutToBeEaten];
+//            return;
+//        }
+//    }
     
-    CGRect penguinBoundingBox = [penguinCharacter adjustedBoundingBox];
-    //The book had the following line to determine if the viking was attacking
-    //CharacterStates penguinState = [penguinCharacter characterState];
-    
-    //Calculate if the penguin is nearby
-    if (CGRectIntersectsRect([self adjustedBoundingBox], penguinBoundingBox)) {
-        if (characterState != kStateAboutToBeEaten) {
-            //If fish is NOT already scared
-            [self changeState:kStateAboutToBeEaten];
-            return;
-        }
-    }
-    
-    if (([self numberOfRunningActions] == 0) && (characterState != kStateHasBeenEaten)) {
+    if (([self numberOfRunningActions] == 0) && (characterState != kStateHasBeenEaten) && (characterState != kStateIdle)) {
         CCLOG(@"Going to Idle");
         [self changeState:kStateIdle];
         return;

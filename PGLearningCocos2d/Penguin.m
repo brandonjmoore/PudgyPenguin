@@ -115,7 +115,7 @@
             if (millisecondsStayingIdle > kPenguinIdleTime) {
                 [self changeState:kStateBlinking];
             }
-        } else if (self.characterState != kStateIdle) {
+        } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
             millisecondsStayingIdle = 0.0f;
             [self changeState:kStateIdle];
         }
@@ -130,8 +130,8 @@
 
 -(void)initAnimations {
     [self setPenguinAngryAnim:[self loadPlistForAnimationWithName:@"penguinAngryAnim" andClassName:NSStringFromClass([self class])]];
-    [self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
-    [self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
+    //[self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
+    //[self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
 }
 
 - (id)init

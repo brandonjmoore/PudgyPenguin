@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "Constants.h"
 #import "CommonProtocols.h"
-#import "Fish.h"
 #import "Penguin.h"
 
 @interface GameplayLayer : CCLayer <GameplayLayerDelegate>{
