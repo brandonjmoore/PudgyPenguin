@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1, 251}, {20, 21}}</string>
+			<string>{{232, 1}, {20, 21}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,12 +44,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{78, 169}, {73, 83}}</string>
+			<string>{{78, 1}, {73, 83}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>penguinAngry_1 copy.png</key>
+		<key>penguinAngry_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -66,12 +66,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{78, 1}, {75, 80}}</string>
+			<string>{{78, 173}, {75, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>penguinAngry_2 copy.png</key>
+		<key>penguinAngry_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -88,12 +88,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1, 169}, {75, 80}}</string>
+			<string>{{1, 173}, {75, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>penguinAngry_3 copy.png</key>
+		<key>penguinAngry_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -110,12 +110,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{155, 1}, {75, 80}}</string>
+			<string>{{155, 171}, {75, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>penguinAngry_4 copy.png</key>
+		<key>penguinAngry_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -132,29 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{153, 83}, {75, 80}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>penguinAngry_5 copy.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 4}, {75, 80}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -2}</string>
-			<key>spriteSize</key>
-			<string>{75, 80}</string>
-			<key>spriteSourceSize</key>
-			<string>{75, 84}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{1, 87}, {75, 80}}</string>
+			<string>{{153, 1}, {75, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +154,29 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{153, 165}, {73, 84}}</string>
+			<string>{{1, 87}, {73, 84}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>penguinBlinking_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 0}, {73, 83}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{73, 83}</string>
+			<key>spriteSourceSize</key>
+			<string>{75, 83}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{151, 86}, {73, 83}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{78, 83}, {73, 84}}</string>
+			<string>{{76, 87}, {73, 84}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -233,7 +233,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{256, 512}</string>
+		<string>{256, 256}</string>
 		<key>name</key>
 		<string>scene1atlas</string>
 		<key>premultipliedAlpha</key>

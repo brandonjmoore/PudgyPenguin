@@ -30,13 +30,13 @@
 -(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue {
     if (objectType == kPenguinTypeBlack) {
         CCLOG(@"Creating the Penguin");
-        Penguin *penguin = [[Penguin alloc] initWithSpriteFrameName:@"penguino_fr.png"];
+        Penguin *penguin = [[Penguin alloc] initWithSpriteFrameName:@"PenguinIdle.png"];
         [penguin setPosition:startLocation];
         [sceneSpriteBatchNode addChild:penguin z:ZValue tag:kPenguinSpriteTagValue];
         [penguin release];
     }else if (objectType == kFishType) {
         CCLOG(@"Creating a fish");
-        Fish *fish = [[Fish alloc]initWithSpriteFrameName:@"elephant.png"];
+        Fish *fish = [[Fish alloc]initWithSpriteFrameName:@"FishIdle.png"];
         [fish setPosition:startLocation];
         [fish changeState:kStateIdle];
         [sceneSpriteBatchNode addChild:fish z:ZValue];

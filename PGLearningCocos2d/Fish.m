@@ -27,7 +27,7 @@
     switch (newState) {
         case kStateIdle:
             CCLOG(@"Fish->Changing State to Idle");
-            //action  = [CCAnimate actionWithAnimation:blinkingAnim restoreOriginalFrame:YES];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"FishIdle.png"]];
             break;
             
         case kStateAboutToBeEaten:

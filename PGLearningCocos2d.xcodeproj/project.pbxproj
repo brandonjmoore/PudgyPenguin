@@ -12,10 +12,10 @@
 		BF143A7A143C0BA2002A2DC3 /* Fish.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A79143C0BA2002A2DC3 /* Fish.m */; };
 		BF1EC84E143E9B650083412C /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84D143E9B650083412C /* background-hd.png */; };
 		BF1EC850143E9B6D0083412C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84F143E9B6D0083412C /* background.png */; };
-		BF1EC855143EA9840083412C /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC851143EA9840083412C /* scene1atlas-hd.plist */; };
-		BF1EC856143EA9840083412C /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC852143EA9840083412C /* scene1atlas-hd.png */; };
-		BF1EC857143EA9840083412C /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC853143EA9840083412C /* scene1atlas.plist */; };
-		BF1EC858143EA9840083412C /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC854143EA9840083412C /* scene1atlas.png */; };
+		BF1EC873143EB3260083412C /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC871143EB3260083412C /* scene1atlas.plist */; };
+		BF1EC874143EB3260083412C /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC872143EB3260083412C /* scene1atlas.png */; };
+		BF1EC877143EB32D0083412C /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC875143EB32D0083412C /* scene1atlas-hd.plist */; };
+		BF1EC878143EB32D0083412C /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC876143EB32D0083412C /* scene1atlas-hd.png */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -147,10 +147,10 @@
 		BF143A79143C0BA2002A2DC3 /* Fish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fish.m; sourceTree = "<group>"; };
 		BF1EC84D143E9B650083412C /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		BF1EC84F143E9B6D0083412C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		BF1EC851143EA9840083412C /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
-		BF1EC852143EA9840083412C /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
-		BF1EC853143EA9840083412C /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
-		BF1EC854143EA9840083412C /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
+		BF1EC871143EB3260083412C /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
+		BF1EC872143EB3260083412C /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
+		BF1EC875143EB32D0083412C /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
+		BF1EC876143EB32D0083412C /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -864,12 +864,12 @@
 		BF51CB221438248900B64181 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BF1EC851143EA9840083412C /* scene1atlas-hd.plist */,
-				BF1EC852143EA9840083412C /* scene1atlas-hd.png */,
-				BF1EC853143EA9840083412C /* scene1atlas.plist */,
-				BF1EC854143EA9840083412C /* scene1atlas.png */,
 				BF1EC84F143E9B6D0083412C /* background.png */,
 				BF1EC84D143E9B650083412C /* background-hd.png */,
+				BF1EC871143EB3260083412C /* scene1atlas.plist */,
+				BF1EC872143EB3260083412C /* scene1atlas.png */,
+				BF1EC875143EB32D0083412C /* scene1atlas-hd.plist */,
+				BF1EC876143EB32D0083412C /* scene1atlas-hd.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -942,10 +942,10 @@
 				BF396957143B595200EC7DBA /* Penguin.plist in Resources */,
 				BF1EC84E143E9B650083412C /* background-hd.png in Resources */,
 				BF1EC850143E9B6D0083412C /* background.png in Resources */,
-				BF1EC855143EA9840083412C /* scene1atlas-hd.plist in Resources */,
-				BF1EC856143EA9840083412C /* scene1atlas-hd.png in Resources */,
-				BF1EC857143EA9840083412C /* scene1atlas.plist in Resources */,
-				BF1EC858143EA9840083412C /* scene1atlas.png in Resources */,
+				BF1EC873143EB3260083412C /* scene1atlas.plist in Resources */,
+				BF1EC874143EB3260083412C /* scene1atlas.png in Resources */,
+				BF1EC877143EB32D0083412C /* scene1atlas-hd.plist in Resources */,
+				BF1EC878143EB32D0083412C /* scene1atlas-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

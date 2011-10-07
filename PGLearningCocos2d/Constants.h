@@ -13,11 +13,11 @@
 #define kPenguinSpriteTagValue      0
 #define kPenguinZValue              100
 //Idle time is used for idle actions (blinking, yawning, etc.)
-#define kPenguinIdleTime            6.0f
+#define kPenguinBlinkTime           10.0f
 
 #define kFishZValue                 5
 #define kFishIdleTime               10.0f
 
-#define kTimeBetweenFishCreation    10.0f
+#define kTimeBetweenFishCreation    2.0f
 
 #endif

@@ -72,7 +72,7 @@
     }
     
     //5. Get the delay value for the animation
-    float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
+    float animationDelay = [[animationSettings objectForKey:@"Delay"] floatValue];
     animationToReturn = [CCAnimation animation];
     [animationToReturn setDelay:animationDelay];
     

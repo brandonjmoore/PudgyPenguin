@@ -62,7 +62,7 @@
     switch (newState) {
         case kStateIdle:
             CCLOG(@"Penguin->Changing State to Idle");
-            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"penguino_fr.png"]];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             break;
         case kStateWalking:
             CCLOG(@"Penguin->Changing State to Walking");
@@ -112,7 +112,7 @@
     if ([self numberOfRunningActions] == 0) {
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
-            if (millisecondsStayingIdle > kPenguinIdleTime) {
+            if (millisecondsStayingIdle > kPenguinBlinkTime) {
                 [self changeState:kStateBlinking];
             }
         } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
@@ -130,7 +130,7 @@
 
 -(void)initAnimations {
     [self setPenguinAngryAnim:[self loadPlistForAnimationWithName:@"penguinAngryAnim" andClassName:NSStringFromClass([self class])]];
-    //[self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
+    [self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
     //[self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
 }
 
