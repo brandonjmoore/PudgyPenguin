@@ -113,8 +113,8 @@
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
             if (millisecondsStayingIdle > kPenguinBlinkTime) {
-                //[self changeState:kStateBlinking];
-                [self changeState:kStateAngry];
+                [self changeState:kStateBlinking];
+                //[self changeState:kStateAngry];
             }
         } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
             millisecondsStayingIdle = 0.0f;
