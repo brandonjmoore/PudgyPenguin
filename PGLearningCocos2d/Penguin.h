@@ -23,6 +23,7 @@
     CCAnimation *penguinOpenMouthAnim;
     
     float millisecondsStayingIdle;
+    float millisecondsStayingAngry;
     
     BOOL isFishWithinSight;
     

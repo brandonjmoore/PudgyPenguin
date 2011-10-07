@@ -78,7 +78,7 @@
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
-            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:YES];
+            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:NO];
             break;
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
@@ -113,7 +113,8 @@
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
             if (millisecondsStayingIdle > kPenguinBlinkTime) {
-                [self changeState:kStateBlinking];
+                //[self changeState:kStateBlinking];
+                [self changeState:kStateAngry];
             }
         } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
             millisecondsStayingIdle = 0.0f;
