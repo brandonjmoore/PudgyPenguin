@@ -17,6 +17,8 @@
 		BF1EC877143EB32D0083412C /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC875143EB32D0083412C /* scene1atlas-hd.plist */; };
 		BF1EC878143EB32D0083412C /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC876143EB32D0083412C /* scene1atlas-hd.png */; };
 		BF1EC8B6143ED0D30083412C /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.m */; };
+		BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AD8143F994C004D59B2 /* MainMenuScene.m */; };
+		BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -153,6 +155,10 @@
 		BF1EC876143EB32D0083412C /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BF1EC8B4143ED0D30083412C /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		BF1EC8B5143ED0D30083412C /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
+		BF382AD7143F994C004D59B2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
+		BF382AD8143F994C004D59B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
+		BF382ADB143F9A73004D59B2 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
+		BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -439,8 +445,12 @@
 		BF39696B143B60E300EC7DBA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				BF51CB41143828A200B64181 /* GameScene.h */,
-				BF51CB42143828A200B64181 /* GameScene.m */,
+				BFE3F182143EDEA4007BB741 /* Intro */,
+				BFE3F184143EDEBD007BB741 /* MainMenu */,
+				BFE3F185143EDEC9007BB741 /* Options */,
+				BFE3F186143EDED9007BB741 /* Credits */,
+				BFE3F187143EDEEE007BB741 /* LevelComplete */,
+				BFE3F188143EDEF9007BB741 /* Scene1 */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -519,7 +529,6 @@
 			children = (
 				BF39696F143B60FF00EC7DBA /* Singletons */,
 				BF39696E143B60F600EC7DBA /* GameObjects */,
-				BF39696C143B60E900EC7DBA /* Layers */,
 				BF39696B143B60E300EC7DBA /* Scenes */,
 				BF396955143B591400EC7DBA /* Plists */,
 				BF396969143B60C800EC7DBA /* Constants */,
@@ -875,6 +884,55 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		BFE3F182143EDEA4007BB741 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Intro;
+			sourceTree = "<group>";
+		};
+		BFE3F184143EDEBD007BB741 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				BF382AD7143F994C004D59B2 /* MainMenuScene.h */,
+				BF382AD8143F994C004D59B2 /* MainMenuScene.m */,
+				BF382ADB143F9A73004D59B2 /* MainMenuLayer.h */,
+				BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		BFE3F185143EDEC9007BB741 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Options;
+			sourceTree = "<group>";
+		};
+		BFE3F186143EDED9007BB741 /* Credits */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Credits;
+			sourceTree = "<group>";
+		};
+		BFE3F187143EDEEE007BB741 /* LevelComplete */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LevelComplete;
+			sourceTree = "<group>";
+		};
+		BFE3F188143EDEF9007BB741 /* Scene1 */ = {
+			isa = PBXGroup;
+			children = (
+				BF39696C143B60E900EC7DBA /* Layers */,
+				BF51CB41143828A200B64181 /* GameScene.h */,
+				BF51CB42143828A200B64181 /* GameScene.m */,
+			);
+			name = Scene1;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1053,6 +1111,8 @@
 				BF143A7A143C0BA2002A2DC3 /* Fish.m in Sources */,
 				BFE9ED7C143CC7170096509D /* Penguin.m in Sources */,
 				BF1EC8B6143ED0D30083412C /* GameManager.m in Sources */,
+				BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */,
+				BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

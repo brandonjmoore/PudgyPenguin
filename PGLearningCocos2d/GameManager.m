@@ -115,7 +115,7 @@ static GameManager* _sharedGameManager = nil;
 }
 
 -(void)openSiteWithLinkType:(LinkTypes)linkTypeToOpen{
-    
+    //Complete to visit webpages (Page 178)
 }
 
 @end

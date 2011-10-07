@@ -24,7 +24,7 @@
 
 
 //GameManager constants (Chapter 7)
-#define kMainMenuTag                10
+#define kMainMenuTagValue           10
 #define kSceneMenuTagValue          20
 
 typedef enum {
