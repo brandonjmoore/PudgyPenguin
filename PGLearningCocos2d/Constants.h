@@ -29,7 +29,7 @@
 
 typedef enum {
     kNoSceneUninitialized=0,
-    kMainMenuScen=1,
+    kMainMenuScene=1,
     kOptionsScene=2,
     kCreditsScene=3,
     kIntroScene=4,

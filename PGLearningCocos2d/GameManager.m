@@ -54,4 +54,68 @@ static GameManager* _sharedGameManager = nil;
     return self;
 }
 
+-(void)runSceneWithID:(SceneTypes)sceneID {
+    SceneTypes oldScene = currentScene;
+    currentScene = sceneID;
+    id sceneToRun = nil;
+    switch (sceneID) {
+        case kMainMenuScene:
+            sceneToRun = [MainMenuScene node];
+            break;
+        case kOptionsScene:
+            sceneToRun = [OptionsScene node];
+            break;
+        case kCreditsScene:
+            sceneToRun = [CreditsScene node];
+            break;
+        case kIntroScene:
+            sceneToRun = [IntroScene node];
+            break;
+        case kLevelCompleteScene:
+            sceneToRun = [LevelCompleteScene node];
+            break;
+        case kGameLevel1:
+            sceneToRun = [GameScene node];
+            break;
+            
+        case kGameLevel2:
+            //Placeholder for Level 2
+            break;
+        case kGameLevel3:
+            //Placeholder for Level 3
+            break;
+        case kGameLevel4:
+            //Placeholder for Level 4
+            break;
+        case kGameLevel5:
+            //Placeholder for Level 5
+            break;
+        case kCutSceneForLevel2:
+            //Placeholder for Platform Level
+            break;
+        
+        default:
+            CCLOG(@"Unknown ID, cannot switch scenes");
+            return;
+            break;
+    }
+    
+    if (sceneToRun == nil) {
+        //Revert back, since no new scene was found
+        currentScene = oldScene;
+        return;
+    }
+    
+    if ([[CCDirector sharedDirector] runningScene] == nil) {
+        [[CCDirector sharedDirector] runWithScene:sceneToRun];
+    } else {
+        [[CCDirector sharedDirector] replaceScene:sceneToRun];
+    }
+    
+}
+
+-(void)openSiteWithLinkType:(LinkTypes)linkTypeToOpen{
+    
+}
+
 @end
