@@ -115,6 +115,7 @@
             if (millisecondsStayingIdle > kPenguinBlinkTime) {
                 [self changeState:kStateBlinking];
                 //[self changeState:kStateAngry];
+                //[self changeState:kStateMouthOpen];
             }
         } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
             millisecondsStayingIdle = 0.0f;
@@ -132,13 +133,15 @@
 -(void)initAnimations {
     [self setPenguinAngryAnim:[self loadPlistForAnimationWithName:@"penguinAngryAnim" andClassName:NSStringFromClass([self class])]];
     [self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
-    //[self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
+    [self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
 }
 
 - (id)init
 {
     if ((self=[super init])) {
         gameObjectType = kPenguinTypeBlack;
+        millisecondsStayingIdle = 0.0f;
+        millisecondsStayingAngry = 0.0f;
         [self initAnimations];
         srandom(time(NULL));
     }

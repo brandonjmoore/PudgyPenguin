@@ -69,17 +69,24 @@
 //        }
 //    }
     
-    if (([self numberOfRunningActions] == 0) && (characterState != kStateHasBeenEaten) && (characterState != kStateIdle)) {
-        CCLOG(@"Going to Idle");
-        [self changeState:kStateIdle];
-        return;
+    if ([self numberOfRunningActions] == 0) {
+        if (characterState == kStateHasBeenEaten) {
+            //Fish has been eaten, remove
+            //TODO: Shrink fish into Penguins mouth here.
+            [self setVisible:YES];
+            [self removeFromParentAndCleanup:YES];
+        }else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
+             //TODO: to have fish blink - millisecondsStayingIdle = 0.0f;
+            CCLOG(@"Fish->Going to Idle");
+            [self changeState:kStateIdle];
+        }
     }
     
 }
 
 -(void)initAnimations {
-    [self setFishBlinkingAnim:[self loadPlistForAnimationWithName:@"blinkingAnim" andClassName:NSStringFromClass([self class])]];
-    [self setBecomeScaredAnim:[self loadPlistForAnimationWithName:@"becomeScaredAnim" andClassName:NSStringFromClass([self class])]];
+    //[self setFishBlinkingAnim:[self loadPlistForAnimationWithName:@"blinkingAnim" andClassName:NSStringFromClass([self class])]];
+    //[self setBecomeScaredAnim:[self loadPlistForAnimationWithName:@"becomeScaredAnim" andClassName:NSStringFromClass([self class])]];
 }
 
 -(id) init {

@@ -20,6 +20,11 @@
         [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
         
         [self addChild:backgroundImage z:0 tag:0];
+        
+        //TODO: take out waves
+        //id wavesAction = [CCWaves actionWithWaves:5 amplitude:20 horizontal:NO vertical:YES grid:ccg(15,10) duration:20];
+        //[backgroundImage runAction:[CCRepeatForever actionWithAction:wavesAction]];
+        
     }
     
     return self;
