@@ -25,6 +25,13 @@
     for (GameCharacter *tempChar in listOfGameObjects) {
         [tempChar updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
     }
+    
+    //The following call ends the level when the required number of fish are eaten or the fish run out
+    //TODO: Here I am handling when the penguin is satisfied, but we need to handle when the fish run out (page 191 & 192)
+    GameCharacter *tempChar = (GameCharacter*) [sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+    if (([tempChar characterState] == kStateSatisfied) && ([tempChar numberOfRunningActions] == 0)) {
+        [[GameManager sharedGameManager] runSceneWithID:kLevelCompleteScene];
+    }
 }
 
 -(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue {

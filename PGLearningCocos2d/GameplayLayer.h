@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "CommonProtocols.h"
 #import "Penguin.h"
+#import "GameManager.h"
 
 @interface GameplayLayer : CCLayer <GameplayLayerDelegate>{
     CCSprite *penguinSprite;

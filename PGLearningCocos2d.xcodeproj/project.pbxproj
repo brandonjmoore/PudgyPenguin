@@ -495,17 +495,6 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
-		BF39696C143B60E900EC7DBA /* Layers */ = {
-			isa = PBXGroup;
-			children = (
-				BF51CB331438250D00B64181 /* BackgroundLayer.h */,
-				BF51CB341438250D00B64181 /* BackgroundLayer.m */,
-				BF51CB361438261E00B64181 /* GameplayLayer.h */,
-				BF51CB371438261E00B64181 /* GameplayLayer.m */,
-			);
-			name = Layers;
-			sourceTree = "<group>";
-		};
 		BF39696E143B60F600EC7DBA /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,7 +1001,10 @@
 		BFE3F188143EDEF9007BB741 /* Scene1 */ = {
 			isa = PBXGroup;
 			children = (
-				BF39696C143B60E900EC7DBA /* Layers */,
+				BF51CB331438250D00B64181 /* BackgroundLayer.h */,
+				BF51CB341438250D00B64181 /* BackgroundLayer.m */,
+				BF51CB361438261E00B64181 /* GameplayLayer.h */,
+				BF51CB371438261E00B64181 /* GameplayLayer.m */,
 				BF51CB41143828A200B64181 /* GameScene.h */,
 				BF51CB42143828A200B64181 /* GameScene.m */,
 			);

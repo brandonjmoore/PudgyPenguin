@@ -14,6 +14,8 @@
 	CCLOG(@"Touches received, returning to the Main Menu");
 	[[GameManager sharedGameManager] setHasPlayerBeenDefeated :NO]; // Reset this for the next level
     NSInteger currentScene = [[GameManager sharedGameManager] getCurrentScene];
+    
+    //TODO: Make sure this works
     if (currentScene < kLastLevelNumber) {
         NSInteger nextScene = currentScene + 1;
         [[GameManager sharedGameManager] runSceneWithID:nextScene];
