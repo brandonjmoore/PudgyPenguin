@@ -24,6 +24,20 @@
 		BF382AE6143FD511004D59B2 /* LevelCompleteScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AE5143FD511004D59B2 /* LevelCompleteScene.m */; };
 		BF382AE9143FD59E004D59B2 /* LevelCompleteLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AE8143FD59E004D59B2 /* LevelCompleteLayer.m */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
+		BF44C35414402157005134E7 /* BackButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34614402157005134E7 /* BackButtonNormal.png */; };
+		BF44C35514402157005134E7 /* BackButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34714402157005134E7 /* BackButtonSelected.png */; };
+		BF44C35614402157005134E7 /* OptionsButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34814402157005134E7 /* OptionsButtonNormal.png */; };
+		BF44C35714402157005134E7 /* OptionsButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34914402157005134E7 /* OptionsButtonSelected.png */; };
+		BF44C35814402157005134E7 /* PlayGameButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34A14402157005134E7 /* PlayGameButtonNormal.png */; };
+		BF44C35914402157005134E7 /* PlayGameButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34B14402157005134E7 /* PlayGameButtonSelected.png */; };
+		BF44C35A14402157005134E7 /* Scene1ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34C14402157005134E7 /* Scene1ButtonNormal.png */; };
+		BF44C35B14402157005134E7 /* Scene1ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34D14402157005134E7 /* Scene1ButtonSelected.png */; };
+		BF44C35C14402157005134E7 /* Scene2ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34E14402157005134E7 /* Scene2ButtonNormal.png */; };
+		BF44C35D14402157005134E7 /* Scene2ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C34F14402157005134E7 /* Scene2ButtonSelected.png */; };
+		BF44C35E14402157005134E7 /* Scene3ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C35014402157005134E7 /* Scene3ButtonNormal.png */; };
+		BF44C35F14402157005134E7 /* Scene3ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C35114402157005134E7 /* Scene3ButtonSelected.png */; };
+		BF44C36014402157005134E7 /* Scene4ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C35214402157005134E7 /* Scene4ButtonNormal.png */; };
+		BF44C36114402157005134E7 /* Scene4ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C35314402157005134E7 /* Scene4ButtonSelected.png */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
 		BF51C9B61438244D00B64181 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B51438244D00B64181 /* OpenAL.framework */; };
@@ -174,6 +188,20 @@
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
+		BF44C34614402157005134E7 /* BackButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButtonNormal.png; sourceTree = "<group>"; };
+		BF44C34714402157005134E7 /* BackButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButtonSelected.png; sourceTree = "<group>"; };
+		BF44C34814402157005134E7 /* OptionsButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionsButtonNormal.png; sourceTree = "<group>"; };
+		BF44C34914402157005134E7 /* OptionsButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionsButtonSelected.png; sourceTree = "<group>"; };
+		BF44C34A14402157005134E7 /* PlayGameButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayGameButtonNormal.png; sourceTree = "<group>"; };
+		BF44C34B14402157005134E7 /* PlayGameButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayGameButtonSelected.png; sourceTree = "<group>"; };
+		BF44C34C14402157005134E7 /* Scene1ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene1ButtonNormal.png; sourceTree = "<group>"; };
+		BF44C34D14402157005134E7 /* Scene1ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene1ButtonSelected.png; sourceTree = "<group>"; };
+		BF44C34E14402157005134E7 /* Scene2ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene2ButtonNormal.png; sourceTree = "<group>"; };
+		BF44C34F14402157005134E7 /* Scene2ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene2ButtonSelected.png; sourceTree = "<group>"; };
+		BF44C35014402157005134E7 /* Scene3ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene3ButtonNormal.png; sourceTree = "<group>"; };
+		BF44C35114402157005134E7 /* Scene3ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene3ButtonSelected.png; sourceTree = "<group>"; };
+		BF44C35214402157005134E7 /* Scene4ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene4ButtonNormal.png; sourceTree = "<group>"; };
+		BF44C35314402157005134E7 /* Scene4ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene4ButtonSelected.png; sourceTree = "<group>"; };
 		BF51C9AD1438244D00B64181 /* PGLearningCocos2d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PGLearningCocos2d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF51C9B11438244D00B64181 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BF51C9B31438244D00B64181 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -502,6 +530,47 @@
 				BF1EC8B5143ED0D30083412C /* GameManager.m */,
 			);
 			name = Singletons;
+			sourceTree = "<group>";
+		};
+		BF44C3421440201F005134E7 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C34614402157005134E7 /* BackButtonNormal.png */,
+				BF44C34714402157005134E7 /* BackButtonSelected.png */,
+				BF44C34814402157005134E7 /* OptionsButtonNormal.png */,
+				BF44C34914402157005134E7 /* OptionsButtonSelected.png */,
+				BF44C34A14402157005134E7 /* PlayGameButtonNormal.png */,
+				BF44C34B14402157005134E7 /* PlayGameButtonSelected.png */,
+				BF44C34C14402157005134E7 /* Scene1ButtonNormal.png */,
+				BF44C34D14402157005134E7 /* Scene1ButtonSelected.png */,
+				BF44C34E14402157005134E7 /* Scene2ButtonNormal.png */,
+				BF44C34F14402157005134E7 /* Scene2ButtonSelected.png */,
+				BF44C35014402157005134E7 /* Scene3ButtonNormal.png */,
+				BF44C35114402157005134E7 /* Scene3ButtonSelected.png */,
+				BF44C35214402157005134E7 /* Scene4ButtonNormal.png */,
+				BF44C35314402157005134E7 /* Scene4ButtonSelected.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		BF44C34414402038005134E7 /* SpriteSheets */ = {
+			isa = PBXGroup;
+			children = (
+				BF1EC871143EB3260083412C /* scene1atlas.plist */,
+				BF1EC872143EB3260083412C /* scene1atlas.png */,
+				BF1EC875143EB32D0083412C /* scene1atlas-hd.plist */,
+				BF1EC876143EB32D0083412C /* scene1atlas-hd.png */,
+			);
+			name = SpriteSheets;
+			sourceTree = "<group>";
+		};
+		BF44C34514402045005134E7 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				BF1EC84F143E9B6D0083412C /* background.png */,
+				BF1EC84D143E9B650083412C /* background-hd.png */,
+			);
+			name = Background;
 			sourceTree = "<group>";
 		};
 		BF51C9A21438244D00B64181 = {
@@ -886,12 +955,9 @@
 		BF51CB221438248900B64181 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BF1EC84F143E9B6D0083412C /* background.png */,
-				BF1EC84D143E9B650083412C /* background-hd.png */,
-				BF1EC871143EB3260083412C /* scene1atlas.plist */,
-				BF1EC872143EB3260083412C /* scene1atlas.png */,
-				BF1EC875143EB32D0083412C /* scene1atlas-hd.plist */,
-				BF1EC876143EB32D0083412C /* scene1atlas-hd.png */,
+				BF44C34514402045005134E7 /* Background */,
+				BF44C34414402038005134E7 /* SpriteSheets */,
+				BF44C3421440201F005134E7 /* Buttons */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1016,6 +1082,20 @@
 				BF1EC874143EB3260083412C /* scene1atlas.png in Resources */,
 				BF1EC877143EB32D0083412C /* scene1atlas-hd.plist in Resources */,
 				BF1EC878143EB32D0083412C /* scene1atlas-hd.png in Resources */,
+				BF44C35414402157005134E7 /* BackButtonNormal.png in Resources */,
+				BF44C35514402157005134E7 /* BackButtonSelected.png in Resources */,
+				BF44C35614402157005134E7 /* OptionsButtonNormal.png in Resources */,
+				BF44C35714402157005134E7 /* OptionsButtonSelected.png in Resources */,
+				BF44C35814402157005134E7 /* PlayGameButtonNormal.png in Resources */,
+				BF44C35914402157005134E7 /* PlayGameButtonSelected.png in Resources */,
+				BF44C35A14402157005134E7 /* Scene1ButtonNormal.png in Resources */,
+				BF44C35B14402157005134E7 /* Scene1ButtonSelected.png in Resources */,
+				BF44C35C14402157005134E7 /* Scene2ButtonNormal.png in Resources */,
+				BF44C35D14402157005134E7 /* Scene2ButtonSelected.png in Resources */,
+				BF44C35E14402157005134E7 /* Scene3ButtonNormal.png in Resources */,
+				BF44C35F14402157005134E7 /* Scene3ButtonSelected.png in Resources */,
+				BF44C36014402157005134E7 /* Scene4ButtonNormal.png in Resources */,
+				BF44C36114402157005134E7 /* Scene4ButtonSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
