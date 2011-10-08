@@ -10,6 +10,9 @@
 		BF143A73143BFA25002A2DC3 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A72143BFA25002A2DC3 /* GameObject.m */; };
 		BF143A76143C0708002A2DC3 /* GameCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A75143C0708002A2DC3 /* GameCharacter.m */; };
 		BF143A7A143C0BA2002A2DC3 /* Fish.m in Sources */ = {isa = PBXBuildFile; fileRef = BF143A79143C0BA2002A2DC3 /* Fish.m */; };
+		BF151AE914410B51000657EC /* PhysicsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF151AE814410B51000657EC /* PhysicsLayer.m */; };
+		BF151AEC14410D58000657EC /* Scene3ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF151AEA14410D58000657EC /* Scene3ButtonNormal.png */; };
+		BF151AED14410D58000657EC /* Scene3ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF151AEB14410D58000657EC /* Scene3ButtonSelected.png */; };
 		BF1EC84E143E9B650083412C /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84D143E9B650083412C /* background-hd.png */; };
 		BF1EC850143E9B6D0083412C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84F143E9B6D0083412C /* background.png */; };
 		BF1EC873143EB3260083412C /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC871143EB3260083412C /* scene1atlas.plist */; };
@@ -163,6 +166,10 @@
 		BF143A75143C0708002A2DC3 /* GameCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCharacter.m; sourceTree = "<group>"; };
 		BF143A78143C0BA2002A2DC3 /* Fish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish.h; sourceTree = "<group>"; };
 		BF143A79143C0BA2002A2DC3 /* Fish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fish.m; sourceTree = "<group>"; };
+		BF151AE714410B51000657EC /* PhysicsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsLayer.h; sourceTree = "<group>"; };
+		BF151AE814410B51000657EC /* PhysicsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicsLayer.m; sourceTree = "<group>"; };
+		BF151AEA14410D58000657EC /* Scene3ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene3ButtonNormal.png; sourceTree = "<group>"; };
+		BF151AEB14410D58000657EC /* Scene3ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene3ButtonSelected.png; sourceTree = "<group>"; };
 		BF1EC84D143E9B650083412C /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		BF1EC84F143E9B6D0083412C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BF1EC871143EB3260083412C /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
@@ -460,6 +467,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF151AE514410B25000657EC /* Scene3 */ = {
+			isa = PBXGroup;
+			children = (
+				BF151AE714410B51000657EC /* PhysicsLayer.h */,
+				BF151AE814410B51000657EC /* PhysicsLayer.m */,
+			);
+			name = Scene3;
+			sourceTree = "<group>";
+		};
 		BF396955143B591400EC7DBA /* Plists */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +546,8 @@
 				BF44C37214402A2B005134E7 /* Scene1ButtonSelected.png */,
 				BF44C37314402A2B005134E7 /* Scene2ButtonNormal.png */,
 				BF44C37414402A2B005134E7 /* Scene2ButtonSelected.png */,
+				BF151AEA14410D58000657EC /* Scene3ButtonNormal.png */,
+				BF151AEB14410D58000657EC /* Scene3ButtonSelected.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -601,6 +619,7 @@
 				BF39696F143B60FF00EC7DBA /* Singletons */,
 				BF39696E143B60F600EC7DBA /* GameObjects */,
 				BF39696B143B60E300EC7DBA /* Scenes */,
+				BF151AE514410B25000657EC /* Scene3 */,
 				BF396955143B591400EC7DBA /* Plists */,
 				BF396969143B60C800EC7DBA /* Constants */,
 				BF51CB1C1438244F00B64181 /* GameConfig.h */,
@@ -1088,6 +1107,8 @@
 				BF44C37814402A2B005134E7 /* Scene1ButtonSelected.png in Resources */,
 				BF44C37914402A2B005134E7 /* Scene2ButtonNormal.png in Resources */,
 				BF44C37A14402A2B005134E7 /* Scene2ButtonSelected.png in Resources */,
+				BF151AEC14410D58000657EC /* Scene3ButtonNormal.png in Resources */,
+				BF151AED14410D58000657EC /* Scene3ButtonSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,6 +1230,7 @@
 				BF382AE3143FC959004D59B2 /* IntroLayer.m in Sources */,
 				BF382AE6143FD511004D59B2 /* LevelCompleteScene.m in Sources */,
 				BF382AE9143FD59E004D59B2 /* LevelCompleteLayer.m in Sources */,
+				BF151AE914410B51000657EC /* PhysicsLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,12 @@
     if ([itemPassedIn tag] == 1) {
         CCLOG(@"Tag 1 found, Scene 1");
         [[GameManager sharedGameManager] runSceneWithID:kIntroScene];
-    } else {
+    }
+    if ([itemPassedIn tag] == 3) {
+        CCLOG(@"Tag 3 found, Scene 3");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
+    } 
+    else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
         CCLOG(@"Placeholder for next chapters");
     }
@@ -71,10 +76,13 @@
     CCMenuItemImage *playScene2Button = [CCMenuItemImage itemFromNormalImage:@"Scene2ButtonNormal.png" selectedImage:@"Scene2ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
     [playScene2Button setTag:2];
     
+    CCMenuItemImage *playScene3Button = [CCMenuItemImage itemFromNormalImage:@"Scene3ButtonNormal.png" selectedImage:@"Scene3ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
+    [playScene3Button setTag:3];
+    
     CCMenuItemImage *backButton = [CCMenuItemImage itemFromNormalImage:@"BackButtonNormal.png" selectedImage:@"BackButtonSelected.png" disabledImage:nil target:self selector:@selector(displayMainMenu)];
     [backButton setPosition:ccp(screenSize.width * 0.13f, screenSize.height * 0.95f)];
     
-    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, playScene2Button, nil];
+    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, playScene2Button, playScene3Button, nil];
     backButtonMenu = [CCMenu menuWithItems:backButton, nil];
     
     [sceneSelectMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
