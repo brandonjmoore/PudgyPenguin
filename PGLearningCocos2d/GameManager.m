@@ -114,6 +114,10 @@ static GameManager* _sharedGameManager = nil;
     
 }
 
+-(SceneTypes)getCurrentScene {
+    return currentScene;
+}
+
 -(void)openSiteWithLinkType:(LinkTypes)linkTypeToOpen{
     //Complete to visit webpages (Page 178)
 }
