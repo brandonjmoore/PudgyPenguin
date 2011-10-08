@@ -14,8 +14,13 @@
 	CCLOG(@"Touches received, returning to the Main Menu");
 	[[GameManager sharedGameManager] setHasPlayerBeenDefeated :NO]; // Reset this for the next level
     NSInteger currentScene = [[GameManager sharedGameManager] getCurrentScene];
-    NSInteger nextScene = currentScene + 1;
-	[[GameManager sharedGameManager] runSceneWithID:nextScene];
+    if (currentScene < kLastLevelNumber) {
+        NSInteger nextScene = currentScene + 1;
+        [[GameManager sharedGameManager] runSceneWithID:nextScene];
+    } else {
+        [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+    }
+    
 }
 
 - (id)init
