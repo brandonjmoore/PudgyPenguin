@@ -8,11 +8,11 @@
 
 #import "GameManager.h"
 #import "GameScene.h"
-//#import "MainMenuScene.h"
+#import "MainMenuScene.h"
 //#import "OptionsScene.h"
 //#import "CreditsScene.h"
-//#import "IntroScene.h"
-//#import "LevelCompleteScene.h"
+#import "IntroScene.h"
+#import "LevelCompleteScene.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
@@ -60,7 +60,7 @@ static GameManager* _sharedGameManager = nil;
     id sceneToRun = nil;
     switch (sceneID) {
         case kMainMenuScene:
-            //TODO: sceneToRun = [MainMenuScene node];
+            sceneToRun = [MainMenuScene node];
             break;
         case kOptionsScene:
             //TODO: sceneToRun = [OptionsScene node];
@@ -69,10 +69,10 @@ static GameManager* _sharedGameManager = nil;
             //TODO: sceneToRun = [CreditsScene node];
             break;
         case kIntroScene:
-            //TODO: sceneToRun = [IntroScene node];
+            sceneToRun = [IntroScene node];
             break;
         case kLevelCompleteScene:
-            //TODO: sceneToRun = [LevelCompleteScene node];
+            sceneToRun = [LevelCompleteScene node];
             break;
         case kGameLevel1:
             sceneToRun = [GameScene node];

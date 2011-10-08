@@ -45,7 +45,7 @@
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 2, screenSize.height /2)];
     
-    id moveAction = [CCMoveTo actionWithDuration:1.2f position:ccp(screenSize.width * 0.85f, screenSize.height/2)];
+    id moveAction = [CCMoveTo actionWithDuration:1.2f position:ccp(screenSize.width * 0.5f, screenSize.height/2)];
     id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
     [mainMenu runAction:moveEffect];
     [self addChild:mainMenu z:0 tag:kMainMenuTagValue];
