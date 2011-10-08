@@ -9,7 +9,7 @@
 #import "MainMenuLayer.h"
 
 @interface MainMenuLayer ()
--(void)displayMenu;
+-(void)displayMainMenu;
 -(void)displaySceneSelection;
 @end
 
@@ -52,11 +52,49 @@
                                       
 }
 
+-(void)displaySceneSelection {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    if (mainMenu != nil) {
+        [mainMenu removeFromParentAndCleanup:YES];
+    }
+    
+    //CCLabelBMFont *playScene1Label = [CCLabelBMFont labelWithString:@"Level 1!" fntFile:@"Helvetica"
+    //Using CCMenuItemImages instead of CCMenuItemLabels (page 187)
+    CCMenuItemImage *playScene1Button = [CCMenuItemImage itemFromNormalImage:@"Scene1ButtonNormal.png" selectedImage:@"Scene1ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
+    [playScene1Button setTag:1];
+    
+    CCMenuItemImage *playScene2Button = [CCMenuItemImage itemFromNormalImage:@"Scene2ButtonNormal.png" selectedImage:@"Scene2ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
+    [playScene2Button setTag:2];
+    
+    CCMenuItemImage *backButton = [CCMenuItemImage itemFromNormalImage:@"BackButtonNormal.png" selectedImage:@"BackButtonSelected.png" disabledImage:nil target:self selector:@selector(displayMainMenu:)];
+    
+    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, playScene2Button, backButton, nil];
+    [sceneSelectMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
+    [sceneSelectMenu setPosition:ccp(screenSize.width * 2, screenSize.height / 2)];
+    
+    id moveAction = [CCMoveTo actionWithDuration:0.5f position:ccp(screenSize.width * 0.75f, screenSize.height/2)];
+    id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
+    [sceneSelectMenu runAction:moveEffect];
+    [self addChild:sceneSelectMenu z:1 tag:kSceneMenuTagValue];
+    
+}
+
 - (id)init
 {
     self = [super init];
     if (self != nil) {
-        // Initialization code here.
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        
+        CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
+        [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+        [self addChild:background];
+        //Add the buttons to the screen
+        [self displayMainMenu];
+        
+        CCSprite *penguin = [CCSprite spriteWithFile:@"PenguinIdle.png"];
+        [penguin setPosition:ccp(screenSize.width * 0.8f, screenSize.height * 0.2f)];
+        [self addChild:penguin];
+        
     }
     
     return self;

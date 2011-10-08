@@ -19,6 +19,8 @@
 		BF1EC8B6143ED0D30083412C /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.m */; };
 		BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AD8143F994C004D59B2 /* MainMenuScene.m */; };
 		BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */; };
+		BF382AE0143FC88C004D59B2 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADF143FC88C004D59B2 /* IntroScene.m */; };
+		BF382AE3143FC959004D59B2 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AE2143FC959004D59B2 /* IntroLayer.m */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
@@ -159,6 +161,10 @@
 		BF382AD8143F994C004D59B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		BF382ADB143F9A73004D59B2 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
+		BF382ADE143FC88C004D59B2 /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
+		BF382ADF143FC88C004D59B2 /* IntroScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroScene.m; sourceTree = "<group>"; };
+		BF382AE1143FC959004D59B2 /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
+		BF382AE2143FC959004D59B2 /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -887,6 +893,10 @@
 		BFE3F182143EDEA4007BB741 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				BF382ADE143FC88C004D59B2 /* IntroScene.h */,
+				BF382ADF143FC88C004D59B2 /* IntroScene.m */,
+				BF382AE1143FC959004D59B2 /* IntroLayer.h */,
+				BF382AE2143FC959004D59B2 /* IntroLayer.m */,
 			);
 			name = Intro;
 			sourceTree = "<group>";
@@ -1113,6 +1123,8 @@
 				BF1EC8B6143ED0D30083412C /* GameManager.m in Sources */,
 				BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */,
 				BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */,
+				BF382AE0143FC88C004D59B2 /* IntroScene.m in Sources */,
+				BF382AE3143FC959004D59B2 /* IntroLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

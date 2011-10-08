@@ -1,5 +1,5 @@
 //
-//  MainMenuScene.h
+//  IntroScene.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/7/11.
@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "MainMenuLayer.h"
+#import "IntroLayer.h"
 
-@interface MainMenuScene : CCScene {
-    MainMenuLayer *mainMenuLayer;
+@interface IntroScene : CCScene {
+    IntroLayer *introLayer;
 }
 
 @end
