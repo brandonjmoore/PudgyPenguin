@@ -35,6 +35,10 @@
     if (sceneSelectMenu != nil) {
         [sceneSelectMenu removeFromParentAndCleanup:YES];
     }
+    if (backButtonMenu != nil) {
+        [backButtonMenu removeFromParentAndCleanup:YES];
+    }
+    
     
     //Main Menu
     CCMenuItemImage *playGameButton = [CCMenuItemImage itemFromNormalImage:@"PlayGameButtonNormal.png" selectedImage:@"PlayGameButtonSelected.png" disabledImage:nil target:self selector:@selector(displaySceneSelection)];
@@ -45,6 +49,7 @@
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 2, screenSize.height /2)];
     
+    //TODO: Take out this animation
     id moveAction = [CCMoveTo actionWithDuration:1.2f position:ccp(screenSize.width * 0.5f, screenSize.height/2)];
     id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
     [mainMenu runAction:moveEffect];
@@ -66,16 +71,18 @@
     CCMenuItemImage *playScene2Button = [CCMenuItemImage itemFromNormalImage:@"Scene2ButtonNormal.png" selectedImage:@"Scene2ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
     [playScene2Button setTag:2];
     
-    CCMenuItemImage *backButton = [CCMenuItemImage itemFromNormalImage:@"BackButtonNormal.png" selectedImage:@"BackButtonSelected.png" disabledImage:nil target:self selector:@selector(displayMainMenu:)];
+    CCMenuItemImage *backButton = [CCMenuItemImage itemFromNormalImage:@"BackButtonNormal.png" selectedImage:@"BackButtonSelected.png" disabledImage:nil target:self selector:@selector(displayMainMenu)];
+    [backButton setPosition:ccp(screenSize.width * 0.13f, screenSize.height * 0.95f)];
     
-    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, playScene2Button, backButton, nil];
-    [sceneSelectMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
-    [sceneSelectMenu setPosition:ccp(screenSize.width * 2, screenSize.height / 2)];
+    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, playScene2Button, nil];
+    backButtonMenu = [CCMenu menuWithItems:backButton, nil];
     
-    id moveAction = [CCMoveTo actionWithDuration:0.5f position:ccp(screenSize.width * 0.75f, screenSize.height/2)];
-    id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
-    [sceneSelectMenu runAction:moveEffect];
+    [sceneSelectMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+    [sceneSelectMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.75f)];
+    [backButtonMenu setPosition:ccp(0,0)];
+    
     [self addChild:sceneSelectMenu z:1 tag:kSceneMenuTagValue];
+    [self addChild:backButtonMenu z:1 tag:kBackButtonMenuTagValue];
     
 }
 

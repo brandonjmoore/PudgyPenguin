@@ -30,6 +30,12 @@
 		BF44C36C14402917005134E7 /* OptionsButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36814402917005134E7 /* OptionsButtonSelected.png */; };
 		BF44C36D14402917005134E7 /* PlayGameButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36914402917005134E7 /* PlayGameButtonNormal.png */; };
 		BF44C36E14402917005134E7 /* PlayGameButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36A14402917005134E7 /* PlayGameButtonSelected.png */; };
+		BF44C37514402A2B005134E7 /* BackButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36F14402A2B005134E7 /* BackButtonNormal.png */; };
+		BF44C37614402A2B005134E7 /* BackButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C37014402A2B005134E7 /* BackButtonSelected.png */; };
+		BF44C37714402A2B005134E7 /* Scene1ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C37114402A2B005134E7 /* Scene1ButtonNormal.png */; };
+		BF44C37814402A2B005134E7 /* Scene1ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C37214402A2B005134E7 /* Scene1ButtonSelected.png */; };
+		BF44C37914402A2B005134E7 /* Scene2ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C37314402A2B005134E7 /* Scene2ButtonNormal.png */; };
+		BF44C37A14402A2B005134E7 /* Scene2ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C37414402A2B005134E7 /* Scene2ButtonSelected.png */; };
 		BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B11438244D00B64181 /* QuartzCore.framework */; };
 		BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B31438244D00B64181 /* OpenGLES.framework */; };
 		BF51C9B61438244D00B64181 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF51C9B51438244D00B64181 /* OpenAL.framework */; };
@@ -186,6 +192,12 @@
 		BF44C36814402917005134E7 /* OptionsButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionsButtonSelected.png; sourceTree = "<group>"; };
 		BF44C36914402917005134E7 /* PlayGameButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayGameButtonNormal.png; sourceTree = "<group>"; };
 		BF44C36A14402917005134E7 /* PlayGameButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayGameButtonSelected.png; sourceTree = "<group>"; };
+		BF44C36F14402A2B005134E7 /* BackButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButtonNormal.png; sourceTree = "<group>"; };
+		BF44C37014402A2B005134E7 /* BackButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButtonSelected.png; sourceTree = "<group>"; };
+		BF44C37114402A2B005134E7 /* Scene1ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene1ButtonNormal.png; sourceTree = "<group>"; };
+		BF44C37214402A2B005134E7 /* Scene1ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene1ButtonSelected.png; sourceTree = "<group>"; };
+		BF44C37314402A2B005134E7 /* Scene2ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene2ButtonNormal.png; sourceTree = "<group>"; };
+		BF44C37414402A2B005134E7 /* Scene2ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene2ButtonSelected.png; sourceTree = "<group>"; };
 		BF51C9AD1438244D00B64181 /* PGLearningCocos2d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PGLearningCocos2d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF51C9B11438244D00B64181 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BF51C9B31438244D00B64181 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -512,6 +524,12 @@
 				BF44C36814402917005134E7 /* OptionsButtonSelected.png */,
 				BF44C36914402917005134E7 /* PlayGameButtonNormal.png */,
 				BF44C36A14402917005134E7 /* PlayGameButtonSelected.png */,
+				BF44C36F14402A2B005134E7 /* BackButtonNormal.png */,
+				BF44C37014402A2B005134E7 /* BackButtonSelected.png */,
+				BF44C37114402A2B005134E7 /* Scene1ButtonNormal.png */,
+				BF44C37214402A2B005134E7 /* Scene1ButtonSelected.png */,
+				BF44C37314402A2B005134E7 /* Scene2ButtonNormal.png */,
+				BF44C37414402A2B005134E7 /* Scene2ButtonSelected.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -1064,6 +1082,12 @@
 				BF44C36C14402917005134E7 /* OptionsButtonSelected.png in Resources */,
 				BF44C36D14402917005134E7 /* PlayGameButtonNormal.png in Resources */,
 				BF44C36E14402917005134E7 /* PlayGameButtonSelected.png in Resources */,
+				BF44C37514402A2B005134E7 /* BackButtonNormal.png in Resources */,
+				BF44C37614402A2B005134E7 /* BackButtonSelected.png in Resources */,
+				BF44C37714402A2B005134E7 /* Scene1ButtonNormal.png in Resources */,
+				BF44C37814402A2B005134E7 /* Scene1ButtonSelected.png in Resources */,
+				BF44C37914402A2B005134E7 /* Scene2ButtonNormal.png in Resources */,
+				BF44C37A14402A2B005134E7 /* Scene2ButtonSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

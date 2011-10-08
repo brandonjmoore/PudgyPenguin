@@ -27,6 +27,7 @@
 #define kMainMenuTagValue           10
 #define kIntroMenuTagValue          10
 #define kSceneMenuTagValue          20
+#define kBackButtonMenuTagValue          20
 
 #define kLastLevelNumber            105
 

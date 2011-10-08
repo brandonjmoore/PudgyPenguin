@@ -14,6 +14,7 @@
 @interface MainMenuLayer : CCLayer {
     CCMenu *mainMenu;
     CCMenu *sceneSelectMenu;
+    CCMenu *backButtonMenu;
 }
 
 @end
