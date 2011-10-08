@@ -19,7 +19,7 @@
 	[[GameManager sharedGameManager] runSceneWithID:kGameLevel1];
 }
 
--(void)displayMainMenu {
+-(void)displayIntroMenu {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //TODO: delete this if statement when sure that it is not needed
 //    if (sceneSelectMenu != nil) {
@@ -48,6 +48,8 @@
 		CCSprite *introImage = [CCSprite spriteWithFile:@"intro1.png"];
 		[introImage setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:introImage];
+        
+        [self displayIntroMenu];
     }
     
     return self;
