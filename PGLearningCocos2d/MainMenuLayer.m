@@ -47,12 +47,12 @@
     
     mainMenu = [CCMenu menuWithItems:playGameButton, optionsButton, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
-    [mainMenu setPosition:ccp(screenSize.width * 2, screenSize.height /2)];
+    [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
     
-    //TODO: Take out this animation
-    id moveAction = [CCMoveTo actionWithDuration:1.2f position:ccp(screenSize.width * 0.5f, screenSize.height/2)];
-    id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
-    [mainMenu runAction:moveEffect];
+    //TODO: Take out this animation1
+    //id moveAction = [CCMoveTo actionWithDuration:1.2f position:ccp(screenSize.width * 0.5f, screenSize.height/2)];
+    //id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
+    //[mainMenu runAction:moveEffect];
     [self addChild:mainMenu z:0 tag:kMainMenuTagValue];
                                       
 }

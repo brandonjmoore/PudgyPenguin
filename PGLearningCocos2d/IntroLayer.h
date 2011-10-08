@@ -12,7 +12,7 @@
 #import "GameManager.h"
 
 @interface IntroLayer : CCLayer {
-    CCMenu *introMenu;
+
 }
 
 @end
