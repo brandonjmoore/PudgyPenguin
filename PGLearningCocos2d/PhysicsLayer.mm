@@ -7,7 +7,6 @@
 //
 
 #import "PhysicsLayer.h"
-#import "Box2DSprite.h"
 
 @implementation PhysicsLayer
 
@@ -24,31 +23,18 @@
     world = new b2World(gravity, doSleep);
 }
 
-- (void)createBodyAtLocation:(CGPoint)location forSprite:(Box2DSprite *)sprite friction:(float32)friction restitution:(float32)restitution desity:(float32)density isBox:(BOOL)isBox {
+- (void)createBoxAtLocation:(CGPoint)location withSize:(CGSize)size {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
-    bodyDef.allowSleep = false;
     b2Body *body = world->CreateBody(&bodyDef);
-    body->SetUserData(sprite);
-    sprite.body = body;
+    
+    b2PolygonShape shape;
+    shape.SetAsBox(size.width/2/PTM_RATIO, size.height/2/PTM_RATIO);
     
     b2FixtureDef fixtureDef;
-    
-    if (isBox) {
-        b2PolygonShape shape;
-        shape.SetAsBox(sprite.contentSize.width/2/PTM_RATIO, sprite.contentSize.height/2/PTM_RATIO);
-        fixtureDef.shape = &shape;
-    } else {
-        b2CircleShape shape;
-        //TODO: modify this so that only the penguin's mouth receives collisions (page 316)
-        shape.m_radius = sprite.contentSize.width/2/PTM_RATIO;
-        fixtureDef.shape = &shape;
-    }
-    
-    fixtureDef.density = density;
-    fixtureDef.friction = friction;
-    fixtureDef.restitution = restitution;
+    fixtureDef.shape = &shape;
+    fixtureDef.density = 1.0;
     
     body->CreateFixture(&fixtureDef);
 }
@@ -58,8 +44,6 @@
     world->SetDebugDraw(debugDraw);
     debugDraw->SetFlags(b2DebugDraw::e_shapeBit);
 }
-
-
 
 - (id)init
 {
