@@ -192,6 +192,7 @@
 		BF51CB351438250D00B64181 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB341438250D00B64181 /* BackgroundLayer.m */; };
 		BF51CB381438261E00B64181 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB371438261E00B64181 /* GameplayLayer.m */; };
 		BF51CB43143828A200B64181 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB42143828A200B64181 /* GameScene.m */; };
+		BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFCD59281441690F00E102EE /* Box2DSprite.mm */; };
 		BFE9ED7C143CC7170096509D /* Penguin.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE9ED7B143CC7170096509D /* Penguin.m */; };
 /* End PBXBuildFile section */
 
@@ -554,6 +555,8 @@
 		BF51CB371438261E00B64181 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
 		BF51CB41143828A200B64181 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BF51CB42143828A200B64181 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		BFCD59271441690F00E102EE /* Box2DSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DSprite.h; sourceTree = "<group>"; };
+		BFCD59281441690F00E102EE /* Box2DSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DSprite.mm; sourceTree = "<group>"; };
 		BFE9ED7A143CC7170096509D /* Penguin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin.h; sourceTree = "<group>"; };
 		BFE9ED7B143CC7170096509D /* Penguin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Penguin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -773,6 +776,7 @@
 		BF39696E143B60F600EC7DBA /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				BFCD5925144168D500E102EE /* Box2d */,
 				BF143A71143BFA25002A2DC3 /* GameObject.h */,
 				BF143A72143BFA25002A2DC3 /* GameObject.m */,
 				BF143A74143C0708002A2DC3 /* GameCharacter.h */,
@@ -1229,6 +1233,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		BFCD5925144168D500E102EE /* Box2d */ = {
+			isa = PBXGroup;
+			children = (
+				BFCD59271441690F00E102EE /* Box2DSprite.h */,
+				BFCD59281441690F00E102EE /* Box2DSprite.mm */,
+			);
+			name = Box2d;
+			sourceTree = "<group>";
+		};
 		BFE3F182143EDEA4007BB741 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -1524,6 +1537,7 @@
 				BF151B5E14410FDD000657EC /* b2RevoluteJoint.cpp in Sources */,
 				BF151B5F14410FDD000657EC /* b2WeldJoint.cpp in Sources */,
 				BF151B64144111BC000657EC /* GLES-Render.mm in Sources */,
+				BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

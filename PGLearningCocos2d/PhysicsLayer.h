@@ -15,6 +15,8 @@
 @interface PhysicsLayer : CCLayer {
     b2World * world;
     GLESDebugDraw * debugDraw;
+    CCSpriteBatchNode *sceneSpriteBatchNode;
+    b2Body *penguinBody;
 }
 
 + (id)scene;
