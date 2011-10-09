@@ -57,4 +57,7 @@ typedef enum {
 // 0 for OFF, 1 for ON
 #define ENEMY_STATE_DEBUG           0
 
+//Box2d ration (Page 289)
+#define PTM_RATIO                  21
+
 #endif
