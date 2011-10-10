@@ -14,6 +14,7 @@
 #import "IntroScene.h"
 #import "LevelCompleteScene.h"
 #import "PhysicsLayer.h"
+#import "Scene4.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
@@ -83,7 +84,7 @@ static GameManager* _sharedGameManager = nil;
             //Placeholder for Level 2
             break;
         case kGameLevel3:
-            sceneToRun = [PhysicsLayer scene];
+            sceneToRun = [Scene4 node];
             break;
         case kGameLevel4:
             //Placeholder for Level 4

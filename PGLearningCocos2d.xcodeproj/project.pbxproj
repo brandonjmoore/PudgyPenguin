@@ -192,7 +192,11 @@
 		BF51CB351438250D00B64181 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB341438250D00B64181 /* BackgroundLayer.m */; };
 		BF51CB381438261E00B64181 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB371438261E00B64181 /* GameplayLayer.m */; };
 		BF51CB43143828A200B64181 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB42143828A200B64181 /* GameScene.m */; };
+		BF78AEC614436CB300FFE2ED /* Scene4.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF78AEC514436CB300FFE2ED /* Scene4.mm */; };
 		BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFCD59281441690F00E102EE /* Box2DSprite.mm */; };
+		BFDCA90614435D3D00153456 /* Scene4UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90514435D3D00153456 /* Scene4UILayer.m */; };
+		BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90C1443631E00153456 /* Penguin2.mm */; };
+		BFDCA9101443641700153456 /* Scene4ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */; };
 		BFE9ED7C143CC7170096509D /* Penguin.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE9ED7B143CC7170096509D /* Penguin.m */; };
 /* End PBXBuildFile section */
 
@@ -555,8 +559,16 @@
 		BF51CB371438261E00B64181 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
 		BF51CB41143828A200B64181 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		BF51CB42143828A200B64181 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		BF78AEC414436CB300FFE2ED /* Scene4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene4.h; sourceTree = "<group>"; };
+		BF78AEC514436CB300FFE2ED /* Scene4.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Scene4.mm; sourceTree = "<group>"; };
 		BFCD59271441690F00E102EE /* Box2DSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DSprite.h; sourceTree = "<group>"; };
 		BFCD59281441690F00E102EE /* Box2DSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DSprite.mm; sourceTree = "<group>"; };
+		BFDCA90414435D3D00153456 /* Scene4UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene4UILayer.h; sourceTree = "<group>"; };
+		BFDCA90514435D3D00153456 /* Scene4UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene4UILayer.m; sourceTree = "<group>"; };
+		BFDCA90B1443631E00153456 /* Penguin2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin2.h; sourceTree = "<group>"; };
+		BFDCA90C1443631E00153456 /* Penguin2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Penguin2.mm; sourceTree = "<group>"; };
+		BFDCA90E1443641700153456 /* Scene4ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene4ActionLayer.h; sourceTree = "<group>"; };
+		BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Scene4ActionLayer.mm; sourceTree = "<group>"; };
 		BFE9ED7A143CC7170096509D /* Penguin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin.h; sourceTree = "<group>"; };
 		BFE9ED7B143CC7170096509D /* Penguin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Penguin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -724,7 +736,6 @@
 				BF39696F143B60FF00EC7DBA /* Singletons */,
 				BF39696E143B60F600EC7DBA /* GameObjects */,
 				BF39696B143B60E300EC7DBA /* Scenes */,
-				BF151AE514410B25000657EC /* Scene3 */,
 				BF396969143B60C800EC7DBA /* Constants */,
 				BF51CB1C1438244F00B64181 /* GameConfig.h */,
 				BF51CB161438244F00B64181 /* RootViewController.h */,
@@ -769,6 +780,8 @@
 				BFE3F186143EDED9007BB741 /* Credits */,
 				BFE3F187143EDEEE007BB741 /* LevelComplete */,
 				BFE3F188143EDEF9007BB741 /* Scene1 */,
+				BF151AE514410B25000657EC /* Scene3 */,
+				BFDCA90214435D1000153456 /* Scene4 */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1242,6 +1255,21 @@
 			name = Box2d;
 			sourceTree = "<group>";
 		};
+		BFDCA90214435D1000153456 /* Scene4 */ = {
+			isa = PBXGroup;
+			children = (
+				BFDCA90414435D3D00153456 /* Scene4UILayer.h */,
+				BFDCA90514435D3D00153456 /* Scene4UILayer.m */,
+				BFDCA90B1443631E00153456 /* Penguin2.h */,
+				BFDCA90C1443631E00153456 /* Penguin2.mm */,
+				BFDCA90E1443641700153456 /* Scene4ActionLayer.h */,
+				BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */,
+				BF78AEC414436CB300FFE2ED /* Scene4.h */,
+				BF78AEC514436CB300FFE2ED /* Scene4.mm */,
+			);
+			name = Scene4;
+			sourceTree = "<group>";
+		};
 		BFE3F182143EDEA4007BB741 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -1538,6 +1566,10 @@
 				BF151B5F14410FDD000657EC /* b2WeldJoint.cpp in Sources */,
 				BF151B64144111BC000657EC /* GLES-Render.mm in Sources */,
 				BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */,
+				BFDCA90614435D3D00153456 /* Scene4UILayer.m in Sources */,
+				BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */,
+				BFDCA9101443641700153456 /* Scene4ActionLayer.mm in Sources */,
+				BF78AEC614436CB300FFE2ED /* Scene4.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
