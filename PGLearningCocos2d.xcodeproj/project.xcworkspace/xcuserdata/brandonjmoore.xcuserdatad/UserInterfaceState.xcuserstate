@@ -332,7 +332,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>27</integer>
+					<integer>133</integer>
 				</dict>
 			</array>
 		</dict>
@@ -1358,10 +1358,10 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>339963611.854343</real>
-		<string>{139, 838}</string>
+		<real>339964383.93647599</real>
+		<string>{0, 1098}</string>
 		<false/>
-		<string>{293, 0}</string>
+		<string>{544, 0}</string>
 		<string>-createBodyAtLocation:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
@@ -1405,7 +1405,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {1050, 372}}</string>
+		<string>{{0, 0}, {1050, 646}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -3420,7 +3420,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 282}, {229, 602}}</string>
+		<string>{{0, 181}, {229, 602}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -15567,9 +15567,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339963611.85367298</real>
-		<string>{139, 838}</string>
-		<string>{293, 0}</string>
+		<real>339964383.93585598</real>
+		<string>{0, 1098}</string>
+		<string>{544, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -16148,7 +16148,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>596</integer>
+					<integer>1218</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -16196,7 +16196,7 @@
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/SpriteSheet/SD/.DS_Store</string>
-		<real>339808833.65444899</real>
+		<real>339964383.93597502</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -20836,7 +20836,7 @@
 				<integer>1576</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>339963409.79640299</real>
+			<real>339964203.702829</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -20847,7 +20847,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 12:16 PM</string>
+		<string>Today at 12:30 PM</string>
 		<integer>234</integer>
 		<dict>
 			<key>$class</key>
@@ -20953,37 +20953,54 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1592</integer>
+					<integer>1591</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1594</integer>
+					<integer>1593</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1596</integer>
+					<integer>1595</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1598</integer>
+					<integer>1597</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1600</integer>
+					<integer>1599</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1602</integer>
+					<integer>1601</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1603</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1509</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1501</integer>
-				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>139</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1226</integer>
+			</dict>
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -21016,7 +21033,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1591</integer>
+				<integer>1592</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Penguin2.mm</string>
@@ -21034,7 +21051,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1593</integer>
+				<integer>1594</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Scene4ActionLayer.mm</string>
@@ -21052,7 +21069,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1595</integer>
+				<integer>1596</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/GameManager.mm</string>
@@ -21070,7 +21087,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1597</integer>
+				<integer>1598</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Scene4.mm</string>
@@ -21088,7 +21105,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1599</integer>
+				<integer>1600</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Scene4.h</string>
@@ -21106,7 +21123,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1601</integer>
+				<integer>1602</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/brandonjmoore/My%20Development/Learning%20Cocos2d/PGLearningCocos2d/PGLearningCocos2d/Scene4ActionLayer.h</string>
