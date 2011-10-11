@@ -7,6 +7,7 @@
 //
 
 #import "Penguin2.h"
+#import "Box2DHelpers.h"
 
 @implementation Penguin2
 //Standing, blinking, walking,
@@ -67,6 +68,7 @@
     [self setPenguinAngryAnim:[self loadPlistForAnimationWithName:@"penguinAngryAnim" andClassName:NSStringFromClass([self class])]];
     [self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
     [self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
+    [self setPenguinEatingAnim:[self loadPlistForAnimationWithName:@"penguinEatingAnim" andClassName:NSStringFromClass([self class])]];
 }
 
 -(void)changeState:(CharacterStates)newState {
@@ -95,6 +97,7 @@
         case kStateEating:
             CCLOG(@"Penguin->Changing State to Eating");
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+            [self changeState:kStateIdle];
             //TODO: Here is where we increment the fishEaten count
             break;
         case kStateAngry:
@@ -125,27 +128,30 @@
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
+
     
-    if (self.characterState == kStateMouthOpen) 
-        return; //Nothing to do if the Penguin is waiting to eat
     
-    CGRect myBoundingBox = [self adjustedBoundingBox];
-    for (GameCharacter *character in listOfGameObjects) {
-        CGRect characterBox = [character boundingBox];
-        
-        if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
-            if ([character gameObjectType] == kFishType) {
-                [self changeState:kStateMouthOpen];
-                [character changeState:kStateAboutToBeEaten];
-            } 
-        }
-        
-    }
+    
     
     //if
     //TODO: finish this method (pg 100)
     
     if ([self numberOfRunningActions] == 0) {
+        
+        if (self.characterState != kStateMouthOpen){
+            CGRect myBoundingBox = [self adjustedBoundingBox];
+            for (GameCharacter *character in listOfGameObjects) {
+                CGRect characterBox = [character boundingBox];
+                
+                if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
+                    if ([character gameObjectType] == kFishType) {
+                        [self changeState:kStateMouthOpen];
+                        [character changeState:kStateAboutToBeEaten];
+                    } 
+                }
+            }
+        }
+        
         
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
@@ -154,7 +160,7 @@
                 //[self changeState:kStateAngry];
                 //[self changeState:kStateMouthOpen];
             }
-        } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
+        } else {
             millisecondsStayingIdle = 0.0f;
             [self changeState:kStateIdle];
         }

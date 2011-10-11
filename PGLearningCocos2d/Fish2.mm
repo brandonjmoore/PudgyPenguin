@@ -58,12 +58,13 @@
 }
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-
+    Penguin2 *penguin2 = (Penguin2*)[[self parent]getChildByTag:kPenguinSpriteTagValue];
     
     //b2Body *fishBody = self.body;
     
     if (isBodyCollidingWithObjectType(self.body, kPenguinTypeBlack)){
         [self changeState:kStateHasBeenEaten];
+        [penguin2 changeState:kStateEating];
     }
     
     
@@ -115,6 +116,9 @@
                     [self removeFromParentAndCleanup:YES];
                 
             }
+            
+            
+            
             break;
             
         case kStateAboutToBeEaten:
