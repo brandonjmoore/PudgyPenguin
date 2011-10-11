@@ -85,7 +85,7 @@
         uiLayer = scene4UILayer;
         
         [self setupWorld];
-        //[self setupDebugDraw];
+        [self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
         self.isTouchEnabled = YES;

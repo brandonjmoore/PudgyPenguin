@@ -129,8 +129,19 @@
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
 
-    
-    
+    if (self.characterState != kStateMouthOpen){
+        CGRect myBoundingBox = [self adjustedBoundingBox];
+        for (GameCharacter *character in listOfGameObjects) {
+            CGRect characterBox = [character boundingBox];
+            
+            if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
+                if ([character gameObjectType] == kFishType) {
+                    [self changeState:kStateMouthOpen];
+                    [character changeState:kStateAboutToBeEaten];
+                } 
+            }
+        }
+    }
     
     
     //if
