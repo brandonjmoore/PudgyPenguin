@@ -8,6 +8,7 @@
 
 #import "Fish2.h"
 #import "Penguin2.h"
+#import "Box2DHelpers.h"
 
 @implementation Fish2
 
@@ -58,16 +59,16 @@
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     if (self.characterState == kStateIdle) 
-        return; //Nothing to do if the Penguin is satisfied
+        return; //Nothing to do if the Fish is Idle
+
     
-    Penguin2 *penguin2 = (Penguin2*) [[self parent] getChildByTag:kPenguinSpriteTagValue];
-                          b2Body *penguinBody = penguin2.body;
+    //b2Body *fishBody = self.body;
     
-    b2Body *fishBody = self.body;
+    if (isBodyCollidingWithObjectType(self.body, kPenguinTypeBlack)){
+        [self changeState:kStateHasBeenEaten];
+    }
     
-    //if (isBodyCollidingWithObjectType(fishBody, kPenguinTypeBlack)){
-        
-    //}
+    
     
     //if (isBodyCollidingWithObjectType(drill, kPenguinTypeBlack)) {
         
@@ -110,8 +111,12 @@
         case kStateHasBeenEaten:
             CCLOG(@"Fish->Changing State to hasBeenEaten");
             //Remove from parent
-            [self setVisible:NO];
-            [self removeFromParentAndCleanup:YES];
+            if ([self numberOfRunningActions] == 0) {
+
+                    [self setVisible:NO];
+                    [self removeFromParentAndCleanup:YES];
+                
+            }
             break;
             
         case kStateAboutToBeEaten:

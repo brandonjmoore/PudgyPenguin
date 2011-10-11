@@ -41,7 +41,7 @@
 - (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location {
     if((self = [super init])) {
         world = theWorld;
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"penguinOpenMouth_2.png"]];
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"PenguinIdle.png"]];
         gameObjectType = kPenguinTypeBlack;
         [self createBodyAtLocation:location];
         

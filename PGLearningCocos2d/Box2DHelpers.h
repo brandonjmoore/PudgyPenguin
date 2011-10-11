@@ -9,6 +9,4 @@
 #import "Box2D.h"
 #import "CommonProtocols.h"
 
-@interface Box2DHelpers : NSObject
-
-@end
+bool isBodyCollidingWithObjectType(b2Body *body, GameObjectType objectType);
