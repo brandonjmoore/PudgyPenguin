@@ -35,7 +35,7 @@
 -(CGRect)eyesightBoundingBox {
     CGRect penguinSightBoundingBox;
     CGRect penguinBoundingBox = [self adjustedBoundingBox];
-    penguinSightBoundingBox = CGRectMake(penguinBoundingBox.origin.x, penguinBoundingBox.origin.y, penguinBoundingBox.size.width*2.0f, penguinBoundingBox.size.height);
+    penguinSightBoundingBox = CGRectMake(penguinBoundingBox.origin.x, penguinBoundingBox.origin.y, penguinBoundingBox.size.width*2.0f, penguinBoundingBox.size.height*2.0f);
     return penguinSightBoundingBox;
 }
 

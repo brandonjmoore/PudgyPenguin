@@ -1264,16 +1264,16 @@
 		BFDCA90214435D1000153456 /* Scene4 */ = {
 			isa = PBXGroup;
 			children = (
+				BF78AEC414436CB300FFE2ED /* Scene4.h */,
+				BF78AEC514436CB300FFE2ED /* Scene4.mm */,
+				BFDCA90E1443641700153456 /* Scene4ActionLayer.h */,
+				BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */,
 				BFDCA90414435D3D00153456 /* Scene4UILayer.h */,
 				BFDCA90514435D3D00153456 /* Scene4UILayer.m */,
 				BFDCA90B1443631E00153456 /* Penguin2.h */,
 				BFDCA90C1443631E00153456 /* Penguin2.mm */,
 				BF1B32C41443F34D00AD94FF /* Fish2.h */,
 				BF1B32C51443F34D00AD94FF /* Fish2.mm */,
-				BFDCA90E1443641700153456 /* Scene4ActionLayer.h */,
-				BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */,
-				BF78AEC414436CB300FFE2ED /* Scene4.h */,
-				BF78AEC514436CB300FFE2ED /* Scene4.mm */,
 			);
 			name = Scene4;
 			sourceTree = "<group>";

@@ -93,6 +93,18 @@
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"FishIdle.png"]];
             break;
             
+        case kStateHasBeenEaten:
+            CCLOG(@"Fish->Changing State to hasBeenEaten");
+            //Remove from parent
+            [self setVisible:NO];
+            [self removeFromParentAndCleanup:YES];
+            break;
+            
+        case kStateAboutToBeEaten:
+            CCLOG(@"Fish->Changing State to aboutToBeEaten");
+            //action  = [CCAnimate actionWithAnimation:becomeScared restoreOriginalFrame:NO];
+            break;    
+            
         default:
             CCLOG(@"Unhandled state %d in Fish", newState);
             break;

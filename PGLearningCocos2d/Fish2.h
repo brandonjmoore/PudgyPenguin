@@ -11,6 +11,8 @@
 @interface Fish2 : Box2DSprite {
     b2World *world;
     
+    BOOL isPenguinWithinBounginBox;
+    
     
 }
 

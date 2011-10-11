@@ -85,7 +85,7 @@
         uiLayer = scene4UILayer;
         
         [self setupWorld];
-        [self setupDebugDraw];
+        //[self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
         self.isTouchEnabled = YES;
@@ -95,9 +95,11 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.15)];
-        [self createFish2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.95)];
-        
+                
         [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
+        
+        //Create fish every so many seconds.
+        [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
     }
     return self;
@@ -152,6 +154,23 @@
     aabb.upperBound = locationWorld + delta;
     return TRUE;
 }
+
+-(void)addFish {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    Penguin2 *penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+    if (penguin2 != nil) {
+        if (penguin2.characterState != kStateSatisfied) {
+            [self createFish2AtLocation:ccp(screenSize.width * 0.15, screenSize.height * 0.95)];
+
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addFish)];
+        }
+    }    
+}
+
+
 
 
 @end

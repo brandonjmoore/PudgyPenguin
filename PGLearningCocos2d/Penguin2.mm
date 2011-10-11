@@ -95,6 +95,7 @@
         case kStateEating:
             CCLOG(@"Penguin->Changing State to Eating");
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+            //TODO: Here is where we increment the fishEaten count
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
@@ -103,7 +104,7 @@
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
             //restoreOriginalFrame is set to no here because we want him to remain satisfied
-            action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
+            //action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
             break;
             
         case kStateMouthOpen:
@@ -125,10 +126,27 @@
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
     
+    if (self.characterState == kStateMouthOpen) 
+        return; //Nothing to do if the Penguin is waiting to eat
+    
+    CGRect myBoundingBox = [self adjustedBoundingBox];
+    for (GameCharacter *character in listOfGameObjects) {
+        CGRect characterBox = [character boundingBox];
+        
+        if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
+            if ([character gameObjectType] == kFishType) {
+                [self changeState:kStateMouthOpen];
+                [character changeState:kStateAboutToBeEaten];
+            } 
+        }
+        
+    }
+    
     //if
     //TODO: finish this method (pg 100)
     
     if ([self numberOfRunningActions] == 0) {
+        
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
             if (millisecondsStayingIdle > kPenguinBlinkTime) {
@@ -141,6 +159,21 @@
             [self changeState:kStateIdle];
         }
     }
+    
+    
+    
 }
+
+-(CGRect)adjustedBoundingBox {
+    //Adjust the bounding box to the size of the sprite
+    //Without transparent space
+    CGRect penguinBoundingBox = [self boundingBox];
+    penguinBoundingBox = CGRectMake(penguinBoundingBox.origin.x, penguinBoundingBox.origin.y, penguinBoundingBox.size.width * 1.5F, penguinBoundingBox.size.height * 1.5f);
+    
+    return penguinBoundingBox;
+    
+}
+
+
 
 @end
