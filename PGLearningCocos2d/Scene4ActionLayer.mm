@@ -62,9 +62,20 @@
     [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+-(void)setupBackground {
+    CCSprite *backgroundImage;
+    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
+    
+    [self addChild:backgroundImage z:-10 tag:0];
+}
+
 -(id)initWithScene4UILayer:(Scene4UILayer *)scene4UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        
+        [self setupBackground];
         uiLayer = scene4UILayer;
         
         [self setupWorld];
@@ -75,9 +86,9 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
-        [self addChild:sceneSpriteBatchNode z:-1];
+        [self addChild:sceneSpriteBatchNode z:0];
         
-        [self createPenguin2AtLocation:ccp(winSize.width/2, winSize.height/2)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.15)];
         [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
     }
@@ -143,5 +154,7 @@
     
     return self;
 }
+
+
 
 @end
