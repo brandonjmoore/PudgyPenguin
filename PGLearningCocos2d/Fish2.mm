@@ -33,6 +33,7 @@
     if((self = [super init])) {
         world = theWorld;
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"FishIdle.png"]];
+        [self changeState:kStateIdle];
         gameObjectType = kFishType;
         [self createBodyAtLocation:location];
     }
@@ -52,6 +53,53 @@
 -(void) dealloc {
     
     [super dealloc];
+}
+
+-(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
+    if (self.characterState == kStateIdle) 
+        return; //Nothing to do if the Penguin is satisfied
+    
+    //if
+    //TODO: finish this method (pg 100)
+    
+//    if ([self numberOfRunningActions] == 0) {
+//        if (self.characterState == kStateIdle) {
+//            millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
+//            if (millisecondsStayingIdle > kPenguinBlinkTime) {
+//                [self changeState:kStateBlinking];
+//                //[self changeState:kStateAngry];
+//                //[self changeState:kStateMouthOpen];
+//            }
+//        } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
+//            millisecondsStayingIdle = 0.0f;
+//            [self changeState:kStateIdle];
+//        }
+//    }
+}
+
+-(void)changeState:(CharacterStates)newState {
+    [self stopAllActions];
+    
+    //TODO: what are these two variables for?
+    id action = nil;
+    //TODO: We might be able to use movement action and new position for walking (see pg 97)
+    //id movementAction = nil;
+    //CGPoint newPosition;
+    [self setCharacterState:newState];
+    
+    switch (newState) {
+        case kStateIdle:
+            CCLOG(@"Fish->Changing State to Idle");
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"FishIdle.png"]];
+            break;
+            
+        default:
+            CCLOG(@"Unhandled state %d in Fish", newState);
+            break;
+    }
+    if (action != nil) {
+        [self runAction:action];
+    }
 }
 
 @end
