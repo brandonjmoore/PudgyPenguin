@@ -58,8 +58,6 @@
 }
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-    if (self.characterState == kStateIdle) 
-        return; //Nothing to do if the Fish is Idle
 
     
     //b2Body *fishBody = self.body;
@@ -112,7 +110,7 @@
             CCLOG(@"Fish->Changing State to hasBeenEaten");
             //Remove from parent
             if ([self numberOfRunningActions] == 0) {
-
+                    world->DestroyBody(self.body);
                     [self setVisible:NO];
                     [self removeFromParentAndCleanup:YES];
                 
