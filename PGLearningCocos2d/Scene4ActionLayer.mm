@@ -28,7 +28,7 @@
 
 - (void)createGround {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    float32 margin = 10.0f;
+    float32 margin = -15.0f;
     b2Vec2 lowerLeft = b2Vec2(margin/PTM_RATIO, margin/PTM_RATIO);
     b2Vec2 lowerRight = b2Vec2((winSize.width-margin)/PTM_RATIO, margin/PTM_RATIO);
     b2Vec2 upperRight = b2Vec2((winSize.width-margin)/PTM_RATIO,(winSize.height-margin)/PTM_RATIO);
@@ -44,11 +44,11 @@
     groundFixtureDef.shape = &groundShape;
     groundFixtureDef.density = 0.0;
     
+    groundShape.SetAsEdge(lowerLeft, upperLeft);
+    groundBody->CreateFixture(&groundFixtureDef);
     groundShape.SetAsEdge(lowerLeft, lowerRight);
     groundBody->CreateFixture(&groundFixtureDef);
     groundShape.SetAsEdge(lowerRight, upperRight);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(upperRight, upperLeft);
     groundBody->CreateFixture(&groundFixtureDef);
     groundShape.SetAsEdge(upperLeft, upperRight);
     groundBody->CreateFixture(&groundFixtureDef);
@@ -85,7 +85,7 @@
         uiLayer = scene4UILayer;
         
         [self setupWorld];
-        //[self setupDebugDraw];
+        [self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
         self.isTouchEnabled = YES;
@@ -168,6 +168,12 @@
             [self unschedule:@selector(addFish)];
         }
     }    
+}
+
+- (void)createOffscreenSensorBody {
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    float32 sensorWidth = winSize.width*1.5;
+    float32 sensorHeight = winSize.height * 4;
 }
 
 

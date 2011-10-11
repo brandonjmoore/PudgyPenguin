@@ -7,6 +7,7 @@
 //
 
 #import "Fish2.h"
+#import "Penguin2.h"
 
 @implementation Fish2
 
@@ -58,6 +59,19 @@
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     if (self.characterState == kStateIdle) 
         return; //Nothing to do if the Penguin is satisfied
+    
+    Penguin2 *penguin2 = (Penguin2*) [[self parent] getChildByTag:kPenguinSpriteTagValue];
+                          b2Body *penguinBody = penguin2.body;
+    
+    b2Body *fishBody = self.body;
+    
+    //if (isBodyCollidingWithObjectType(fishBody, kPenguinTypeBlack)){
+        
+    //}
+    
+    //if (isBodyCollidingWithObjectType(drill, kPenguinTypeBlack)) {
+        
+    //}
     
     //if
     //TODO: finish this method (pg 100)
@@ -113,5 +127,9 @@
         [self runAction:action];
     }
 }
+
+
+
+
 
 @end

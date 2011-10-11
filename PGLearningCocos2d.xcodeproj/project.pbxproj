@@ -50,6 +50,7 @@
 		BF151B5F14410FDD000657EC /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF151B3B14410FDD000657EC /* b2WeldJoint.cpp */; };
 		BF151B64144111BC000657EC /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF151B63144111BC000657EC /* GLES-Render.mm */; };
 		BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1B32C51443F34D00AD94FF /* Fish2.mm */; };
+		BF1B32CA14440F6F00AD94FF /* Box2DHelpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1B32C914440F6F00AD94FF /* Box2DHelpers.mm */; };
 		BF1EC84E143E9B650083412C /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84D143E9B650083412C /* background-hd.png */; };
 		BF1EC850143E9B6D0083412C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84F143E9B6D0083412C /* background.png */; };
 		BF1EC873143EB3260083412C /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC871143EB3260083412C /* scene1atlas.plist */; };
@@ -289,6 +290,8 @@
 		BF151B63144111BC000657EC /* GLES-Render.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		BF1B32C41443F34D00AD94FF /* Fish2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish2.h; sourceTree = "<group>"; };
 		BF1B32C51443F34D00AD94FF /* Fish2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Fish2.mm; sourceTree = "<group>"; };
+		BF1B32C814440F6F00AD94FF /* Box2DHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DHelpers.h; sourceTree = "<group>"; };
+		BF1B32C914440F6F00AD94FF /* Box2DHelpers.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DHelpers.mm; sourceTree = "<group>"; };
 		BF1EC84D143E9B650083412C /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		BF1EC84F143E9B6D0083412C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BF1EC871143EB3260083412C /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
@@ -1257,6 +1260,8 @@
 			children = (
 				BFCD59271441690F00E102EE /* Box2DSprite.h */,
 				BFCD59281441690F00E102EE /* Box2DSprite.mm */,
+				BF1B32C814440F6F00AD94FF /* Box2DHelpers.h */,
+				BF1B32C914440F6F00AD94FF /* Box2DHelpers.mm */,
 			);
 			name = Box2d;
 			sourceTree = "<group>";
@@ -1580,6 +1585,7 @@
 				BF78AEC614436CB300FFE2ED /* Scene4.mm in Sources */,
 				BF78AECD14439C6900FFE2ED /* Penguin.m in Sources */,
 				BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */,
+				BF1B32CA14440F6F00AD94FF /* Box2DHelpers.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

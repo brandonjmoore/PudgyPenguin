@@ -159,9 +159,7 @@
             [self changeState:kStateIdle];
         }
     }
-    
-    
-    
+  
 }
 
 -(CGRect)adjustedBoundingBox {
@@ -173,6 +171,8 @@
     return penguinBoundingBox;
     
 }
+
+
 
 
 
