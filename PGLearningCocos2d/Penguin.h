@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GameCharacter.h"
 
-@interface Penguin : GameCharacter {
+@interface Penguin: GameCharacter {
     CCSpriteFrame *standingFrame;
     
     //Standing, blinking, yawning, and walking

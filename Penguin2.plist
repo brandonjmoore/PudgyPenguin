@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>penguinAngryAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,2,1</string>
+		<key>Delay</key>
+		<real>0.1</real>
+		<key>filenamePrefix</key>
+		<string>penguinAngry_</string>
+	</dict>
+	<key>penguinBlinkingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,1</string>
+		<key>Delay</key>
+		<real>0.1</real>
+		<key>filenamePrefix</key>
+		<string>penguinBlinking_</string>
+	</dict>
+	<key>penguinOpenMouthAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>Delay</key>
+		<real>0.1</real>
+		<key>filenamePrefix</key>
+		<string>penguinOpenMouth_</string>
+	</dict>
+</dict>
+</plist>

@@ -13,6 +13,7 @@
 
 @class Scene4UILayer;
 @class Penguin2;
+@class Fish2;
 
 @interface Scene4ActionLayer : CCLayer {
     b2World *world;
@@ -20,6 +21,7 @@
     CCSpriteBatchNode *sceneSpriteBatchNode;
     b2Body *groundBody;
     Penguin2 *penguin2;
+    Fish2 *fish2;
     Scene4UILayer *uiLayer;
 }
 

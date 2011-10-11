@@ -10,6 +10,7 @@
 #import "Box2DSprite.h"
 #import "Scene4UILayer.h"
 #import "Penguin2.h"
+#import "Fish2.h"
 
 @implementation Scene4ActionLayer
 
@@ -58,6 +59,11 @@
     [sceneSpriteBatchNode addChild:penguin2 z:1 tag:kPenguinSpriteTagValue];
 }
 
+-(void)createFish2AtLocation:(CGPoint)location {
+    fish2 = [[[Fish2 alloc]initWithWorld:world atLocation:location]autorelease];
+    [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
+}
+
 - (void)registerWithTouchDispatcher {
     [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
@@ -86,9 +92,11 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
-        [self addChild:sceneSpriteBatchNode z:0];
+        [self addChild:sceneSpriteBatchNode z:-1];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.15)];
+        [self createFish2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.95)];
+        
         [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
     }
@@ -144,17 +152,6 @@
     aabb.upperBound = locationWorld + delta;
     return TRUE;
 }
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
 
 
 @end

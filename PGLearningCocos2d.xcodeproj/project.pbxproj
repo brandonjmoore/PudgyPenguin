@@ -49,6 +49,7 @@
 		BF151B5E14410FDD000657EC /* b2RevoluteJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF151B3914410FDD000657EC /* b2RevoluteJoint.cpp */; };
 		BF151B5F14410FDD000657EC /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF151B3B14410FDD000657EC /* b2WeldJoint.cpp */; };
 		BF151B64144111BC000657EC /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF151B63144111BC000657EC /* GLES-Render.mm */; };
+		BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1B32C51443F34D00AD94FF /* Fish2.mm */; };
 		BF1EC84E143E9B650083412C /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84D143E9B650083412C /* background-hd.png */; };
 		BF1EC850143E9B6D0083412C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84F143E9B6D0083412C /* background.png */; };
 		BF1EC873143EB3260083412C /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC871143EB3260083412C /* scene1atlas.plist */; };
@@ -286,6 +287,8 @@
 		BF151B3C14410FDD000657EC /* b2WeldJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WeldJoint.h; sourceTree = "<group>"; };
 		BF151B62144111BC000657EC /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		BF151B63144111BC000657EC /* GLES-Render.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
+		BF1B32C41443F34D00AD94FF /* Fish2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish2.h; sourceTree = "<group>"; };
+		BF1B32C51443F34D00AD94FF /* Fish2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Fish2.mm; sourceTree = "<group>"; };
 		BF1EC84D143E9B650083412C /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-hd.png"; sourceTree = "<group>"; };
 		BF1EC84F143E9B6D0083412C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BF1EC871143EB3260083412C /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
@@ -1265,6 +1268,8 @@
 				BFDCA90514435D3D00153456 /* Scene4UILayer.m */,
 				BFDCA90B1443631E00153456 /* Penguin2.h */,
 				BFDCA90C1443631E00153456 /* Penguin2.mm */,
+				BF1B32C41443F34D00AD94FF /* Fish2.h */,
+				BF1B32C51443F34D00AD94FF /* Fish2.mm */,
 				BFDCA90E1443641700153456 /* Scene4ActionLayer.h */,
 				BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */,
 				BF78AEC414436CB300FFE2ED /* Scene4.h */,
@@ -1574,6 +1579,7 @@
 				BFDCA9101443641700153456 /* Scene4ActionLayer.mm in Sources */,
 				BF78AEC614436CB300FFE2ED /* Scene4.mm in Sources */,
 				BF78AECD14439C6900FFE2ED /* Penguin.m in Sources */,
+				BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
