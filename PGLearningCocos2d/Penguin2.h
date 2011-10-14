@@ -25,6 +25,8 @@
     
     float millisecondsStayingIdle;
     float millisecondsStayingAngry;
+    
+    BOOL isFishCloseBy;
 }
 
 //Standing

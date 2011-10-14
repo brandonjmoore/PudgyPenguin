@@ -102,7 +102,7 @@
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
-            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:NO];
+            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:YES];
             break;
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
@@ -129,19 +129,10 @@
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
 
-    if (self.characterState != kStateMouthOpen){
-        CGRect myBoundingBox = [self adjustedBoundingBox];
-        for (GameCharacter *character in listOfGameObjects) {
-            CGRect characterBox = [character boundingBox];
-            
-            if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
-                if ([character gameObjectType] == kFishType) {
-                    [self changeState:kStateMouthOpen];
-                    [character changeState:kStateAboutToBeEaten];
-                } 
-            }
-        }
-    }
+
+   
+    
+    
     
     
     //if
@@ -159,10 +150,11 @@
                         [self changeState:kStateMouthOpen];
                         [character changeState:kStateAboutToBeEaten];
                     } 
+                } else {
+                    //[self changeState:kStateIdle];
                 }
             }
         }
-        
         
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
@@ -173,7 +165,7 @@
             }
         } else {
             millisecondsStayingIdle = 0.0f;
-            [self changeState:kStateIdle];
+            //[self changeState:kStateIdle];
         }
     }
   
@@ -188,6 +180,8 @@
     return penguinBoundingBox;
     
 }
+
+
 
 
 

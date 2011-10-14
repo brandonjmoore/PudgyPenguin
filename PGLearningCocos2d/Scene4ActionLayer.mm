@@ -142,17 +142,39 @@
     
 }
 
--(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    CGPoint touchLocation = [touch locationInView:[touch view]];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    b2Vec2 locationWorld = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
+{
+	return YES;
+}
+
+- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event
+{
+    CGPoint start = [touch locationInView: [touch view]];   
+    start = [[CCDirector sharedDirector] convertToGL: start];
+    CGPoint end = [touch previousLocationInView:[touch view]];
+    end = [[CCDirector sharedDirector] convertToGL:end];
     
-    b2AABB aabb;
-    b2Vec2 delta = b2Vec2(1.0/PTM_RATIO, 1.0/PTM_RATIO);
-    aabb.lowerBound = locationWorld - delta;
-    aabb.upperBound = locationWorld + delta;
-    return TRUE;
+    float distance = ccpDistance(start, end);
+    if (distance > 0.5)
+    {
+        int d = (int)distance;
+        
+        b2Vec2 s(start.x/PTM_RATIO, start.y/PTM_RATIO);
+        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
+        
+        b2BodyDef bd;
+        bd.type = b2_staticBody;
+        bd.position.Set(0, 0);
+                                
+        b2Body* body = world->CreateBody(&bd);
+        
+        for (int i = 0; i < d; i++)
+        {         
+            b2PolygonShape shape;
+            shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
+            body->CreateFixture(&shape, 0.0f);
+        }
+    }
 }
 
 -(void)addFish {
@@ -161,7 +183,7 @@
     Penguin2 *penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
     if (penguin2 != nil) {
         if (penguin2.characterState != kStateSatisfied) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.15, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
 
         }else {
             //If the Penguin is satisfied, dont create fish
