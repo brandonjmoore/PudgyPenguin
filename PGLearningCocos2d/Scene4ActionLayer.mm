@@ -12,6 +12,7 @@
 #import "Penguin2.h"
 #import "Fish2.h"
 
+
 @implementation Scene4ActionLayer
 
 - (void)setupWorld {
@@ -144,38 +145,96 @@
 
 - (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
 {
+    
+    CGPoint pt = [self convertTouchToNodeSpace:touch];
+	_lastPt = pt;
 	return YES;
 }
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event
 {
-    CGPoint start = [touch locationInView: [touch view]];   
-    start = [[CCDirector sharedDirector] convertToGL: start];
-    CGPoint end = [touch previousLocationInView:[touch view]];
-    end = [[CCDirector sharedDirector] convertToGL:end];
+//    CGPoint start = [touch locationInView: [touch view]];   
+//    start = [[CCDirector sharedDirector] convertToGL: start];
+//    CGPoint end = [touch previousLocationInView:[touch view]];
+//    end = [[CCDirector sharedDirector] convertToGL:end];
+//    
+//    float distance = ccpDistance(start, end);
+//    if (distance > 1)
+//    {
+//
+//        
+//        b2BodyDef bd;
+//        bd.type = b2_staticBody;
+//        bd.position.Set(start.x/PTM_RATIO, start.y/PTM_RATIO);
+//        b2Body* body = world->CreateBody(&bd);
+//        
+//       
+//            b2CircleShape shape;
+//            shape.m_radius = .25;
+//        
+//
+//            body->CreateFixture(&shape, 0.0f);
+//    }
     
-    float distance = ccpDistance(start, end);
-    if (distance > 0.5)
-    {
-        int d = (int)distance;
+    
+
+        CGPoint end = [touch previousLocationInView:[touch view]];
+        end = [[CCDirector sharedDirector] convertToGL:end];
         
-        b2Vec2 s(start.x/PTM_RATIO, start.y/PTM_RATIO);
-        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
-        
-        b2BodyDef bd;
-        bd.type = b2_staticBody;
-        bd.position.Set(0, 0);
-                                
-        b2Body* body = world->CreateBody(&bd);
-        
-        for (int i = 0; i < d; i++)
-        {         
-            b2PolygonShape shape;
-            shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
-            body->CreateFixture(&shape, 0.0f);
+        float distance = ccpDistance(_lastPt, end);
+        if (distance > 10)
+        {
+            
+            b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
+            b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
+            
+            b2BodyDef bd;
+            bd.type = b2_staticBody;
+            bd.position.Set(0, 0);
+            b2Body* body = world->CreateBody(&bd);
+            
+                 
+                b2PolygonShape shape;
+                shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
+                body->CreateFixture(&shape, 0.0f);
+            _lastPt = end;
         }
-    }
+     
+
 }
+
+//- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event
+//{
+//    CGPoint start = [touch locationInView: [touch view]];   
+//    start = [[CCDirector sharedDirector] convertToGL: start];
+//    CGPoint end = [touch previousLocationInView:[touch view]];
+//    end = [[CCDirector sharedDirector] convertToGL:end];
+//    
+//    float distance = ccpDistance(start, end);
+//    if (distance > 10)
+//    {
+//        int d = (int)distance;
+//        
+//        b2Vec2 s(start.x/PTM_RATIO, start.y/PTM_RATIO);
+//        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
+//        
+//        b2BodyDef bd;
+//        bd.type = b2_staticBody;
+//        bd.position.Set(0, 0);
+//        b2Body* body = world->CreateBody(&bd);
+//        
+//        for (int i = 0; i < d; i++)
+//        {         
+//            b2PolygonShape shape;
+//            shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
+//            body->CreateFixture(&shape, 0.0f);
+//        }
+//    }
+//}
+
+- (BOOL) drawTerrainAt:(CGPoint)pt
+{
+	}
 
 -(void)addFish {
     CGSize screenSize = [CCDirector sharedDirector].winSize;

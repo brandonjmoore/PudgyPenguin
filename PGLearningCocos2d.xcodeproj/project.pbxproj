@@ -201,6 +201,7 @@
 		BFDCA90614435D3D00153456 /* Scene4UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90514435D3D00153456 /* Scene4UILayer.m */; };
 		BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90C1443631E00153456 /* Penguin2.mm */; };
 		BFDCA9101443641700153456 /* Scene4ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */; };
+		BFF6C8131448E66800B69357 /* Line.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF6C8121448E66700B69357 /* Line.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -579,6 +580,8 @@
 		BFDCA90C1443631E00153456 /* Penguin2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Penguin2.mm; sourceTree = "<group>"; };
 		BFDCA90E1443641700153456 /* Scene4ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene4ActionLayer.h; sourceTree = "<group>"; };
 		BFDCA90F1443641700153456 /* Scene4ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Scene4ActionLayer.mm; sourceTree = "<group>"; };
+		BFF6C8111448E66700B69357 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		BFF6C8121448E66700B69357 /* Line.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Line.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1279,6 +1282,8 @@
 				BFDCA90C1443631E00153456 /* Penguin2.mm */,
 				BF1B32C41443F34D00AD94FF /* Fish2.h */,
 				BF1B32C51443F34D00AD94FF /* Fish2.mm */,
+				BFF6C8111448E66700B69357 /* Line.h */,
+				BFF6C8121448E66700B69357 /* Line.mm */,
 			);
 			name = Scene4;
 			sourceTree = "<group>";
@@ -1586,6 +1591,7 @@
 				BF78AECD14439C6900FFE2ED /* Penguin.m in Sources */,
 				BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */,
 				BF1B32CA14440F6F00AD94FF /* Box2DHelpers.mm in Sources */,
+				BFF6C8131448E66800B69357 /* Line.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

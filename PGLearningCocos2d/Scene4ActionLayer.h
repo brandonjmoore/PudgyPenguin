@@ -10,6 +10,7 @@
 #import "Box2D.h"
 #import "GLES-Render.h"
 #import "Constants.h"
+#import "Box2DSprite.h"
 
 @class Scene4UILayer;
 @class Penguin2;
@@ -23,8 +24,10 @@
     Penguin2 *penguin2;
     Fish2 *fish2;
     Scene4UILayer *uiLayer;
+    CGPoint _lastPt;//Must be declared to handle drawing a line
 }
 
 -(id)initWithScene4UILayer:(Scene4UILayer *)scene4UILayer;
+- (BOOL) drawTerrainAt:(CGPoint)pt;
 
 @end
