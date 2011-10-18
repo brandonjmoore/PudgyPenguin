@@ -1,5 +1,5 @@
 //
-//  Scene4UILayer.m
+//  Level1UILayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/10/11.

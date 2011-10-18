@@ -1,5 +1,5 @@
 //
-//  Scene4ActionLayer.mm
+//  Level1ActionLayer.mm
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/10/11.
@@ -78,12 +78,12 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
--(id)initWithLevel1UILayer:(Scene4UILayer *)scene4UILayer {
+-(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
         [self setupBackground];
-        uiLayer = scene4UILayer;
+        uiLayer = level1UILayer;
         
         [self setupWorld];
         [self setupDebugDraw];
@@ -203,39 +203,6 @@
 
 }
 
-//- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event
-//{
-//    CGPoint start = [touch locationInView: [touch view]];   
-//    start = [[CCDirector sharedDirector] convertToGL: start];
-//    CGPoint end = [touch previousLocationInView:[touch view]];
-//    end = [[CCDirector sharedDirector] convertToGL:end];
-//    
-//    float distance = ccpDistance(start, end);
-//    if (distance > 10)
-//    {
-//        int d = (int)distance;
-//        
-//        b2Vec2 s(start.x/PTM_RATIO, start.y/PTM_RATIO);
-//        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
-//        
-//        b2BodyDef bd;
-//        bd.type = b2_staticBody;
-//        bd.position.Set(0, 0);
-//        b2Body* body = world->CreateBody(&bd);
-//        
-//        for (int i = 0; i < d; i++)
-//        {         
-//            b2PolygonShape shape;
-//            shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
-//            body->CreateFixture(&shape, 0.0f);
-//        }
-//    }
-//}
-
-- (BOOL) drawTerrainAt:(CGPoint)pt
-{
-	}
-
 -(void)addFish {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
@@ -252,9 +219,9 @@
 }
 
 - (void)createOffscreenSensorBody {
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    float32 sensorWidth = winSize.width*1.5;
-    float32 sensorHeight = winSize.height * 4;
+    //CGSize winSize = [CCDirector sharedDirector].winSize;
+    //float32 sensorWidth = winSize.width*1.5;
+    //float32 sensorHeight = winSize.height * 4;
 }
 
 

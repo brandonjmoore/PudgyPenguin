@@ -25,8 +25,8 @@
     fixtureDef.shape = &shape;
     
     fixtureDef.density = 1.0;
-    fixtureDef.friction = 0.5;
-    fixtureDef.restitution = 0.5;
+    fixtureDef.friction = 0.25;
+    fixtureDef.restitution = 0.25;
     
 
     

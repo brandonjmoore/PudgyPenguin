@@ -1,5 +1,5 @@
 //
-//  Scene4.mm
+//  Level1Scene.mm
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/10/11.

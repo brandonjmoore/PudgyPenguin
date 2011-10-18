@@ -25,7 +25,7 @@
         CCLOG(@"Tag 1 found, Scene 1");
         [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];
     }
-    if ([itemPassedIn tag] == 3) {
+    if ([itemPassedIn tag] == 2) {
         CCLOG(@"Tag 2 found, Scene 2");
         //Placeholder for level 2
     } 
@@ -54,7 +54,7 @@
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
 
-    [self addChild:mainMenu z:0 tag:kMainMenuTagValue];
+    [self addChild:mainMenu z:0 tag:kButtonTagValue];
                                       
 }
 
@@ -64,22 +64,36 @@
         [mainMenu removeFromParentAndCleanup:YES];
     }
     
-    //Using CCMenuItemImages instead of CCMenuItemLabels (page 187)
-    CCMenuItemImage *playScene1Button = [CCMenuItemImage itemFromNormalImage:@"Scene1ButtonNormal.png" selectedImage:@"Scene1ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
-    [playScene1Button setTag:1];
+    CCSprite *levelOneButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
+    CCSprite *levelOneButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
     
-    CCMenuItemImage *backButton = [CCMenuItemImage itemFromNormalImage:@"BackButtonNormal.png" selectedImage:@"BackButtonSelected.png" disabledImage:nil target:self selector:@selector(displayMainMenu)];
-    [backButton setPosition:ccp(screenSize.width * 0.13f, screenSize.height * 0.95f)];
     
-    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, nil];
-    backButtonMenu = [CCMenu menuWithItems:backButton, nil];
+    CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:nil target:self selector:@selector(playScene:)];
+    [playLevel1Button setTag:1];
+    
+    
+    sceneSelectMenu = [CCMenu menuWithItems:playLevel1Button, nil];
+    
     
     [sceneSelectMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
     [sceneSelectMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.75f)];
-    [backButtonMenu setPosition:ccp(0,0)];
     
-    [self addChild:sceneSelectMenu z:1 tag:kSceneMenuTagValue];
-    [self addChild:backButtonMenu z:1 tag:kBackButtonMenuTagValue];
+    [self addChild:sceneSelectMenu z:1 tag:kButtonTagValue];
+    
+    
+    
+    
+    //Set up the back button
+    CCSprite *backButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
+    CCSprite *backButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
+    
+    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:backButtonNormal selectedSprite:backButtonSelected disabledSprite:nil target:self selector:@selector(displayMainMenu)];
+    [backButton setPosition:ccp(screenSize.width * 0.13f, screenSize.height * 0.95f)];
+    
+    backButtonMenu = [CCMenu menuWithItems:backButton, nil];
+    
+    [backButtonMenu setPosition:ccp(0,0)];
+    [self addChild:backButtonMenu z:1 tag:kButtonTagValue];
     
 }
 
@@ -89,15 +103,22 @@
     if (self != nil) {
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
+        CCSpriteBatchNode *mainMenuSpriteBatchNode;
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
+        mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        
         CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:background];
         //Add the buttons to the screen
         [self displayMainMenu];
         
-        CCSprite *penguin = [CCSprite spriteWithFile:@"PenguinIdle.png"];
-        [penguin setPosition:ccp(screenSize.width * 0.8f, screenSize.height * 0.2f)];
-        [self addChild:penguin];
+        CCSprite *penguin = [CCSprite spriteWithSpriteFrameName:@"PenguinIdle.png"];
+        [penguin setPosition:ccp(screenSize.width * 0.8168f, screenSize.height * 0.215f)];
+        
+        [mainMenuSpriteBatchNode addChild:penguin];
+        
+        [self addChild:mainMenuSpriteBatchNode];
         
     }
     

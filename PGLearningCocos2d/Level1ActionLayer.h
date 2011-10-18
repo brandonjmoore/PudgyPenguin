@@ -1,5 +1,5 @@
 //
-//  Scene4ActionLayer.h
+//  Level1ActionLayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/10/11.
@@ -12,7 +12,7 @@
 #import "Constants.h"
 #import "Box2DSprite.h"
 
-@class Scene4UILayer;
+@class Level1UILayer;
 @class Penguin2;
 @class Fish2;
 
@@ -23,10 +23,10 @@
     b2Body *groundBody;
     Penguin2 *penguin2;
     Fish2 *fish2;
-    Scene4UILayer *uiLayer;
+    Level1UILayer *uiLayer;
     CGPoint _lastPt;//Must be declared to handle drawing a line
 }
 
--(id)initWithLevel1UILayer:(Scene4UILayer *)level1UILayer;
+-(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer;
 
 @end

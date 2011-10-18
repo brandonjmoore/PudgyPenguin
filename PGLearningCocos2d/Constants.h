@@ -24,7 +24,7 @@
 
 
 //GameManager constants (Chapter 7)
-#define kMainMenuTagValue           10
+#define kButtonTagValue             1
 #define kIntroMenuTagValue          10
 #define kSceneMenuTagValue          20
 #define kBackButtonMenuTagValue          20
