@@ -27,6 +27,8 @@
     float millisecondsStayingAngry;
     
     BOOL isFishCloseBy;
+    
+    int numFishEaten;
 }
 
 //Standing

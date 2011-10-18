@@ -9,7 +9,7 @@
 #ifndef PGLearningCocos2d_Constants_h
 #define PGLearningCocos2d_Constants_h
 
-#define kNumFishCreated             10
+#define kNumFishToCreate            15
 #define kPenguinSpriteTagValue      0
 #define kPenguinZValue              100
 //Idle time is used for idle actions (blinking, yawning, etc.)
@@ -30,6 +30,9 @@
 #define kBackButtonMenuTagValue          20
 
 #define kLastLevelNumber            105
+
+//Required num of fish
+#define kNumOfFishReqLev1           10
 
 typedef enum {
     kNoSceneUninitialized=0,

@@ -11,6 +11,7 @@
 #import "Level1UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
+#import "GameManager.h"
 
 
 @implementation Level1ActionLayer
@@ -82,6 +83,8 @@
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
+
+        
         [self setupBackground];
         uiLayer = level1UILayer;
         
@@ -96,6 +99,8 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.15)];
+        
+        penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
                 
         [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
@@ -104,6 +109,10 @@
         
     }
     return self;
+}
+
+-(void) gameOver: (id)sender {
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
 -(void)update:(ccTime)dt {
@@ -123,6 +132,15 @@
     CCArray *listOfGameObjects = [sceneSpriteBatchNode children];
     for (GameCharacter *tempChar in listOfGameObjects) {
         [tempChar updateStateWithDeltaTime:dt andListOfGameObjects:listOfGameObjects];
+    }
+    
+    if (penguin2 != nil) {
+        if (penguin2.characterState == kStateSatisfied) {
+            if (!gameOver){
+                gameOver = true;
+                [uiLayer displayText:@"You Win!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+            }
+        }
     }
     
 }
@@ -181,7 +199,7 @@
 -(void)addFish {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
-    Penguin2 *penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+
     if (penguin2 != nil) {
         if (penguin2.characterState != kStateSatisfied) {
             [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];

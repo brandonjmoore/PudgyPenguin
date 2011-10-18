@@ -96,6 +96,7 @@
             break;
         case kStateEating:
             CCLOG(@"Penguin->Changing State to Eating");
+            numFishEaten++;
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
             [self changeState:kStateIdle];
             //TODO: Here is where we increment the fishEaten count
@@ -129,11 +130,13 @@
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
 
-
+    
    
+    if (numFishEaten > 2) {
+        [self changeState:kStateSatisfied];
+    }
     
-    
-    
+
     
     //if
     //TODO: finish this method (pg 100)

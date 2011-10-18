@@ -67,30 +67,9 @@
     if (isBodyCollidingWithObjectType(self.body, kPenguinTypeBlack)){
         [self changeState:kStateHasBeenEaten];
         [penguin2 changeState:kStateEating];
-    }
-    
-    
-    
-    //if (isBodyCollidingWithObjectType(drill, kPenguinTypeBlack)) {
         
-    //}
-    
-    //if
-    //TODO: finish this method (pg 100)
-    
-//    if ([self numberOfRunningActions] == 0) {
-//        if (self.characterState == kStateIdle) {
-//            millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
-//            if (millisecondsStayingIdle > kPenguinBlinkTime) {
-//                [self changeState:kStateBlinking];
-//                //[self changeState:kStateAngry];
-//                //[self changeState:kStateMouthOpen];
-//            }
-//        } else if ((self.characterState != kStateIdle) && (self.characterState != kStateSatisfied)) {
-//            millisecondsStayingIdle = 0.0f;
-//            [self changeState:kStateIdle];
-//        }
-//    }
+    }
+
 }
 
 -(void)changeState:(CharacterStates)newState {
@@ -118,9 +97,7 @@
                     [self removeFromParentAndCleanup:YES];
                 
             }
-            
-            
-            
+
             break;
             
         case kStateAboutToBeEaten:
