@@ -1,19 +1,18 @@
 //
-//  Level1ActionLayer.mm
+//  Level2ActionLayer.m
 //  PGLearningCocos2d
 //
-//  Created by Brandon Moore on 10/10/11.
-//  Copyright 2011 Vaux, Inc. All rights reserved.
+//  Created by Brandon Moore on 10/18/11.
+//  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level1ActionLayer.h"
+#import "Level2ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level1UILayer.h"
+#import "Level2UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 
-
-@implementation Level1ActionLayer
+@implementation Level2ActionLayer
 
 - (void)setupWorld {
     b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
@@ -78,12 +77,12 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
--(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
+-(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
         [self setupBackground];
-        uiLayer = level1UILayer;
+        uiLayer = level2UILayer;
         
         [self setupWorld];
         [self setupDebugDraw];
@@ -95,8 +94,8 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.15)];
-                
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.215f)];
+        
         [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
@@ -152,30 +151,30 @@
 }
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
-
-        CGPoint end = [touch previousLocationInView:[touch view]];
-        end = [[CCDirector sharedDirector] convertToGL:end];
+    
+    CGPoint end = [touch previousLocationInView:[touch view]];
+    end = [[CCDirector sharedDirector] convertToGL:end];
+    
+    float distance = ccpDistance(_lastPt, end);
+    if (distance > 10)
+    {
         
-        float distance = ccpDistance(_lastPt, end);
-        if (distance > 10)
-        {
-            
-            b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
-            b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
-            
-            b2BodyDef bd;
-            bd.type = b2_staticBody;
-            bd.position.Set(0, 0);
-            b2Body* body = world->CreateBody(&bd);
-            
-                 
-                b2PolygonShape shape;
-                shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
-                body->CreateFixture(&shape, 0.0f);
-            _lastPt = end;
-        }
-     
-
+        b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
+        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
+        
+        b2BodyDef bd;
+        bd.type = b2_staticBody;
+        bd.position.Set(0, 0);
+        b2Body* body = world->CreateBody(&bd);
+        
+        
+        b2PolygonShape shape;
+        shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
+        body->CreateFixture(&shape, 0.0f);
+        _lastPt = end;
+    }
+    
+    
 }
 
 -(void)addFish {
@@ -185,7 +184,7 @@
     if (penguin2 != nil) {
         if (penguin2.characterState != kStateSatisfied) {
             [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
-
+            
         }else {
             //If the Penguin is satisfied, dont create fish
             [self unschedule:@selector(addFish)];
@@ -198,8 +197,5 @@
     //float32 sensorWidth = winSize.width*1.5;
     //float32 sensorHeight = winSize.height * 4;
 }
-
-
-
 
 @end

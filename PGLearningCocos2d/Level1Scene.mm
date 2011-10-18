@@ -12,8 +12,7 @@
 
 @implementation Level1Scene
 
-- (id)init
-{
+- (id)init {
     if ((self = [super init])) {
         Level1UILayer *uiLayer = [Level1UILayer node];
         [self addChild:uiLayer z:1];

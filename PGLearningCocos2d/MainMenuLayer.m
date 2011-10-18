@@ -27,7 +27,7 @@
     }
     if ([itemPassedIn tag] == 2) {
         CCLOG(@"Tag 2 found, Scene 2");
-        //Placeholder for level 2
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];
     } 
     else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
@@ -67,12 +67,18 @@
     CCSprite *levelOneButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
     CCSprite *levelOneButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
     
+    CCSprite *level2ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonNormal.png"];
+    CCSprite *level2ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonSelected.png"];
+    
     
     CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:nil target:self selector:@selector(playScene:)];
     [playLevel1Button setTag:1];
     
+    CCMenuItemSprite *playLevel2Button = [CCMenuItemSprite itemFromNormalSprite:level2ButtonNormal selectedSprite:level2ButtonSelected disabledSprite:nil target:self selector:@selector(playScene:)];
+    [playLevel2Button setTag:2];
     
-    sceneSelectMenu = [CCMenu menuWithItems:playLevel1Button, nil];
+    
+    sceneSelectMenu = [CCMenu menuWithItems:playLevel1Button, playLevel2Button, nil];
     
     
     [sceneSelectMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];

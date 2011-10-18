@@ -1,17 +1,17 @@
 //
-//  Level1UILayer.m
+//  Level2UILayer.m
 //  PGLearningCocos2d
 //
-//  Created by Brandon Moore on 10/10/11.
-//  Copyright 2011 Vaux, Inc. All rights reserved.
+//  Created by Brandon Moore on 10/18/11.
+//  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level1UILayer.h"
+#import "Level2UILayer.h"
 
-@implementation Level1UILayer
+@implementation Level2UILayer
 
 - (id)init {
-
+    
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         label = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:48.0];
