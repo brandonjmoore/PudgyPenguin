@@ -1212,10 +1212,10 @@
 			children = (
 				BF78AEC414436CB300FFE2ED /* Level1Scene.h */,
 				BF78AEC514436CB300FFE2ED /* Level1Scene.mm */,
-				BFDCA90E1443641700153456 /* Level1ActionLayer.h */,
-				BFDCA90F1443641700153456 /* Level1ActionLayer.mm */,
 				BFDCA90414435D3D00153456 /* Level1UILayer.h */,
 				BFDCA90514435D3D00153456 /* Level1UILayer.m */,
+				BFDCA90E1443641700153456 /* Level1ActionLayer.h */,
+				BFDCA90F1443641700153456 /* Level1ActionLayer.mm */,
 			);
 			name = Level1;
 			sourceTree = "<group>";

@@ -25,7 +25,6 @@
     Fish2 *fish2;
     Level1UILayer *uiLayer;
     CGPoint _lastPt;//Must be declared to handle drawing a line
-    int numFishEaten;
     bool gameOver;
 }
 

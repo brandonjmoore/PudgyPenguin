@@ -25,6 +25,7 @@
     Fish2 *fish2;
     Level2UILayer *uiLayer;
     CGPoint _lastPt;//Must be declared to handle drawing a line
+    bool gameOver;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;

@@ -143,7 +143,7 @@
     
     if ([self numberOfRunningActions] == 0) {
         
-        if (self.characterState != kStateMouthOpen){
+        if ((self.characterState != kStateMouthOpen) && (self.characterState != kStateSatisfied)){
             CGRect myBoundingBox = [self adjustedBoundingBox];
             for (GameCharacter *character in listOfGameObjects) {
                 CGRect characterBox = [character boundingBox];
@@ -151,7 +151,9 @@
                 if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
                     if ([character gameObjectType] == kFishType) {
                         [self changeState:kStateMouthOpen];
-                        [character changeState:kStateAboutToBeEaten];
+                        if (character.characterState != kStateAboutToBeEaten) {
+                            [character changeState:kStateAboutToBeEaten];
+                        }
                     } 
                 } else {
                     //[self changeState:kStateIdle];
