@@ -23,11 +23,11 @@
 -(void)playScene:(CCMenuItemFont*)itemPassedIn {
     if ([itemPassedIn tag] == 1) {
         CCLOG(@"Tag 1 found, Scene 1");
-        [[GameManager sharedGameManager] runSceneWithID:kIntroScene];
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];
     }
     if ([itemPassedIn tag] == 3) {
-        CCLOG(@"Tag 3 found, Scene 3");
-        [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
+        CCLOG(@"Tag 2 found, Scene 2");
+        //Placeholder for level 2
     } 
     else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
@@ -53,11 +53,7 @@
     mainMenu = [CCMenu menuWithItems:playGameButton, optionsButton, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
-    
-    //TODO: Take out this animation1
-    //id moveAction = [CCMoveTo actionWithDuration:1.2f position:ccp(screenSize.width * 0.5f, screenSize.height/2)];
-    //id moveEffect = [CCEaseIn actionWithAction:moveAction rate:1.0f];
-    //[mainMenu runAction:moveEffect];
+
     [self addChild:mainMenu z:0 tag:kMainMenuTagValue];
                                       
 }
@@ -68,21 +64,14 @@
         [mainMenu removeFromParentAndCleanup:YES];
     }
     
-    //CCLabelBMFont *playScene1Label = [CCLabelBMFont labelWithString:@"Level 1!" fntFile:@"Helvetica"
     //Using CCMenuItemImages instead of CCMenuItemLabels (page 187)
     CCMenuItemImage *playScene1Button = [CCMenuItemImage itemFromNormalImage:@"Scene1ButtonNormal.png" selectedImage:@"Scene1ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
     [playScene1Button setTag:1];
     
-    CCMenuItemImage *playScene2Button = [CCMenuItemImage itemFromNormalImage:@"Scene2ButtonNormal.png" selectedImage:@"Scene2ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
-    [playScene2Button setTag:2];
-    
-    CCMenuItemImage *playScene3Button = [CCMenuItemImage itemFromNormalImage:@"Scene3ButtonNormal.png" selectedImage:@"Scene3ButtonSelected.png" disabledImage:nil target:self selector:@selector(playScene:)];
-    [playScene3Button setTag:3];
-    
     CCMenuItemImage *backButton = [CCMenuItemImage itemFromNormalImage:@"BackButtonNormal.png" selectedImage:@"BackButtonSelected.png" disabledImage:nil target:self selector:@selector(displayMainMenu)];
     [backButton setPosition:ccp(screenSize.width * 0.13f, screenSize.height * 0.95f)];
     
-    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, playScene2Button, playScene3Button, nil];
+    sceneSelectMenu = [CCMenu menuWithItems:playScene1Button, nil];
     backButtonMenu = [CCMenu menuWithItems:backButton, nil];
     
     [sceneSelectMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
