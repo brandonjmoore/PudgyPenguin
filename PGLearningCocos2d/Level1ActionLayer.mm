@@ -162,7 +162,7 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.15, winSize.height * 0.15)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.215f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
                 

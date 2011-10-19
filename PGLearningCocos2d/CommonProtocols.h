@@ -36,7 +36,8 @@ typedef enum {
     kPenguinTypePink,
     kPenguinTypeGreen,
     kTrashType,
-    kLineType
+    kLineType,
+    kBoxType
 } GameObjectType;
 
 @protocol GameplayLayerDelegate

@@ -65,6 +65,16 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
+-(void)createBoxAtLocation:(CGPoint)location {
+    box = [[[Box alloc]initWithWorld:world atLocation:location]autorelease];
+    [sceneSpriteBatchNode addChild:box z:1];
+}
+
+-(void)createTrashAtLocation:(CGPoint)location {
+    trash = [[[Trash alloc]initWithWorld:world atLocation:location]autorelease];
+    [sceneSpriteBatchNode addChild:trash z:1];
+}
+
 - (void)registerWithTouchDispatcher {
     [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
@@ -78,6 +88,68 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
+-(void) doResume {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [self removeChild:pauseLayer cleanup:YES];
+}
+
+-(void) doReturnToMainMenu {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+}
+
+-(void)doPause
+{
+    //	ccColor4B c ={0,0,0,150};
+    //	[PauseLayer layerWithColor:c delegate:self];
+    
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    [[CCDirector sharedDirector] pause];
+    
+    pauseLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
+    [self addChild:pauseLayer z:5];
+    
+    
+    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
+    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    
+    CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
+    
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
+    
+    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    
+    pauseButtonMenu = [CCMenu menuWithItems:backButton, resumeButton, nil];
+    
+    [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+    [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
+    
+    [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
+    self.isTouchEnabled = NO;
+    
+    
+}
+
+-(void) createPauseButton {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *pauseButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
+    CCSprite *pauseButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    
+    CCMenuItemSprite *pauseButton = [CCMenuItemSprite itemFromNormalSprite:pauseButtonNormal selectedSprite:pauseButtonSelected disabledSprite:nil target:self selector:@selector(doPause)];
+    
+    pauseButtonMenu = [CCMenu menuWithItems:pauseButton, nil];
+    
+    [pauseButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.95f)];
+    
+    [self addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
+}
+
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -89,13 +161,27 @@
         [self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
+        [self createPauseButton];
         self.isTouchEnabled = YES;
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.215f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f)];
+        
+        //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.28f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f)];
+        
+        
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.415f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
@@ -103,6 +189,13 @@
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
+        
+        //create trash every so often
+        //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
+        
+        //Add snow
+        //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
+        //[self addChild:snowParticleSystem];
         
     }
     return self;
@@ -214,6 +307,20 @@
         }else {
             //If the Penguin is satisfied, dont create fish
             [self unschedule:@selector(addFish)];
+        }
+    }    
+}
+
+-(void)addTrash {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    if (penguin2 != nil) {
+        if (penguin2.characterState != kStateSatisfied) {
+            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
+            
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addTrash)];
         }
     }    
 }

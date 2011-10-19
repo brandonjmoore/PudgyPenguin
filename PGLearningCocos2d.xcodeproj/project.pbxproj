@@ -185,6 +185,9 @@
 		BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */; };
 		BF78AEC614436CB300FFE2ED /* Level1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF78AEC514436CB300FFE2ED /* Level1Scene.mm */; };
 		BF78AECF14439D6100FFE2ED /* Penguin2.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF78AECE14439D6100FFE2ED /* Penguin2.plist */; };
+		BFB99880144F3C02001DFCEE /* Box.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB9987F144F3C02001DFCEE /* Box.mm */; };
+		BFB99884144F3DBC001DFCEE /* Trash.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB99883144F3DBC001DFCEE /* Trash.mm */; };
+		BFBB795E144F629B00752F0B /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBB795D144F629B00752F0B /* snow.png */; };
 		BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFCD59281441690F00E102EE /* Box2DSprite.mm */; };
 		BFDCA90614435D3D00153456 /* Level1UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90514435D3D00153456 /* Level1UILayer.m */; };
 		BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90C1443631E00153456 /* Penguin2.mm */; };
@@ -543,6 +546,11 @@
 		BF78AEC414436CB300FFE2ED /* Level1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1Scene.h; sourceTree = "<group>"; };
 		BF78AEC514436CB300FFE2ED /* Level1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1Scene.mm; sourceTree = "<group>"; };
 		BF78AECE14439D6100FFE2ED /* Penguin2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin2.plist; sourceTree = "<group>"; };
+		BFB9987E144F3C02001DFCEE /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		BFB9987F144F3C02001DFCEE /* Box.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box.mm; sourceTree = "<group>"; };
+		BFB99882144F3DBC001DFCEE /* Trash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trash.h; sourceTree = "<group>"; };
+		BFB99883144F3DBC001DFCEE /* Trash.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Trash.mm; sourceTree = "<group>"; };
+		BFBB795D144F629B00752F0B /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
 		BFCD59271441690F00E102EE /* Box2DSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DSprite.h; sourceTree = "<group>"; };
 		BFCD59281441690F00E102EE /* Box2DSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DSprite.mm; sourceTree = "<group>"; };
 		BFDCA90414435D3D00153456 /* Level1UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1UILayer.h; sourceTree = "<group>"; };
@@ -777,6 +785,10 @@
 				BFDCA90C1443631E00153456 /* Penguin2.mm */,
 				BF1B32C41443F34D00AD94FF /* Fish2.h */,
 				BF1B32C51443F34D00AD94FF /* Fish2.mm */,
+				BFB9987E144F3C02001DFCEE /* Box.h */,
+				BFB9987F144F3C02001DFCEE /* Box.mm */,
+				BFB99882144F3DBC001DFCEE /* Trash.h */,
+				BFB99883144F3DBC001DFCEE /* Trash.mm */,
 				BFCD5925144168D500E102EE /* Box2d */,
 			);
 			name = GameObjects;
@@ -1201,6 +1213,8 @@
 		BF51CB221438248900B64181 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BFBB795D144F629B00752F0B /* snow.png */,
+				BFBB795C144F610D00752F0B /* Particles */,
 				BF5D2C9C144EA75400EFD358 /* NormalImages */,
 				BF44C36214402636005134E7 /* IdleCharacters */,
 				BF44C34514402045005134E7 /* Background */,
@@ -1227,6 +1241,13 @@
 				BF5D2CA2144EA78800EFD358 /* Scene1ButtonSelected.png */,
 			);
 			name = NormalImages;
+			sourceTree = "<group>";
+		};
+		BFBB795C144F610D00752F0B /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Particles;
 			sourceTree = "<group>";
 		};
 		BFCD5925144168D500E102EE /* Box2d */ = {
@@ -1345,6 +1366,7 @@
 				BF5D2CA0144EA76C00EFD358 /* Scene1ButtonSelected-hd.png in Resources */,
 				BF5D2CA3144EA78800EFD358 /* Scene1ButtonNormal.png in Resources */,
 				BF5D2CA4144EA78800EFD358 /* Scene1ButtonSelected.png in Resources */,
+				BFBB795E144F629B00752F0B /* snow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1506,6 +1528,8 @@
 				BF24B28F144DF4E200F0A37E /* Level2UILayer.mm in Sources */,
 				BF24B292144DF4F000F0A37E /* Level2ActionLayer.mm in Sources */,
 				BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */,
+				BFB99880144F3C02001DFCEE /* Box.mm in Sources */,
+				BFB99884144F3DBC001DFCEE /* Trash.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

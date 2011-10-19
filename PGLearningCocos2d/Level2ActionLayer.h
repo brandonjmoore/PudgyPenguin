@@ -11,6 +11,8 @@
 #import "GLES-Render.h"
 #import "Constants.h"
 #import "Box2DSprite.h"
+#import "Box.h"
+#import "Trash.h"
 
 @class Level2UILayer;
 @class Penguin2;
@@ -26,6 +28,10 @@
     Level2UILayer *uiLayer;
     CGPoint _lastPt;//Must be declared to handle drawing a line
     bool gameOver;
+    Box *box;
+    Trash *trash;
+    CCMenu *pauseButtonMenu;
+    CCLayerColor *pauseLayer;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;

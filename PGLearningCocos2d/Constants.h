@@ -20,7 +20,7 @@
 #define kFishIdleTime               10.0f
 
 #define kTimeBetweenFishCreation    2.0f
-
+#define kTimeBetweenTrashCreation   10.0f
 
 
 //GameManager constants (Chapter 7)
