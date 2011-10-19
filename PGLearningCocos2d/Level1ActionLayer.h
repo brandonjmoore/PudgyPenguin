@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "Box2DSprite.h"
 
+
 @class Level1UILayer;
 @class Penguin2;
 @class Fish2;
@@ -26,8 +27,12 @@
     Level1UILayer *uiLayer;
     CGPoint _lastPt;//Must be declared to handle drawing a line
     bool gameOver;
+    CCMenu *pauseButtonMenu;
+    CCLayerColor *pauseLayer;
 }
 
 -(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer;
 
 @end
+
+

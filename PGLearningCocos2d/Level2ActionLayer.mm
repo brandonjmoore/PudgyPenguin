@@ -175,6 +175,8 @@
     if (distance > 10)
     {
         
+        //CCSprite *lineSprite = [CCSprite spriteWithFile:@"PenguinIdle.png"];
+        
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
         b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
         
@@ -184,10 +186,19 @@
         b2Body* body = world->CreateBody(&bd);
         
         
+        
         b2PolygonShape shape;
         shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
         body->CreateFixture(&shape, 0.0f);
+        
+        //lineSprite.position = ccp(body->GetPosition().x, body->GetPosition().y);
+        //lineSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+        
+        
+        //[self addChild:lineSprite];
         _lastPt = end;
+        
+        
     }
     
     

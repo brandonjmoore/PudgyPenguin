@@ -8,34 +8,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "PGLearningCocos2d/Level1ActionLayer.mm"
-         timestampString = "340668798.314163"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "140"
-         endingLineNumber = "140"
-         landmarkName = "-update:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "PGLearningCocos2d/Level1ActionLayer.mm"
-         timestampString = "340668732.652784"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
-         landmarkName = "-gameOver:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
          filePath = "PGLearningCocos2d/Level2ActionLayer.mm"
          timestampString = "340669337.491288"
          startingColumnNumber = "9223372036854775807"
@@ -64,13 +36,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "PGLearningCocos2d/Level2UILayer.mm"
-         timestampString = "340669473.164125"
+         filePath = "PGLearningCocos2d/LevelCompleteLayer.m"
+         timestampString = "340697444.82751"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
-         landmarkName = "-displayText:andOnCompleteCallTarget:selector:"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
+         landmarkName = "-ccTouchesBegan:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

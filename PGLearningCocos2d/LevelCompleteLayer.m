@@ -18,7 +18,8 @@
     //TODO: Make sure this works
     if (currentScene < kLastLevelNumber) {
         NSInteger nextScene = currentScene + 1;
-        [[GameManager sharedGameManager] runSceneWithID:nextScene];
+        //[[GameManager sharedGameManager] runSceneWithID:nextScene];
+        [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
     } else {
         [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
     }
@@ -29,7 +30,7 @@
 {
     self = [super init];
     if (self != nil) {
-        // Initialization code here.
+        self.isTouchEnabled = YES;
     }
     
     return self;

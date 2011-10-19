@@ -14,6 +14,7 @@
 #import "GameManager.h"
 
 
+
 @implementation Level1ActionLayer
 
 - (void)setupWorld {
@@ -79,6 +80,68 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
+-(void) doResume {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [self removeChild:pauseLayer cleanup:YES];
+}
+
+-(void) doReturnToMainMenu {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+}
+
+-(void)doPause
+{
+//	ccColor4B c ={0,0,0,150};
+//	[PauseLayer layerWithColor:c delegate:self];
+    
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+    [[CCDirector sharedDirector] pause];
+    
+    pauseLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
+    [self addChild:pauseLayer z:5];
+    
+    
+    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
+    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    
+    CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
+    
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
+    
+    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    
+    pauseButtonMenu = [CCMenu menuWithItems:backButton, resumeButton, nil];
+    
+    [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+    [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
+    
+    [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
+    self.isTouchEnabled = NO;
+    
+
+}
+
+-(void) createPauseButton {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *pauseButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
+    CCSprite *pauseButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    
+    CCMenuItemSprite *pauseButton = [CCMenuItemSprite itemFromNormalSprite:pauseButtonNormal selectedSprite:pauseButtonSelected disabledSprite:nil target:self selector:@selector(doPause)];
+    
+    pauseButtonMenu = [CCMenu menuWithItems:pauseButton, nil];
+    
+    [pauseButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.95f)];
+    
+    [self addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
+}
+
 -(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -92,6 +155,7 @@
         [self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
+        [self createPauseButton];
         self.isTouchEnabled = YES;
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
@@ -112,7 +176,7 @@
 }
 
 -(void) gameOver: (id)sender {
-    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+    [[GameManager sharedGameManager] runSceneWithID:kLevelCompleteScene];
 }
 
 -(void)update:(ccTime)dt {

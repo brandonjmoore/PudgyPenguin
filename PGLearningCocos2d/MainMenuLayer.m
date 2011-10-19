@@ -46,11 +46,14 @@
     
     
     //Main Menu
-    CCMenuItemImage *playGameButton = [CCMenuItemImage itemFromNormalImage:@"PlayGameButtonNormal.png" selectedImage:@"PlayGameButtonSelected.png" disabledImage:nil target:self selector:@selector(displaySceneSelection)];
+    //Main Menu
+    CCSprite *startButtonNormal = [CCSprite spriteWithSpriteFrameName:@"PlayGameButtonNormal.png"];
+    CCSprite *startButtonSelected = [CCSprite spriteWithSpriteFrameName:@"PlayGameButtonSelected.png"];
     
-    CCMenuItemImage *optionsButton = [CCMenuItemImage itemFromNormalImage:@"OptionsButtonNormal.png" selectedImage:@"OptionsButtonSelected.png" disabledImage:nil target:self selector:@selector(showOptions)];
     
-    mainMenu = [CCMenu menuWithItems:playGameButton, optionsButton, nil];
+    CCMenuItemSprite *playGameButton = [CCMenuItemSprite itemFromNormalSprite:startButtonNormal selectedSprite:startButtonSelected disabledSprite:nil target:self selector:@selector(displaySceneSelection)];
+    
+    mainMenu = [CCMenu menuWithItems:playGameButton, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
 

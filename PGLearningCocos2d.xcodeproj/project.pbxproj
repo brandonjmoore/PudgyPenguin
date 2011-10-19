@@ -178,6 +178,11 @@
 		BF51CB121438244F00B64181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB111438244F00B64181 /* main.m */; };
 		BF51CB151438244F00B64181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB141438244F00B64181 /* AppDelegate.m */; };
 		BF51CB181438244F00B64181 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51CB171438244F00B64181 /* RootViewController.m */; };
+		BF5D2C9F144EA76C00EFD358 /* Scene1ButtonNormal-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5D2C9D144EA76C00EFD358 /* Scene1ButtonNormal-hd.png */; };
+		BF5D2CA0144EA76C00EFD358 /* Scene1ButtonSelected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5D2C9E144EA76C00EFD358 /* Scene1ButtonSelected-hd.png */; };
+		BF5D2CA3144EA78800EFD358 /* Scene1ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5D2CA1144EA78800EFD358 /* Scene1ButtonNormal.png */; };
+		BF5D2CA4144EA78800EFD358 /* Scene1ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5D2CA2144EA78800EFD358 /* Scene1ButtonSelected.png */; };
+		BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */; };
 		BF78AEC614436CB300FFE2ED /* Level1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF78AEC514436CB300FFE2ED /* Level1Scene.mm */; };
 		BF78AECF14439D6100FFE2ED /* Penguin2.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF78AECE14439D6100FFE2ED /* Penguin2.plist */; };
 		BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFCD59281441690F00E102EE /* Box2DSprite.mm */; };
@@ -529,6 +534,12 @@
 		BF51CB161438244F00B64181 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		BF51CB171438244F00B64181 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		BF51CB1C1438244F00B64181 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		BF5D2C9D144EA76C00EFD358 /* Scene1ButtonNormal-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Scene1ButtonNormal-hd.png"; sourceTree = "<group>"; };
+		BF5D2C9E144EA76C00EFD358 /* Scene1ButtonSelected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Scene1ButtonSelected-hd.png"; sourceTree = "<group>"; };
+		BF5D2CA1144EA78800EFD358 /* Scene1ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene1ButtonNormal.png; sourceTree = "<group>"; };
+		BF5D2CA2144EA78800EFD358 /* Scene1ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scene1ButtonSelected.png; sourceTree = "<group>"; };
+		BF5D2CA8144EB07F00EFD358 /* PauseMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
+		BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenu.m; sourceTree = "<group>"; };
 		BF78AEC414436CB300FFE2ED /* Level1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1Scene.h; sourceTree = "<group>"; };
 		BF78AEC514436CB300FFE2ED /* Level1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1Scene.mm; sourceTree = "<group>"; };
 		BF78AECE14439D6100FFE2ED /* Penguin2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin2.plist; sourceTree = "<group>"; };
@@ -750,6 +761,7 @@
 				BFDCA90214435D1000153456 /* Level1 */,
 				BF24B289144DF47700F0A37E /* Level2 */,
 				BFE3F187143EDEEE007BB741 /* LevelComplete */,
+				BF5D2C97144EA4BF00EFD358 /* Misc */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1189,11 +1201,32 @@
 		BF51CB221438248900B64181 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D2C9C144EA75400EFD358 /* NormalImages */,
 				BF44C36214402636005134E7 /* IdleCharacters */,
 				BF44C34514402045005134E7 /* Background */,
 				BF44C34414402038005134E7 /* SpriteSheets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		BF5D2C97144EA4BF00EFD358 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				BF5D2CA8144EB07F00EFD358 /* PauseMenu.h */,
+				BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		BF5D2C9C144EA75400EFD358 /* NormalImages */ = {
+			isa = PBXGroup;
+			children = (
+				BF5D2C9D144EA76C00EFD358 /* Scene1ButtonNormal-hd.png */,
+				BF5D2C9E144EA76C00EFD358 /* Scene1ButtonSelected-hd.png */,
+				BF5D2CA1144EA78800EFD358 /* Scene1ButtonNormal.png */,
+				BF5D2CA2144EA78800EFD358 /* Scene1ButtonSelected.png */,
+			);
+			name = NormalImages;
 			sourceTree = "<group>";
 		};
 		BFCD5925144168D500E102EE /* Box2d */ = {
@@ -1308,6 +1341,10 @@
 				BF24B284144DEFD900F0A37E /* scene1atlas-hd.png in Resources */,
 				BF24B287144DEFE300F0A37E /* scene1atlas.plist in Resources */,
 				BF24B288144DEFE300F0A37E /* scene1atlas.png in Resources */,
+				BF5D2C9F144EA76C00EFD358 /* Scene1ButtonNormal-hd.png in Resources */,
+				BF5D2CA0144EA76C00EFD358 /* Scene1ButtonSelected-hd.png in Resources */,
+				BF5D2CA3144EA78800EFD358 /* Scene1ButtonNormal.png in Resources */,
+				BF5D2CA4144EA78800EFD358 /* Scene1ButtonSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1468,6 +1505,7 @@
 				BF24B28C144DF4A900F0A37E /* Level2Scene.mm in Sources */,
 				BF24B28F144DF4E200F0A37E /* Level2UILayer.mm in Sources */,
 				BF24B292144DF4F000F0A37E /* Level2ActionLayer.mm in Sources */,
+				BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
