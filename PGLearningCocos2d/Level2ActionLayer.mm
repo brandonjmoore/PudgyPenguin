@@ -158,7 +158,7 @@
         uiLayer = level2UILayer;
         
         [self setupWorld];
-        [self setupDebugDraw];
+        //[self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
         [self createPauseButton];
@@ -268,12 +268,13 @@
     if (distance > 10)
     {
         
-        //CCSprite *lineSprite = [CCSprite spriteWithFile:@"PenguinIdle.png"];
+        CCSprite *lineSprite = [CCSprite spriteWithFile:@"snow.png"];
         
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
         b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
         
         b2BodyDef bd;
+        
         bd.type = b2_staticBody;
         bd.position.Set(0, 0);
         b2Body* body = world->CreateBody(&bd);
@@ -287,8 +288,8 @@
         //lineSprite.position = ccp(body->GetPosition().x, body->GetPosition().y);
         //lineSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
         
-        
-        //[self addChild:lineSprite];
+        lineSprite.position = ccp(end.x, end.y);
+        [self addChild:lineSprite];
         _lastPt = end;
         
         
@@ -301,8 +302,9 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
+        if ((penguin2.characterState != kStateSatisfied) && (numFishCreated < kNumFishToCreate)) {
             [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
+            numFishCreated++;
             
         }else {
             //If the Penguin is satisfied, dont create fish

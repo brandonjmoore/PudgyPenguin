@@ -132,7 +132,7 @@
 
     
    
-    if (numFishEaten > 2) {
+    if (numFishEaten > kNumOfFishReqLev1) {
         [self changeState:kStateSatisfied];
     }
     

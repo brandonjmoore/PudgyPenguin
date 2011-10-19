@@ -32,6 +32,7 @@
     Trash *trash;
     CCMenu *pauseButtonMenu;
     CCLayerColor *pauseLayer;
+    int numFishCreated;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;
