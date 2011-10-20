@@ -120,18 +120,12 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         
-        CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:background];
         //Add the buttons to the screen
         [self displayMainMenu];
         
-        CCSprite *penguin = [CCSprite spriteWithSpriteFrameName:@"PenguinIdle.png"];
-        [penguin setPosition:ccp(screenSize.width * 0.8168f, screenSize.height * 0.215f)];
-        
-        [mainMenuSpriteBatchNode addChild:penguin];
-        
-        [self addChild:mainMenuSpriteBatchNode];
         
     }
     

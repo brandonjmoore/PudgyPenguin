@@ -15,6 +15,12 @@
 
 @implementation Level2ActionLayer
 
+-(void) dealloc {
+    CCLOG(@"Level2ActionLayer dealloc");
+    [lineArray release];
+    [super dealloc];
+}
+
 - (void)setupWorld {
     b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
     bool doSleep = true;
@@ -150,9 +156,14 @@
     [self addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
 }
 
+-(void) clearLines {
+    
+}
+
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        lineArray = [[NSMutableArray array] retain];
         
         [self setupBackground];
         uiLayer = level2UILayer;

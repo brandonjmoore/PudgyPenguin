@@ -33,6 +33,7 @@
     CCMenu *pauseButtonMenu;
     CCLayerColor *pauseLayer;
     int numFishCreated;
+    NSMutableArray *lineArray;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;
