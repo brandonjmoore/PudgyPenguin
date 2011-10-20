@@ -73,9 +73,13 @@
     CCSprite *level2ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonNormal.png"];
     CCSprite *level2ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonSelected.png"];
     
+    CCSprite *disablesSprite = [CCSprite spriteWithFile:@"snow.png"];
     
-    CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:nil target:self selector:@selector(playScene:)];
+    
+    CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:disablesSprite target:self selector:@selector(playScene:)];
     [playLevel1Button setTag:1];
+    
+    playLevel1Button.isEnabled = NO;
     
     CCMenuItemSprite *playLevel2Button = [CCMenuItemSprite itemFromNormalSprite:level2ButtonNormal selectedSprite:level2ButtonSelected disabledSprite:nil target:self selector:@selector(playScene:)];
     [playLevel2Button setTag:2];

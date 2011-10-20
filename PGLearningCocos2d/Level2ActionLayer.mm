@@ -265,10 +265,19 @@
     end = [[CCDirector sharedDirector] convertToGL:end];
     
     float distance = ccpDistance(_lastPt, end);
+    
+    if (distance > 5) {
+        CCSprite *lineSprite = [CCSprite spriteWithFile:@"snow.png"];
+        lineSprite.position = ccp(end.x, end.y);
+        [self addChild:lineSprite];
+    }
+    
+    
     if (distance > 10)
     {
         
-        CCSprite *lineSprite = [CCSprite spriteWithFile:@"snow.png"];
+
+        
         
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
         b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
@@ -288,9 +297,11 @@
         //lineSprite.position = ccp(body->GetPosition().x, body->GetPosition().y);
         //lineSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
         
-        lineSprite.position = ccp(end.x, end.y);
-        [self addChild:lineSprite];
+        
+        
         _lastPt = end;
+        
+        
         
         
     }

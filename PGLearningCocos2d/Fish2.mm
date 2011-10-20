@@ -21,7 +21,7 @@
     
     b2FixtureDef fixtureDef;
     b2CircleShape shape;
-    shape.m_radius = self.contentSize.width*0.25/PTM_RATIO;
+    shape.m_radius = self.contentSize.width*0.33/PTM_RATIO;
     fixtureDef.shape = &shape;
     
     fixtureDef.density = 1.0;

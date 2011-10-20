@@ -50,6 +50,8 @@
 		BF1EC84E143E9B650083412C /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84D143E9B650083412C /* background-hd.png */; };
 		BF1EC850143E9B6D0083412C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84F143E9B6D0083412C /* background.png */; };
 		BF1EC8B6143ED0D30083412C /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.mm */; };
+		BF1FBB99144FE29B00DF3E0B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FBB97144FE29B00DF3E0B /* icon.png */; };
+		BF1FBB9A144FE29B00DF3E0B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FBB98144FE29B00DF3E0B /* icon@2x.png */; };
 		BF24B283144DEFD900F0A37E /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF24B281144DEFD900F0A37E /* scene1atlas-hd.plist */; };
 		BF24B284144DEFD900F0A37E /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF24B282144DEFD900F0A37E /* scene1atlas-hd.png */; };
 		BF24B287144DEFE300F0A37E /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF24B285144DEFE300F0A37E /* scene1atlas.plist */; };
@@ -78,8 +80,6 @@
 		BF51C9CA1438244D00B64181 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51C9C91438244D00B64181 /* Icon-Small-50.png */; };
 		BF51C9CC1438244D00B64181 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51C9CB1438244D00B64181 /* Icon-Small.png */; };
 		BF51C9CE1438244D00B64181 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51C9CD1438244D00B64181 /* Icon-Small@2x.png */; };
-		BF51C9D01438244D00B64181 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51C9CF1438244D00B64181 /* Icon.png */; };
-		BF51C9D21438244D00B64181 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF51C9D11438244D00B64181 /* Icon@2x.png */; };
 		BF51C9D51438244D00B64181 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = BF51C9D41438244D00B64181 /* iTunesArtwork */; };
 		BF51C9DA1438244D00B64181 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51C9D91438244D00B64181 /* CCAction.m */; };
 		BF51C9DD1438244D00B64181 /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = BF51C9DC1438244D00B64181 /* CCActionCamera.m */; };
@@ -281,6 +281,8 @@
 		BF1EC84F143E9B6D0083412C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BF1EC8B4143ED0D30083412C /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		BF1EC8B5143ED0D30083412C /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
+		BF1FBB97144FE29B00DF3E0B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		BF1FBB98144FE29B00DF3E0B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		BF24B281144DEFD900F0A37E /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
 		BF24B282144DEFD900F0A37E /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BF24B285144DEFE300F0A37E /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
@@ -319,8 +321,6 @@
 		BF51C9C91438244D00B64181 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/Icon-Small-50.png"; sourceTree = "<group>"; };
 		BF51C9CB1438244D00B64181 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/Icon-Small.png"; sourceTree = "<group>"; };
 		BF51C9CD1438244D00B64181 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		BF51C9CF1438244D00B64181 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
-		BF51C9D11438244D00B64181 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		BF51C9D31438244D00B64181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		BF51C9D41438244D00B64181 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		BF51C9D81438244D00B64181 /* CCAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCAction.h; path = libs/cocos2d/CCAction.h; sourceTree = "<group>"; };
@@ -890,8 +890,8 @@
 				BF51C9C91438244D00B64181 /* Icon-Small-50.png */,
 				BF51C9CB1438244D00B64181 /* Icon-Small.png */,
 				BF51C9CD1438244D00B64181 /* Icon-Small@2x.png */,
-				BF51C9CF1438244D00B64181 /* Icon.png */,
-				BF51C9D11438244D00B64181 /* Icon@2x.png */,
+				BF1FBB97144FE29B00DF3E0B /* icon.png */,
+				BF1FBB98144FE29B00DF3E0B /* icon@2x.png */,
 				BF51C9D31438244D00B64181 /* Info.plist */,
 				BF51C9D41438244D00B64181 /* iTunesArtwork */,
 			);
@@ -1349,8 +1349,6 @@
 				BF51C9CA1438244D00B64181 /* Icon-Small-50.png in Resources */,
 				BF51C9CC1438244D00B64181 /* Icon-Small.png in Resources */,
 				BF51C9CE1438244D00B64181 /* Icon-Small@2x.png in Resources */,
-				BF51C9D01438244D00B64181 /* Icon.png in Resources */,
-				BF51C9D21438244D00B64181 /* Icon@2x.png in Resources */,
 				BF51C9D51438244D00B64181 /* iTunesArtwork in Resources */,
 				BF396957143B595200EC7DBA /* Penguin.plist in Resources */,
 				BF1EC84E143E9B650083412C /* background-hd.png in Resources */,
@@ -1367,6 +1365,8 @@
 				BF5D2CA3144EA78800EFD358 /* Scene1ButtonNormal.png in Resources */,
 				BF5D2CA4144EA78800EFD358 /* Scene1ButtonSelected.png in Resources */,
 				BFBB795E144F629B00752F0B /* snow.png in Resources */,
+				BF1FBB99144FE29B00DF3E0B /* icon.png in Resources */,
+				BF1FBB9A144FE29B00DF3E0B /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
