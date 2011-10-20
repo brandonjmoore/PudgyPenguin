@@ -65,12 +65,8 @@
     //b2Body *fishBody = self.body;
     
     if (isBodyCollidingWithObjectType(self.body, kPenguinTypeBlack)){
-        if (penguin2.characterState != kStateSatisfied) {
             [self changeState:kStateHasBeenEaten];
             [penguin2 changeState:kStateEating];
-        } else {
-            [self changeState:kStateHasBeenEaten];
-        }
     }
 
 }

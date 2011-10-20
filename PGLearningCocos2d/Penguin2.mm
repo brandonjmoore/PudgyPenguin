@@ -93,13 +93,19 @@
         case kStateBlinking:
             CCLOG(@"Penguin->Changing State to Blinking");
             action = [CCAnimate actionWithAnimation:penguinBlinkingAnim restoreOriginalFrame:YES];
+            [self changeState:kStateIdle];
             break;
         case kStateEating:
             CCLOG(@"Penguin->Changing State to Eating");
             numFishEaten++;
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
-            [self changeState:kStateIdle];
-            //TODO: Here is where we increment the fishEaten count
+            
+            if (numFishEaten >= kNumOfFishReqLev1) {
+                [self changeState:kStateSatisfied];
+            } else {
+                [self changeState:kStateIdle];                
+            } 
+
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
@@ -109,6 +115,7 @@
             CCLOG(@"Penguin->Changing State to Satisfied");
             //restoreOriginalFrame is set to no here because we want him to remain satisfied
             //action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             break;
             
         case kStateMouthOpen:
@@ -131,10 +138,7 @@
         return; //Nothing to do if the Penguin is satisfied
 
     
-   
-    if (numFishEaten > kNumOfFishReqLev1) {
-        [self changeState:kStateSatisfied];
-    }
+
     
 
     
@@ -142,7 +146,7 @@
     //TODO: finish this method (pg 100)
     
     if ([self numberOfRunningActions] == 0) {
-        
+         
         if ((self.characterState != kStateMouthOpen) && (self.characterState != kStateSatisfied)){
             CGRect myBoundingBox = [self adjustedBoundingBox];
             for (GameCharacter *character in listOfGameObjects) {
@@ -155,8 +159,6 @@
                             [character changeState:kStateAboutToBeEaten];
                         }
                     } 
-                } else {
-                    //[self changeState:kStateIdle];
                 }
             }
         }
@@ -165,13 +167,22 @@
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
             if (millisecondsStayingIdle > kPenguinBlinkTime) {
                 [self changeState:kStateBlinking];
-                //[self changeState:kStateAngry];
-                //[self changeState:kStateMouthOpen];
+                millisecondsStayingIdle = 0.0f;
             }
         } else {
             millisecondsStayingIdle = 0.0f;
-            //[self changeState:kStateIdle];
         }
+        
+        if (self.characterState == kStateMouthOpen) {
+            millisecondsWithMouthOpen = millisecondsWithMouthOpen + deltaTime;
+            if (millisecondsWithMouthOpen > kPenguinMouthOpenTime) {
+                [self changeState:kStateIdle];
+                millisecondsWithMouthOpen = 0.0f;
+            }
+        } else {
+            millisecondsWithMouthOpen = 0.0f;
+        }
+        
     }
   
 }

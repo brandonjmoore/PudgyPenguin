@@ -25,6 +25,7 @@
     
     float millisecondsStayingIdle;
     float millisecondsStayingAngry;
+    float millisecondsWithMouthOpen;
     
     BOOL isFishCloseBy;
     
