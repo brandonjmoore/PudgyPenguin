@@ -14,6 +14,7 @@
 #import "Box.h"
 #import "Trash.h"
 
+
 @class Level2UILayer;
 @class Penguin2;
 @class Fish2;
@@ -22,6 +23,7 @@
     b2World *world;
     GLESDebugDraw *debugDraw;
     CCSpriteBatchNode *sceneSpriteBatchNode;
+    b2Body *offscreenSensorBody;
     b2Body *groundBody;
     Penguin2 *penguin2;
     Fish2 *fish2;
@@ -31,9 +33,13 @@
     Box *box;
     Trash *trash;
     CCMenu *pauseButtonMenu;
+    CCMenu *clearButtonMenu;
     CCLayerColor *pauseLayer;
     int numFishCreated;
+    int numFishLeftScene;
     NSMutableArray *lineArray;
+    NSMutableArray *lineSpriteArray;
+    NSMutableArray *drawPoints;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;

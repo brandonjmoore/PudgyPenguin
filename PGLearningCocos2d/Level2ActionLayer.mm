@@ -12,12 +12,15 @@
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
+#import "TouchDraw.h"
+#import "Box2DHelpers.h"
 
 @implementation Level2ActionLayer
 
 -(void) dealloc {
     CCLOG(@"Level2ActionLayer dealloc");
     [lineArray release];
+    [lineSpriteArray release];
     [super dealloc];
 }
 
@@ -34,31 +37,7 @@
 }
 
 - (void)createGround {
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    float32 margin = -15.0f;
-    b2Vec2 lowerLeft = b2Vec2(margin/PTM_RATIO, margin/PTM_RATIO);
-    b2Vec2 lowerRight = b2Vec2((winSize.width-margin)/PTM_RATIO, margin/PTM_RATIO);
-    b2Vec2 upperRight = b2Vec2((winSize.width-margin)/PTM_RATIO,(winSize.height-margin)/PTM_RATIO);
-    b2Vec2 upperLeft = b2Vec2(margin/PTM_RATIO, (winSize.height-margin)/PTM_RATIO);
     
-    b2BodyDef groundBodyDef;
-    groundBodyDef.type = b2_staticBody;
-    groundBodyDef.position.Set(0, 0);
-    groundBody = world->CreateBody(&groundBodyDef);
-    
-    b2PolygonShape groundShape;
-    b2FixtureDef groundFixtureDef;
-    groundFixtureDef.shape = &groundShape;
-    groundFixtureDef.density = 0.0;
-    
-    groundShape.SetAsEdge(lowerLeft, upperLeft);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(lowerLeft, lowerRight);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(lowerRight, upperRight);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(upperLeft, upperRight);
-    groundBody->CreateFixture(&groundFixtureDef);
 }
 
 -(void)createPenguin2AtLocation:(CGPoint)location {
@@ -156,23 +135,52 @@
     [self addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
 }
 
--(void) clearLines {
+-(void) createClearButton {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonNormal.png"];
+    CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonSelected.png"];
     
+    CCMenuItemSprite *clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
+    
+    clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
+    
+    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.05f)];
+    
+    [self addChild:clearButtonMenu z:10 tag:kButtonTagValue];
+}
+
+-(void) clearLines {
+    for (NSValue *bodyPtr in lineArray) {
+        b2Body *body = (b2Body*)[bodyPtr pointerValue];
+        world->DestroyBody(body);
+        
+    }
+    [lineArray removeAllObjects];
+    //[drawPoints removeAllObjects];
+    
+    // remove the node from the scene
+    //CCNode *drawer = [self getChildByTag:TOUCH_DRAWER_TAG];
+    //[self removeChild:drawer cleanup:YES];
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         lineArray = [[NSMutableArray array] retain];
+        lineSpriteArray = [[NSMutableArray array] retain];
+        
+        
+        
         
         [self setupBackground];
         uiLayer = level2UILayer;
         
         [self setupWorld];
-        //[self setupDebugDraw];
+        [self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
         [self createPauseButton];
+        [self createClearButton];
         self.isTouchEnabled = YES;
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
@@ -216,9 +224,23 @@
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
+-(CGRect)adjustedBoundingBox {
+    //Adjust the bounding box to the size of the sprite
+    //Without transparent space
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    //CGRect levelBoundingBox = CGRectMake(-1.0f,-winSize.height*0.5f, winSize.width * 1.5F, winSize.height * 1.5f);
+    
+    CGRect levelBoundingBox = [self boundingBox];
+    levelBoundingBox = CGRectMake(winSize.width * 0.5f, winSize.height * 0.5f, winSize.width * 1.5F, winSize.height * 1.5f);
+    
+    return levelBoundingBox;
+    
+}
+
 -(void)update:(ccTime)dt {
     int32 velocityIterations = 3;
     int32 positionIterations = 2;
+    CGRect myBoundingBox = [self adjustedBoundingBox];
     
     world->Step(dt, velocityIterations, positionIterations);
     
@@ -233,11 +255,25 @@
     CCArray *listOfGameObjects = [sceneSpriteBatchNode children];
     for (GameCharacter *tempChar in listOfGameObjects) {
         [tempChar updateStateWithDeltaTime:dt andListOfGameObjects:listOfGameObjects];
+        CGRect characterBox = [tempChar boundingBox];
+        if (!gameOver) {
+            if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
+                if ([tempChar gameObjectType] == kFishType) {
+                    numFishLeftScene++;
+                    [tempChar changeState:kStateHasBeenEaten];
+                    if (numFishLeftScene + [penguin2 numFishEaten] >= kNumFishToCreate) {
+                        gameOver = true;
+                        [uiLayer displayText:@"You Lose!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                    }
+                } 
+            }
+        }
     }
     
     if (penguin2 != nil) {
-        if (penguin2.characterState == kStateSatisfied) {
-            if (!gameOver){
+        if (!gameOver){
+                
+            if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 [uiLayer displayText:@"You Win!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
             }
@@ -262,11 +298,22 @@
     
 }
 
+
 - (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
 {
     
     CGPoint pt = [self convertTouchToNodeSpace:touch];
 	_lastPt = pt;
+    
+    if (drawPoints == nil) {
+        drawPoints = [[NSMutableArray alloc] initWithCapacity:2];
+    }
+//    
+//    TouchDraw *drawer = [TouchDraw node];
+//    [drawer setDrawPoints:drawPoints];
+//    [drawer setTag:TOUCH_DRAWER_TAG];
+//    [self addChild:drawer];
+    
 	return YES;
 }
 
@@ -277,17 +324,18 @@
     
     float distance = ccpDistance(_lastPt, end);
     
-    if (distance > 5) {
-        CCSprite *lineSprite = [CCSprite spriteWithFile:@"snow.png"];
-        lineSprite.position = ccp(end.x, end.y);
-        [self addChild:lineSprite];
-    }
+//    if (distance > 5) {
+//        CCSprite *lineSprite = [CCSprite spriteWithFile:@"snow.png"];
+//        lineSprite.position = ccp(end.x, end.y);
+//        
+//        [self addChild:lineSprite];
+//    }
     
     
-    if (distance > 10)
-    {
+    if (distance > 10) {
         
-
+        //[drawPoints addObject:NSStringFromCGPoint(end)];
+        //[drawPoints addObject:NSStringFromCGPoint(_lastPt)];
         
         
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
@@ -298,6 +346,7 @@
         bd.type = b2_staticBody;
         bd.position.Set(0, 0);
         b2Body* body = world->CreateBody(&bd);
+        [lineArray addObject:[NSValue valueWithPointer:body]];
         
         
         
@@ -308,12 +357,12 @@
         //lineSprite.position = ccp(body->GetPosition().x, body->GetPosition().y);
         //lineSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
         
+        //const b2Transform& xf = body->GetTransform();
         
+        //DrawShape(body, xf, b2Color(0.9f, 0.7f, 0.7f));
         
         _lastPt = end;
-        
-        
-        
+
         
     }
     
@@ -350,9 +399,54 @@
 }
 
 - (void)createOffscreenSensorBody {
-    //CGSize winSize = [CCDirector sharedDirector].winSize;
-    //float32 sensorWidth = winSize.width*1.5;
-    //float32 sensorHeight = winSize.height * 4;
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+//    float32 sensorWidth = winSize.width*4;
+//    float32 sensorHeight = winSize.height*.25;
+//    float32 sensorOffsetX = -winSize.width*2;
+//    float32 sensorOffsetY = -winSize.height/2;
+//    
+//    b2BodyDef bodyDef;
+//    bodyDef.position.Set(sensorOffsetX/PTM_RATIO + sensorWidth/2/PTM_RATIO, sensorOffsetY/PTM_RATIO + sensorHeight/2/PTM_RATIO);
+//    offscreenSensorBody = world->CreateBody(&bodyDef);
+//    
+//    b2PolygonShape shape;
+//    shape.SetAsBox(sensorWidth/2/PTM_RATIO, sensorHeight/2/PTM_RATIO);
+//    
+//    b2FixtureDef fixtureDef;
+//    fixtureDef.shape = &shape;
+//    fixtureDef.isSensor = true;
+//    fixtureDef.density = 0.0;
+//    
+//    offscreenSensorBody->CreateFixture(&fixtureDef);
+    
+    
+    float32 margin = -15.0f;
+    b2Vec2 lowerLeft = b2Vec2(margin/PTM_RATIO, margin/PTM_RATIO);
+    b2Vec2 lowerRight = b2Vec2((winSize.width-margin)/PTM_RATIO, margin/PTM_RATIO);
+    b2Vec2 upperRight = b2Vec2((winSize.width-margin)/PTM_RATIO,(winSize.height-margin)/PTM_RATIO);
+    b2Vec2 upperLeft = b2Vec2(margin/PTM_RATIO, (winSize.height-margin)/PTM_RATIO);
+    
+    b2BodyDef groundBodyDef;
+    groundBodyDef.type = b2_staticBody;
+    groundBodyDef.position.Set(0, 0);
+    groundBody = world->CreateBody(&groundBodyDef);
+    
+    b2PolygonShape groundShape;
+    b2FixtureDef groundFixtureDef;
+    groundFixtureDef.shape = &groundShape;
+    groundFixtureDef.density = 0.0;
+    groundFixtureDef.isSensor = true;
+    
+    groundShape.SetAsEdge(lowerLeft, upperLeft);
+    groundBody->CreateFixture(&groundFixtureDef);
+    groundShape.SetAsEdge(lowerLeft, lowerRight);
+    groundBody->CreateFixture(&groundFixtureDef);
+    groundShape.SetAsEdge(lowerRight, upperRight);
+    groundBody->CreateFixture(&groundFixtureDef);
+    groundShape.SetAsEdge(upperLeft, upperRight);
+    groundBody->CreateFixture(&groundFixtureDef);
 }
+
+
 
 @end

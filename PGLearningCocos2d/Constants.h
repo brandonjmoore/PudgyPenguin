@@ -64,4 +64,7 @@ typedef enum {
 //Box2d ration (Page 289)
 #define PTM_RATIO                  21
 
+//For drawing line
+#define TOUCH_DRAWER_TAG           44
+
 #endif

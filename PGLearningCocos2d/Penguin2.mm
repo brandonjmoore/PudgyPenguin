@@ -20,6 +20,8 @@
 @synthesize penguinAngryAnim;
 @synthesize penguinSatisfiedAnim;
 
+@synthesize numFishEaten;
+
 - (void)createBodyAtLocation:(CGPoint)location {
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;

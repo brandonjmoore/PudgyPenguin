@@ -39,6 +39,7 @@
 @property (nonatomic,retain) CCAnimation *penguinAngryAnim;
 @property (nonatomic,retain) CCAnimation *penguinSatisfiedAnim;
 @property (nonatomic,retain) CCAnimation *penguinOpenMouthAnim;
+@property (nonatomic, assign) int numFishEaten;
 
 -(void)initAnimations;
 

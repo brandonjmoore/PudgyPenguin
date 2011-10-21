@@ -55,7 +55,7 @@
 }
 
 -(void) dealloc {
-    
+    CCLOG(@"fish dealloc");
     [super dealloc];
 }
 
