@@ -15,6 +15,7 @@
 #import "Trash.h"
 
 
+
 @class Level2UILayer;
 @class Penguin2;
 @class Fish2;
@@ -29,6 +30,7 @@
     Fish2 *fish2;
     Level2UILayer *uiLayer;
     CGPoint _lastPt;//Must be declared to handle drawing a line
+    CGPoint end;
     bool gameOver;
     Box *box;
     Trash *trash;
@@ -40,6 +42,11 @@
     NSMutableArray *lineArray;
     NSMutableArray *lineSpriteArray;
     NSMutableArray *drawPoints;
+    IBOutlet UIImageView *drawImage2;
+    CGSize permScreenSize;
+    CCRenderTexture* target;
+    CCSprite* brush;
+    CCMotionStreak *streak;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;

@@ -67,6 +67,9 @@ void ccDrawPoints( const CGPoint *points, NSUInteger numberOfPoints );
 /** draws a line given the origin and destination point measured in points. */
 void ccDrawLine( CGPoint origin, CGPoint destination );
 
+/** draws lines given a set of points measured in points. */
+void ccDrawLines( CGPoint* points, uint numberOfPoints );
+
 /** draws a poligon given a pointer to CGPoint coordiantes and the number of vertices measured in points.
  The polygon can be closed or open
  */

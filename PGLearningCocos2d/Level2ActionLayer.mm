@@ -14,6 +14,7 @@
 #import "GameManager.h"
 #import "TouchDraw.h"
 #import "Box2DHelpers.h"
+#import "CCDrawingPrimitives.h"
 
 @implementation Level2ActionLayer
 
@@ -21,6 +22,7 @@
     CCLOG(@"Level2ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
+    
     [super dealloc];
 }
 
@@ -166,8 +168,14 @@
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        permScreenSize = [CCDirector sharedDirector].winSize;
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
+        
+        // create the streak object and add it to the scene
+        streak = [CCMotionStreak streakWithFade:60 minSeg:0 image:@"snow.png" width:5 length:21 color:ccc4(255,255,255,255)];
+        //streak = [CCRibbon ribbonWithWidth:5 image:@"snow.png" length:21 color:ccc4(255,255,255,255) fade:60];
+        [self addChild:streak];
         
         
         
@@ -176,7 +184,7 @@
         uiLayer = level2UILayer;
         
         [self setupWorld];
-        [self setupDebugDraw];
+        //[self setupDebugDraw];
         [self scheduleUpdate];
         [self createGround];
         [self createPauseButton];
@@ -255,19 +263,6 @@
     CCArray *listOfGameObjects = [sceneSpriteBatchNode children];
     for (GameCharacter *tempChar in listOfGameObjects) {
         [tempChar updateStateWithDeltaTime:dt andListOfGameObjects:listOfGameObjects];
-        CGRect characterBox = [tempChar boundingBox];
-        if (!gameOver) {
-            if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
-                if ([tempChar gameObjectType] == kFishType) {
-                    numFishLeftScene++;
-                    [tempChar changeState:kStateHasBeenEaten];
-                    if (numFishLeftScene + [penguin2 numFishEaten] >= kNumFishToCreate) {
-                        gameOver = true;
-                        [uiLayer displayText:@"You Lose!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
-                    }
-                } 
-            }
-        }
     }
     
     if (penguin2 != nil) {
@@ -295,6 +290,12 @@
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     
+    //CGPoint points[2]={{_lastPt.x,_lastPt.y},{end.x,end.y}};
+    //ccDrawLines(points,2);
+    
+    //ccDrawLine(end, _lastPt);
+    
+    //DrawShape(f, xf, b2Color(0.5f, 0.9f, 0.5f));
     
 }
 
@@ -305,9 +306,9 @@
     CGPoint pt = [self convertTouchToNodeSpace:touch];
 	_lastPt = pt;
     
-    if (drawPoints == nil) {
-        drawPoints = [[NSMutableArray alloc] initWithCapacity:2];
-    }
+//    if (drawPoints == nil) {
+//        drawPoints = [[NSMutableArray alloc] initWithCapacity:2];
+//    }
 //    
 //    TouchDraw *drawer = [TouchDraw node];
 //    [drawer setDrawPoints:drawPoints];
@@ -317,9 +318,12 @@
 	return YES;
 }
 
+
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
     
-    CGPoint end = [touch previousLocationInView:[touch view]];
+    
+    
+    end = [touch previousLocationInView:[touch view]];
     end = [[CCDirector sharedDirector] convertToGL:end];
     
     float distance = ccpDistance(_lastPt, end);
@@ -330,6 +334,9 @@
 //        
 //        [self addChild:lineSprite];
 //    }
+    
+    // begin drawing to the render texture
+    //[target begin];
     
     
     if (distance > 10) {
@@ -361,12 +368,32 @@
         
         //DrawShape(body, xf, b2Color(0.9f, 0.7f, 0.7f));
         
-        _lastPt = end;
+        //CGPoint points[2]={{_lastPt.x,_lastPt.y},{end.x,end.y}};
+        //ccDrawLines(points,2);
+        
+        
+//        int d = (int)distance;
+//
+//            float difx = end.x - _lastPt.x;
+//            float dify = end.y - _lastPt.y;
+//            [brush setPosition:ccp(_lastPt.x, _lastPt.y)];
+//            [brush setRotation:rand()%360];
+//            float r = ((float)(rand()%50)/50.f) + 0.25f;
+//            [brush setScale:r];
+//            // Call visit to draw the brush, don't call draw..
+//            [brush visit];
 
+        [streak setPosition:end];
+        _lastPt = end;
+        // finish drawing and return context back to the screen
+        //[target end];
         
     }
     
-    
+}
+
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+     
 }
 
 -(void)addFish {

@@ -120,6 +120,36 @@ void ccDrawLine( CGPoint origin, CGPoint destination )
 	glEnable(GL_TEXTURE_2D);		
 }
 
+void ccDrawLines( CGPoint* points, uint numberOfPoints )
+{
+	//layout of points [0] = origin, [1] = destination and so on
+    
+	ccVertex2F vertices[numberOfPoints];
+	if (CC_CONTENT_SCALE_FACTOR() != 1 )
+	{
+		for (int i=0;i<numberOfPoints;i++)
+		{
+			vertices[i].x=points[i].x * CC_CONTENT_SCALE_FACTOR();
+			vertices[i].y=points[i].y * CC_CONTENT_SCALE_FACTOR();
+		}
+		glVertexPointer(2, GL_FLOAT, 0, vertices);
+	}
+	else glVertexPointer(2, GL_FLOAT, 0, points);
+	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
+	// Needed states: GL_VERTEX_ARRAY,
+	// Unneeded states: GL_TEXTURE_2D, GL_TEXTURE_COORD_ARRAY, GL_COLOR_ARRAY
+	glDisable(GL_TEXTURE_2D);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+    
+	glDrawArrays(GL_LINES, 0, numberOfPoints);
+    
+	// restore default state
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnable(GL_TEXTURE_2D);
+}
+
 
 void ccDrawPoly( const CGPoint *poli, NSUInteger numberOfPoints, BOOL closePolygon )
 {
