@@ -158,6 +158,8 @@
         
     }
     [lineArray removeAllObjects];
+    
+    [streak removeFromParentAndCleanup:YES];
     //[drawPoints removeAllObjects];
     
     // remove the node from the scene
@@ -173,9 +175,9 @@
         lineSpriteArray = [[NSMutableArray array] retain];
         
         // create the streak object and add it to the scene
-        streak = [CCMotionStreak streakWithFade:60 minSeg:0 image:@"snow.png" width:5 length:21 color:ccc4(255,255,255,255)];
+        //streak = [CCMotionStreak streakWithFade:60 minSeg:0 image:@"snow.png" width:5 length:21 color:ccc4(255,255,255,255)];
         //streak = [CCRibbon ribbonWithWidth:5 image:@"snow.png" length:21 color:ccc4(255,255,255,255) fade:60];
-        [self addChild:streak];
+        //[self addChild:streak];
         
         
         
@@ -306,6 +308,12 @@
     CGPoint pt = [self convertTouchToNodeSpace:touch];
 	_lastPt = pt;
     
+    // create the streak object and add it to the scene
+    streak = [CCMotionStreak streakWithFade:200 minSeg:10 image:@"Start.png" width:5 length:20 color:ccc4(255,255,255,255)];
+    //streak = [CCRibbon ribbonWithWidth:1 image:@"Start.png" length:1 color:ccc4(255,255,255,255) fade:200];
+    [self addChild:streak];
+    [lineSpriteArray addObject:streak];
+    
 //    if (drawPoints == nil) {
 //        drawPoints = [[NSMutableArray alloc] initWithCapacity:2];
 //    }
@@ -337,8 +345,8 @@
     
     // begin drawing to the render texture
     //[target begin];
-    
-    
+    [streak setPosition:end];
+    //[streak addPointAt:end width:32];
     if (distance > 10) {
         
         //[drawPoints addObject:NSStringFromCGPoint(end)];
@@ -383,7 +391,8 @@
 //            // Call visit to draw the brush, don't call draw..
 //            [brush visit];
 
-        [streak setPosition:end];
+        
+        
         _lastPt = end;
         // finish drawing and return context back to the screen
         //[target end];

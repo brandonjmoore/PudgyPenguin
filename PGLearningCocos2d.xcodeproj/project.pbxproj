@@ -59,6 +59,7 @@
 		BF24B28C144DF4A900F0A37E /* Level2Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B28B144DF4A900F0A37E /* Level2Scene.mm */; };
 		BF24B28F144DF4E200F0A37E /* Level2UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B28E144DF4E200F0A37E /* Level2UILayer.mm */; };
 		BF24B292144DF4F000F0A37E /* Level2ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B291144DF4F000F0A37E /* Level2ActionLayer.mm */; };
+		BF371F1B1452731D008F5B11 /* Start.png in Resources */ = {isa = PBXBuildFile; fileRef = BF371F1A1452731D008F5B11 /* Start.png */; };
 		BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AD8143F994C004D59B2 /* MainMenuScene.m */; };
 		BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */; };
 		BF382AE6143FD511004D59B2 /* LevelCompleteScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AE5143FD511004D59B2 /* LevelCompleteScene.m */; };
@@ -296,6 +297,7 @@
 		BF24B28E144DF4E200F0A37E /* Level2UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2UILayer.mm; sourceTree = "<group>"; };
 		BF24B290144DF4F000F0A37E /* Level2ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2ActionLayer.h; sourceTree = "<group>"; };
 		BF24B291144DF4F000F0A37E /* Level2ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2ActionLayer.mm; sourceTree = "<group>"; };
+		BF371F1A1452731D008F5B11 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start.png; sourceTree = "<group>"; };
 		BF382AD7143F994C004D59B2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		BF382AD8143F994C004D59B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		BF382ADB143F9A73004D59B2 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
@@ -1225,6 +1227,7 @@
 			isa = PBXGroup;
 			children = (
 				BFBB795D144F629B00752F0B /* snow.png */,
+				BF371F1A1452731D008F5B11 /* Start.png */,
 				BFBB795C144F610D00752F0B /* Particles */,
 				BF5D2C9C144EA75400EFD358 /* NormalImages */,
 				BF44C36214402636005134E7 /* IdleCharacters */,
@@ -1380,6 +1383,7 @@
 				BF1FBB9A144FE29B00DF3E0B /* icon@2x.png in Resources */,
 				BF69A0D91450E4B2005CC92B /* MainMenuBG-hd.png in Resources */,
 				BF69A0DC1450E4BE005CC92B /* MainMenuBG.png in Resources */,
+				BF371F1B1452731D008F5B11 /* Start.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
