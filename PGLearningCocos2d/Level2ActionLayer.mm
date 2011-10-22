@@ -159,7 +159,10 @@
     }
     [lineArray removeAllObjects];
     
-    [streak removeFromParentAndCleanup:YES];
+    for (streak in lineSpriteArray) {
+        [streak removeFromParentAndCleanup:YES];
+    }
+    
     //[drawPoints removeAllObjects];
     
     // remove the node from the scene
@@ -310,7 +313,6 @@
     
     // create the streak object and add it to the scene
     streak = [CCMotionStreak streakWithFade:200 minSeg:10 image:@"Start.png" width:5 length:20 color:ccc4(255,255,255,255)];
-    //streak = [CCRibbon ribbonWithWidth:1 image:@"Start.png" length:1 color:ccc4(255,255,255,255) fade:200];
     [self addChild:streak];
     [lineSpriteArray addObject:streak];
     
