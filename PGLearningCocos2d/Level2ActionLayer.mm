@@ -12,9 +12,6 @@
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
-#import "TouchDraw.h"
-#import "Box2DHelpers.h"
-#import "CCDrawingPrimitives.h"
 
 @implementation Level2ActionLayer
 
@@ -89,10 +86,7 @@
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
--(void)doPause
-{
-    //	ccColor4B c ={0,0,0,150};
-    //	[PauseLayer layerWithColor:c delegate:self];
+-(void)doPause {
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
@@ -162,29 +156,16 @@
     for (streak in lineSpriteArray) {
         [streak removeFromParentAndCleanup:YES];
     }
-    
-    //[drawPoints removeAllObjects];
-    
-    // remove the node from the scene
-    //CCNode *drawer = [self getChildByTag:TOUCH_DRAWER_TAG];
-    //[self removeChild:drawer cleanup:YES];
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        permScreenSize = [CCDirector sharedDirector].winSize;
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
-        // create the streak object and add it to the scene
-        //streak = [CCMotionStreak streakWithFade:60 minSeg:0 image:@"snow.png" width:5 length:21 color:ccc4(255,255,255,255)];
-        //streak = [CCRibbon ribbonWithWidth:5 image:@"snow.png" length:21 color:ccc4(255,255,255,255) fade:60];
-        //[self addChild:streak];
-        
-        
-        
-        
+        startTime = CACurrentMediaTime();
+   
         [self setupBackground];
         uiLayer = level2UILayer;
         
@@ -210,8 +191,6 @@
         //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
         [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.28f)];
         [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f)];
-        
-        
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.415f)];
         
@@ -251,10 +230,19 @@
 }
 
 -(void)update:(ccTime)dt {
+    
+    static double MAX_TIME = 30;
+    
+    double timeSoFar = CACurrentMediaTime() - startTime;
+    double remainingTime = MAX_TIME - timeSoFar;
+    
+    if (!gameOver){    
+        [uiLayer displaySecs:remainingTime];
+    }
+    
     int32 velocityIterations = 3;
     int32 positionIterations = 2;
-    CGRect myBoundingBox = [self adjustedBoundingBox];
-    
+
     world->Step(dt, velocityIterations, positionIterations);
     
     for(b2Body *b=world->GetBodyList(); b!=NULL; b=b->GetNext()) {
@@ -272,10 +260,14 @@
     
     if (penguin2 != nil) {
         if (!gameOver){
-                
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 [uiLayer displayText:@"You Win!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+            } else {
+                if (remainingTime <= 0) {
+                    gameOver = true;
+                    [uiLayer displayText:@"You Lose" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                }
             }
         }
     }
@@ -295,13 +287,6 @@
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     
-    //CGPoint points[2]={{_lastPt.x,_lastPt.y},{end.x,end.y}};
-    //ccDrawLines(points,2);
-    
-    //ccDrawLine(end, _lastPt);
-    
-    //DrawShape(f, xf, b2Color(0.5f, 0.9f, 0.5f));
-    
 }
 
 
@@ -316,15 +301,6 @@
     [self addChild:streak];
     [lineSpriteArray addObject:streak];
     
-//    if (drawPoints == nil) {
-//        drawPoints = [[NSMutableArray alloc] initWithCapacity:2];
-//    }
-//    
-//    TouchDraw *drawer = [TouchDraw node];
-//    [drawer setDrawPoints:drawPoints];
-//    [drawer setTag:TOUCH_DRAWER_TAG];
-//    [self addChild:drawer];
-    
 	return YES;
 }
 
@@ -338,21 +314,9 @@
     
     float distance = ccpDistance(_lastPt, end);
     
-//    if (distance > 5) {
-//        CCSprite *lineSprite = [CCSprite spriteWithFile:@"snow.png"];
-//        lineSprite.position = ccp(end.x, end.y);
-//        
-//        [self addChild:lineSprite];
-//    }
-    
-    // begin drawing to the render texture
-    //[target begin];
     [streak setPosition:end];
-    //[streak addPointAt:end width:32];
+
     if (distance > 10) {
-        
-        //[drawPoints addObject:NSStringFromCGPoint(end)];
-        //[drawPoints addObject:NSStringFromCGPoint(_lastPt)];
         
         
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
@@ -370,48 +334,19 @@
         b2PolygonShape shape;
         shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
         body->CreateFixture(&shape, 0.0f);
-        
-        //lineSprite.position = ccp(body->GetPosition().x, body->GetPosition().y);
-        //lineSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
-        
-        //const b2Transform& xf = body->GetTransform();
-        
-        //DrawShape(body, xf, b2Color(0.9f, 0.7f, 0.7f));
-        
-        //CGPoint points[2]={{_lastPt.x,_lastPt.y},{end.x,end.y}};
-        //ccDrawLines(points,2);
-        
-        
-//        int d = (int)distance;
-//
-//            float difx = end.x - _lastPt.x;
-//            float dify = end.y - _lastPt.y;
-//            [brush setPosition:ccp(_lastPt.x, _lastPt.y)];
-//            [brush setRotation:rand()%360];
-//            float r = ((float)(rand()%50)/50.f) + 0.25f;
-//            [brush setScale:r];
-//            // Call visit to draw the brush, don't call draw..
-//            [brush visit];
 
-        
-        
         _lastPt = end;
-        // finish drawing and return context back to the screen
-        //[target end];
+
         
     }
     
-}
-
--(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-     
 }
 
 -(void)addFish {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
-        if ((penguin2.characterState != kStateSatisfied) && (numFishCreated < kNumFishToCreate)) {
+        if (!gameOver) {
             [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
             numFishCreated++;
             
@@ -434,55 +369,6 @@
             [self unschedule:@selector(addTrash)];
         }
     }    
-}
-
-- (void)createOffscreenSensorBody {
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-//    float32 sensorWidth = winSize.width*4;
-//    float32 sensorHeight = winSize.height*.25;
-//    float32 sensorOffsetX = -winSize.width*2;
-//    float32 sensorOffsetY = -winSize.height/2;
-//    
-//    b2BodyDef bodyDef;
-//    bodyDef.position.Set(sensorOffsetX/PTM_RATIO + sensorWidth/2/PTM_RATIO, sensorOffsetY/PTM_RATIO + sensorHeight/2/PTM_RATIO);
-//    offscreenSensorBody = world->CreateBody(&bodyDef);
-//    
-//    b2PolygonShape shape;
-//    shape.SetAsBox(sensorWidth/2/PTM_RATIO, sensorHeight/2/PTM_RATIO);
-//    
-//    b2FixtureDef fixtureDef;
-//    fixtureDef.shape = &shape;
-//    fixtureDef.isSensor = true;
-//    fixtureDef.density = 0.0;
-//    
-//    offscreenSensorBody->CreateFixture(&fixtureDef);
-    
-    
-    float32 margin = -15.0f;
-    b2Vec2 lowerLeft = b2Vec2(margin/PTM_RATIO, margin/PTM_RATIO);
-    b2Vec2 lowerRight = b2Vec2((winSize.width-margin)/PTM_RATIO, margin/PTM_RATIO);
-    b2Vec2 upperRight = b2Vec2((winSize.width-margin)/PTM_RATIO,(winSize.height-margin)/PTM_RATIO);
-    b2Vec2 upperLeft = b2Vec2(margin/PTM_RATIO, (winSize.height-margin)/PTM_RATIO);
-    
-    b2BodyDef groundBodyDef;
-    groundBodyDef.type = b2_staticBody;
-    groundBodyDef.position.Set(0, 0);
-    groundBody = world->CreateBody(&groundBodyDef);
-    
-    b2PolygonShape groundShape;
-    b2FixtureDef groundFixtureDef;
-    groundFixtureDef.shape = &groundShape;
-    groundFixtureDef.density = 0.0;
-    groundFixtureDef.isSensor = true;
-    
-    groundShape.SetAsEdge(lowerLeft, upperLeft);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(lowerLeft, lowerRight);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(lowerRight, upperRight);
-    groundBody->CreateFixture(&groundFixtureDef);
-    groundShape.SetAsEdge(upperLeft, upperRight);
-    groundBody->CreateFixture(&groundFixtureDef);
 }
 
 

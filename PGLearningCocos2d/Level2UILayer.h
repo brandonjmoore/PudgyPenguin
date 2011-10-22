@@ -10,8 +10,10 @@
 
 @interface Level2UILayer : CCLayer {
     CCLabelTTF *label;
+    CCLabelTTF *timeLabel;
 }
 
 -(BOOL)displayText:(NSString *)text andOnCompleteCallTarget:(id)target selector:(SEL)selector;
+-(void) displaySecs:(double)secs;
 
 @end

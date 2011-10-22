@@ -23,7 +23,7 @@
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:background];
         //Add the buttons to the screen
-        [self displayPauseMenu];
+        //[self displayPauseMenu];
         
         CCSprite *penguin = [CCSprite spriteWithSpriteFrameName:@"PenguinIdle.png"];
         [penguin setPosition:ccp(screenSize.width * 0.8168f, screenSize.height * 0.215f)];

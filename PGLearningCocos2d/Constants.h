@@ -33,7 +33,7 @@
 #define kLastLevelNumber            105
 
 //Required num of fish
-#define kNumOfFishReqLev1           8
+#define kNumOfFishReqLev1           5
 
 typedef enum {
     kNoSceneUninitialized=0,

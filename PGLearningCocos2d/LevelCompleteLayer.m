@@ -17,7 +17,7 @@
     
     //TODO: Make sure this works
     if (currentScene < kLastLevelNumber) {
-        NSInteger nextScene = currentScene + 1;
+        //NSInteger nextScene = currentScene + 1;
         //[[GameManager sharedGameManager] runSceneWithID:nextScene];
         [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
     } else {

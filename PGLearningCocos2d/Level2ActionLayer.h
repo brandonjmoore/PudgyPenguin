@@ -41,12 +41,8 @@
     int numFishLeftScene;
     NSMutableArray *lineArray;
     NSMutableArray *lineSpriteArray;
-    NSMutableArray *drawPoints;
-    IBOutlet UIImageView *drawImage2;
-    CGSize permScreenSize;
-    CCRenderTexture* target;
-    CCSprite* brush;
     CCMotionStreak *streak;
+    double startTime;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;

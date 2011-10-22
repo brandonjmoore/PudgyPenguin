@@ -18,6 +18,14 @@
         label.position = ccp(winSize.width/2, winSize.height/2);
         label.visible = NO;
         [self addChild:label];
+        
+        float fontSize = 20.0;
+        timeLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:fontSize];
+        timeLabel.anchorPoint = ccp(0.5f, 0);
+        timeLabel.position = ccp(winSize.width *0.5f, 0);
+        timeLabel.color = ccGRAY;
+        [self addChild:timeLabel];
+        
     }
     
     return self;
@@ -40,6 +48,19 @@
     
     [label runAction:sequence];
     return TRUE;
+    
+}
+
+-(void) displaySecs:(double)secs {
+    secs = MAX(0, secs);
+    
+    double intPart = 0;
+    double fractPart = modf(secs, &intPart);
+    int isecs = (int)intPart;
+    int min = isecs / 60;
+    int sec = isecs % 60;
+    int hund = (int) (fractPart * 100);
+    [timeLabel setString:[NSString stringWithFormat:@"%d", sec]];
     
 }
 
