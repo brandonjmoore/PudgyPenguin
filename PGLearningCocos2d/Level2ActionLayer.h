@@ -21,27 +21,35 @@
 @class Fish2;
 
 @interface Level2ActionLayer : CCLayer {
-    b2World *world;
-    GLESDebugDraw *debugDraw;
-    CCSpriteBatchNode *sceneSpriteBatchNode;
-    b2Body *offscreenSensorBody;
-    b2Body *groundBody;
+    //Characters
     Penguin2 *penguin2;
     Fish2 *fish2;
-    Level2UILayer *uiLayer;
-    CGPoint _lastPt;//Must be declared to handle drawing a line
-    CGPoint end;
-    bool gameOver;
     Box *box;
     Trash *trash;
+    
+    //Menus
     CCMenu *pauseButtonMenu;
     CCMenu *clearButtonMenu;
     CCLayerColor *pauseLayer;
-    int numFishCreated;
-    int numFishLeftScene;
+    CCMenuItemSprite *pauseButton;
+    CCMenuItemSprite *clearButton;
+    
+    
+    //Drawing
+    CGPoint _lastPt;//Must be declared to handle drawing a line
+    CGPoint end;
     NSMutableArray *lineArray;
     NSMutableArray *lineSpriteArray;
     CCMotionStreak *streak;
+    
+    
+    b2World *world;
+    GLESDebugDraw *debugDraw;
+    CCSpriteBatchNode *sceneSpriteBatchNode;
+    Level2UILayer *uiLayer;
+    bool gameOver;
+    int numFishCreated;
+    int numFishLeftScene;
     double startTime;
 }
 

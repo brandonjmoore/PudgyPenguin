@@ -52,10 +52,6 @@
 		BF1EC8B6143ED0D30083412C /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.mm */; };
 		BF1FBB99144FE29B00DF3E0B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FBB97144FE29B00DF3E0B /* icon.png */; };
 		BF1FBB9A144FE29B00DF3E0B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FBB98144FE29B00DF3E0B /* icon@2x.png */; };
-		BF24B283144DEFD900F0A37E /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF24B281144DEFD900F0A37E /* scene1atlas-hd.plist */; };
-		BF24B284144DEFD900F0A37E /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF24B282144DEFD900F0A37E /* scene1atlas-hd.png */; };
-		BF24B287144DEFE300F0A37E /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF24B285144DEFE300F0A37E /* scene1atlas.plist */; };
-		BF24B288144DEFE300F0A37E /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BF24B286144DEFE300F0A37E /* scene1atlas.png */; };
 		BF24B28C144DF4A900F0A37E /* Level2Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B28B144DF4A900F0A37E /* Level2Scene.mm */; };
 		BF24B28F144DF4E200F0A37E /* Level2UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B28E144DF4E200F0A37E /* Level2UILayer.mm */; };
 		BF24B292144DF4F000F0A37E /* Level2ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B291144DF4F000F0A37E /* Level2ActionLayer.mm */; };
@@ -186,15 +182,19 @@
 		BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */; };
 		BF69A0D91450E4B2005CC92B /* MainMenuBG-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF69A0D81450E4B2005CC92B /* MainMenuBG-hd.png */; };
 		BF69A0DC1450E4BE005CC92B /* MainMenuBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BF69A0DB1450E4BE005CC92B /* MainMenuBG.png */; };
-		BF78AEC614436CB300FFE2ED /* Level1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF78AEC514436CB300FFE2ED /* Level1Scene.mm */; };
 		BF78AECF14439D6100FFE2ED /* Penguin2.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF78AECE14439D6100FFE2ED /* Penguin2.plist */; };
 		BFB99880144F3C02001DFCEE /* Box.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB9987F144F3C02001DFCEE /* Box.mm */; };
 		BFB99884144F3DBC001DFCEE /* Trash.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB99883144F3DBC001DFCEE /* Trash.mm */; };
 		BFBB795E144F629B00752F0B /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBB795D144F629B00752F0B /* snow.png */; };
 		BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFCD59281441690F00E102EE /* Box2DSprite.mm */; };
-		BFDCA90614435D3D00153456 /* Level1UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90514435D3D00153456 /* Level1UILayer.m */; };
 		BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90C1443631E00153456 /* Penguin2.mm */; };
-		BFDCA9101443641700153456 /* Level1ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90F1443641700153456 /* Level1ActionLayer.mm */; };
+		BFE5C5DA1453770B00A44E17 /* Level1ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFE5C5D51453770B00A44E17 /* Level1ActionLayer.mm */; };
+		BFE5C5DB1453770B00A44E17 /* Level1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFE5C5D71453770B00A44E17 /* Level1Scene.mm */; };
+		BFE5C5DC1453770B00A44E17 /* Level1UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFE5C5D91453770B00A44E17 /* Level1UILayer.mm */; };
+		BFE5C5E31453832F00A44E17 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFE5C5E11453832F00A44E17 /* scene1atlas-hd.plist */; };
+		BFE5C5E41453832F00A44E17 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFE5C5E21453832F00A44E17 /* scene1atlas-hd.png */; };
+		BFE5C5E71453847B00A44E17 /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFE5C5E51453847B00A44E17 /* scene1atlas.plist */; };
+		BFE5C5E81453847B00A44E17 /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BFE5C5E61453847B00A44E17 /* scene1atlas.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -286,10 +286,6 @@
 		BF1EC8B5143ED0D30083412C /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
 		BF1FBB97144FE29B00DF3E0B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		BF1FBB98144FE29B00DF3E0B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		BF24B281144DEFD900F0A37E /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
-		BF24B282144DEFD900F0A37E /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
-		BF24B285144DEFE300F0A37E /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
-		BF24B286144DEFE300F0A37E /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
 		BF24B28A144DF4A900F0A37E /* Level2Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2Scene.h; sourceTree = "<group>"; };
 		BF24B28B144DF4A900F0A37E /* Level2Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2Scene.mm; sourceTree = "<group>"; };
 		BF24B28D144DF4E200F0A37E /* Level2UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2UILayer.h; sourceTree = "<group>"; };
@@ -549,8 +545,6 @@
 		BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenu.m; sourceTree = "<group>"; };
 		BF69A0D81450E4B2005CC92B /* MainMenuBG-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainMenuBG-hd.png"; sourceTree = "<group>"; };
 		BF69A0DB1450E4BE005CC92B /* MainMenuBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenuBG.png; sourceTree = "<group>"; };
-		BF78AEC414436CB300FFE2ED /* Level1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1Scene.h; sourceTree = "<group>"; };
-		BF78AEC514436CB300FFE2ED /* Level1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1Scene.mm; sourceTree = "<group>"; };
 		BF78AECE14439D6100FFE2ED /* Penguin2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin2.plist; sourceTree = "<group>"; };
 		BFB9987E144F3C02001DFCEE /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
 		BFB9987F144F3C02001DFCEE /* Box.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box.mm; sourceTree = "<group>"; };
@@ -559,12 +553,18 @@
 		BFBB795D144F629B00752F0B /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
 		BFCD59271441690F00E102EE /* Box2DSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DSprite.h; sourceTree = "<group>"; };
 		BFCD59281441690F00E102EE /* Box2DSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DSprite.mm; sourceTree = "<group>"; };
-		BFDCA90414435D3D00153456 /* Level1UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1UILayer.h; sourceTree = "<group>"; };
-		BFDCA90514435D3D00153456 /* Level1UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level1UILayer.m; sourceTree = "<group>"; };
 		BFDCA90B1443631E00153456 /* Penguin2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin2.h; sourceTree = "<group>"; };
 		BFDCA90C1443631E00153456 /* Penguin2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Penguin2.mm; sourceTree = "<group>"; };
-		BFDCA90E1443641700153456 /* Level1ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1ActionLayer.h; sourceTree = "<group>"; };
-		BFDCA90F1443641700153456 /* Level1ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1ActionLayer.mm; sourceTree = "<group>"; };
+		BFE5C5D41453770B00A44E17 /* Level1ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1ActionLayer.h; sourceTree = "<group>"; };
+		BFE5C5D51453770B00A44E17 /* Level1ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1ActionLayer.mm; sourceTree = "<group>"; };
+		BFE5C5D61453770B00A44E17 /* Level1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1Scene.h; sourceTree = "<group>"; };
+		BFE5C5D71453770B00A44E17 /* Level1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1Scene.mm; sourceTree = "<group>"; };
+		BFE5C5D81453770B00A44E17 /* Level1UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level1UILayer.h; sourceTree = "<group>"; };
+		BFE5C5D91453770B00A44E17 /* Level1UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1UILayer.mm; sourceTree = "<group>"; };
+		BFE5C5E11453832F00A44E17 /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
+		BFE5C5E21453832F00A44E17 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
+		BFE5C5E51453847B00A44E17 /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
+		BFE5C5E61453847B00A44E17 /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -816,10 +816,10 @@
 		BF44C34414402038005134E7 /* SpriteSheets */ = {
 			isa = PBXGroup;
 			children = (
-				BF24B281144DEFD900F0A37E /* scene1atlas-hd.plist */,
-				BF24B282144DEFD900F0A37E /* scene1atlas-hd.png */,
-				BF24B285144DEFE300F0A37E /* scene1atlas.plist */,
-				BF24B286144DEFE300F0A37E /* scene1atlas.png */,
+				BFE5C5E11453832F00A44E17 /* scene1atlas-hd.plist */,
+				BFE5C5E21453832F00A44E17 /* scene1atlas-hd.png */,
+				BFE5C5E51453847B00A44E17 /* scene1atlas.plist */,
+				BFE5C5E61453847B00A44E17 /* scene1atlas.png */,
 			);
 			name = SpriteSheets;
 			sourceTree = "<group>";
@@ -1273,12 +1273,12 @@
 		BFDCA90214435D1000153456 /* Level1 */ = {
 			isa = PBXGroup;
 			children = (
-				BF78AEC414436CB300FFE2ED /* Level1Scene.h */,
-				BF78AEC514436CB300FFE2ED /* Level1Scene.mm */,
-				BFDCA90414435D3D00153456 /* Level1UILayer.h */,
-				BFDCA90514435D3D00153456 /* Level1UILayer.m */,
-				BFDCA90E1443641700153456 /* Level1ActionLayer.h */,
-				BFDCA90F1443641700153456 /* Level1ActionLayer.mm */,
+				BFE5C5D41453770B00A44E17 /* Level1ActionLayer.h */,
+				BFE5C5D51453770B00A44E17 /* Level1ActionLayer.mm */,
+				BFE5C5D61453770B00A44E17 /* Level1Scene.h */,
+				BFE5C5D71453770B00A44E17 /* Level1Scene.mm */,
+				BFE5C5D81453770B00A44E17 /* Level1UILayer.h */,
+				BFE5C5D91453770B00A44E17 /* Level1UILayer.mm */,
 			);
 			name = Level1;
 			sourceTree = "<group>";
@@ -1365,10 +1365,6 @@
 				BF44C36414402665005134E7 /* PenguinIdle-hd.png in Resources */,
 				BF44C36614402678005134E7 /* PenguinIdle.png in Resources */,
 				BF78AECF14439D6100FFE2ED /* Penguin2.plist in Resources */,
-				BF24B283144DEFD900F0A37E /* scene1atlas-hd.plist in Resources */,
-				BF24B284144DEFD900F0A37E /* scene1atlas-hd.png in Resources */,
-				BF24B287144DEFE300F0A37E /* scene1atlas.plist in Resources */,
-				BF24B288144DEFE300F0A37E /* scene1atlas.png in Resources */,
 				BF5D2C9F144EA76C00EFD358 /* Scene1ButtonNormal-hd.png in Resources */,
 				BF5D2CA0144EA76C00EFD358 /* Scene1ButtonSelected-hd.png in Resources */,
 				BF5D2CA3144EA78800EFD358 /* Scene1ButtonNormal.png in Resources */,
@@ -1379,6 +1375,10 @@
 				BF69A0D91450E4B2005CC92B /* MainMenuBG-hd.png in Resources */,
 				BF69A0DC1450E4BE005CC92B /* MainMenuBG.png in Resources */,
 				BF371F1B1452731D008F5B11 /* Start.png in Resources */,
+				BFE5C5E31453832F00A44E17 /* scene1atlas-hd.plist in Resources */,
+				BFE5C5E41453832F00A44E17 /* scene1atlas-hd.png in Resources */,
+				BFE5C5E71453847B00A44E17 /* scene1atlas.plist in Resources */,
+				BFE5C5E81453847B00A44E17 /* scene1atlas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1530,10 +1530,7 @@
 				BF151B5F14410FDD000657EC /* b2WeldJoint.cpp in Sources */,
 				BF151B64144111BC000657EC /* GLES-Render.mm in Sources */,
 				BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */,
-				BFDCA90614435D3D00153456 /* Level1UILayer.m in Sources */,
 				BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */,
-				BFDCA9101443641700153456 /* Level1ActionLayer.mm in Sources */,
-				BF78AEC614436CB300FFE2ED /* Level1Scene.mm in Sources */,
 				BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */,
 				BF1B32CA14440F6F00AD94FF /* Box2DHelpers.mm in Sources */,
 				BF24B28C144DF4A900F0A37E /* Level2Scene.mm in Sources */,
@@ -1542,6 +1539,9 @@
 				BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */,
 				BFB99880144F3C02001DFCEE /* Box.mm in Sources */,
 				BFB99884144F3DBC001DFCEE /* Trash.mm in Sources */,
+				BFE5C5DA1453770B00A44E17 /* Level1ActionLayer.mm in Sources */,
+				BFE5C5DB1453770B00A44E17 /* Level1Scene.mm in Sources */,
+				BFE5C5DC1453770B00A44E17 /* Level1UILayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

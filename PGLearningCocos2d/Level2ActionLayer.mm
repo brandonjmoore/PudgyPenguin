@@ -23,6 +23,9 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark Box2d Stuffs
 - (void)setupWorld {
     b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
     bool doSleep = true;
@@ -35,9 +38,8 @@
     debugDraw->SetFlags(b2DebugDraw::e_shapeBit);
 }
 
-- (void)createGround {
-    
-}
+#pragma mark -
+#pragma mark Create Characters
 
 -(void)createPenguin2AtLocation:(CGPoint)location {
     penguin2 = [[[Penguin2 alloc]initWithWorld:world atLocation:location]autorelease];
@@ -49,8 +51,8 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
--(void)createBoxAtLocation:(CGPoint)location {
-    box = [[[Box alloc]initWithWorld:world atLocation:location]autorelease];
+-(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType{
+    box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
 }
 
@@ -59,70 +61,44 @@
     [sceneSpriteBatchNode addChild:trash z:1];
 }
 
-- (void)registerWithTouchDispatcher {
-    [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+-(void)addFish {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    if (penguin2 != nil) {
+        if (!gameOver) {
+            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
+            numFishCreated++;
+            
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addFish)];
+        }
+    }    
 }
 
--(void)setupBackground {
-    CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
-    CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
-    
-    [self addChild:backgroundImage z:-10 tag:0];
+-(void)addTrash {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    if (penguin2 != nil) {
+        if (penguin2.characterState != kStateSatisfied) {
+            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
+            
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addTrash)];
+        }
+    }    
 }
 
--(void) doResume {
-    self.isTouchEnabled = YES;
-    
-    [[CCDirector sharedDirector] resume];
-    [self removeChild:pauseLayer cleanup:YES];
-}
-
--(void) doReturnToMainMenu {
-    self.isTouchEnabled = YES;
-    
-    [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
-}
-
--(void)doPause {
-    
-    CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    
-    [[CCDirector sharedDirector] pause];
-    
-    pauseLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
-    [self addChild:pauseLayer z:5];
-    
-    
-    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
-    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
-    
-    CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
-    
-    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
-    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
-    
-    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
-    
-    pauseButtonMenu = [CCMenu menuWithItems:backButton, resumeButton, nil];
-    
-    [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-    [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
-    
-    [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
-    self.isTouchEnabled = NO;
-    
-    
-}
+#pragma mark -
+#pragma mark Menus
 
 -(void) createPauseButton {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *pauseButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
-    CCSprite *pauseButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    CCSprite *pauseButtonNormal = [CCSprite spriteWithSpriteFrameName:@"pause.png"];
+    CCSprite *pauseButtonSelected = [CCSprite spriteWithSpriteFrameName:@"pause_over.png"];
     
-    CCMenuItemSprite *pauseButton = [CCMenuItemSprite itemFromNormalSprite:pauseButtonNormal selectedSprite:pauseButtonSelected disabledSprite:nil target:self selector:@selector(doPause)];
+    pauseButton = [CCMenuItemSprite itemFromNormalSprite:pauseButtonNormal selectedSprite:pauseButtonSelected disabledSprite:nil target:self selector:@selector(doPause)];
     
     pauseButtonMenu = [CCMenu menuWithItems:pauseButton, nil];
     
@@ -133,16 +109,71 @@
 
 -(void) createClearButton {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonNormal.png"];
-    CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonSelected.png"];
+    CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"clear.png"];
+    CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"clear_over.png"];
     
-    CCMenuItemSprite *clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
+    clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
     [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.05f)];
     
     [self addChild:clearButtonMenu z:10 tag:kButtonTagValue];
+}
+
+#pragma mark -
+#pragma mark Line Drawing
+
+- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
+{
+    
+    CGPoint pt = [self convertTouchToNodeSpace:touch];
+	_lastPt = pt;
+    
+    // create the streak object and add it to the scene
+    streak = [CCMotionStreak streakWithFade:200 minSeg:10 image:@"Start.png" width:5 length:20 color:ccc4(255,255,255,255)];
+    [self addChild:streak];
+    [lineSpriteArray addObject:streak];
+    
+	return YES;
+}
+
+
+- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
+    
+    
+    
+    end = [touch previousLocationInView:[touch view]];
+    end = [[CCDirector sharedDirector] convertToGL:end];
+    
+    float distance = ccpDistance(_lastPt, end);
+    
+    [streak setPosition:end];
+    
+    if (distance > 10) {
+        
+        
+        b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
+        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
+        
+        b2BodyDef bd;
+        
+        bd.type = b2_staticBody;
+        bd.position.Set(0, 0);
+        b2Body* body = world->CreateBody(&bd);
+        [lineArray addObject:[NSValue valueWithPointer:body]];
+        
+        
+        
+        b2PolygonShape shape;
+        shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
+        body->CreateFixture(&shape, 0.0f);
+        
+        _lastPt = end;
+        
+        
+    }
+    
 }
 
 -(void) clearLines {
@@ -156,6 +187,94 @@
     for (streak in lineSpriteArray) {
         [streak removeFromParentAndCleanup:YES];
     }
+}
+
+- (void)registerWithTouchDispatcher {
+    [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+}
+
+#pragma mark -
+#pragma mark Pause Stuff
+
+-(void) doResume {
+    self.isTouchEnabled = YES;
+    clearButton.isEnabled = YES;
+    pauseButton.isEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [self removeChild:pauseLayer cleanup:YES];
+}
+
+-(void) doReturnToMainMenu {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+}
+
+-(void) doResetLevel {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];//Level Specific: Change for new level
+}
+
+-(void)doPause {
+    
+    clearButton.isEnabled = NO;
+    pauseButton.isEnabled = NO;
+    
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    [[CCDirector sharedDirector] pause];
+    
+    pauseLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
+    [self addChild:pauseLayer z:9];
+    
+    CCSprite *pauseText = [CCSprite spriteWithSpriteFrameName:@"paused_text.png"];
+    [pauseText setPosition:ccp(screenSize.width *0.5f, screenSize.height * 0.5f)];
+    
+    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
+    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
+    
+    CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    
+    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
+    
+    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
+    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
+    
+    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
+    
+    pauseButtonMenu = [CCMenu menuWithItems:backButton, resumeButton, resetButton, nil];
+    
+    [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+    [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
+    
+    [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
+    [pauseLayer addChild:pauseText];
+    self.isTouchEnabled = NO;
+    
+    
+}
+
+#pragma mark -
+#pragma mark Init and Update Stuffs
+
+-(void)setupBackground {
+    CCSprite *backgroundImage;
+    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
+    
+    [self addChild:backgroundImage z:-10 tag:0];
+}
+
+-(void) gameOver: (id)sender {
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
@@ -172,7 +291,6 @@
         [self setupWorld];
         //[self setupDebugDraw];
         [self scheduleUpdate];
-        [self createGround];
         [self createPauseButton];
         [self createClearButton];
         self.isTouchEnabled = YES;
@@ -181,16 +299,16 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox];
         
         //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.28f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.415f)];
         
@@ -210,23 +328,6 @@
         
     }
     return self;
-}
-
--(void) gameOver: (id)sender {
-    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
-}
-
--(CGRect)adjustedBoundingBox {
-    //Adjust the bounding box to the size of the sprite
-    //Without transparent space
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    //CGRect levelBoundingBox = CGRectMake(-1.0f,-winSize.height*0.5f, winSize.width * 1.5F, winSize.height * 1.5f);
-    
-    CGRect levelBoundingBox = [self boundingBox];
-    levelBoundingBox = CGRectMake(winSize.width * 0.5f, winSize.height * 0.5f, winSize.width * 1.5F, winSize.height * 1.5f);
-    
-    return levelBoundingBox;
-    
 }
 
 -(void)update:(ccTime)dt {
@@ -290,86 +391,8 @@
 }
 
 
-- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
-{
-    
-    CGPoint pt = [self convertTouchToNodeSpace:touch];
-	_lastPt = pt;
-    
-    // create the streak object and add it to the scene
-    streak = [CCMotionStreak streakWithFade:200 minSeg:10 image:@"Start.png" width:5 length:20 color:ccc4(255,255,255,255)];
-    [self addChild:streak];
-    [lineSpriteArray addObject:streak];
-    
-	return YES;
-}
 
 
-- (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
-    
-    
-    
-    end = [touch previousLocationInView:[touch view]];
-    end = [[CCDirector sharedDirector] convertToGL:end];
-    
-    float distance = ccpDistance(_lastPt, end);
-    
-    [streak setPosition:end];
-
-    if (distance > 10) {
-        
-        
-        b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
-        b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
-        
-        b2BodyDef bd;
-        
-        bd.type = b2_staticBody;
-        bd.position.Set(0, 0);
-        b2Body* body = world->CreateBody(&bd);
-        [lineArray addObject:[NSValue valueWithPointer:body]];
-        
-        
-        
-        b2PolygonShape shape;
-        shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
-        body->CreateFixture(&shape, 0.0f);
-
-        _lastPt = end;
-
-        
-    }
-    
-}
-
--(void)addFish {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    //If the penguin is satisfied, dont add any more fish
-    if (penguin2 != nil) {
-        if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
-            numFishCreated++;
-            
-        }else {
-            //If the Penguin is satisfied, dont create fish
-            [self unschedule:@selector(addFish)];
-        }
-    }    
-}
-
--(void)addTrash {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    //If the penguin is satisfied, dont add any more fish
-    if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
-            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
-            
-        }else {
-            //If the Penguin is satisfied, dont create fish
-            [self unschedule:@selector(addTrash)];
-        }
-    }    
-}
 
 
 

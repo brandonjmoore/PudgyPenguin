@@ -77,7 +77,7 @@ static GameManager* _sharedGameManager = nil;
             sceneToRun = [LevelCompleteScene node];
             break;
         case kGameLevel1:
-            sceneToRun = [Level1Scene node];
+            sceneToRun = [level1Scene node];
             break;
         case kGameLevel2:
             sceneToRun = [Level2Scene node];

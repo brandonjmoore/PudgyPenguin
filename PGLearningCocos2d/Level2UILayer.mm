@@ -57,9 +57,9 @@
     double intPart = 0;
     double fractPart = modf(secs, &intPart);
     int isecs = (int)intPart;
-    int min = isecs / 60;
+    //int min = isecs / 60;
     int sec = isecs % 60;
-    int hund = (int) (fractPart * 100);
+    //int hund = (int) (fractPart * 100);
     [timeLabel setString:[NSString stringWithFormat:@"%d", sec]];
     
 }

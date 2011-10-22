@@ -37,8 +37,16 @@ typedef enum {
     kPenguinTypeGreen,
     kTrashType,
     kLineType,
-    kBoxType
+    kNormalBoxType,
+    kBouncyBoxType,
+    kBalloonBoxType
 } GameObjectType;
+
+typedef enum {
+    kNormalBox,
+    kBouncyBox,
+    kBalloonBox
+} BoxType;
 
 @protocol GameplayLayerDelegate
 

@@ -79,7 +79,7 @@
     CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:disablesSprite target:self selector:@selector(playScene:)];
     [playLevel1Button setTag:1];
     
-    playLevel1Button.isEnabled = NO;
+    playLevel1Button.isEnabled = YES;
     
     CCMenuItemSprite *playLevel2Button = [CCMenuItemSprite itemFromNormalSprite:level2ButtonNormal selectedSprite:level2ButtonSelected disabledSprite:nil target:self selector:@selector(playScene:)];
     [playLevel2Button setTag:2];
