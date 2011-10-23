@@ -13,7 +13,7 @@
     CCLabelTTF *timeLabel;
 }
 
--(BOOL)displayText:(NSString *)text andOnCompleteCallTarget:(id)target selector:(SEL)selector;
+-(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector;
 -(void) displaySecs:(double)secs;
 
 @end

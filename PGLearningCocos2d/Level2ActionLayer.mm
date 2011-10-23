@@ -56,6 +56,11 @@
     [sceneSpriteBatchNode addChild:box z:1];
 }
 
+-(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation{
+    platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
+    [sceneSpriteBatchNode addChild:platform z:1];
+}
+
 -(void)createTrashAtLocation:(CGPoint)location {
     trash = [[[Trash alloc]initWithWorld:world atLocation:location]autorelease];
     [sceneSpriteBatchNode addChild:trash z:1];
@@ -234,22 +239,22 @@
     CCSprite *pauseText = [CCSprite spriteWithSpriteFrameName:@"paused_text.png"];
     [pauseText setPosition:ccp(screenSize.width *0.5f, screenSize.height * 0.5f)];
     
-    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
-    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
+    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"resume.png"];
+    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"resume_over.png"];
     
-    CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
     
-    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
-    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
     
-    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
+    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
     
     CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
     CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
     
     CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
     
-    pauseButtonMenu = [CCMenu menuWithItems:backButton, resumeButton, resetButton, nil];
+    pauseButtonMenu = [CCMenu menuWithItems:mainMenuButton, resumeButton, resetButton, nil];
     
     [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
     [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
@@ -284,6 +289,7 @@
         lineSpriteArray = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
+        remainingTime = 31;
    
         [self setupBackground];
         uiLayer = level2UILayer;
@@ -291,6 +297,7 @@
         [self setupWorld];
         //[self setupDebugDraw];
         [self scheduleUpdate];
+        [self schedule:@selector(updateTime) interval:1.0];
         [self createPauseButton];
         [self createClearButton];
         self.isTouchEnabled = YES;
@@ -310,11 +317,13 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.415f)];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.5f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
+        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
@@ -331,15 +340,6 @@
 }
 
 -(void)update:(ccTime)dt {
-    
-    static double MAX_TIME = 30;
-    
-    double timeSoFar = CACurrentMediaTime() - startTime;
-    double remainingTime = MAX_TIME - timeSoFar;
-    
-    if (!gameOver){    
-        [uiLayer displaySecs:remainingTime];
-    }
     
     int32 velocityIterations = 3;
     int32 positionIterations = 2;
@@ -363,17 +363,21 @@
         if (!gameOver){
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
-                [uiLayer displayText:@"You Win!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
+                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
             } else {
                 if (remainingTime <= 0) {
                     gameOver = true;
-                    [uiLayer displayText:@"You Lose" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                    CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
+                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
                 }
             }
         }
     }
     
 }
+
+
 
 -(void) draw {
     glDisable(GL_TEXTURE_2D);
@@ -391,7 +395,14 @@
 }
 
 
-
+-(void)updateTime {
+    
+    remainingTime = remainingTime - 1.0;
+    
+    if (!gameOver){    
+        [uiLayer displaySecs:remainingTime];
+    }
+}
 
 
 

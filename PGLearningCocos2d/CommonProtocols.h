@@ -39,7 +39,12 @@ typedef enum {
     kLineType,
     kNormalBoxType,
     kBouncyBoxType,
-    kBalloonBoxType
+    kBalloonBoxType,
+    kPlatformTypeExtraExtraLarge,
+    kPlatformTypeExtraLarge,
+    kPlatformTypeLarge,
+    kPlatformTypeMedium,
+    kPlatformTypeSmall
 } GameObjectType;
 
 typedef enum {
@@ -47,6 +52,14 @@ typedef enum {
     kBouncyBox,
     kBalloonBox
 } BoxType;
+
+typedef enum {
+    kExtraExtraLargePlatform,
+    kExtraLargePlatform,
+    kLargePlatform,
+    kMediumPlatform,
+    kSmallPlatform
+} PlatformType;
 
 @protocol GameplayLayerDelegate
 

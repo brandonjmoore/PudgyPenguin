@@ -1,5 +1,5 @@
 //
-//  level1UILayer.h
+//  Level1UILayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
@@ -8,12 +8,12 @@
 
 #import "cocos2d.h"
 
-@interface level1UILayer : CCLayer {
+@interface Level1UILayer : CCLayer {
     CCLabelTTF *label;
     CCLabelTTF *timeLabel;
 }
 
--(BOOL)displayText:(NSString *)text andOnCompleteCallTarget:(id)target selector:(SEL)selector;
+-(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector;
 -(void) displaySecs:(double)secs;
 
 @end

@@ -68,6 +68,26 @@
     body->CreateFixture(&fixtureDef);
 }
 
+- (void)createPlatformBoxAtLocation:(CGPoint)location {
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_kinematicBody;
+    bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
+    body = world->CreateBody(&bodyDef);
+    body->SetUserData(self);
+    
+    b2FixtureDef fixtureDef;
+    b2PolygonShape poly;
+    poly.SetAsBox(self.contentSize.width/2/PTM_RATIO, self.contentSize.height/2/PTM_RATIO);
+    fixtureDef.shape = &poly;
+    
+    fixtureDef.density = 1.0;
+    fixtureDef.friction = 0.5;
+    fixtureDef.restitution = 2.0;
+    
+    body->CreateFixture(&fixtureDef);
+}
+
+
 - (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType {
     if((self = [super init])) {
         world = theWorld;
@@ -83,8 +103,12 @@
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"balloon.png"]];
             gameObjectType = kBalloonBoxType;
             [self createBalloonBoxAtLocation:location];
+        } else if (boxType == kBalloonBox) {
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"balloon.png"]];
+            gameObjectType = kBalloonBoxType;
+            [self createBalloonBoxAtLocation:location];
         } else {
-            CCLOG(@"Could not determine");
+            CCLOG(@"Could not determine box type");
         }
             
     }

@@ -1,5 +1,5 @@
 //
-//  level1ActionLayer.h
+//  Level1ActionLayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
@@ -16,11 +16,11 @@
 
 
 
-@class level1UILayer;
+@class Level1UILayer;
 @class Penguin2;
 @class Fish2;
 
-@interface level1ActionLayer : CCLayer {
+@interface Level1ActionLayer : CCLayer {
     //Characters
     Penguin2 *penguin2;
     Fish2 *fish2;
@@ -31,6 +31,9 @@
     CCMenu *pauseButtonMenu;
     CCMenu *clearButtonMenu;
     CCLayerColor *pauseLayer;
+    CCMenuItemSprite *pauseButton;
+    CCMenuItemSprite *clearButton;
+    
     
     //Drawing
     CGPoint _lastPt;//Must be declared to handle drawing a line
@@ -43,13 +46,15 @@
     b2World *world;
     GLESDebugDraw *debugDraw;
     CCSpriteBatchNode *sceneSpriteBatchNode;
-    level1UILayer *uiLayer;
+    Level1UILayer *uiLayer;
     bool gameOver;
     int numFishCreated;
     int numFishLeftScene;
     double startTime;
+    double currentMediaTime;
+    double remainingTime;
 }
 
--(id)initWithlevel1UILayer:(level1UILayer *)level1UILayer;
+-(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer;
         
 @end

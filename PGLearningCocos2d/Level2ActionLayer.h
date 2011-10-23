@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "Box2DSprite.h"
 #import "Box.h"
+#import "Platform.h"
 #import "Trash.h"
 
 
@@ -26,6 +27,7 @@
     Fish2 *fish2;
     Box *box;
     Trash *trash;
+    Platform *platform;
     
     //Menus
     CCMenu *pauseButtonMenu;
@@ -51,6 +53,8 @@
     int numFishCreated;
     int numFishLeftScene;
     double startTime;
+    double currentMediaTime;
+    double remainingTime;
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level1UILayer;

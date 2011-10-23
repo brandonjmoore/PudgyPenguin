@@ -1,22 +1,22 @@
 //
-//  level1ActionLayer.m
+//  Level1ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "level1ActionLayer.h"
+#import "Level1ActionLayer.h"
 #import "Box2DSprite.h"
-#import "level1UILayer.h"
+#import "Level1UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 
-@implementation level1ActionLayer
+@implementation Level1ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"level1ActionLayer dealloc");
+    CCLOG(@"Level1ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
     
@@ -51,8 +51,8 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
--(void)createBoxAtLocation:(CGPoint)location {
-    box = [[[Box alloc]initWithWorld:world atLocation:location]autorelease];
+-(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType{
+    box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
 }
 
@@ -95,10 +95,10 @@
 
 -(void) createPauseButton {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *pauseButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
-    CCSprite *pauseButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    CCSprite *pauseButtonNormal = [CCSprite spriteWithSpriteFrameName:@"pause.png"];
+    CCSprite *pauseButtonSelected = [CCSprite spriteWithSpriteFrameName:@"pause_over.png"];
     
-    CCMenuItemSprite *pauseButton = [CCMenuItemSprite itemFromNormalSprite:pauseButtonNormal selectedSprite:pauseButtonSelected disabledSprite:nil target:self selector:@selector(doPause)];
+    pauseButton = [CCMenuItemSprite itemFromNormalSprite:pauseButtonNormal selectedSprite:pauseButtonSelected disabledSprite:nil target:self selector:@selector(doPause)];
     
     pauseButtonMenu = [CCMenu menuWithItems:pauseButton, nil];
     
@@ -109,10 +109,10 @@
 
 -(void) createClearButton {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonNormal.png"];
-    CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonSelected.png"];
+    CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"clear.png"];
+    CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"clear_over.png"];
     
-    CCMenuItemSprite *clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
+    clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
@@ -198,6 +198,8 @@
 
 -(void) doResume {
     self.isTouchEnabled = YES;
+    clearButton.isEnabled = YES;
+    pauseButton.isEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
     [self removeChild:pauseLayer cleanup:YES];
@@ -210,32 +212,50 @@
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
+-(void) doResetLevel {
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];//Level Specific: Change for new level
+}
+
 -(void)doPause {
+    
+    clearButton.isEnabled = NO;
+    pauseButton.isEnabled = NO;
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
     [[CCDirector sharedDirector] pause];
     
     pauseLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
-    [self addChild:pauseLayer z:5];
+    [self addChild:pauseLayer z:9];
     
+    CCSprite *pauseText = [CCSprite spriteWithSpriteFrameName:@"paused_text.png"];
+    [pauseText setPosition:ccp(screenSize.width *0.5f, screenSize.height * 0.5f)];
     
-    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
-    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
+    CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"resume.png"];
+    CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"resume_over.png"];
     
     CCMenuItemSprite *resumeButton = [CCMenuItemSprite itemFromNormalSprite:resumeButtonNormal selectedSprite:resumeButtonSelected disabledSprite:nil target:self selector:@selector(doResume)];
     
-    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
-    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
     
-    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
     
-    pauseButtonMenu = [CCMenu menuWithItems:backButton, resumeButton, nil];
+    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
+    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
+    
+    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
+    
+    pauseButtonMenu = [CCMenu menuWithItems:mainMenuButton, resumeButton, resetButton, nil];
     
     [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
     [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
     
     [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
+    [pauseLayer addChild:pauseText];
     self.isTouchEnabled = NO;
     
     
@@ -257,13 +277,14 @@
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
--(id)initWithlevel1UILayer:(level1UILayer *)level1UILayer {
+-(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
+        remainingTime = 31;
    
         [self setupBackground];
         uiLayer = level1UILayer;
@@ -271,6 +292,7 @@
         [self setupWorld];
         //[self setupDebugDraw];
         [self scheduleUpdate];
+        [self schedule:@selector(updateTime) interval:1.0];
         [self createPauseButton];
         [self createClearButton];
         self.isTouchEnabled = YES;
@@ -279,22 +301,12 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f)];
         
-        //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.28f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f)];
-        
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.415f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        [uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
+        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
@@ -311,15 +323,6 @@
 }
 
 -(void)update:(ccTime)dt {
-    
-    static double MAX_TIME = 30;
-    
-    double timeSoFar = CACurrentMediaTime() - startTime;
-    double remainingTime = MAX_TIME - timeSoFar;
-    
-    if (!gameOver){    
-        [uiLayer displaySecs:remainingTime];
-    }
     
     int32 velocityIterations = 3;
     int32 positionIterations = 2;
@@ -343,17 +346,21 @@
         if (!gameOver){
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
-                [uiLayer displayText:@"You Win!" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
+                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
             } else {
                 if (remainingTime <= 0) {
                     gameOver = true;
-                    [uiLayer displayText:@"You Lose" andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                    CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
+                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
                 }
             }
         }
     }
     
 }
+
+
 
 -(void) draw {
     glDisable(GL_TEXTURE_2D);
@@ -371,7 +378,14 @@
 }
 
 
-
+-(void)updateTime {
+    
+    remainingTime = remainingTime - 1.0;
+    
+    if (!gameOver){    
+        [uiLayer displaySecs:remainingTime];
+    }
+}
 
 
 

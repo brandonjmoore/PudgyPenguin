@@ -31,12 +31,10 @@
     return self;
 }
 
--(BOOL)displayText:(NSString *)text andOnCompleteCallTarget:(id)target selector:(SEL)selector {
-    [label stopAllActions];
-    [label setString:text];
-    label.visible = YES;
-    label.scale = 0.0;
-    label.opacity = 255;
+-(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    [sprite stopAllActions];
+    [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     
     CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
     CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.1 scale:1.0];
@@ -45,8 +43,8 @@
     CCHide *hide = [CCHide action];
     CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
     CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, delay, fade, hide, onComplete, nil];
-    
-    [label runAction:sequence];
+    [self addChild:sprite];
+    [sprite runAction:sequence];
     return TRUE;
     
 }
