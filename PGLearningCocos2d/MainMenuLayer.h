@@ -15,6 +15,7 @@
     CCMenu *mainMenu;
     CCMenu *sceneSelectMenu;
     CCMenu *backButtonMenu;
+    CCSprite *background;
 }
 
 @end

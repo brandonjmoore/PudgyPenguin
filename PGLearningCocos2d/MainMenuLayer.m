@@ -44,6 +44,11 @@
         [backButtonMenu removeFromParentAndCleanup:YES];
     }
     
+    [self removeChild:background cleanup:YES];
+    
+    background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+    [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [self addChild:background];
     
     //Main Menu
     //Main Menu
@@ -66,6 +71,12 @@
     if (mainMenu != nil) {
         [mainMenu removeFromParentAndCleanup:YES];
     }
+    
+    [self removeChild:background cleanup:YES];
+    
+    background = [CCSprite spriteWithFile:@"background.png"];
+    [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
+    [self addChild:background];
     
     CCSprite *levelOneButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
     CCSprite *levelOneButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
@@ -120,7 +131,7 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         
-        CCSprite *background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+        background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:background];
         //Add the buttons to the screen
