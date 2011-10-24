@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "RootViewController.h"
 #import "GameManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation AppDelegate
 
@@ -38,9 +39,17 @@
 	
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
-	// Init the window
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
+    
+    // Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	// Try to use CADisplayLink director

@@ -187,6 +187,7 @@
 		BF805BBF1453DFCF00493AA4 /* Level1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF805BBB1453DFCF00493AA4 /* Level1Scene.mm */; };
 		BF805BC01453DFCF00493AA4 /* Level1UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF805BBD1453DFCF00493AA4 /* Level1UILayer.mm */; };
 		BF805BC31453E3FC00493AA4 /* Platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF805BC21453E3FC00493AA4 /* Platform.mm */; };
+		BF8CFEF41455A8CC00A45C75 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8CFEF31455A8CC00A45C75 /* libFlurryAnalytics.a */; };
 		BFB5BC351453CFEF00F86B03 /* scene1atlas-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFB5BC331453CFEF00F86B03 /* scene1atlas-hd.plist */; };
 		BFB5BC361453CFEF00F86B03 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFB5BC341453CFEF00F86B03 /* scene1atlas-hd.png */; };
 		BFB5BC391453CFF800F86B03 /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFB5BC371453CFF800F86B03 /* scene1atlas.plist */; };
@@ -556,6 +557,8 @@
 		BF805BBD1453DFCF00493AA4 /* Level1UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level1UILayer.mm; sourceTree = "<group>"; };
 		BF805BC11453E3FC00493AA4 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		BF805BC21453E3FC00493AA4 /* Platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Platform.mm; sourceTree = "<group>"; };
+		BF8CFEF21455A8CC00A45C75 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		BF8CFEF31455A8CC00A45C75 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		BFB5BC331453CFEF00F86B03 /* scene1atlas-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "scene1atlas-hd.plist"; sourceTree = "<group>"; };
 		BFB5BC341453CFEF00F86B03 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BFB5BC371453CFF800F86B03 /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 				BF51C9BC1438244D00B64181 /* UIKit.framework in Frameworks */,
 				BF51C9BE1438244D00B64181 /* Foundation.framework in Frameworks */,
 				BF51C9C01438244D00B64181 /* CoreGraphics.framework in Frameworks */,
+				BF8CFEF41455A8CC00A45C75 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +859,7 @@
 			isa = PBXGroup;
 			children = (
 				BF51C9C11438244D00B64181 /* PGLearningCocos2d */,
+				BF8CFEEF1455A86F00A45C75 /* Analytics */,
 				BF51C9B01438244D00B64181 /* Frameworks */,
 				BF51C9AE1438244D00B64181 /* Products */,
 			);
@@ -1260,6 +1265,24 @@
 			name = NormalImages;
 			sourceTree = "<group>";
 		};
+		BF8CFEEF1455A86F00A45C75 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				BF8CFEF11455A8CC00A45C75 /* FlurryAnalytics */,
+			);
+			name = Analytics;
+			path = PGLearningCocos2d;
+			sourceTree = "<group>";
+		};
+		BF8CFEF11455A8CC00A45C75 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				BF8CFEF21455A8CC00A45C75 /* FlurryAnalytics.h */,
+				BF8CFEF31455A8CC00A45C75 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		BFBB795C144F610D00752F0B /* Particles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1605,6 +1628,10 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = PGLearningCocos2d/libs;
 				INFOPLIST_FILE = PGLearningCocos2d/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
+				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1621,6 +1648,10 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = PGLearningCocos2d/libs;
 				INFOPLIST_FILE = PGLearningCocos2d/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
+				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
