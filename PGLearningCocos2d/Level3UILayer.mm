@@ -1,14 +1,14 @@
 //
-//  Level2UILayer.m
+//  Level3UILayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level2UILayer.h"
+#import "Level3UILayer.h"
 
-@implementation Level2UILayer
+@implementation Level3UILayer
 
 - (id)init {
     
@@ -33,9 +33,6 @@
 
 -(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
-    [self addChild:levelCompleteLayer z:9];
-    
     [sprite stopAllActions];
     [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     
@@ -46,7 +43,7 @@
     CCHide *hide = [CCHide action];
     CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
     CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, delay, fade, hide, onComplete, nil];
-    [self addChild:sprite z:10];
+    [self addChild:sprite];
     [sprite runAction:sequence];
     return TRUE;
     

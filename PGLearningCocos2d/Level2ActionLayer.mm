@@ -192,6 +192,7 @@
     for (streak in lineSpriteArray) {
         [streak removeFromParentAndCleanup:YES];
     }
+
 }
 
 - (void)registerWithTouchDispatcher {
@@ -278,13 +279,22 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
--(void) gameOver: (id)sender {
+-(void) gameOverPass: (id)sender {
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
+}
+
+-(void) gameOverFail: (id)sender {
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"level2unlocked"];
+        
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
@@ -364,12 +374,12 @@
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
-                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
             } else {
                 if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
-                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
+                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
                 }
             }
         }

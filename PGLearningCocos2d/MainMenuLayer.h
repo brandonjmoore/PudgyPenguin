@@ -13,7 +13,9 @@
 
 @interface MainMenuLayer : CCLayer {
     CCMenu *mainMenu;
-    CCMenu *sceneSelectMenu;
+    CCMenu *sceneSelectMenu1;
+    CCMenu *sceneSelectMenu2;
+    CCMenu *sceneSelectMenu3;
     CCMenu *backButtonMenu;
     CCSprite *background;
 }

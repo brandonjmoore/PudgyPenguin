@@ -10,11 +10,12 @@
 #import "MainMenuScene.h"
 //#import "OptionsScene.h"
 //#import "CreditsScene.h"
-//#import "IntroScene.h"
+#import "IntroScene.h"
 #import "LevelCompleteScene.h"
 //#import "PhysicsLayer.h"
 #import "Level1Scene.h"
 #import "Level2Scene.h"
+#import "Level3Scene.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
@@ -71,7 +72,7 @@ static GameManager* _sharedGameManager = nil;
             //TODO: sceneToRun = [CreditsScene node];
             break;
         case kIntroScene:
-            //sceneToRun = [IntroScene node];
+            sceneToRun = [IntroScene node];
             break;
         case kLevelCompleteScene:
             sceneToRun = [LevelCompleteScene node];
@@ -83,7 +84,7 @@ static GameManager* _sharedGameManager = nil;
             sceneToRun = [Level2Scene node];
             break;
         case kGameLevel3:
-            //Placeholder for Level 3
+            sceneToRun = [Level3Scene node];
             break;
         case kGameLevel4:
             //Placeholder for Level 4

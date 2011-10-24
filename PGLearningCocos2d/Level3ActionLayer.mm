@@ -1,22 +1,22 @@
 //
-//  Level1ActionLayer.m
+//  Level3ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level1ActionLayer.h"
+#import "Level3ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level1UILayer.h"
+#import "Level3UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 
-@implementation Level1ActionLayer
+@implementation Level3ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"Level1ActionLayer dealloc");
+    CCLOG(@"Level3ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
     
@@ -54,6 +54,11 @@
 -(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType{
     box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
+}
+
+-(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation{
+    platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
+    [sceneSpriteBatchNode addChild:platform z:1];
 }
 
 -(void)createTrashAtLocation:(CGPoint)location {
@@ -216,7 +221,7 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];//Level Specific: Change for new level
 }
 
 -(void)doPause {
@@ -273,17 +278,17 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
--(void) gameOverPass: (id)sender {
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];
-}
-
--(void) gameOverFail: (id)sender {
+-(void) gameOver: (id)sender {
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
--(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
+-(id)initWithLevel3UILayer:(Level3UILayer *)level3UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"level3unlocked"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
@@ -292,7 +297,7 @@
         remainingTime = 31;
    
         [self setupBackground];
-        uiLayer = level1UILayer;
+        uiLayer = level3UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -306,8 +311,20 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
+        //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.5f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
@@ -352,12 +369,12 @@
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
-                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
+                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
             } else {
                 if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
-                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
+                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOver:)];
                 }
             }
         }
