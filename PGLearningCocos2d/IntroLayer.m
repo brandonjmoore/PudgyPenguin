@@ -27,7 +27,7 @@
 		
 		// Create the intro image
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
-		CCSprite *introImage = [CCSprite spriteWithFile:@"intro_screen.png"];
+		CCSprite *introImage = [CCSprite spriteWithFile:@"instructions_screen.png"];
 		[introImage setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:introImage];
 		

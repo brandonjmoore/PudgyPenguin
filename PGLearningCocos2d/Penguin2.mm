@@ -71,6 +71,7 @@
     [self setPenguinBlinkingAnim:[self loadPlistForAnimationWithName:@"penguinBlinkingAnim" andClassName:NSStringFromClass([self class])]];
     [self setPenguinOpenMouthAnim:[self loadPlistForAnimationWithName:@"penguinOpenMouthAnim" andClassName:NSStringFromClass([self class])]];
     [self setPenguinEatingAnim:[self loadPlistForAnimationWithName:@"penguinEatingAnim" andClassName:NSStringFromClass([self class])]];
+    [self setPenguinSatisfiedAnim:[self loadPlistForAnimationWithName:@"penguinSatisfiedAnim" andClassName:NSStringFromClass([self class])]];
 }
 
 -(void)changeState:(CharacterStates)newState {
@@ -116,6 +117,7 @@
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
             //restoreOriginalFrame is set to no here because we want him to remain satisfied
+            //action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
             //action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             break;

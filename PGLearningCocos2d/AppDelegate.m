@@ -130,6 +130,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] resume];
+    //CCScene *currentScene = [[GameManager sharedGameManager] getCurrentScene];
+    //[currentScene doPause];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
