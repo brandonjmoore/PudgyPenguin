@@ -47,6 +47,13 @@ typedef enum {
     kGameLevel3=103,
     kGameLevel4=104,
     kGameLevel5=105,
+    kGameLevel6=106,
+    kGameLevel7=107,
+    kGameLevel8=108,
+    kGameLevel9=109,
+    kGameLevel10=110,
+    kGameLevel11=111,
+    kGameLevel12=112,
     kCutSceneForLevel2=201
 } SceneTypes;
 

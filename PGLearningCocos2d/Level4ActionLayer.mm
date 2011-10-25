@@ -1,22 +1,22 @@
 //
-//  Level2ActionLayer.m
+//  Level4ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level2ActionLayer.h"
+#import "Level4ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level2UILayer.h"
+#import "Level4UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 
-@implementation Level2ActionLayer
+@implementation Level4ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"Level2ActionLayer dealloc");
+    CCLOG(@"Level4ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
     
@@ -71,7 +71,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.2, screenSize.height * 0.95)];
             numFishCreated++;
             
         }else {
@@ -192,7 +192,6 @@
     for (streak in lineSpriteArray) {
         [streak removeFromParentAndCleanup:YES];
     }
-
 }
 
 - (void)registerWithTouchDispatcher {
@@ -222,13 +221,13 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel4];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel5];
 }
 
 -(void)doPause {
@@ -278,7 +277,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"snow_bg.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -345,13 +344,12 @@
     
 }
 
--(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
+-(id)initWithLevel4UILayer:(Level4UILayer *)level4UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:@"level2unlocked"];
+        [defaults setBool:YES forKey:@"level4unlocked"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
@@ -360,7 +358,7 @@
         remainingTime = 31;
    
         [self setupBackground];
-        uiLayer = level2UILayer;
+        uiLayer = level4UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -374,24 +372,24 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox];
         
-        //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.5f)];
+        //Large icicle
+        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height * 0.75f) ofType:kExtraLargePlatform withRotation:0.85f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.35f) ofType:kExtraLargePlatform withRotation:0.85f];
+        
+        //regular box
+        [self createBoxAtLocation:ccp(winSize.width * 0.10f, winSize.height *0.05f) ofType:kNormalBox];
+        
+        //bouncy box
+        [self createBoxAtLocation:ccp(winSize.width * 0.88f, winSize.height *0.45f) ofType:kBalloonBox];
+        
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.10f, winSize.height * 0.17f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
@@ -431,15 +429,17 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
-
+            
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
                 [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
-            } else if (remainingTime <= 0) {
+            } else {
+                if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
                     [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
+                }
             }
         }
     }

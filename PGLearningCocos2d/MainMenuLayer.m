@@ -32,7 +32,47 @@
     if ([itemPassedIn tag] == 3) {
         CCLOG(@"Tag 3 found, Scene 3");
         [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
+    }
+    if ([itemPassedIn tag] == 4) {
+        CCLOG(@"Tag 4 found, Scene 4");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel4];
+    }
+    if ([itemPassedIn tag] == 5) {
+        CCLOG(@"Tag 5 found, Scene 5");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel5];
+    }
+    if ([itemPassedIn tag] == 6) {
+        CCLOG(@"Tag 6 found, Scene 6");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel6];
+    }
+    if ([itemPassedIn tag] == 7) {
+        CCLOG(@"Tag 7 found, Scene 7");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel7];
+    }
+    if ([itemPassedIn tag] == 8) {
+        CCLOG(@"Tag 8 found, Scene 8");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel8];
+    }
+    if ([itemPassedIn tag] == 9) {
+        CCLOG(@"Tag 9 found, Scene 9");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel9];
+    }
+    if ([itemPassedIn tag] == 10) {
+        CCLOG(@"Tag 10 found, Scene 10");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel10];
+    }
+    if ([itemPassedIn tag] == 11) {
+        CCLOG(@"Tag 11 found, Scene 11");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel11];
+    }
+    if ([itemPassedIn tag] == 3) {
+        CCLOG(@"Tag 3 found, Scene 3");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
     } 
+    if ([itemPassedIn tag] == 12) {
+        CCLOG(@"Tag 12 found, Scene 12");
+        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel12];
+    }
     else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
         CCLOG(@"Placeholder for next chapters");

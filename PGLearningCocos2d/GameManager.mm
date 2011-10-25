@@ -16,6 +16,8 @@
 #import "Level1Scene.h"
 #import "Level2Scene.h"
 #import "Level3Scene.h"
+#import "Level4Scene.h"
+#import "Level5Scene.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
@@ -87,10 +89,31 @@ static GameManager* _sharedGameManager = nil;
             sceneToRun = [Level3Scene node];
             break;
         case kGameLevel4:
-            //Placeholder for Level 4
+            sceneToRun = [Level4Scene node];
             break;
         case kGameLevel5:
-            //Placeholder for Level 5
+            sceneToRun = [Level5Scene node];
+            break;
+        case kGameLevel6:
+            //sceneToRun = [Level6Scene node];
+            break;
+        case kGameLevel7:
+            //sceneToRun = [Level7Scene node];
+            break;
+        case kGameLevel8:
+            //sceneToRun = [Level8Scene node];
+            break;
+        case kGameLevel9:
+            //sceneToRun = [Level9Scene node];
+            break;
+        case kGameLevel10:
+            //sceneToRun = [Level10Scene node];
+            break;
+        case kGameLevel11:
+            //sceneToRun = [Level11Scene node];
+            break;
+        case kGameLevel12:
+            //sceneToRun = [Level12Scene node];
             break;
         case kCutSceneForLevel2:
             //Placeholder for Platform Level
