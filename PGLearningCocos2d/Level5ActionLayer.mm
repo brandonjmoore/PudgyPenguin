@@ -350,6 +350,9 @@
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"level5unlocked"];
+        
         startTime = CACurrentMediaTime();
         remainingTime = 31;
    
