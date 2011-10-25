@@ -11,7 +11,6 @@
 #import "MoreInfoScene.h"
 #import "CreditsScene.h"
 #import "IntroScene.h"
-#import "LevelCompleteScene.h"
 //#import "PhysicsLayer.h"
 #import "Level1Scene.h"
 #import "Level2Scene.h"
@@ -78,9 +77,6 @@ static GameManager* _sharedGameManager = nil;
             break;
         case kIntroScene:
             sceneToRun = [IntroScene node];
-            break;
-        case kLevelCompleteScene:
-            sceneToRun = [LevelCompleteScene node];
             break;
         case kGameLevel1:
             sceneToRun = [Level1Scene node];

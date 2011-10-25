@@ -60,8 +60,6 @@
 		BF371F1B1452731D008F5B11 /* Start.png in Resources */ = {isa = PBXBuildFile; fileRef = BF371F1A1452731D008F5B11 /* Start.png */; };
 		BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AD8143F994C004D59B2 /* MainMenuScene.m */; };
 		BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */; };
-		BF382AE6143FD511004D59B2 /* LevelCompleteScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AE5143FD511004D59B2 /* LevelCompleteScene.m */; };
-		BF382AE9143FD59E004D59B2 /* LevelCompleteLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AE8143FD59E004D59B2 /* LevelCompleteLayer.m */; };
 		BF396957143B595200EC7DBA /* Penguin.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF396956143B595200EC7DBA /* Penguin.plist */; };
 		BF44C36414402665005134E7 /* PenguinIdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36314402665005134E7 /* PenguinIdle-hd.png */; };
 		BF44C36614402678005134E7 /* PenguinIdle.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36514402678005134E7 /* PenguinIdle.png */; };
@@ -349,10 +347,6 @@
 		BF382AD8143F994C004D59B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		BF382ADB143F9A73004D59B2 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
-		BF382AE4143FD511004D59B2 /* LevelCompleteScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelCompleteScene.h; sourceTree = "<group>"; };
-		BF382AE5143FD511004D59B2 /* LevelCompleteScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelCompleteScene.m; sourceTree = "<group>"; };
-		BF382AE7143FD59E004D59B2 /* LevelCompleteLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelCompleteLayer.h; sourceTree = "<group>"; };
-		BF382AE8143FD59E004D59B2 /* LevelCompleteLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelCompleteLayer.m; sourceTree = "<group>"; };
 		BF396956143B595200EC7DBA /* Penguin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin.plist; sourceTree = "<group>"; };
 		BF396970143B61BF00EC7DBA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF396971143B632200EC7DBA /* CommonProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
@@ -930,7 +924,6 @@
 				BF62B27D1456A70A0049369A /* Level10 */,
 				BF9D639F1456879C00117A54 /* Level11 */,
 				BF9D63A0145687A500117A54 /* Level12 */,
-				BFE3F187143EDEEE007BB741 /* LevelComplete */,
 				BF62B2761456A2D80049369A /* Credits */,
 				BF62B26F1456988C0049369A /* MoreInfoScene */,
 				BF5D2C97144EA4BF00EFD358 /* Misc */,
@@ -1646,17 +1639,6 @@
 			name = MainMenu;
 			sourceTree = "<group>";
 		};
-		BFE3F187143EDEEE007BB741 /* LevelComplete */ = {
-			isa = PBXGroup;
-			children = (
-				BF382AE4143FD511004D59B2 /* LevelCompleteScene.h */,
-				BF382AE5143FD511004D59B2 /* LevelCompleteScene.m */,
-				BF382AE7143FD59E004D59B2 /* LevelCompleteLayer.h */,
-				BF382AE8143FD59E004D59B2 /* LevelCompleteLayer.m */,
-			);
-			name = LevelComplete;
-			sourceTree = "<group>";
-		};
 		BFF372EC14565FF700C8F267 /* Level6 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1871,8 +1853,6 @@
 				BF1EC8B6143ED0D30083412C /* GameManager.mm in Sources */,
 				BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */,
 				BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */,
-				BF382AE6143FD511004D59B2 /* LevelCompleteScene.m in Sources */,
-				BF382AE9143FD59E004D59B2 /* LevelCompleteLayer.m in Sources */,
 				BF151B3D14410FDD000657EC /* b2BroadPhase.cpp in Sources */,
 				BF151B3E14410FDD000657EC /* b2CollideCircle.cpp in Sources */,
 				BF151B3F14410FDD000657EC /* b2CollidePolygon.cpp in Sources */,

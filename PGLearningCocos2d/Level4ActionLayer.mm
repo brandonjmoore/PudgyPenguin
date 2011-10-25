@@ -107,7 +107,7 @@
     
     pauseButtonMenu = [CCMenu menuWithItems:pauseButton, nil];
     
-    [pauseButtonMenu setPosition:ccp(winSize.width * 0.05f, winSize.height * 0.96f)];
+    [pauseButtonMenu setPosition:ccp(winSize.width * 0.06f, winSize.height * 0.96f)];
     
     [self addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
 }
@@ -121,7 +121,7 @@
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
-    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.96f)];
+    [clearButtonMenu setPosition:ccp(winSize.width * 0.94f, winSize.height * 0.96f)];
     
     [self addChild:clearButtonMenu z:10 tag:kButtonTagValue];
 }
@@ -384,7 +384,7 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.10f, winSize.height *0.05f) ofType:kNormalBox];
         
         //bouncy box
-        [self createBoxAtLocation:ccp(winSize.width * 0.88f, winSize.height *0.45f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.95f, winSize.height *0.3f) ofType:kBalloonBox];
         
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.10f, winSize.height * 0.17f)];

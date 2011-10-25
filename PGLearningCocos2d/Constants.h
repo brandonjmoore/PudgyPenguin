@@ -41,7 +41,6 @@ typedef enum {
     kMoreInfoScene=2,
     kCreditsScene=3,
     kIntroScene=4,
-    kLevelCompleteScene=5,
     kGameLevel1=101,
     kGameLevel2=102,
     kGameLevel3=103,
