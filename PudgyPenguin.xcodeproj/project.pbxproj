@@ -1992,6 +1992,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = PGLearningCocos2d/libs;
 				INFOPLIST_FILE = PGLearningCocos2d/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
@@ -2012,6 +2013,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = PGLearningCocos2d/libs;
 				INFOPLIST_FILE = PGLearningCocos2d/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",

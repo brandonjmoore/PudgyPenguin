@@ -63,7 +63,7 @@
     secs = MAX(0, secs);
     
     double intPart = 0;
-    double fractPart = modf(secs, &intPart);
+    modf(secs, &intPart);
     int isecs = (int)intPart;
     //int min = isecs / 60;
     int sec = isecs % 60;

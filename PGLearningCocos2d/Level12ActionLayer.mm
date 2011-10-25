@@ -387,7 +387,7 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height *0.4f) ofType:kBalloonBox];
 
         //icy prison
-        [self createPlatformAtLocation:ccp(winSize.width * 0.58f, winSize.height * 0.3f) ofType:kMediumPlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.3f) ofType:kMediumPlatform withRotation:4.7f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.42f, winSize.height * 0.40f) ofType:kMediumPlatform withRotation:0.0f];
 
@@ -402,7 +402,7 @@
 
         
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.38f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.58f, winSize.height * 0.38f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         

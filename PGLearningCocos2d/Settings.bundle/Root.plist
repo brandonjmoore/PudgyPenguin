@@ -5,10 +5,14 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>Title</key>
-			<string>Group</string>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Music</string>
+			<key>Key</key>
+			<string>ismusicon</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -119,16 +123,6 @@
 			<string>level12unlocked</string>
 			<key>DefaultValue</key>
 			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Is Music On</string>
-			<key>Key</key>
-			<string>ismusicon</string>
-			<key>DefaultValue</key>
-			<true/>
 		</dict>
 	</array>
 	<key>StringsTable</key>

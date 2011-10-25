@@ -31,6 +31,8 @@
         
 		CCLabelTTF *andyText = [CCLabelTTF labelWithString:@"Music: Andy Thomas" fontName:@"Marker Felt" fontSize:20.0];
         
+        CCLabelTTF *alexText = [CCLabelTTF labelWithString:@"Conceptual Design: Alex Sherrick" fontName:@"Marker Felt" fontSize:20.0];
+        
         CCLabelTTF *byuText = [CCLabelTTF labelWithString:@"A Special Thanks to" fontName:@"Marker Felt" fontSize:16.0];
         CCLabelTTF *byuText2 = [CCLabelTTF labelWithString:@"The BYU Mobile App Competition" fontName:@"Marker Felt" fontSize:16.0];
         
@@ -38,9 +40,10 @@
         
         brandonText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.85f);
         jonathanText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.8f);
-        andyText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.75f);
-		byuText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.70f);
-        byuText2.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.66f);
+        alexText.position = ccp(screenSize.width * 0.5, screenSize.height * 0.75f);
+        andyText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.7f);
+		byuText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.65f);
+        byuText2.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.61f);
         cocos2dText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.05f);
 		
 		
@@ -59,6 +62,7 @@
 		
 		[self addChild:brandonText];
         [self addChild:jonathanText];
+        [self addChild:alexText];
         [self addChild:andyText];
         [self addChild:byuText];
         [self addChild:byuText2];
