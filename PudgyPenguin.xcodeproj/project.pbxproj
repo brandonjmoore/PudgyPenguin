@@ -204,6 +204,8 @@
 		BFBD9B72145627340065C345 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBD9B70145627340065C345 /* scene1atlas-hd.png */; };
 		BFBD9B751456273A0065C345 /* scene1atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBD9B731456273A0065C345 /* scene1atlas.plist */; };
 		BFBD9B761456273A0065C345 /* scene1atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBD9B741456273A0065C345 /* scene1atlas.png */; };
+		BFBD9B7C145644AA0065C345 /* FishIdle.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBD9B7B145644AA0065C345 /* FishIdle.png */; };
+		BFBD9B7E145645040065C345 /* FishIdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBD9B7D145645040065C345 /* FishIdle-hd.png */; };
 		BFCD59291441690F00E102EE /* Box2DSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFCD59281441690F00E102EE /* Box2DSprite.mm */; };
 		BFD131C21455F0D8008173E4 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD131BF1455F0D8008173E4 /* IntroLayer.m */; };
 		BFD131C31455F0D8008173E4 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD131C11455F0D8008173E4 /* IntroScene.m */; };
@@ -594,6 +596,8 @@
 		BFBD9B70145627340065C345 /* scene1atlas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scene1atlas-hd.png"; sourceTree = "<group>"; };
 		BFBD9B731456273A0065C345 /* scene1atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = scene1atlas.plist; sourceTree = "<group>"; };
 		BFBD9B741456273A0065C345 /* scene1atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1atlas.png; sourceTree = "<group>"; };
+		BFBD9B7B145644AA0065C345 /* FishIdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FishIdle.png; sourceTree = "<group>"; };
+		BFBD9B7D145645040065C345 /* FishIdle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FishIdle-hd.png"; sourceTree = "<group>"; };
 		BFCD59271441690F00E102EE /* Box2DSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DSprite.h; sourceTree = "<group>"; };
 		BFCD59281441690F00E102EE /* Box2DSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box2DSprite.mm; sourceTree = "<group>"; };
 		BFD131BE1455F0D8008173E4 /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
@@ -890,6 +894,8 @@
 			children = (
 				BF44C36314402665005134E7 /* PenguinIdle-hd.png */,
 				BF44C36514402678005134E7 /* PenguinIdle.png */,
+				BFBD9B7B145644AA0065C345 /* FishIdle.png */,
+				BFBD9B7D145645040065C345 /* FishIdle-hd.png */,
 			);
 			name = IdleCharacters;
 			sourceTree = "<group>";
@@ -1488,6 +1494,8 @@
 				BFBD9B72145627340065C345 /* scene1atlas-hd.png in Resources */,
 				BFBD9B751456273A0065C345 /* scene1atlas.plist in Resources */,
 				BFBD9B761456273A0065C345 /* scene1atlas.png in Resources */,
+				BFBD9B7C145644AA0065C345 /* FishIdle.png in Resources */,
+				BFBD9B7E145645040065C345 /* FishIdle-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

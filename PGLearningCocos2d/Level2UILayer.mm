@@ -25,6 +25,17 @@
         timeLabel.position = ccp(winSize.width *0.5f, winSize.height *0.93f);
         timeLabel.color = ccGRAY;
         [self addChild:timeLabel];
+
+        fishLabel = [CCLabelTTF labelWithString:@"" fontName:@"marker felt" fontSize:24.0f];
+        fishLabel.anchorPoint = ccp(1, 0.5f);
+        fishLabel.position = ccp(winSize.width *0.80f, winSize.height *0.97);
+        [self addChild:fishLabel z:8];
+        
+        CCSprite *fishIdle = [CCSprite spriteWithFile:@"FishIdle.png"];
+        fishIdle.position = ccp(fishLabel.position.x + 7, fishLabel.position.y);
+        [self addChild:fishIdle];
+        
+        
         
     }
     
@@ -63,5 +74,29 @@
     [timeLabel setString:[NSString stringWithFormat:@"%d", sec]];
     
 }
+
+-(void)displayNumFish:(NSString *)numFishText {
+    [fishLabel stopAllActions];
+    //fishLabel = [CCLabelTTF labelWithString:numFish fontName:@"Marker Felt" fontSize:24.0];
+    
+    [fishLabel setString:[NSString stringWithFormat:@"%@", numFishText]];
+    
+    //[fishLabel stopAllActions];
+    
+    
+    //CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
+    //CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.1 scale:1.0];
+    //CCDelayTime *delay = [CCDelayTime actionWithDuration:2.0];
+    //CCFadeIn *fadeIn = [CCFadeOut actionWithDuration:0.5];
+    //CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1.5];
+    //CCHide *hide = [CCHide action];
+    //CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
+    //CCSequence *sequence = [CCSequence actions:fadeIn, fadeOut, nil];
+    
+    //[fishLabel runAction:sequence];
+    
+}
+
+
 
 @end

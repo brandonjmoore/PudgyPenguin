@@ -432,16 +432,17 @@
     
     if (penguin2 != nil) {
         if (!gameOver){
+                NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
+                [uiLayer displayNumFish:numFishText];
+
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
                 [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
-            } else {
-                if (remainingTime <= 0) {
+            } else if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
                     [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
-                }
             }
         }
     }
