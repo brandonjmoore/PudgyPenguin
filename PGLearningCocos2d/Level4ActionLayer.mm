@@ -285,6 +285,10 @@
 }
 
 -(void) gameOverPass: (id)sender {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"level5unlocked"];
+    
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
     self.isTouchEnabled = NO;
@@ -347,9 +351,6 @@
 -(id)initWithLevel4UILayer:(Level4UILayer *)level4UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:@"level4unlocked"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];

@@ -57,6 +57,6 @@
     double remainingTime;
 }
 
--(id)initWithLevel5UILayer:(Level5UILayer *)Level5UILayer;
+-(id)initWithLevel5UILayer:(Level5UILayer *)level5UILayer;
         
 @end

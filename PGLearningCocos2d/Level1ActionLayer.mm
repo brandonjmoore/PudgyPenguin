@@ -281,6 +281,10 @@
 }
 
 -(void) gameOverPass: (id)sender {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"level2unlocked"];
+    
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
     self.isTouchEnabled = NO;

@@ -1,14 +1,14 @@
 //
-//  Level2UILayer.m
+//  Level11UILayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level2UILayer.h"
+#import "Level11UILayer.h"
 
-@implementation Level2UILayer
+@implementation Level11UILayer
 
 - (id)init {
     

@@ -1,5 +1,5 @@
 //
-//  Level2ActionLayer.h
+//  Level9ActionLayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
@@ -17,11 +17,11 @@
 
 
 
-@class Level2UILayer;
+@class Level9UILayer;
 @class Penguin2;
 @class Fish2;
 
-@interface Level2ActionLayer : CCLayer {
+@interface Level9ActionLayer : CCLayer {
     //Characters
     Penguin2 *penguin2;
     Fish2 *fish2;
@@ -48,7 +48,7 @@
     b2World *world;
     GLESDebugDraw *debugDraw;
     CCSpriteBatchNode *sceneSpriteBatchNode;
-    Level2UILayer *uiLayer;
+    Level9UILayer *uiLayer;
     bool gameOver;
     int numFishCreated;
     int numFishLeftScene;
@@ -57,6 +57,6 @@
     double remainingTime;
 }
 
--(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer;
+-(id)initWithLevel9UILayer:(Level9UILayer *)level9UILayer;
         
 @end

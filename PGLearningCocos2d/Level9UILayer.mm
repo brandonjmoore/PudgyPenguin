@@ -1,14 +1,14 @@
 //
-//  Level2UILayer.m
+//  Level9UILayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level2UILayer.h"
+#import "Level9UILayer.h"
 
-@implementation Level2UILayer
+@implementation Level9UILayer
 
 - (id)init {
     
@@ -25,7 +25,7 @@
         timeLabel.position = ccp(winSize.width *0.5f, winSize.height *0.93f);
         timeLabel.color = ccGRAY;
         [self addChild:timeLabel];
-        
+
         fishLabel = [CCLabelTTF labelWithString:@"" fontName:@"marker felt" fontSize:24.0f];
         fishLabel.anchorPoint = ccp(1, 0.5f);
         fishLabel.position = ccp(winSize.width *0.80f, winSize.height *0.97);
@@ -34,6 +34,8 @@
         CCSprite *fishIdle = [CCSprite spriteWithFile:@"FishIdle.png"];
         fishIdle.position = ccp(fishLabel.position.x + 7, fishLabel.position.y);
         [self addChild:fishIdle];
+        
+        
         
     }
     
@@ -76,5 +78,7 @@
     [fishLabel setString:[NSString stringWithFormat:@"%@", numFishText]];
     
 }
+
+
 
 @end

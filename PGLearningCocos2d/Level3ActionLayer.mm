@@ -71,7 +71,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
             numFishCreated++;
             
         }else {
@@ -277,7 +277,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"snow_bg.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -285,6 +285,10 @@
 }
 
 -(void) gameOverPass: (id)sender {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"level4unlocked"];
+    
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
     self.isTouchEnabled = NO;
@@ -347,11 +351,6 @@
 -(id)initWithLevel3UILayer:(Level3UILayer *)level3UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:@"level3unlocked"];
-        
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
@@ -373,24 +372,32 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-//        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox];
         
-        //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.1f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.18f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.26f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.34f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.42f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.50f) ofType:kNormalBox];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.5f)];
+        //Large icicle
+        [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.75f) ofType:kExtraLargePlatform withRotation:0.0f];
+        
+        //bouncybox
+        [self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox];
+        
+        
+
+
+
+
+        
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.2f, winSize.height * 0.62f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];

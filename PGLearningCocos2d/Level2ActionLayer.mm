@@ -192,7 +192,6 @@
     for (streak in lineSpriteArray) {
         [streak removeFromParentAndCleanup:YES];
     }
-
 }
 
 - (void)registerWithTouchDispatcher {
@@ -286,6 +285,10 @@
 }
 
 -(void) gameOverPass: (id)sender {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"level4unlocked"];
+    
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
     self.isTouchEnabled = NO;
@@ -348,11 +351,6 @@
 -(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:@"level2unlocked"];
-        
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
@@ -374,16 +372,6 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox];
-        
-        //[self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.38f)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
         
@@ -431,15 +419,16 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
-
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
                 [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
-            } else if (remainingTime <= 0) {
+            } else {
+                if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
                     [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
+                }
             }
         }
     }

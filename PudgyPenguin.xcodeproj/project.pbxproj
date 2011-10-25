@@ -57,9 +57,6 @@
 		BF1EC8B6143ED0D30083412C /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.mm */; };
 		BF1FBB99144FE29B00DF3E0B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FBB97144FE29B00DF3E0B /* icon.png */; };
 		BF1FBB9A144FE29B00DF3E0B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FBB98144FE29B00DF3E0B /* icon@2x.png */; };
-		BF24B28C144DF4A900F0A37E /* Level2Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B28B144DF4A900F0A37E /* Level2Scene.mm */; };
-		BF24B28F144DF4E200F0A37E /* Level2UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B28E144DF4E200F0A37E /* Level2UILayer.mm */; };
-		BF24B292144DF4F000F0A37E /* Level2ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF24B291144DF4F000F0A37E /* Level2ActionLayer.mm */; };
 		BF371F1B1452731D008F5B11 /* Start.png in Resources */ = {isa = PBXBuildFile; fileRef = BF371F1A1452731D008F5B11 /* Start.png */; };
 		BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AD8143F994C004D59B2 /* MainMenuScene.m */; };
 		BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */; };
@@ -191,9 +188,23 @@
 		BF805BC01453DFCF00493AA4 /* Level1UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF805BBD1453DFCF00493AA4 /* Level1UILayer.mm */; };
 		BF805BC31453E3FC00493AA4 /* Platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF805BC21453E3FC00493AA4 /* Platform.mm */; };
 		BF8CFEF41455A8CC00A45C75 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8CFEF31455A8CC00A45C75 /* libFlurryAnalytics.a */; };
-		BFAE09241455BD8C003FD4A3 /* Level3ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFAE091F1455BD8C003FD4A3 /* Level3ActionLayer.mm */; };
-		BFAE09251455BD8C003FD4A3 /* Level3Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFAE09211455BD8C003FD4A3 /* Level3Scene.mm */; };
-		BFAE09261455BD8C003FD4A3 /* Level3UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFAE09231455BD8C003FD4A3 /* Level3UILayer.mm */; };
+		BF9D638D1456679A00117A54 /* Level8ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63881456679A00117A54 /* Level8ActionLayer.mm */; };
+		BF9D638E1456679A00117A54 /* Level8Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D638A1456679A00117A54 /* Level8Scene.mm */; };
+		BF9D638F1456679A00117A54 /* Level8UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D638C1456679A00117A54 /* Level8UILayer.mm */; };
+		BF9D6392145669B000117A54 /* night_background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9D6390145669B000117A54 /* night_background-hd.png */; };
+		BF9D6393145669B000117A54 /* night_background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9D6391145669B000117A54 /* night_background.png */; };
+		BF9D639B14566E8B00117A54 /* Level9ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D639614566E8B00117A54 /* Level9ActionLayer.mm */; };
+		BF9D639C14566E8B00117A54 /* Level9Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D639814566E8B00117A54 /* Level9Scene.mm */; };
+		BF9D639D14566E8B00117A54 /* Level9UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D639A14566E8B00117A54 /* Level9UILayer.mm */; };
+		BF9D63A7145687BC00117A54 /* Level7ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63A2145687BC00117A54 /* Level7ActionLayer.mm */; };
+		BF9D63A8145687BC00117A54 /* Level7Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63A4145687BC00117A54 /* Level7Scene.mm */; };
+		BF9D63A9145687BC00117A54 /* Level7UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63A6145687BC00117A54 /* Level7UILayer.mm */; };
+		BF9D63B0145687F000117A54 /* Level11ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63AB145687F000117A54 /* Level11ActionLayer.mm */; };
+		BF9D63B1145687F000117A54 /* Level11Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63AD145687F000117A54 /* Level11Scene.mm */; };
+		BF9D63B2145687F000117A54 /* Level11UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63AF145687F000117A54 /* Level11UILayer.mm */; };
+		BF9D63B9145687F900117A54 /* Level12ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63B4145687F900117A54 /* Level12ActionLayer.mm */; };
+		BF9D63BA145687F900117A54 /* Level12Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63B6145687F900117A54 /* Level12Scene.mm */; };
+		BF9D63BB145687F900117A54 /* Level12UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9D63B8145687F900117A54 /* Level12UILayer.mm */; };
 		BFB99880144F3C02001DFCEE /* Box.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB9987F144F3C02001DFCEE /* Box.mm */; };
 		BFB99884144F3DBC001DFCEE /* Trash.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB99883144F3DBC001DFCEE /* Trash.mm */; };
 		BFBB786B1453D28700E4248F /* Start-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFBB786A1453D28700E4248F /* Start-hd.png */; };
@@ -218,6 +229,15 @@
 		BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90C1443631E00153456 /* Penguin2.mm */; };
 		BFEB5F9B1455BA5900E7BBB4 /* snow_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BFEB5F991455BA5900E7BBB4 /* snow_bg.png */; };
 		BFEB5F9C1455BA5900E7BBB4 /* snow_bg-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFEB5F9A1455BA5900E7BBB4 /* snow_bg-hd.png */; };
+		BFF372E914565D0100C8F267 /* Level3ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372E414565D0100C8F267 /* Level3ActionLayer.mm */; };
+		BFF372EA14565D0100C8F267 /* Level3Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372E614565D0100C8F267 /* Level3Scene.mm */; };
+		BFF372EB14565D0100C8F267 /* Level3UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372E814565D0100C8F267 /* Level3UILayer.mm */; };
+		BFF372F31456602E00C8F267 /* Level6ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372EE1456602E00C8F267 /* Level6ActionLayer.mm */; };
+		BFF372F41456602E00C8F267 /* Level6Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372F01456602E00C8F267 /* Level6Scene.mm */; };
+		BFF372F51456602E00C8F267 /* Level6UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372F21456602E00C8F267 /* Level6UILayer.mm */; };
+		BFF372FC1456621500C8F267 /* Level2ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372F71456621500C8F267 /* Level2ActionLayer.mm */; };
+		BFF372FD1456621500C8F267 /* Level2Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372F91456621500C8F267 /* Level2Scene.mm */; };
+		BFF372FE1456621500C8F267 /* Level2UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372FB1456621500C8F267 /* Level2UILayer.mm */; };
 		BFF43D021455CF5200606326 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF43D001455CF5200606326 /* lock.png */; };
 		BFF43D031455CF5200606326 /* lock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF43D011455CF5200606326 /* lock-hd.png */; };
 /* End PBXBuildFile section */
@@ -316,12 +336,6 @@
 		BF1EC8B5143ED0D30083412C /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
 		BF1FBB97144FE29B00DF3E0B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		BF1FBB98144FE29B00DF3E0B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		BF24B28A144DF4A900F0A37E /* Level2Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2Scene.h; sourceTree = "<group>"; };
-		BF24B28B144DF4A900F0A37E /* Level2Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2Scene.mm; sourceTree = "<group>"; };
-		BF24B28D144DF4E200F0A37E /* Level2UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2UILayer.h; sourceTree = "<group>"; };
-		BF24B28E144DF4E200F0A37E /* Level2UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2UILayer.mm; sourceTree = "<group>"; };
-		BF24B290144DF4F000F0A37E /* Level2ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2ActionLayer.h; sourceTree = "<group>"; };
-		BF24B291144DF4F000F0A37E /* Level2ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2ActionLayer.mm; sourceTree = "<group>"; };
 		BF371F1A1452731D008F5B11 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start.png; sourceTree = "<group>"; };
 		BF382AD7143F994C004D59B2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		BF382AD8143F994C004D59B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
@@ -584,12 +598,38 @@
 		BF805BC21453E3FC00493AA4 /* Platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Platform.mm; sourceTree = "<group>"; };
 		BF8CFEF21455A8CC00A45C75 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		BF8CFEF31455A8CC00A45C75 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
-		BFAE091E1455BD8C003FD4A3 /* Level3ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3ActionLayer.h; sourceTree = "<group>"; };
-		BFAE091F1455BD8C003FD4A3 /* Level3ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level3ActionLayer.mm; sourceTree = "<group>"; };
-		BFAE09201455BD8C003FD4A3 /* Level3Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3Scene.h; sourceTree = "<group>"; };
-		BFAE09211455BD8C003FD4A3 /* Level3Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level3Scene.mm; sourceTree = "<group>"; };
-		BFAE09221455BD8C003FD4A3 /* Level3UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3UILayer.h; sourceTree = "<group>"; };
-		BFAE09231455BD8C003FD4A3 /* Level3UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level3UILayer.mm; sourceTree = "<group>"; };
+		BF9D63871456679A00117A54 /* Level8ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level8ActionLayer.h; sourceTree = "<group>"; };
+		BF9D63881456679A00117A54 /* Level8ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level8ActionLayer.mm; sourceTree = "<group>"; };
+		BF9D63891456679A00117A54 /* Level8Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level8Scene.h; sourceTree = "<group>"; };
+		BF9D638A1456679A00117A54 /* Level8Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level8Scene.mm; sourceTree = "<group>"; };
+		BF9D638B1456679A00117A54 /* Level8UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level8UILayer.h; sourceTree = "<group>"; };
+		BF9D638C1456679A00117A54 /* Level8UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level8UILayer.mm; sourceTree = "<group>"; };
+		BF9D6390145669B000117A54 /* night_background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "night_background-hd.png"; sourceTree = "<group>"; };
+		BF9D6391145669B000117A54 /* night_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night_background.png; sourceTree = "<group>"; };
+		BF9D639514566E8B00117A54 /* Level9ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level9ActionLayer.h; sourceTree = "<group>"; };
+		BF9D639614566E8B00117A54 /* Level9ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level9ActionLayer.mm; sourceTree = "<group>"; };
+		BF9D639714566E8B00117A54 /* Level9Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level9Scene.h; sourceTree = "<group>"; };
+		BF9D639814566E8B00117A54 /* Level9Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level9Scene.mm; sourceTree = "<group>"; };
+		BF9D639914566E8B00117A54 /* Level9UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level9UILayer.h; sourceTree = "<group>"; };
+		BF9D639A14566E8B00117A54 /* Level9UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level9UILayer.mm; sourceTree = "<group>"; };
+		BF9D63A1145687BC00117A54 /* Level7ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level7ActionLayer.h; sourceTree = "<group>"; };
+		BF9D63A2145687BC00117A54 /* Level7ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level7ActionLayer.mm; sourceTree = "<group>"; };
+		BF9D63A3145687BC00117A54 /* Level7Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level7Scene.h; sourceTree = "<group>"; };
+		BF9D63A4145687BC00117A54 /* Level7Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level7Scene.mm; sourceTree = "<group>"; };
+		BF9D63A5145687BC00117A54 /* Level7UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level7UILayer.h; sourceTree = "<group>"; };
+		BF9D63A6145687BC00117A54 /* Level7UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level7UILayer.mm; sourceTree = "<group>"; };
+		BF9D63AA145687F000117A54 /* Level11ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level11ActionLayer.h; sourceTree = "<group>"; };
+		BF9D63AB145687F000117A54 /* Level11ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level11ActionLayer.mm; sourceTree = "<group>"; };
+		BF9D63AC145687F000117A54 /* Level11Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level11Scene.h; sourceTree = "<group>"; };
+		BF9D63AD145687F000117A54 /* Level11Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level11Scene.mm; sourceTree = "<group>"; };
+		BF9D63AE145687F000117A54 /* Level11UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level11UILayer.h; sourceTree = "<group>"; };
+		BF9D63AF145687F000117A54 /* Level11UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level11UILayer.mm; sourceTree = "<group>"; };
+		BF9D63B3145687F900117A54 /* Level12ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level12ActionLayer.h; sourceTree = "<group>"; };
+		BF9D63B4145687F900117A54 /* Level12ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level12ActionLayer.mm; sourceTree = "<group>"; };
+		BF9D63B5145687F900117A54 /* Level12Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level12Scene.h; sourceTree = "<group>"; };
+		BF9D63B6145687F900117A54 /* Level12Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level12Scene.mm; sourceTree = "<group>"; };
+		BF9D63B7145687F900117A54 /* Level12UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level12UILayer.h; sourceTree = "<group>"; };
+		BF9D63B8145687F900117A54 /* Level12UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level12UILayer.mm; sourceTree = "<group>"; };
 		BFB9987E144F3C02001DFCEE /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
 		BFB9987F144F3C02001DFCEE /* Box.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Box.mm; sourceTree = "<group>"; };
 		BFB99882144F3DBC001DFCEE /* Trash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trash.h; sourceTree = "<group>"; };
@@ -626,6 +666,24 @@
 		BFDCA90C1443631E00153456 /* Penguin2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Penguin2.mm; sourceTree = "<group>"; };
 		BFEB5F991455BA5900E7BBB4 /* snow_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow_bg.png; sourceTree = "<group>"; };
 		BFEB5F9A1455BA5900E7BBB4 /* snow_bg-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow_bg-hd.png"; sourceTree = "<group>"; };
+		BFF372E314565D0100C8F267 /* Level3ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3ActionLayer.h; sourceTree = "<group>"; };
+		BFF372E414565D0100C8F267 /* Level3ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level3ActionLayer.mm; sourceTree = "<group>"; };
+		BFF372E514565D0100C8F267 /* Level3Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3Scene.h; sourceTree = "<group>"; };
+		BFF372E614565D0100C8F267 /* Level3Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level3Scene.mm; sourceTree = "<group>"; };
+		BFF372E714565D0100C8F267 /* Level3UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3UILayer.h; sourceTree = "<group>"; };
+		BFF372E814565D0100C8F267 /* Level3UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level3UILayer.mm; sourceTree = "<group>"; };
+		BFF372ED1456602E00C8F267 /* Level6ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level6ActionLayer.h; sourceTree = "<group>"; };
+		BFF372EE1456602E00C8F267 /* Level6ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level6ActionLayer.mm; sourceTree = "<group>"; };
+		BFF372EF1456602E00C8F267 /* Level6Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level6Scene.h; sourceTree = "<group>"; };
+		BFF372F01456602E00C8F267 /* Level6Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level6Scene.mm; sourceTree = "<group>"; };
+		BFF372F11456602E00C8F267 /* Level6UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level6UILayer.h; sourceTree = "<group>"; };
+		BFF372F21456602E00C8F267 /* Level6UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level6UILayer.mm; sourceTree = "<group>"; };
+		BFF372F61456621500C8F267 /* Level2ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2ActionLayer.h; sourceTree = "<group>"; };
+		BFF372F71456621500C8F267 /* Level2ActionLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2ActionLayer.mm; sourceTree = "<group>"; };
+		BFF372F81456621500C8F267 /* Level2Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2Scene.h; sourceTree = "<group>"; };
+		BFF372F91456621500C8F267 /* Level2Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2Scene.mm; sourceTree = "<group>"; };
+		BFF372FA1456621500C8F267 /* Level2UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2UILayer.h; sourceTree = "<group>"; };
+		BFF372FB1456621500C8F267 /* Level2UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2UILayer.mm; sourceTree = "<group>"; };
 		BFF43D001455CF5200606326 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		BFF43D011455CF5200606326 /* lock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock-hd.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -802,12 +860,12 @@
 		BF24B289144DF47700F0A37E /* Level2 */ = {
 			isa = PBXGroup;
 			children = (
-				BF24B28A144DF4A900F0A37E /* Level2Scene.h */,
-				BF24B28B144DF4A900F0A37E /* Level2Scene.mm */,
-				BF24B28D144DF4E200F0A37E /* Level2UILayer.h */,
-				BF24B28E144DF4E200F0A37E /* Level2UILayer.mm */,
-				BF24B290144DF4F000F0A37E /* Level2ActionLayer.h */,
-				BF24B291144DF4F000F0A37E /* Level2ActionLayer.mm */,
+				BFF372F61456621500C8F267 /* Level2ActionLayer.h */,
+				BFF372F71456621500C8F267 /* Level2ActionLayer.mm */,
+				BFF372F81456621500C8F267 /* Level2Scene.h */,
+				BFF372F91456621500C8F267 /* Level2Scene.mm */,
+				BFF372FA1456621500C8F267 /* Level2UILayer.h */,
+				BFF372FB1456621500C8F267 /* Level2UILayer.mm */,
 			);
 			name = Level2;
 			sourceTree = "<group>";
@@ -835,6 +893,9 @@
 		BF39696B143B60E300EC7DBA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				BF9D63A0145687A500117A54 /* Level12 */,
+				BF9D639F1456879C00117A54 /* Level11 */,
+				BF9D639E1456879300117A54 /* Level7 */,
 				BFE3F184143EDEBD007BB741 /* MainMenu */,
 				BFD131BC1455F0BE008173E4 /* Intro */,
 				BFDCA90214435D1000153456 /* Level1 */,
@@ -842,6 +903,9 @@
 				BFAE091C1455BD1D003FD4A3 /* Level3 */,
 				BFBD9B7F14564D7C0065C345 /* Level4 */,
 				BFBD9B891456509B0065C345 /* Level5 */,
+				BFF372EC14565FF700C8F267 /* Level6 */,
+				BF9D63851456673A00117A54 /* Level8 */,
+				BF9D639414566E6E00117A54 /* Level9 */,
 				BFE3F187143EDEEE007BB741 /* LevelComplete */,
 				BF5D2C97144EA4BF00EFD358 /* Misc */,
 			);
@@ -905,6 +969,8 @@
 				BF1EC84D143E9B650083412C /* background-hd.png */,
 				BFBD9B6B1456257C0065C345 /* instructions_screen-hd.png */,
 				BFBD9B6D145625880065C345 /* instructions_screen.png */,
+				BF9D6390145669B000117A54 /* night_background-hd.png */,
+				BF9D6391145669B000117A54 /* night_background.png */,
 			);
 			name = Background;
 			sourceTree = "<group>";
@@ -1353,15 +1419,80 @@
 			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
+		BF9D63851456673A00117A54 /* Level8 */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D63871456679A00117A54 /* Level8ActionLayer.h */,
+				BF9D63881456679A00117A54 /* Level8ActionLayer.mm */,
+				BF9D63891456679A00117A54 /* Level8Scene.h */,
+				BF9D638A1456679A00117A54 /* Level8Scene.mm */,
+				BF9D638B1456679A00117A54 /* Level8UILayer.h */,
+				BF9D638C1456679A00117A54 /* Level8UILayer.mm */,
+			);
+			name = Level8;
+			sourceTree = "<group>";
+		};
+		BF9D639414566E6E00117A54 /* Level9 */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D639514566E8B00117A54 /* Level9ActionLayer.h */,
+				BF9D639614566E8B00117A54 /* Level9ActionLayer.mm */,
+				BF9D639714566E8B00117A54 /* Level9Scene.h */,
+				BF9D639814566E8B00117A54 /* Level9Scene.mm */,
+				BF9D639914566E8B00117A54 /* Level9UILayer.h */,
+				BF9D639A14566E8B00117A54 /* Level9UILayer.mm */,
+			);
+			name = Level9;
+			sourceTree = "<group>";
+		};
+		BF9D639E1456879300117A54 /* Level7 */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D63A1145687BC00117A54 /* Level7ActionLayer.h */,
+				BF9D63A2145687BC00117A54 /* Level7ActionLayer.mm */,
+				BF9D63A3145687BC00117A54 /* Level7Scene.h */,
+				BF9D63A4145687BC00117A54 /* Level7Scene.mm */,
+				BF9D63A5145687BC00117A54 /* Level7UILayer.h */,
+				BF9D63A6145687BC00117A54 /* Level7UILayer.mm */,
+			);
+			name = Level7;
+			sourceTree = "<group>";
+		};
+		BF9D639F1456879C00117A54 /* Level11 */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D63AA145687F000117A54 /* Level11ActionLayer.h */,
+				BF9D63AB145687F000117A54 /* Level11ActionLayer.mm */,
+				BF9D63AC145687F000117A54 /* Level11Scene.h */,
+				BF9D63AD145687F000117A54 /* Level11Scene.mm */,
+				BF9D63AE145687F000117A54 /* Level11UILayer.h */,
+				BF9D63AF145687F000117A54 /* Level11UILayer.mm */,
+			);
+			name = Level11;
+			sourceTree = "<group>";
+		};
+		BF9D63A0145687A500117A54 /* Level12 */ = {
+			isa = PBXGroup;
+			children = (
+				BF9D63B3145687F900117A54 /* Level12ActionLayer.h */,
+				BF9D63B4145687F900117A54 /* Level12ActionLayer.mm */,
+				BF9D63B5145687F900117A54 /* Level12Scene.h */,
+				BF9D63B6145687F900117A54 /* Level12Scene.mm */,
+				BF9D63B7145687F900117A54 /* Level12UILayer.h */,
+				BF9D63B8145687F900117A54 /* Level12UILayer.mm */,
+			);
+			name = Level12;
+			sourceTree = "<group>";
+		};
 		BFAE091C1455BD1D003FD4A3 /* Level3 */ = {
 			isa = PBXGroup;
 			children = (
-				BFAE091E1455BD8C003FD4A3 /* Level3ActionLayer.h */,
-				BFAE091F1455BD8C003FD4A3 /* Level3ActionLayer.mm */,
-				BFAE09201455BD8C003FD4A3 /* Level3Scene.h */,
-				BFAE09211455BD8C003FD4A3 /* Level3Scene.mm */,
-				BFAE09221455BD8C003FD4A3 /* Level3UILayer.h */,
-				BFAE09231455BD8C003FD4A3 /* Level3UILayer.mm */,
+				BFF372E314565D0100C8F267 /* Level3ActionLayer.h */,
+				BFF372E414565D0100C8F267 /* Level3ActionLayer.mm */,
+				BFF372E514565D0100C8F267 /* Level3Scene.h */,
+				BFF372E614565D0100C8F267 /* Level3Scene.mm */,
+				BFF372E714565D0100C8F267 /* Level3UILayer.h */,
+				BFF372E814565D0100C8F267 /* Level3UILayer.mm */,
 			);
 			name = Level3;
 			sourceTree = "<group>";
@@ -1456,6 +1587,19 @@
 			name = LevelComplete;
 			sourceTree = "<group>";
 		};
+		BFF372EC14565FF700C8F267 /* Level6 */ = {
+			isa = PBXGroup;
+			children = (
+				BFF372ED1456602E00C8F267 /* Level6ActionLayer.h */,
+				BFF372EE1456602E00C8F267 /* Level6ActionLayer.mm */,
+				BFF372EF1456602E00C8F267 /* Level6Scene.h */,
+				BFF372F01456602E00C8F267 /* Level6Scene.mm */,
+				BFF372F11456602E00C8F267 /* Level6UILayer.h */,
+				BFF372F21456602E00C8F267 /* Level6UILayer.mm */,
+			);
+			name = Level6;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1542,6 +1686,8 @@
 				BFBD9B761456273A0065C345 /* scene1atlas.png in Resources */,
 				BFBD9B7C145644AA0065C345 /* FishIdle.png in Resources */,
 				BFBD9B7E145645040065C345 /* FishIdle-hd.png in Resources */,
+				BF9D6392145669B000117A54 /* night_background-hd.png in Resources */,
+				BF9D6393145669B000117A54 /* night_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,9 +1842,6 @@
 				BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */,
 				BF1B32C61443F34D00AD94FF /* Fish2.mm in Sources */,
 				BF1B32CA14440F6F00AD94FF /* Box2DHelpers.mm in Sources */,
-				BF24B28C144DF4A900F0A37E /* Level2Scene.mm in Sources */,
-				BF24B28F144DF4E200F0A37E /* Level2UILayer.mm in Sources */,
-				BF24B292144DF4F000F0A37E /* Level2ActionLayer.mm in Sources */,
 				BF5D2CAA144EB07F00EFD358 /* PauseMenu.m in Sources */,
 				BFB99880144F3C02001DFCEE /* Box.mm in Sources */,
 				BFB99884144F3DBC001DFCEE /* Trash.mm in Sources */,
@@ -1706,9 +1849,6 @@
 				BF805BBF1453DFCF00493AA4 /* Level1Scene.mm in Sources */,
 				BF805BC01453DFCF00493AA4 /* Level1UILayer.mm in Sources */,
 				BF805BC31453E3FC00493AA4 /* Platform.mm in Sources */,
-				BFAE09241455BD8C003FD4A3 /* Level3ActionLayer.mm in Sources */,
-				BFAE09251455BD8C003FD4A3 /* Level3Scene.mm in Sources */,
-				BFAE09261455BD8C003FD4A3 /* Level3UILayer.mm in Sources */,
 				BFD131C21455F0D8008173E4 /* IntroLayer.m in Sources */,
 				BFD131C31455F0D8008173E4 /* IntroScene.m in Sources */,
 				BFBD9B8614564DA00065C345 /* Level4ActionLayer.mm in Sources */,
@@ -1717,6 +1857,30 @@
 				BFBD9B90145650BB0065C345 /* Level5ActionLayer.mm in Sources */,
 				BFBD9B91145650BB0065C345 /* Level5Scene.mm in Sources */,
 				BFBD9B92145650BB0065C345 /* Level5UILayer.mm in Sources */,
+				BFF372E914565D0100C8F267 /* Level3ActionLayer.mm in Sources */,
+				BFF372EA14565D0100C8F267 /* Level3Scene.mm in Sources */,
+				BFF372EB14565D0100C8F267 /* Level3UILayer.mm in Sources */,
+				BFF372F31456602E00C8F267 /* Level6ActionLayer.mm in Sources */,
+				BFF372F41456602E00C8F267 /* Level6Scene.mm in Sources */,
+				BFF372F51456602E00C8F267 /* Level6UILayer.mm in Sources */,
+				BFF372FC1456621500C8F267 /* Level2ActionLayer.mm in Sources */,
+				BFF372FD1456621500C8F267 /* Level2Scene.mm in Sources */,
+				BFF372FE1456621500C8F267 /* Level2UILayer.mm in Sources */,
+				BF9D638D1456679A00117A54 /* Level8ActionLayer.mm in Sources */,
+				BF9D638E1456679A00117A54 /* Level8Scene.mm in Sources */,
+				BF9D638F1456679A00117A54 /* Level8UILayer.mm in Sources */,
+				BF9D639B14566E8B00117A54 /* Level9ActionLayer.mm in Sources */,
+				BF9D639C14566E8B00117A54 /* Level9Scene.mm in Sources */,
+				BF9D639D14566E8B00117A54 /* Level9UILayer.mm in Sources */,
+				BF9D63A7145687BC00117A54 /* Level7ActionLayer.mm in Sources */,
+				BF9D63A8145687BC00117A54 /* Level7Scene.mm in Sources */,
+				BF9D63A9145687BC00117A54 /* Level7UILayer.mm in Sources */,
+				BF9D63B0145687F000117A54 /* Level11ActionLayer.mm in Sources */,
+				BF9D63B1145687F000117A54 /* Level11Scene.mm in Sources */,
+				BF9D63B2145687F000117A54 /* Level11UILayer.mm in Sources */,
+				BF9D63B9145687F900117A54 /* Level12ActionLayer.mm in Sources */,
+				BF9D63BA145687F900117A54 /* Level12Scene.mm in Sources */,
+				BF9D63BB145687F900117A54 /* Level12UILayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

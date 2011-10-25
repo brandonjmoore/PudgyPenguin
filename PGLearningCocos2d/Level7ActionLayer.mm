@@ -1,22 +1,22 @@
 //
-//  Level5ActionLayer.m
+//  Level7ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level5ActionLayer.h"
+#import "Level7ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level5UILayer.h"
+#import "Level7UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 
-@implementation Level5ActionLayer
+@implementation Level7ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"Level5ActionLayer dealloc");
+    CCLOG(@"Level7ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
     
@@ -121,7 +121,7 @@
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
-    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.05f)];
+    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.96f)];
     
     [self addChild:clearButtonMenu z:10 tag:kButtonTagValue];
 }
@@ -221,13 +221,13 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel5];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel7];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel6];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel8];
 }
 
 -(void)doPause {
@@ -277,7 +277,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"night_background.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -287,7 +287,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level6unlocked"];
+    [defaults setBool:YES forKey:@"level8unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -348,7 +348,7 @@
     
 }
 
--(id)initWithLevel5UILayer:(Level5UILayer *)level5UILayer {
+-(id)initWithLevel7UILayer:(Level7UILayer *)level7UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         lineArray = [[NSMutableArray array] retain];
@@ -358,7 +358,7 @@
         remainingTime = 31;
    
         [self setupBackground];
-        uiLayer = level5UILayer;
+        uiLayer = level7UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -373,22 +373,74 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.1f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.18f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.26f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.34f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.42f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.50f) ofType:kNormalBox];
+        
+
+        
+        //first row
+
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.38f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.48f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
+        
+        //second row
+        [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.20f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
         
         
-        //Large icicle
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
+        //third row
+            
+        [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.38f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.48f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
+        
+        
+        //fourth row
+        [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.25f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
+
+
         
         //bouncybox
-        //[self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.5f) ofType:kBouncyBox];
+        //[self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox];
         
         
 
@@ -397,7 +449,7 @@
 
         
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.8f, winSize.height * 0.1f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
@@ -440,6 +492,7 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
+            
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];

@@ -1,5 +1,5 @@
 //
-//  Level3UILayer.h
+//  Level9UILayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-@interface Level3UILayer : CCLayer {
+@interface Level9UILayer : CCLayer {
     CCLabelTTF *label;
     CCLabelTTF *timeLabel;
     CCLabelTTF *fishLabel;
