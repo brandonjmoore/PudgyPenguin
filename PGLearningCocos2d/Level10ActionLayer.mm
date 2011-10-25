@@ -71,7 +71,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.5, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.45, screenSize.height * 0.95)];
             numFishCreated++;
             
         }else {
@@ -372,7 +372,19 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.1f)];
+
+        
         //MATRIX
+        
+        
+        [self createBoxAtLocation:ccp(winSize.width * 0.125f, winSize.height *0.10f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.375f, winSize.height *0.10f) ofType:kBalloonBox];
+        //[self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.15f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.625f, winSize.height *0.10f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.875f, winSize.height *0.10f) ofType:kBalloonBox];
+        
         [self createBoxAtLocation:ccp(winSize.width * 0.0f, winSize.height *0.25f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.25f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.25f) ofType:kBalloonBox];
@@ -396,16 +408,8 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.625f, winSize.height *0.7f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.875f, winSize.height *0.7f) ofType:kBalloonBox];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.0f, winSize.height *0.85f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.85f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.85f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.75f, winSize.height *0.85f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 1.0f, winSize.height *0.85f) ofType:kBalloonBox];
         
-        
-        
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.1f)];
-        
+              
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
         
