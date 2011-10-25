@@ -228,7 +228,6 @@
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    //[[CCDirector sharedDirector] resume];
     [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
 }
 
@@ -432,8 +431,8 @@
     
     if (penguin2 != nil) {
         if (!gameOver){
-                NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
-                [uiLayer displayNumFish:numFishText];
+            NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
+            [uiLayer displayNumFish:numFishText];
 
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;

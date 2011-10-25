@@ -11,9 +11,11 @@
 @interface Level1UILayer : CCLayer {
     CCLabelTTF *label;
     CCLabelTTF *timeLabel;
+    CCLabelTTF *fishLabel;
 }
 
 -(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector;
 -(void) displaySecs:(double)secs;
+-(void)displayNumFish:(NSString *)numFish;
 
 @end

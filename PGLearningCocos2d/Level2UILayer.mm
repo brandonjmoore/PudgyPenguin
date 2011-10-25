@@ -51,9 +51,6 @@
     
     CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
     CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.1 scale:1.0];
-    //CCDelayTime *delay = [CCDelayTime actionWithDuration:2.0];
-    //CCFadeOut *fade = [CCFadeOut actionWithDuration:0.5];
-    //CCHide *hide = [CCHide action];
     CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
     CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
     [self addChild:sprite z:10];
@@ -77,23 +74,8 @@
 
 -(void)displayNumFish:(NSString *)numFishText {
     [fishLabel stopAllActions];
-    //fishLabel = [CCLabelTTF labelWithString:numFish fontName:@"Marker Felt" fontSize:24.0];
     
     [fishLabel setString:[NSString stringWithFormat:@"%@", numFishText]];
-    
-    //[fishLabel stopAllActions];
-    
-    
-    //CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
-    //CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.1 scale:1.0];
-    //CCDelayTime *delay = [CCDelayTime actionWithDuration:2.0];
-    //CCFadeIn *fadeIn = [CCFadeOut actionWithDuration:0.5];
-    //CCFadeOut *fadeOut = [CCFadeOut actionWithDuration:1.5];
-    //CCHide *hide = [CCHide action];
-    //CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
-    //CCSequence *sequence = [CCSequence actions:fadeIn, fadeOut, nil];
-    
-    //[fishLabel runAction:sequence];
     
 }
 

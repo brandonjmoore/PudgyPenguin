@@ -19,12 +19,21 @@
         label.visible = NO;
         [self addChild:label];
         
-        float fontSize = 20.0;
-        timeLabel = [CCLabelTTF labelWithString:@"" fontName:@"Helvetica" fontSize:fontSize];
+        float fontSize = 28.0;
+        timeLabel = [CCLabelTTF labelWithString:@"" fontName:@"marker felt" fontSize:fontSize];
         timeLabel.anchorPoint = ccp(0.5f, 0);
-        timeLabel.position = ccp(winSize.width *0.5f, 0);
+        timeLabel.position = ccp(winSize.width *0.5f, winSize.height *0.93f);
         timeLabel.color = ccGRAY;
         [self addChild:timeLabel];
+        
+        fishLabel = [CCLabelTTF labelWithString:@"" fontName:@"marker felt" fontSize:24.0f];
+        fishLabel.anchorPoint = ccp(1, 0.5f);
+        fishLabel.position = ccp(winSize.width *0.80f, winSize.height *0.97);
+        [self addChild:fishLabel z:8];
+        
+        CCSprite *fishIdle = [CCSprite spriteWithFile:@"FishIdle.png"];
+        fishIdle.position = ccp(fishLabel.position.x + 7, fishLabel.position.y);
+        [self addChild:fishIdle];
         
     }
     
@@ -33,17 +42,16 @@
 
 -(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    
     [sprite stopAllActions];
-    [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
+    [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.75f)];
     
     CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
     CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.1 scale:1.0];
-    CCDelayTime *delay = [CCDelayTime actionWithDuration:2.0];
-    CCFadeOut *fade = [CCFadeOut actionWithDuration:0.5];
-    CCHide *hide = [CCHide action];
     CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
-    CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, delay, fade, hide, onComplete, nil];
-    [self addChild:sprite];
+    CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
+    [self addChild:sprite z:10];
     [sprite runAction:sequence];
     return TRUE;
     
@@ -59,6 +67,13 @@
     int sec = isecs % 60;
     //int hund = (int) (fractPart * 100);
     [timeLabel setString:[NSString stringWithFormat:@"%d", sec]];
+    
+}
+
+-(void)displayNumFish:(NSString *)numFishText {
+    [fishLabel stopAllActions];
+    
+    [fishLabel setString:[NSString stringWithFormat:@"%@", numFishText]];
     
 }
 

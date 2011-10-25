@@ -102,7 +102,7 @@
     
     pauseButtonMenu = [CCMenu menuWithItems:pauseButton, nil];
     
-    [pauseButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.95f)];
+    [pauseButtonMenu setPosition:ccp(winSize.width * 0.05f, winSize.height * 0.96f)];
     
     [self addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
 }
@@ -116,7 +116,7 @@
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
-    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.05f)];
+    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.96f)];
     
     [self addChild:clearButtonMenu z:10 tag:kButtonTagValue];
 }
@@ -219,6 +219,13 @@
     [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];//Level Specific: Change for new level
 }
 
+-(void) doNextLevel {
+    self.isTouchEnabled = YES;
+    
+    //[[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];
+}
+
 -(void)doPause {
     
     clearButton.isEnabled = NO;
@@ -232,7 +239,7 @@
     [self addChild:pauseLayer z:9];
     
     CCSprite *pauseText = [CCSprite spriteWithSpriteFrameName:@"paused_text.png"];
-    [pauseText setPosition:ccp(screenSize.width *0.5f, screenSize.height * 0.5f)];
+    [pauseText setPosition:ccp(screenSize.width *0.5f, screenSize.height * 0.85f)];
     
     CCSprite *resumeButtonNormal = [CCSprite spriteWithSpriteFrameName:@"resume.png"];
     CCSprite *resumeButtonSelected = [CCSprite spriteWithSpriteFrameName:@"resume_over.png"];
@@ -249,10 +256,10 @@
     
     CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
     
-    pauseButtonMenu = [CCMenu menuWithItems:mainMenuButton, resumeButton, resetButton, nil];
+    pauseButtonMenu = [CCMenu menuWithItems:resumeButton, resetButton, mainMenuButton, nil];
     
-    [pauseButtonMenu alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-    [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.25f)];
+    [pauseButtonMenu alignItemsVerticallyWithPadding:screenSize.height * 0.04f];
+    [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
     
     [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
     [pauseLayer addChild:pauseText];
@@ -274,11 +281,60 @@
 }
 
 -(void) gameOverPass: (id)sender {
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];
+    clearButton.isEnabled = NO;
+    pauseButton.isEnabled = NO;
+    self.isTouchEnabled = NO;
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
+    [self addChild:levelCompleteLayer z:9];
+    
+    CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
+    CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
+    
+    CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
+    
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
+    
+    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    
+    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
+    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
+    
+    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
+    
+    CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
+    [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
+    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
+    [self addChild:nextLevelMenu z:10];
+
 }
 
 -(void) gameOverFail: (id)sender {
-    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+    clearButton.isEnabled = NO;
+    pauseButton.isEnabled = NO;
+    self.isTouchEnabled = NO;
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
+    [self addChild:levelCompleteLayer z:9];
+    
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
+    
+    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    
+    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
+    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
+    
+    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
+    
+    CCMenu *nextLevelMenu = [CCMenu menuWithItems:resetButton, mainMenuButton, nil];
+    [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
+    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
+    [self addChild:nextLevelMenu z:10];
 }
 
 -(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
@@ -310,8 +366,6 @@
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
-        
-        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
@@ -349,6 +403,9 @@
     
     if (penguin2 != nil) {
         if (!gameOver){
+            NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
+            [uiLayer displayNumFish:numFishText];
+            
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
