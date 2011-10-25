@@ -1976,7 +1976,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Brandon Moore";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brandon Moore";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -1984,6 +1985,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "68CA968F-163D-4074-8D49-B56D4159F3FB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "68CA968F-163D-4074-8D49-B56D4159F3FB";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -2028,7 +2031,8 @@
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brandon Moore (H7XF53V3R8)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Brandon Moore";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brandon Moore";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PGLearningCocos2d/Prefix.pch;
@@ -2043,7 +2047,8 @@
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguin;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F6BCFDA-413B-42C6-92E8-C8F27875CB55";
+				PROVISIONING_PROFILE = "68CA968F-163D-4074-8D49-B56D4159F3FB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "68CA968F-163D-4074-8D49-B56D4159F3FB";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
