@@ -33,7 +33,8 @@ static GameManager* _sharedGameManager = nil;
     @synchronized([GameManager class])
     {
         if(!_sharedGameManager)
-            [[self alloc] init];
+            _sharedGameManager = [[self alloc] init];
+            //[[self alloc] init];
         return _sharedGameManager;
     }
     return nil;

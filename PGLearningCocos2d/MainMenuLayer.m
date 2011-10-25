@@ -293,9 +293,9 @@
 -(void)loadAudio {
     
     
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     
-    if (([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) && (![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])) {
         
         [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_MID];
         
@@ -304,7 +304,10 @@
         soundEngine = [SimpleAudioEngine sharedEngine];
         
         [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK];
+        CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
         
+    if (([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) {
         [soundEngine playBackgroundMusic:BACKGROUND_TRACK];
     } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]){
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
@@ -315,6 +318,8 @@
 {
     self = [super init];
     if (self != nil) {
+        
+        
         
         [self loadAudio];
         

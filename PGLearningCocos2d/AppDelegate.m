@@ -46,6 +46,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
+
+    
+    if (![[NSUserDefaults standardUserDefaults] synchronize])
+        NSLog(@"not successful in writing the default prefs");
+    
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
     
