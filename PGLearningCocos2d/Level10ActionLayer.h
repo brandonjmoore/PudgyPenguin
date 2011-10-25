@@ -1,5 +1,5 @@
 //
-//  Level1ActionLayer.h
+//  Level10ActionLayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
@@ -12,20 +12,22 @@
 #import "Constants.h"
 #import "Box2DSprite.h"
 #import "Box.h"
+#import "Platform.h"
 #import "Trash.h"
 
 
 
-@class Level1UILayer;
+@class Level10UILayer;
 @class Penguin2;
 @class Fish2;
 
-@interface Level1ActionLayer : CCLayer {
+@interface Level10ActionLayer : CCLayer {
     //Characters
     Penguin2 *penguin2;
     Fish2 *fish2;
     Box *box;
     Trash *trash;
+    Platform *platform;
     
     //Menus
     CCMenu *pauseButtonMenu;
@@ -46,16 +48,15 @@
     b2World *world;
     GLESDebugDraw *debugDraw;
     CCSpriteBatchNode *sceneSpriteBatchNode;
-    Level1UILayer *uiLayer;
+    Level10UILayer *uiLayer;
     bool gameOver;
     int numFishCreated;
     int numFishLeftScene;
     double startTime;
     double currentMediaTime;
     double remainingTime;
-
 }
 
--(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer;
+-(id)initWithLevel10UILayer:(Level10UILayer *)level10UILayer;
         
 @end

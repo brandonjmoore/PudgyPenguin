@@ -12,7 +12,6 @@
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	CCLOG(@"Touches received, returning to the Main Menu");
-	[[GameManager sharedGameManager] setHasPlayerBeenDefeated :NO]; // Reset this for the next level
     NSInteger currentScene = [[GameManager sharedGameManager] getCurrentScene];
     
     //TODO: Make sure this works

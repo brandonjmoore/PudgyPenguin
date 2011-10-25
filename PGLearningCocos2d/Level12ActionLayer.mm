@@ -355,7 +355,7 @@
         lineSpriteArray = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
-        remainingTime = 31;
+        remainingTime = 46;
    
         [self setupBackground];
         uiLayer = level12UILayer;

@@ -120,6 +120,16 @@
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Is Music On</string>
+			<key>Key</key>
+			<string>ismusicon</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

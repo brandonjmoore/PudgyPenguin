@@ -8,8 +8,8 @@
 
 #import "GameManager.h"
 #import "MainMenuScene.h"
-//#import "OptionsScene.h"
-//#import "CreditsScene.h"
+#import "MoreInfoScene.h"
+#import "CreditsScene.h"
 #import "IntroScene.h"
 #import "LevelCompleteScene.h"
 //#import "PhysicsLayer.h"
@@ -22,14 +22,13 @@
 #import "Level7Scene.h"
 #import "Level8Scene.h"
 #import "Level9Scene.h"
+#import "Level10Scene.h"
 #import "Level11Scene.h"
 #import "Level12Scene.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
 @synthesize isMusicON;
-@synthesize isSoundEffectsON;
-@synthesize hasPlayerBeenDefeated;
 
 +(GameManager*)sharedGameManager {
     @synchronized([GameManager class])
@@ -57,9 +56,7 @@ static GameManager* _sharedGameManager = nil;
     if (self != nil) {
         //Game Manager initialized
         CCLOG(@"Game Manager Singleton, init");
-        isMusicON = YES;
-        isSoundEffectsON = YES;
-        hasPlayerBeenDefeated = NO;
+        isMusicON = [[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"];
         currentScene = kNoSceneUninitialized;
     }
     return self;
@@ -73,11 +70,11 @@ static GameManager* _sharedGameManager = nil;
         case kMainMenuScene:
             sceneToRun = [MainMenuScene node];
             break;
-        case kOptionsScene:
-            //TODO: sceneToRun = [OptionsScene node];
+        case kMoreInfoScene:
+            sceneToRun = [MoreInfoScene node];
             break;
         case kCreditsScene:
-            //TODO: sceneToRun = [CreditsScene node];
+            sceneToRun = [CreditsScene node];
             break;
         case kIntroScene:
             sceneToRun = [IntroScene node];
@@ -113,7 +110,7 @@ static GameManager* _sharedGameManager = nil;
             sceneToRun = [Level9Scene node];
             break;
         case kGameLevel10:
-            //sceneToRun = [Level10Scene node];
+            sceneToRun = [Level10Scene node];
             break;
         case kGameLevel11:
             sceneToRun = [Level11Scene node];

@@ -38,7 +38,7 @@
 typedef enum {
     kNoSceneUninitialized=0,
     kMainMenuScene=1,
-    kOptionsScene=2,
+    kMoreInfoScene=2,
     kCreditsScene=3,
     kIntroScene=4,
     kLevelCompleteScene=5,
@@ -71,7 +71,25 @@ typedef enum {
 //Box2d ration (Page 289)
 #define PTM_RATIO                  21
 
-//For drawing line
-#define TOUCH_DRAWER_TAG           44
+// Audio Items
+#define AUDIO_MAX_WAITTIME 150
+
+typedef enum {
+    kAudioManagerUninitialized=0,
+    kAudioManagerFailed=1,
+    kAudioManagerInitializing=2,
+    kAudioManagerInitialized=100,
+    kAudioManagerLoading=200,
+    kAudioManagerReady=300
+    
+} GameManagerSoundState;
+
+// Audio Constants
+#define SFX_NOTLOADED NO
+#define SFX_LOADED YES
+
+// Background Music
+// Menu Scenes
+#define BACKGROUND_TRACK @"pudgypenguin.mp3"
 
 #endif

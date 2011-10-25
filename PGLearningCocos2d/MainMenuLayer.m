@@ -15,10 +15,6 @@
 
 @implementation MainMenuLayer
 
--(void)showOptions {
-    CCLOG(@"Show the options screen");
-    [[GameManager sharedGameManager] runSceneWithID:kOptionsScene];
-}
 
 -(void)playScene:(CCMenuItemFont*)itemPassedIn {
     if ([itemPassedIn tag] == 1) {
@@ -59,7 +55,7 @@
     }
     if ([itemPassedIn tag] == 10) {
         CCLOG(@"Tag 10 found, Scene 10");
-        //[[GameManager sharedGameManager] runSceneWithID:kGameLevel10];
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel10];
     }
     if ([itemPassedIn tag] == 11) {
         CCLOG(@"Tag 11 found, Scene 11");
@@ -105,14 +101,22 @@
     CCSprite *startButtonNormal = [CCSprite spriteWithSpriteFrameName:@"PlayGameButtonNormal.png"];
     CCSprite *startButtonSelected = [CCSprite spriteWithSpriteFrameName:@"PlayGameButtonSelected.png"];
     
+    CCSprite *moreButtonNormal = [CCSprite spriteWithSpriteFrameName:@"help.png"];
+    CCSprite *moreButtonSelected = [CCSprite spriteWithSpriteFrameName:@"help_over.png"];
+    
     
     CCMenuItemSprite *playGameButton = [CCMenuItemSprite itemFromNormalSprite:startButtonNormal selectedSprite:startButtonSelected disabledSprite:nil target:self selector:@selector(displaySceneSelection)];
+    CCMenuItemSprite *moreInfoButton = [CCMenuItemSprite itemFromNormalSprite:moreButtonNormal selectedSprite:moreButtonSelected disabledSprite:nil target:self selector:@selector(displayMoreInfo)];
     
     mainMenu = [CCMenu menuWithItems:playGameButton, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
+    
+    moreInfoMenu = [CCMenu menuWithItems:moreInfoButton, nil];
+    [moreInfoMenu setPosition:ccp(screenSize.width * 0.94f, screenSize.height * 0.05f)];
 
     [self addChild:mainMenu z:0 tag:kButtonTagValue];
+    [self addChild:moreInfoMenu z:0 tag:kButtonTagValue];
                                       
 }
 
@@ -120,6 +124,10 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     if (mainMenu != nil) {
         [mainMenu removeFromParentAndCleanup:YES];
+    }
+    
+    if (moreInfoMenu != nil) {
+        [moreInfoMenu removeFromParentAndCleanup:YES];
     }
     
     [self removeChild:background cleanup:YES];
@@ -277,10 +285,40 @@
     
 }
 
+-(void)displayMoreInfo {
+    CCLOG(@"Show the more info screen");
+    [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
+}
+
+-(void)loadAudio {
+    
+    
+    
+    
+    if (([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) && (![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])) {
+        
+        [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_MID];
+        
+        [[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
+        
+        soundEngine = [SimpleAudioEngine sharedEngine];
+        
+        [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK];
+        
+        [soundEngine playBackgroundMusic:BACKGROUND_TRACK];
+    } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]){
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    }
+}
+
 - (id)init
 {
     self = [super init];
     if (self != nil) {
+        
+        [self loadAudio];
+        
+        
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
         CCSpriteBatchNode *mainMenuSpriteBatchNode;

@@ -1,22 +1,22 @@
 //
-//  Level9ActionLayer.m
+//  Level10ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level9ActionLayer.h"
+#import "Level10ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level9UILayer.h"
+#import "Level10UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 
-@implementation Level9ActionLayer
+@implementation Level10ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"Level9ActionLayer dealloc");
+    CCLOG(@"Level10ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
     
@@ -71,7 +71,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.15, screenSize.height * 1.05f)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.5, screenSize.height * 0.95)];
             numFishCreated++;
             
         }else {
@@ -121,7 +121,7 @@
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
-    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.96f)];
+    [clearButtonMenu setPosition:ccp(winSize.width * 0.95f, winSize.height * 0.96)];
     
     [self addChild:clearButtonMenu z:10 tag:kButtonTagValue];
 }
@@ -192,7 +192,6 @@
     for (streak in lineSpriteArray) {
         [streak removeFromParentAndCleanup:YES];
     }
-
 }
 
 - (void)registerWithTouchDispatcher {
@@ -222,14 +221,13 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel9];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel10];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
-    [[CCDirector sharedDirector] resume];
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel10];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel11];
 }
 
 -(void)doPause {
@@ -289,9 +287,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level9unlocked"];
-    
-    [[CCDirector sharedDirector] pause];
+    [defaults setBool:YES forKey:@"level11unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -330,8 +326,6 @@
     pauseButton.isEnabled = NO;
     self.isTouchEnabled = NO;
     
-    [[CCDirector sharedDirector] pause];
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
@@ -354,10 +348,9 @@
     
 }
 
--(id)initWithLevel9UILayer:(Level9UILayer *)level9UILayer {
+-(id)initWithLevel10UILayer:(Level10UILayer *)level10UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
@@ -365,7 +358,7 @@
         remainingTime = 31;
    
         [self setupBackground];
-        uiLayer = level9UILayer;
+        uiLayer = level10UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -377,25 +370,44 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
-        
         [self addChild:sceneSpriteBatchNode z:-1];
-
-        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.05f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.05f) ofType:kBouncyBox];        
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.05f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.05f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.05f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.05f, winSize.height *0.05f) ofType:kBouncyBox];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.93f, winSize.height *0.72f) ofType:kSmallPlatform withRotation:4.7];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.23f, winSize.height *0.8f) ofType:kLargePlatform withRotation:0.0];
+        //MATRIX
+        [self createBoxAtLocation:ccp(winSize.width * 0.0f, winSize.height *0.25f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.25f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.25f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.75f, winSize.height *0.25f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 1.0f, winSize.height *0.25f) ofType:kBalloonBox];
         
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.125f, winSize.height *0.4f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.375f, winSize.height *0.4f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.625f, winSize.height *0.4f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.875f, winSize.height *0.4f) ofType:kBalloonBox];
+        
+        [self createBoxAtLocation:ccp(winSize.width * 0.0f, winSize.height *0.55f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.55f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.55f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.75f, winSize.height *0.55f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 1.0f, winSize.height *0.55f) ofType:kBalloonBox];
+        
+        [self createBoxAtLocation:ccp(winSize.width * 0.125f, winSize.height *0.7f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.375f, winSize.height *0.7f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.625f, winSize.height *0.7f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.875f, winSize.height *0.7f) ofType:kBalloonBox];
+        
+        [self createBoxAtLocation:ccp(winSize.width * 0.0f, winSize.height *0.85f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.85f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.85f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.75f, winSize.height *0.85f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 1.0f, winSize.height *0.85f) ofType:kBalloonBox];
+        
+        
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.1f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
@@ -435,15 +447,16 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
-
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
                 [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
-            } else if (remainingTime <= 0) {
+            } else {
+                if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
                     [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
+                }
             }
         }
     }

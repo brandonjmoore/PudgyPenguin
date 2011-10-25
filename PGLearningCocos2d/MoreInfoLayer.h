@@ -1,5 +1,5 @@
 //
-//  MainMenuLayer.h
+//  MoreInfoLayer.h
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/7/11.
@@ -12,17 +12,8 @@
 #import "GameManager.h"
 #import "SimpleAudioEngine.h"
 
-@interface MainMenuLayer : CCLayer {
-    CCMenu *mainMenu;
-    CCMenu *sceneSelectMenu1;
-    CCMenu *sceneSelectMenu2;
-    CCMenu *sceneSelectMenu3;
+@interface MoreInfoLayer : CCLayer {
     CCMenu *backButtonMenu;
-    CCMenu *moreInfoMenu;
-    CCSprite *background;
-    
-    //Audio
-    SimpleAudioEngine *soundEngine;
 }
 
 @end

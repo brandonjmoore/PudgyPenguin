@@ -282,6 +282,7 @@
 
 -(void) gameOverPass: (id)sender {
     
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"level2unlocked"];
     
@@ -344,6 +345,7 @@
 -(id)initWithLevel1UILayer:(Level1UILayer *)level1UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];

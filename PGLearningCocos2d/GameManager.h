@@ -11,14 +11,11 @@
 
 @interface GameManager : NSObject {
     BOOL isMusicON;
-    BOOL isSoundEffectON;
-    BOOL hasPlayerBeenDefeated;
     SceneTypes currentScene;
 }
 
 @property (readwrite) BOOL isMusicON;
-@property (readwrite) BOOL isSoundEffectsON;
-@property (readwrite) BOOL hasPlayerBeenDefeated;
+
 
 +(GameManager*)sharedGameManager;
 -(void)runSceneWithID:(SceneTypes)sceneID;
