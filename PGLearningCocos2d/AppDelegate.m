@@ -44,14 +44,41 @@ void uncaughtExceptionHandler(NSException *exception) {
     [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
+- (void)registerDefaultsFromSettingsBundle {
+    NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    if(!settingsBundle) {
+        NSLog(@"Could not find Settings.bundle");
+        return;
+    }
+    
+    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *preferences = [settings objectForKey:@"PreferenceSpecifiers"];
+    
+    NSMutableDictionary *defaultsToRegister = [[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
+    for(NSDictionary *prefSpecification in preferences) {
+        NSString *key = [prefSpecification objectForKey:@"Key"];
+        if(key) {
+            [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
+    [defaultsToRegister release];
+}
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
     
-//    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
-//
-//    
-//    if (![[NSUserDefaults standardUserDefaults] synchronize])
-//        NSLog(@"not successful in writing the default prefs");
+    NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
+    NSLog(@"music before is %@", ismusicon);
+    
+    // Note: this will not work for boolean values as noted by bpapa below.
+    // If you use booleans, you should use objectForKey above and check for null
+    if(ismusicon == NULL) {
+        [self registerDefaultsFromSettingsBundle];
+        ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
+    }
+    NSLog(@"music after is %@", ismusicon);
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
