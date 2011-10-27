@@ -246,7 +246,6 @@
 		BFF372FE1456621500C8F267 /* Level2UILayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372FB1456621500C8F267 /* Level2UILayer.mm */; };
 		BFF43D021455CF5200606326 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF43D001455CF5200606326 /* lock.png */; };
 		BFF43D031455CF5200606326 /* lock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF43D011455CF5200606326 /* lock-hd.png */; };
-		BFFA001214575FF0004236C9 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFFA001114575FF0004236C9 /* Defaults.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -704,7 +703,6 @@
 		BFF372FB1456621500C8F267 /* Level2UILayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level2UILayer.mm; sourceTree = "<group>"; };
 		BFF43D001455CF5200606326 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		BFF43D011455CF5200606326 /* lock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock-hd.png"; sourceTree = "<group>"; };
-		BFFA001114575FF0004236C9 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -895,7 +893,6 @@
 				BF396956143B595200EC7DBA /* Penguin.plist */,
 				BF78AECE14439D6100FFE2ED /* Penguin2.plist */,
 				BFBC1E9014572CD100D97F99 /* Entitlements.plist */,
-				BFFA001114575FF0004236C9 /* Defaults.plist */,
 			);
 			name = Plists;
 			path = ..;
@@ -1747,7 +1744,6 @@
 				BFBC1EB1145731EE00D97F99 /* Icon-Small.png in Resources */,
 				BFBC1EB2145731EE00D97F99 /* Icon-Small-50.png in Resources */,
 				BFBC1EB3145731EE00D97F99 /* Icon-Small@2x.png in Resources */,
-				BFFA001214575FF0004236C9 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -70,7 +70,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
-    NSLog(@"music before is %@", ismusicon);
+    CCLOG(@"music before is %@", ismusicon);
     
     // Note: this will not work for boolean values as noted by bpapa below.
     // If you use booleans, you should use objectForKey above and check for null
@@ -78,7 +78,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         [self registerDefaultsFromSettingsBundle];
         ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     }
-    NSLog(@"music after is %@", ismusicon);
+    CCLOG(@"music after is %@", ismusicon);
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
