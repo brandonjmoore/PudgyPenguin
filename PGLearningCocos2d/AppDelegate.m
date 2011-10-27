@@ -47,7 +47,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)registerDefaultsFromSettingsBundle {
     NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     if(!settingsBundle) {
-        NSLog(@"Could not find Settings.bundle");
+        CCLOG(@"Could not find Settings.bundle");
         return;
     }
     
