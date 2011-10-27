@@ -303,7 +303,7 @@
     NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
     
     //load from savedStock
-    int retrievedScore = [[savedStock objectForKey:@"HighScore - 1"] intValue];
+    int retrievedScore = [[savedStock objectForKey:@"HighScore - 12"] intValue];
     
     
     
@@ -320,7 +320,7 @@
         
         NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
         
-        [data setObject:[NSNumber numberWithInt:remainingTime] forKey:@"HighScore - 1"];
+        [data setObject:[NSNumber numberWithInt:remainingTime] forKey:@"HighScore - 12"];
         
         [data writeToFile:path atomically:YES];
         [data release];
@@ -328,7 +328,7 @@
     }
     
     
-    int newScore = [[savedStock objectForKey:@"HighScore - 1"] intValue];
+    int newScore = [[savedStock objectForKey:@"HighScore - 12"] intValue];
     CCLOG(@"This is the highscore: %d", newScore);
     
     for (id key in savedStock) {
