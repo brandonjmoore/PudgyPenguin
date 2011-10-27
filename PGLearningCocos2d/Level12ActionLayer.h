@@ -55,6 +55,7 @@
     double startTime;
     double currentMediaTime;
     double remainingTime;
+    int totalScore;
 }
 
 -(id)initWithLevel12UILayer:(Level12UILayer *)level12UILayer;

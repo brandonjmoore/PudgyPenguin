@@ -31,6 +31,7 @@
 		[[GameManager sharedGameManager] setIsMusicON:YES];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"ismusicon"];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:BACKGROUND_TRACK];
 	}
 }
 

@@ -307,7 +307,7 @@
         CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
         
-    if (([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) {
+    if ((([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) && (![soundEngine isBackgroundMusicPlaying])) {
         [soundEngine playBackgroundMusic:BACKGROUND_TRACK];
     } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]){
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
