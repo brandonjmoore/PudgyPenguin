@@ -292,25 +292,22 @@
 
 -(void)loadAudio {
     
+    soundEngine = [SimpleAudioEngine sharedEngine];
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    
+    if ((([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) && (![soundEngine isBackgroundMusicPlaying])) {
         
         [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_MID];
         
         [[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
         
-        soundEngine = [SimpleAudioEngine sharedEngine];
+        
         
         [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK];
         CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
+        CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
         
-    if ((([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) && (![soundEngine isBackgroundMusicPlaying])) {
+    
         [soundEngine playBackgroundMusic:BACKGROUND_TRACK];
-    } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]){
-        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     }
 }
 

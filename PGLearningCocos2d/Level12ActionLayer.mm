@@ -284,63 +284,7 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
--(void) writeHighScore {
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath:path])
-    {
-        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"HighScores" ofType:@"plist"];
-        
-        [fileManager copyItemAtPath:bundle toPath:path error:&error];
-    }
-    
-    
-    NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    
-    //load from savedStock
-    int retrievedScore = [[savedStock objectForKey:@"HighScore - 12"] intValue];
-    
-    
-    
-    
-    
-    
-    //    NSMutableDictionary *highScoresDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HighScores" ofType:@"plist"]];
-    //    double retrievedScore = [[highScoresDictionary objectForKey:@"HighScore - 1"] doubleValue];
-    
-    if (remainingTime > retrievedScore) {
-        //NSNumber *newScore = [NSNumber numberWithDouble:remainingTime];
-        //[highScoresDictionary setValue:newScore forKey:@"HighScore - 1"];
-        
-        
-        NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-        
-        [data setObject:[NSNumber numberWithInt:remainingTime] forKey:@"HighScore - 12"];
-        
-        [data writeToFile:path atomically:YES];
-        [data release];
-        
-    }
-    
-    
-    int newScore = [[savedStock objectForKey:@"HighScore - 12"] intValue];
-    CCLOG(@"This is the highscore: %d", newScore);
-    
-    for (id key in savedStock) {
-        totalScore = totalScore + ([[savedStock objectForKey:key] intValue]);
-    }
-    
-    [savedStock release];
-}
-
 -(void) gameOverPass: (id)sender {
-    
-    [self writeHighScore];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -362,16 +306,16 @@
     
     
     
-    
-    NSString *highScoreString = [NSString stringWithFormat:@"Your high score is %d", totalScore];
-    CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:24.0];
-    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
-    
+        //High Score gathered from values saved in plist
+//    NSString *highScoreString = [NSString stringWithFormat:@"Your high score is %d", totalScore];
+//    CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:24.0];
+//    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
+   
     CCMenu *nextLevelMenu = [CCMenu menuWithItems:mainMenuButton, resetButton, nil];
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
-    [self addChild:highScoreText z:10];
+    //[self addChild:highScoreText z:10];
     
 }
 
