@@ -13,8 +13,12 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    NSMutableDictionary *highScoresDictionary;
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain)NSMutableDictionary *highScoresDictionary;
+
+-(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level;
 
 @end

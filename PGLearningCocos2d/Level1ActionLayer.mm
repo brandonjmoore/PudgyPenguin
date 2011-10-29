@@ -282,6 +282,11 @@
 
 -(void) gameOverPass: (id)sender {
     
+    
+    //AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    //[app setHighScore:[NSNumber numberWithInt:1] forLevel:1];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"level2unlocked"];
     

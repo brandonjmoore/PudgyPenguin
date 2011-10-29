@@ -13,6 +13,7 @@
 #import "Box2DSprite.h"
 #import "Box.h"
 #import "Trash.h"
+#import "AppDelegate.h"
 
 
 

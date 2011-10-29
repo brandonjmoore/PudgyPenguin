@@ -16,7 +16,7 @@
 
 @implementation AppDelegate
 
-@synthesize window;
+@synthesize window, highScoresDictionary;
 
 - (void) removeStartupFlicker
 {
@@ -71,6 +71,16 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     CCLOG(@"music before is %@", ismusicon);
+    
+    //
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        highScoresDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
+    } else {
+        highScoresDictionary = [[NSMutableDictionary alloc] init]; 
+    }
     
     // Note: this will not work for boolean values as noted by bpapa below.
     // If you use booleans, you should use objectForKey above and check for null
@@ -195,9 +205,29 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
+-(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
+    
+    NSString *key = [NSString stringWithFormat:@"HighScore - %d", level];
+    
+    NSNumber *value = [highScoresDictionary objectForKey:key];
+    
+    
+    if (value == nil || [highScore compare:[highScoresDictionary objectForKey:key]] == NSOrderedDescending) {
+        [highScoresDictionary setObject:highScore forKey:key];
+        [highScoresDictionary writeToFile:path atomically:YES];
+    }
+    
+    
+    
+}
+
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];
 	[window release];
+    [highScoresDictionary release];
 	[super dealloc];
 }
 
