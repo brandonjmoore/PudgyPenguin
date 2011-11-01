@@ -323,7 +323,7 @@
         
         CCSpriteBatchNode *mainMenuSpriteBatchNode;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
-        mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];//Possible leak here
         
         background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
