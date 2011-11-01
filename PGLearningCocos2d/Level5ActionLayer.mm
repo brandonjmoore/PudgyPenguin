@@ -227,7 +227,7 @@
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel6];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel5];
 }
 
 -(void)doPause {
@@ -277,7 +277,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"snow_bg.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -287,7 +287,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level6unlocked"];
+    [defaults setBool:YES forKey:@"level5unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -351,6 +351,7 @@
 -(id)initWithLevel5UILayer:(Level5UILayer *)level5UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
@@ -373,31 +374,20 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.1f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.18f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.26f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.34f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.42f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.50f) ofType:kNormalBox];
         
         
         //Large icicle
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height * 0.75f) ofType:kExtraLargePlatform withRotation:0.85f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.35f) ofType:kExtraLargePlatform withRotation:0.85f];
         
-        //bouncybox
-        //[self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.5f) ofType:kBouncyBox];
+        //regular box
+        [self createBoxAtLocation:ccp(winSize.width * 0.10f, winSize.height *0.05f) ofType:kNormalBox];
         
-        
-
-
-
-
+        //bouncy box
+        [self createBoxAtLocation:ccp(winSize.width * 0.95f, winSize.height *0.3f) ofType:kBalloonBox];
         
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.10f, winSize.height * 0.17f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
@@ -440,6 +430,7 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
+            
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
