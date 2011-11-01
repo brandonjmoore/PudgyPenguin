@@ -16,7 +16,8 @@
 
 @implementation AppDelegate
 
-@synthesize window, highScoresDictionary;
+@synthesize window;
+@synthesize highScoresDictionary;
 
 - (void) removeStartupFlicker
 {
@@ -72,23 +73,22 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     CCLOG(@"music before is %@", ismusicon);
     
-    //
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        highScoresDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
-    } else {
-        highScoresDictionary = [[NSMutableDictionary alloc] init]; 
-    }
-    
-    // Note: this will not work for boolean values as noted by bpapa below.
-    // If you use booleans, you should use objectForKey above and check for null
     if(ismusicon == NULL) {
         [self registerDefaultsFromSettingsBundle];
         ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     }
     CCLOG(@"music after is %@", ismusicon);
+    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
+//    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
+//    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+//        highScoresDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
+//    } else {
+//        highScoresDictionary = [[NSMutableDictionary alloc] init]; 
+//    }
+    
+    
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];

@@ -316,8 +316,6 @@
     self = [super init];
     if (self != nil) {
         
-        
-        
         [self loadAudio];
         
         
