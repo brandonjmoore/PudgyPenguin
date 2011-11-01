@@ -227,7 +227,7 @@
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel5];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel6];
 }
 
 -(void)doPause {
