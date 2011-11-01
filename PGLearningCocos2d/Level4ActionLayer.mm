@@ -227,7 +227,7 @@
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel6];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel5];
 }
 
 -(void)doPause {
@@ -287,7 +287,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level6unlocked"];
+    [defaults setBool:YES forKey:@"level5unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;

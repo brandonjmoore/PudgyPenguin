@@ -287,7 +287,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level5unlocked"];
+    [defaults setBool:YES forKey:@"level6unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
