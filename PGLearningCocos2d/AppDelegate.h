@@ -20,5 +20,7 @@
 @property (nonatomic, retain)NSMutableDictionary *highScoresDictionary;
 
 -(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level;
+-(NSInteger)getTotalHighScore;
+-(NSInteger)getHighScoreForLevel:(NSInteger)level;
 
 @end

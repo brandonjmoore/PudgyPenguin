@@ -317,6 +317,14 @@
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
+    
+    //Show total high score
+    NSInteger totalHighScore = [app getTotalHighScore];
+    
+    NSString *highScoreString = [NSString stringWithFormat:@"Your total high score is %d", totalHighScore];
+    CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
+    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
+    [self addChild:highScoreText z:10];
 
 }
 

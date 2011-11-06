@@ -224,6 +224,17 @@ void uncaughtExceptionHandler(NSException *exception) {
     
 }
 
+-(NSInteger)getTotalHighScore {
+    NSInteger totalScore = 0;
+    for (id key in highScoresDictionary) {
+        
+        NSNumber *tempScore = (NSNumber*)[highScoresDictionary objectForKey:key];
+        totalScore = totalScore + [tempScore integerValue];
+    }
+    
+    return totalScore;
+}
+
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];
 	[window release];
