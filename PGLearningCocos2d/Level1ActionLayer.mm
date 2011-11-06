@@ -281,8 +281,6 @@
 }
 
 -(void) gameOverPass: (id)sender {
-    //Get app delegate (used for high scores)
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"level2unlocked"];
@@ -314,6 +312,9 @@
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
+    
+    //Get app delegate (used for high scores)
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //Show level High Score (new high scores only)
     if (remainingTime > [app getHighScoreForLevel:kLevel1]) {
