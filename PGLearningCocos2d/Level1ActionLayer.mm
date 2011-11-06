@@ -281,11 +281,8 @@
 }
 
 -(void) gameOverPass: (id)sender {
-    
-    //Set the High Score (if new value is greater than old value
+    //Get app delegate (used for high scores)
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:1];
-    
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"level2unlocked"];
@@ -318,10 +315,25 @@
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
     
+    //Show level High Score (new high scores only)
+    if (remainingTime > [app getHighScoreForLevel:kLevel1]) {
+        NSInteger levelHighScore = (int)remainingTime;
+        NSString *levelHighScoreText = [NSString stringWithFormat:@"%d! Thats a New High Score!", levelHighScore];
+        CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
+        levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
+        [self addChild:levelHighScoreLabel z:10];
+    }
+                         
+                         
+    //Set the High Score (if new value is greater than old value)
+    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel1];
+    
+    
+    
     //Show total high score
     NSInteger totalHighScore = [app getTotalHighScore];
     
-    NSString *highScoreString = [NSString stringWithFormat:@"Your total high score is %d", totalHighScore];
+    NSString *highScoreString = [NSString stringWithFormat:@"Your total high score is %d!", totalHighScore];
     CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
     highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
@@ -460,11 +472,11 @@
 
 -(void)updateTime {
     
-    remainingTime = remainingTime - 1.0;
-    
-    if (!gameOver){    
+    if (!gameOver){
+        remainingTime = remainingTime - 1.0;
         [uiLayer displaySecs:remainingTime];
     }
+    CCLOG(@"-----------%f", remainingTime);
 }
 
 

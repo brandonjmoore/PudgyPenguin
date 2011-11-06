@@ -35,6 +35,19 @@
 //Required num of fish
 #define kNumOfFishReqLev1           5
 
+#define kLevel1                     1
+#define kLevel2                     2
+#define kLevel3                     3
+#define kLevel4                     4
+#define kLevel5                     5
+#define kLevel6                     6
+#define kLevel7                     7
+#define kLevel8                     8
+#define kLevel9                     9
+#define kLevel10                    10
+#define kLevel11                    11
+#define kLevel12                    12
+
 typedef enum {
     kNoSceneUninitialized=0,
     kMainMenuScene=1,

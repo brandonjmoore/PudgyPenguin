@@ -235,6 +235,14 @@ void uncaughtExceptionHandler(NSException *exception) {
     return totalScore;
 }
 
+-(NSInteger)getHighScoreForLevel:(NSInteger)level {
+    
+    NSString *key = [NSString stringWithFormat:@"HighScore - %d", level];
+    NSNumber *score = [highScoresDictionary objectForKey:key];
+    
+    return [score integerValue];
+}
+
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];
 	[window release];
