@@ -79,14 +79,14 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     CCLOG(@"music after is %@", ismusicon);
     
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-//    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-//    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//        highScoresDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
-//    } else {
-//        highScoresDictionary = [[NSMutableDictionary alloc] init]; 
-//    }
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
+    NSString *documentsDirectory = [paths objectAtIndex:0]; 
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        highScoresDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
+    } else {
+        highScoresDictionary = [[NSMutableDictionary alloc] init]; 
+    }
     
     
     
@@ -206,9 +206,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 -(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
-    NSString *documentsDirectory = [paths objectAtIndex:0]; //2
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"]; //3
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"];
     
     NSString *key = [NSString stringWithFormat:@"HighScore - %d", level];
     
