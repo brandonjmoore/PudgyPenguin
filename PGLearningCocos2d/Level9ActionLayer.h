@@ -14,7 +14,7 @@
 #import "Box.h"
 #import "Platform.h"
 #import "Trash.h"
-
+#import "AppDelegate.h"
 
 
 @class Level9UILayer;

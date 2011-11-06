@@ -284,6 +284,33 @@
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
+-(void)doHighScoreStuff {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    //Get app delegate (used for high scores)
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    //Show level High Score (new high scores only)
+    if (remainingTime > [app getHighScoreForLevel:kLevel7]) {
+        NSInteger levelHighScore = (int)remainingTime;
+        NSString *levelHighScoreText = [NSString stringWithFormat:@"%d! Thats a New High Score!", levelHighScore];
+        CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
+        levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
+        [self addChild:levelHighScoreLabel z:10];
+    }
+    
+    
+    //Set the High Score (if new value is greater than old value)
+    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel7];
+    
+    //Show total high score
+    NSInteger totalHighScore = [app getTotalHighScore];
+    
+    NSString *highScoreString = [NSString stringWithFormat:@"Your total high score is %d!", totalHighScore];
+    CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
+    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
+    [self addChild:highScoreText z:10];
+}
+
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -316,6 +343,8 @@
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
+    
+    [self doHighScoreStuff];
     
 }
 
