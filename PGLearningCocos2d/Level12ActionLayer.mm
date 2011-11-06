@@ -485,9 +485,8 @@
 
 -(void)updateTime {
     
-    remainingTime = remainingTime - 1.0;
-    
-    if (!gameOver){    
+    if (!gameOver) {
+        remainingTime = remainingTime - 1.0;
         [uiLayer displaySecs:remainingTime];
     }
 }
