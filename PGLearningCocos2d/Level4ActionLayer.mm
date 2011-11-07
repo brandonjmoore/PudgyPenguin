@@ -417,10 +417,10 @@
         
         
         //Large icicle
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.4f) ofType:kExtraLargePlatform withRotation:4.7f];
         
         //bouncybox
         //[self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.5f) ofType:kBouncyBox];
