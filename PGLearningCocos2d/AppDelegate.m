@@ -19,6 +19,7 @@
 
 @synthesize window;
 @synthesize highScoresDictionary;
+@synthesize viewController;
 
 - (void) removeStartupFlicker
 {
@@ -235,7 +236,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         totalScore = totalScore + [tempScore integerValue];
     }
     
-    [[GCHelper sharedInstance] reportScore:kLeaderBoardCompletionTime score:(int)totalScore];
+    [[GCHelper sharedInstance] reportScore:kLeaderBoardCompletionTime score:totalScore];
     
     return totalScore;
 }

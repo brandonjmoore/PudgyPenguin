@@ -18,6 +18,7 @@
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain)NSMutableDictionary *highScoresDictionary;
+@property (nonatomic, assign) RootViewController *viewController;
 
 -(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level;
 -(NSInteger)getTotalHighScore;

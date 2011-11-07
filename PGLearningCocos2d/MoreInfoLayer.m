@@ -7,6 +7,8 @@
 //
 
 #import "MoreInfoLayer.h"
+#import "AppDelegate.h"
+#import "GCHelper.h"
 
 
 
@@ -20,6 +22,29 @@
 
 -(void)showHighScores {
 	[[GameManager sharedGameManager] runSceneWithID:kHighScoresScene];
+}
+
+-(void)showGameCenter {
+	GKLeaderboardViewController *leaderBoardController = [[GKLeaderboardViewController alloc] init];
+    
+    if (leaderBoardController != NULL) {
+        leaderBoardController.category = kLeaderBoardCompletionTime;
+        leaderBoardController.timeScope = GKLeaderboardTimeScopeAllTime;
+        leaderBoardController.leaderboardDelegate = self;
+        //Get app delegate (used for high scores)
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        [app.viewController presentModalViewController:leaderBoardController animated:YES];
+    } else {
+        [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
+    }
+}
+
+-(void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *) viewController {
+    //Get app delegate (used for high scores)
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [app.viewController dismissModalViewControllerAnimated: YES];
+    [viewController release];
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
 -(void)musicTogglePressed {
@@ -51,6 +76,9 @@
 		
         CCLabelTTF *highScoresButtonLabel = [CCLabelTTF labelWithString:@"High Scores" fontName:@"Marker Felt" fontSize:24.0];
 		CCMenuItemLabel	*highScoresButton = [CCMenuItemLabel itemWithLabel:highScoresButtonLabel target:self selector:@selector(showHighScores)];
+        
+        CCLabelTTF *gameCenterButtonLabel = [CCLabelTTF labelWithString:@"Game Center" fontName:@"Marker Felt" fontSize:24.0];
+		CCMenuItemLabel	*gameCenterButton = [CCMenuItemLabel itemWithLabel:gameCenterButtonLabel target:self selector:@selector(showGameCenter)];
 		
 		CCLabelTTF *musicOnLabelText = [CCLabelTTF labelWithString:@"Music is ON" fontName:@"Marker Felt" fontSize:24.0];
 		CCLabelTTF *musicOffLabelText = [CCLabelTTF labelWithString:@"Music is OFF" fontName:@"Marker Felt" fontSize:24.0];
@@ -82,7 +110,7 @@
         [self addChild:backButtonMenu z:1 tag:kButtonTagValue];
 			
 		CCMenu *optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
-							   creditsButton,nil];
+							   creditsButton,gameCenterButton, nil];
 		[optionsMenu alignItemsVerticallyWithPadding:40.0f];
 		[optionsMenu setPosition:ccp(screenSize.width * 0.75f, screenSize.height/2)];
 		[self addChild:optionsMenu];

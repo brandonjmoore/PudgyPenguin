@@ -11,8 +11,9 @@
 #import "Constants.h"
 #import "GameManager.h"
 #import "SimpleAudioEngine.h"
+#import <GameKit/GameKit.h>
 
-@interface MoreInfoLayer : CCLayer {
+@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate> {
     CCMenu *backButtonMenu;
 }
 
