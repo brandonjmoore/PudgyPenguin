@@ -233,6 +233,8 @@
 		BFD131C21455F0D8008173E4 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD131BF1455F0D8008173E4 /* IntroLayer.m */; };
 		BFD131C31455F0D8008173E4 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD131C11455F0D8008173E4 /* IntroScene.m */; };
 		BFDCA90D1443631E00153456 /* Penguin2.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFDCA90C1443631E00153456 /* Penguin2.mm */; };
+		BFDDB3251468192B00B5169D /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDDB3221468192B00B5169D /* HighScoresLayer.m */; };
+		BFDDB3261468192B00B5169D /* HighScoresScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDDB3241468192B00B5169D /* HighScoresScene.m */; };
 		BFEB5F9B1455BA5900E7BBB4 /* snow_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BFEB5F991455BA5900E7BBB4 /* snow_bg.png */; };
 		BFEB5F9C1455BA5900E7BBB4 /* snow_bg-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BFEB5F9A1455BA5900E7BBB4 /* snow_bg-hd.png */; };
 		BFF372E914565D0100C8F267 /* Level3ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFF372E414565D0100C8F267 /* Level3ActionLayer.mm */; };
@@ -681,6 +683,10 @@
 		BFD131C11455F0D8008173E4 /* IntroScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroScene.m; sourceTree = "<group>"; };
 		BFDCA90B1443631E00153456 /* Penguin2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Penguin2.h; sourceTree = "<group>"; };
 		BFDCA90C1443631E00153456 /* Penguin2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Penguin2.mm; sourceTree = "<group>"; };
+		BFDDB3211468192B00B5169D /* HighScoresLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresLayer.h; sourceTree = "<group>"; };
+		BFDDB3221468192B00B5169D /* HighScoresLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresLayer.m; sourceTree = "<group>"; };
+		BFDDB3231468192B00B5169D /* HighScoresScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresScene.h; sourceTree = "<group>"; };
+		BFDDB3241468192B00B5169D /* HighScoresScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresScene.m; sourceTree = "<group>"; };
 		BFEB5F991455BA5900E7BBB4 /* snow_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow_bg.png; sourceTree = "<group>"; };
 		BFEB5F9A1455BA5900E7BBB4 /* snow_bg-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow_bg-hd.png"; sourceTree = "<group>"; };
 		BFF372E314565D0100C8F267 /* Level3ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level3ActionLayer.h; sourceTree = "<group>"; };
@@ -926,6 +932,7 @@
 				BF9D639F1456879C00117A54 /* Level11 */,
 				BF9D63A0145687A500117A54 /* Level12 */,
 				BF62B2761456A2D80049369A /* Credits */,
+				BFDDB31F146818AF00B5169D /* HighScores */,
 				BF62B26F1456988C0049369A /* MoreInfoScene */,
 				BF5D2C97144EA4BF00EFD358 /* Misc */,
 			);
@@ -1628,6 +1635,17 @@
 			name = Level1;
 			sourceTree = "<group>";
 		};
+		BFDDB31F146818AF00B5169D /* HighScores */ = {
+			isa = PBXGroup;
+			children = (
+				BFDDB3211468192B00B5169D /* HighScoresLayer.h */,
+				BFDDB3221468192B00B5169D /* HighScoresLayer.m */,
+				BFDDB3231468192B00B5169D /* HighScoresScene.h */,
+				BFDDB3241468192B00B5169D /* HighScoresScene.m */,
+			);
+			name = HighScores;
+			sourceTree = "<group>";
+		};
 		BFE3F184143EDEBD007BB741 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1942,6 +1960,8 @@
 				BF62B2841456A72C0049369A /* Level10ActionLayer.mm in Sources */,
 				BF62B2851456A72C0049369A /* Level10Scene.mm in Sources */,
 				BF62B2861456A72C0049369A /* Level10UILayer.mm in Sources */,
+				BFDDB3251468192B00B5169D /* HighScoresLayer.m in Sources */,
+				BFDDB3261468192B00B5169D /* HighScoresScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,10 @@
 	[[GameManager sharedGameManager] runSceneWithID:kCreditsScene];
 }
 
+-(void)showHighScores {
+	[[GameManager sharedGameManager] runSceneWithID:kHighScoresScene];
+}
+
 -(void)musicTogglePressed {
 	if ([[GameManager sharedGameManager] isMusicON]) {
 		CCLOG(@"OptionsLayer-> Turning Game Music OFF");
@@ -45,6 +49,8 @@
 		[background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:background];
 		
+        CCLabelTTF *highScoresButtonLabel = [CCLabelTTF labelWithString:@"High Scores" fontName:@"Marker Felt" fontSize:24.0];
+		CCMenuItemLabel	*highScoresButton = [CCMenuItemLabel itemWithLabel:highScoresButtonLabel target:self selector:@selector(showHighScores)];
 		
 		CCLabelTTF *musicOnLabelText = [CCLabelTTF labelWithString:@"Music is ON" fontName:@"Marker Felt" fontSize:24.0];
 		CCLabelTTF *musicOffLabelText = [CCLabelTTF labelWithString:@"Music is OFF" fontName:@"Marker Felt" fontSize:24.0];
@@ -75,7 +81,7 @@
         [backButtonMenu setPosition:ccp(0,0)];
         [self addChild:backButtonMenu z:1 tag:kButtonTagValue];
 			
-		CCMenu *optionsMenu = [CCMenu menuWithItems:musicToggle,
+		CCMenu *optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
 							   creditsButton,nil];
 		[optionsMenu alignItemsVerticallyWithPadding:40.0f];
 		[optionsMenu setPosition:ccp(screenSize.width * 0.75f, screenSize.height/2)];

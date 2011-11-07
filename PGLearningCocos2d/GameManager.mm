@@ -10,6 +10,7 @@
 #import "MainMenuScene.h"
 #import "MoreInfoScene.h"
 #import "CreditsScene.h"
+#import "HighScoresScene.h"
 #import "IntroScene.h"
 //#import "PhysicsLayer.h"
 #import "Level1Scene.h"
@@ -75,6 +76,9 @@ static GameManager* _sharedGameManager = nil;
             break;
         case kCreditsScene:
             sceneToRun = [CreditsScene node];
+            break;
+        case kHighScoresScene:
+            sceneToRun = [HighScoresScene node];
             break;
         case kIntroScene:
             sceneToRun = [IntroScene node];
