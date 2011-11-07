@@ -13,6 +13,7 @@
 #import "RootViewController.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
+#import "GCHelper.h"
 
 @implementation AppDelegate
 
@@ -69,6 +70,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    
+    [[GCHelper sharedInstance] authenticateLocalUser];
     
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     CCLOG(@"music before is %@", ismusicon);
@@ -231,6 +234,8 @@ void uncaughtExceptionHandler(NSException *exception) {
         NSNumber *tempScore = (NSNumber*)[highScoresDictionary objectForKey:key];
         totalScore = totalScore + [tempScore integerValue];
     }
+    
+    [[GCHelper sharedInstance] reportScore:kLeaderBoardCompletionTime score:(int)totalScore];
     
     return totalScore;
 }

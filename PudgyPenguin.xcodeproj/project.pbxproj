@@ -50,6 +50,9 @@
 		BF1EC84E143E9B650083412C /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84D143E9B650083412C /* background-hd.png */; };
 		BF1EC850143E9B6D0083412C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EC84F143E9B6D0083412C /* background.png */; };
 		BF1EC8B6143ED0D30083412C /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.mm */; };
+		BF28F351146852BC0024F825 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF28F34E146852860024F825 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BF28F354146852F80024F825 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF28F353146852F80024F825 /* GCHelper.m */; };
+		BF28F35714685C500024F825 /* GCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BF28F35614685C500024F825 /* GCDatabase.m */; };
 		BF371F1B1452731D008F5B11 /* Start.png in Resources */ = {isa = PBXBuildFile; fileRef = BF371F1A1452731D008F5B11 /* Start.png */; };
 		BF382AD9143F994C004D59B2 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382AD8143F994C004D59B2 /* MainMenuScene.m */; };
 		BF382ADD143F9A73004D59B2 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF382ADC143F9A73004D59B2 /* MainMenuLayer.m */; };
@@ -337,6 +340,11 @@
 		BF1EC84F143E9B6D0083412C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BF1EC8B4143ED0D30083412C /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		BF1EC8B5143ED0D30083412C /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
+		BF28F34E146852860024F825 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		BF28F352146852F80024F825 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
+		BF28F353146852F80024F825 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
+		BF28F35514685C500024F825 /* GCDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatabase.h; sourceTree = "<group>"; };
+		BF28F35614685C500024F825 /* GCDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatabase.m; sourceTree = "<group>"; };
 		BF371F1A1452731D008F5B11 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start.png; sourceTree = "<group>"; };
 		BF382AD7143F994C004D59B2 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		BF382AD8143F994C004D59B2 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
@@ -716,6 +724,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF28F351146852BC0024F825 /* GameKit.framework in Frameworks */,
 				BF51C9B21438244D00B64181 /* QuartzCore.framework in Frameworks */,
 				BF51C9B41438244D00B64181 /* OpenGLES.framework in Frameworks */,
 				BF51C9B61438244D00B64181 /* OpenAL.framework in Frameworks */,
@@ -970,6 +979,10 @@
 				BF51CB141438244F00B64181 /* AppDelegate.m */,
 				BF51CB161438244F00B64181 /* RootViewController.h */,
 				BF51CB171438244F00B64181 /* RootViewController.m */,
+				BF28F352146852F80024F825 /* GCHelper.h */,
+				BF28F353146852F80024F825 /* GCHelper.m */,
+				BF28F35514685C500024F825 /* GCDatabase.h */,
+				BF28F35614685C500024F825 /* GCDatabase.m */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -1016,6 +1029,7 @@
 		BF51C9A21438244D00B64181 = {
 			isa = PBXGroup;
 			children = (
+				BF28F34E146852860024F825 /* GameKit.framework */,
 				BF51C9C11438244D00B64181 /* PGLearningCocos2d */,
 				BF8CFEEF1455A86F00A45C75 /* Analytics */,
 				BF51C9B01438244D00B64181 /* Frameworks */,
@@ -1962,6 +1976,8 @@
 				BF62B2861456A72C0049369A /* Level10UILayer.mm in Sources */,
 				BFDDB3251468192B00B5169D /* HighScoresLayer.m in Sources */,
 				BFDDB3261468192B00B5169D /* HighScoresScene.m in Sources */,
+				BF28F354146852F80024F825 /* GCHelper.m in Sources */,
+				BF28F35714685C500024F825 /* GCDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
