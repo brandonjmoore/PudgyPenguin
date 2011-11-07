@@ -291,8 +291,7 @@
     
     //Show level High Score (new high scores only)
     if (remainingTime > [app getHighScoreForLevel:kLevel11]) {
-        NSInteger levelHighScore = (int)remainingTime;
-        NSString *levelHighScoreText = [NSString stringWithFormat:@"%d! Thats a New High Score!", levelHighScore];
+        NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
         CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
         levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
         [self addChild:levelHighScoreLabel z:10];
@@ -302,12 +301,19 @@
     //Set the High Score (if new value is greater than old value)
     [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel11];
     
+    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel11];
+    NSString *levelScoreString = [NSString stringWithFormat:@"Level 11 high score: %d", levelHighScore];
+    CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
+    levelScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.1f);
+    [self addChild:levelScoreText z:10];
+    
+    
     //Show total high score
     NSInteger totalHighScore = [app getTotalHighScore];
     
-    NSString *highScoreString = [NSString stringWithFormat:@"Your total high score is %d!", totalHighScore];
+    NSString *highScoreString = [NSString stringWithFormat:@"Total high score: %d", totalHighScore];
     CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
-    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
+    highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
 }
 
