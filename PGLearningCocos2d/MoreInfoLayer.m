@@ -62,7 +62,7 @@
 										 
 		CCMenuItemToggle *musicToggle = [CCMenuItemToggle itemWithTarget:self 
 																selector:@selector(musicTogglePressed) 
-																   items:musicOnLabel,musicOffLabel,nil];
+																   items:musicOnLabel,musicOffLabel,nil];//Error RemoveChildByTag: child not found!
 		
 				
 		CCLabelTTF *creditsButtonLabel = [CCLabelTTF labelWithString:@"Credits" fontName:@"Marker Felt" fontSize:24.0];

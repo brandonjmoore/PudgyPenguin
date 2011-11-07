@@ -243,6 +243,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     return [score integerValue];
 }
 
+-(void)clearAllHighScores {
+    [highScoresDictionary removeAllObjects];
+}
+
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];
 	[window release];

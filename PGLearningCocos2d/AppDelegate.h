@@ -22,5 +22,6 @@
 -(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level;
 -(NSInteger)getTotalHighScore;
 -(NSInteger)getHighScoreForLevel:(NSInteger)level;
+-(void)clearAllHighScores;
 
 @end

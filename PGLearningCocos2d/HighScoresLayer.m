@@ -15,6 +15,52 @@
 	[[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
 }
 
+-(void)doNoClearScores {
+    [[GameManager sharedGameManager] runSceneWithID:kHighScoresScene];
+}
+
+-(void)doYesClearScores {
+    
+    //Get app delegate (used for high scores)
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    [app clearAllHighScores];
+    
+    [[GameManager sharedGameManager] runSceneWithID:kHighScoresScene];
+}
+
+-(void)clearAllScores {
+    backButtonMenu.isTouchEnabled = NO;
+    clearAllScoresMenu.isTouchEnabled = NO;
+    
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    CCLayerColor *clearScoresLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 200)];
+    
+    
+    [self addChild:clearScoresLayer z:9];
+    
+    CCLabelTTF *areYouSureText1 = [CCLabelTTF labelWithString:@"Do you really want to" fontName:@"Marker Felt" fontSize:26.0];
+    CCLabelTTF *areYouSureText2 = [CCLabelTTF labelWithString:@"clear all High Scores?" fontName:@"Marker Felt" fontSize:26.0];
+    areYouSureText1.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.75f);
+    areYouSureText2.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.67f);
+    
+    [self addChild:areYouSureText1 z:10];
+    [self addChild:areYouSureText2 z:10];
+    
+    CCLabelTTF *noButtonLabel = [CCLabelTTF labelWithString:@"No" fontName:@"Marker Felt" fontSize:48.0];
+    CCMenuItemLabel *noButton = [CCMenuItemLabel itemWithLabel:noButtonLabel target:self selector:@selector(doNoClearScores)];
+    CCLabelTTF *yesButtonLabel = [CCLabelTTF labelWithString:@"Yes" fontName:@"Marker Felt" fontSize:48.0];
+    CCMenuItemLabel *yesButton = [CCMenuItemLabel itemWithLabel:yesButtonLabel target:self selector:@selector(doYesClearScores)];
+    
+    CCMenu *noYesMenu = [CCMenu menuWithItems:noButton, yesButton, nil];
+    [noYesMenu alignItemsVerticallyWithPadding:2.0f];
+    noYesMenu.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.45f);
+    
+    [self addChild:noYesMenu z:10];
+    
+}
+
 
 -(id)init {
 	self = [super init];
@@ -26,6 +72,14 @@
         
         //Get app delegate (used for high scores)
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        
+        
+        //Set Up Clear High Scores Button
+        CCLabelTTF *clearScoresButtonLabel = [CCLabelTTF labelWithString:@"Clear All Scores" fontName:@"Marker Felt" fontSize:18.0];
+		CCMenuItemLabel	*clearScoresButton = [CCMenuItemLabel itemWithLabel:clearScoresButtonLabel target:self selector:@selector(clearAllScores)];
+        clearAllScoresMenu = [CCMenu menuWithItems:clearScoresButton,nil];
+        clearAllScoresMenu.position = ccp(screenSize.width * 0.25f, screenSize.height * 0.05f);
+        
         
         //Get High Scores and store in string
         NSString *highScoreTextLevel1 = [[NSString alloc] initWithFormat:@"Level 1: %d", [app getHighScoreForLevel:kLevel1]];
@@ -98,6 +152,8 @@
         [self addChild:textLevel11];
         [self addChild:textLevel12];
         [self addChild:textTotal];
+        [self addChild:clearAllScoresMenu];
+        
         
         [highScoreTextLevel1 release];
         [highScoreTextLevel2 release];

@@ -13,6 +13,7 @@
 
 @interface HighScoresLayer : CCLayer {
     CCMenu *backButtonMenu;
+    CCMenu *clearAllScoresMenu;
 }
 
 @end
