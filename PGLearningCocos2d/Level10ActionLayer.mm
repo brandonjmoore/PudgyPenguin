@@ -12,6 +12,7 @@
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation Level10ActionLayer
 
@@ -386,6 +387,9 @@
 -(id)initWithLevel10UILayer:(Level10UILayer *)level10UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
+        
+        [FlurryAnalytics logEvent:@"Level 10 Started"];
+        
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
