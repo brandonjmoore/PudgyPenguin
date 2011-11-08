@@ -94,6 +94,7 @@
         NSString *highScoreTextLevel10 = [[NSString alloc] initWithFormat:@"Level 10: %d", [app getHighScoreForLevel:kLevel10]];
         NSString *highScoreTextLevel11 = [[NSString alloc] initWithFormat:@"Level 11: %d", [app getHighScoreForLevel:kLevel11]];
         NSString *highScoreTextLevel12 = [[NSString alloc] initWithFormat:@"Level 12: %d", [app getHighScoreForLevel:kLevel12]];
+        NSString *highScoreTextLevel13 = [[NSString alloc] initWithFormat:@"Level 13: %d", [app getHighScoreForLevel:kLevel13]];
         NSString *totalHighScoreText = [[NSString alloc] initWithFormat:@"Grand Total: %d", [app getTotalHighScore]];
         
 		
@@ -109,6 +110,7 @@
         CCLabelTTF *textLevel10 = [CCLabelTTF labelWithString:highScoreTextLevel10 fontName:@"Marker Felt" fontSize:20.0];
         CCLabelTTF *textLevel11 = [CCLabelTTF labelWithString:highScoreTextLevel11 fontName:@"Marker Felt" fontSize:20.0];
         CCLabelTTF *textLevel12 = [CCLabelTTF labelWithString:highScoreTextLevel12 fontName:@"Marker Felt" fontSize:20.0];
+        CCLabelTTF *textLevel13 = [CCLabelTTF labelWithString:highScoreTextLevel13 fontName:@"Marker Felt" fontSize:20.0];
         CCLabelTTF *textTotal = [CCLabelTTF labelWithString:totalHighScoreText fontName:@"Marker Felt" fontSize:28.0];
 
         
@@ -124,6 +126,7 @@
         textLevel10.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.45f);		
         textLevel11.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.4f);		
         textLevel12.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.35f);
+        textLevel13.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.3f);
         textTotal.position = ccp(screenSize.width * 0.65f, screenSize.height * 0.2f);
 		
 		//Set up the back button
@@ -151,6 +154,7 @@
         [self addChild:textLevel10];
         [self addChild:textLevel11];
         [self addChild:textLevel12];
+        [self addChild:textLevel13];
         [self addChild:textTotal];
         //[self addChild:clearAllScoresMenu];
         
@@ -167,6 +171,7 @@
         [highScoreTextLevel10 release];
         [highScoreTextLevel11 release];
         [highScoreTextLevel12 release];
+        [highScoreTextLevel13 release];
 		[totalHighScoreText release];
 		
 	}
