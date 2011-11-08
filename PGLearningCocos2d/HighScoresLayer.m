@@ -40,8 +40,8 @@
     
     [self addChild:clearScoresLayer z:9];
     
-    CCLabelTTF *areYouSureText1 = [CCLabelTTF labelWithString:@"Do you really want to" fontName:@"Marker Felt" fontSize:26.0];
-    CCLabelTTF *areYouSureText2 = [CCLabelTTF labelWithString:@"clear all High Scores?" fontName:@"Marker Felt" fontSize:26.0];
+    CCLabelTTF *areYouSureText1 = [CCLabelTTF labelWithString:@"Do you really want to clear" fontName:@"Marker Felt" fontSize:26.0];
+    CCLabelTTF *areYouSureText2 = [CCLabelTTF labelWithString:@"all local high scores?" fontName:@"Marker Felt" fontSize:26.0];
     areYouSureText1.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.75f);
     areYouSureText2.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.67f);
     
@@ -75,10 +75,10 @@
         
         
         //Set Up Clear High Scores Button
-        CCLabelTTF *clearScoresButtonLabel = [CCLabelTTF labelWithString:@"Clear All Scores" fontName:@"Marker Felt" fontSize:18.0];
-		CCMenuItemLabel	*clearScoresButton = [CCMenuItemLabel itemWithLabel:clearScoresButtonLabel target:self selector:@selector(clearAllScores)];
-        clearAllScoresMenu = [CCMenu menuWithItems:clearScoresButton,nil];
-        clearAllScoresMenu.position = ccp(screenSize.width * 0.25f, screenSize.height * 0.05f);
+//        CCLabelTTF *clearScoresButtonLabel = [CCLabelTTF labelWithString:@"Clear All Local Scores" fontName:@"Marker Felt" fontSize:18.0];
+//		CCMenuItemLabel	*clearScoresButton = [CCMenuItemLabel itemWithLabel:clearScoresButtonLabel target:self selector:@selector(clearAllScores)];
+//        clearAllScoresMenu = [CCMenu menuWithItems:clearScoresButton,nil];
+//        clearAllScoresMenu.position = ccp(screenSize.width * 0.25f, screenSize.height * 0.05f);
         
         
         //Get High Scores and store in string
@@ -152,7 +152,7 @@
         [self addChild:textLevel11];
         [self addChild:textLevel12];
         [self addChild:textTotal];
-        [self addChild:clearAllScoresMenu];
+        //[self addChild:clearAllScoresMenu];
         
         
         [highScoreTextLevel1 release];
