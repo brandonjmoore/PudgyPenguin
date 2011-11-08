@@ -1,23 +1,23 @@
 //
-//  Level12ActionLayer.m
+//  Level14ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level12ActionLayer.h"
+#import "Level14ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level12UILayer.h"
+#import "Level14UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
 
-@implementation Level12ActionLayer
+@implementation Level14ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"Level12ActionLayer dealloc");
+    CCLOG(@"Level14ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
     
@@ -72,7 +72,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.9, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.2, screenSize.height * 0.55f)];
             numFishCreated++;
             
         }else {
@@ -222,13 +222,13 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel12];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel14];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel13];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel15];
 }
 
 -(void)doPause {
@@ -278,7 +278,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"snow_bg.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -291,7 +291,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //Show level High Score (new high scores only)
-    if (remainingTime > [app getHighScoreForLevel:kLevel12]) {
+    if (remainingTime > [app getHighScoreForLevel:kLevel14]) {
         NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
         CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
         levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
@@ -300,10 +300,10 @@
     
     
     //Set the High Score (if new value is greater than old value)
-    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel12];
+    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel14];
     
-    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel12];
-    NSString *levelScoreString = [NSString stringWithFormat:@"Level 12 high score: %d", levelHighScore];
+    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel14];
+    NSString *levelScoreString = [NSString stringWithFormat:@"Level 14 high score: %d", levelHighScore];
     CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
     levelScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.1f);
     [self addChild:levelScoreText z:10];
@@ -321,7 +321,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level13unlocked"];
+    [defaults setBool:YES forKey:@"level15unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -384,20 +384,20 @@
     
 }
 
--(id)initWithLevel12UILayer:(Level12UILayer *)level12UILayer {
+-(id)initWithLevel14UILayer:(Level14UILayer *)level14UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 12 Started"];
+        [FlurryAnalytics logEvent:@"Level 14 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
-        remainingTime = 46;
+        remainingTime = 30;
    
         [self setupBackground];
-        uiLayer = level12UILayer;
+        uiLayer = level14UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -412,36 +412,31 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         
+//        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.05f) ofType:kBouncyBox];
+//        
+//        [self createBoxAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.05f) ofType:kBouncyBox];        
+//        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.05f) ofType:kBouncyBox];
+//        
+//        [self createBoxAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.05f) ofType:kBouncyBox];
+//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.05f) ofType:kBouncyBox];
+//        
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.125f, winSize.height * 0.1f) ofType:kMediumPlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.125f, winSize.height * 0.65f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.275f, winSize.height * 0.1f) ofType:kLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.275f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.425f, winSize.height * 0.2f) ofType:kLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.425f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.575f, winSize.height * 0.25f) ofType:kExtraLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.575f, winSize.height * 0.85f) ofType:kLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.725f, winSize.height * 0.3f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.725f, winSize.height * 0.95f) ofType:kLargePlatform withRotation:0.0f];
+// 
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 1.5f) ofType:kExtraExtraLargePlatform withRotation:1.0f];
+
+
+        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:4.7];
         
-
-        
-        //big horizontal
-        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];        
-        
-
-        //balloons
-        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.20f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height *0.4f) ofType:kBalloonBox];
-
-        //icy prison
-        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.3f) ofType:kMediumPlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.42f, winSize.height * 0.40f) ofType:kMediumPlatform withRotation:0.0f];
-
-
-        //boxes
-        [self createBoxAtLocation:ccp(winSize.width * 0.85f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.70f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.55f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.40f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.55f) ofType:kNormalBox];
-
-
-        
-        
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.58f, winSize.height * 0.38f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.58f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         

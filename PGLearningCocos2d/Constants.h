@@ -47,6 +47,10 @@
 #define kLevel10                    10
 #define kLevel11                    11
 #define kLevel12                    12
+#define kLevel13                    13
+#define kLevel14                    14
+#define kLevel15                    15
+#define kLevel16                    16
 
 typedef enum {
     kNoSceneUninitialized=0,
@@ -67,6 +71,10 @@ typedef enum {
     kGameLevel10=110,
     kGameLevel11=111,
     kGameLevel12=112,
+    kGameLevel13=113,
+    kGameLevel14=114,
+    kGameLevel15=115,
+    kGameLevel16=116,
     kCutSceneForLevel2=201
 } SceneTypes;
 
