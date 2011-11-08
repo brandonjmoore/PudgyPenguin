@@ -165,9 +165,6 @@
     CCSprite *disabledSprite11 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
     CCSprite *disabledSprite12 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
     CCSprite *disabledSprite13 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite14 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite15 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite16 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
 
     
     CCSprite *levelOneButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
