@@ -433,7 +433,6 @@
  
         [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 1.5f) ofType:kExtraExtraLargePlatform withRotation:1.0f];
 
-
         [self createPlatformAtLocation:ccp(winSize.width * 0.93f, winSize.height *0.72f) ofType:kSmallPlatform withRotation:4.7];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];

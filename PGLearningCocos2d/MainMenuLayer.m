@@ -102,6 +102,9 @@
     if (sceneSelectMenu3 != nil) {
         [sceneSelectMenu3 removeFromParentAndCleanup:YES];
     }
+    if (sceneSelectMenu4 != nil) {
+        [sceneSelectMenu4 removeFromParentAndCleanup:YES];
+    }
     if (backButtonMenu != nil) {
         [backButtonMenu removeFromParentAndCleanup:YES];
     }
