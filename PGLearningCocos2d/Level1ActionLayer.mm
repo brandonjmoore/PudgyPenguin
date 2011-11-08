@@ -20,6 +20,8 @@
     CCLOG(@"Level1ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
+    [lineArrayMaster release];
+    [lineSpriteArrayMaster release];
     
     [super dealloc];
 }
@@ -177,17 +179,25 @@
     
 }
 
+-(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    [lineArrayMaster addObject:[lineArray copy]];
+    [lineSpriteArrayMaster addObject:[lineSpriteArray copy]];
+    [lineSpriteArray removeAllObjects];
+    [lineArray removeAllObjects];
+}
+
 -(void) clearLines {
-    for (NSValue *bodyPtr in lineArray) {
+    for (NSValue *bodyPtr in [lineArrayMaster lastObject]) {
         b2Body *body = (b2Body*)[bodyPtr pointerValue];
         world->DestroyBody(body);
         
     }
-    [lineArray removeAllObjects];
+    [lineArrayMaster removeLastObject];
     
-    for (streak in lineSpriteArray) {
+    for (streak in [lineSpriteArrayMaster lastObject]) {
         [streak removeFromParentAndCleanup:YES];
     }
+    [lineSpriteArrayMaster removeLastObject];
 }
 
 - (void)registerWithTouchDispatcher {
@@ -386,6 +396,8 @@
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
+        lineArrayMaster = [[NSMutableArray array] retain];
+        lineSpriteArrayMaster = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
         remainingTime = 31;
