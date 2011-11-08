@@ -15,6 +15,7 @@
 
 @interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate> {
     CCMenu *backButtonMenu;
+    CCMenu *optionsMenu;
 }
 
 @end

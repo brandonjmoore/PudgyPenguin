@@ -18,6 +18,7 @@
 }
 
 @property (retain) NSMutableArray *scoresToReport;
+@property (assign) BOOL userAuthenticated;
 
 +(GCHelper *) sharedInstance;
 -(void) authenticationChanged;

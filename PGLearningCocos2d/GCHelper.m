@@ -12,6 +12,7 @@
 @implementation GCHelper
 
 @synthesize scoresToReport;
+@synthesize userAuthenticated;
 
 #pragma mark Loading/Saving
 
