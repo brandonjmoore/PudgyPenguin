@@ -370,7 +370,7 @@ void b2ContactSolver::SolveVelocityConstraints()
 				//
 				x.x = - cp1->normalMass * b.x;
 				x.y = 0.0f;
-				vn1 = 0.0f;
+				vn1 = 0.0f;//Cocos2d Framework known issue
 				vn2 = c->K.col1.y * x.x + b.y;
 
 				if (x.x >= 0.0f && vn2 >= 0.0f)
@@ -413,7 +413,7 @@ void b2ContactSolver::SolveVelocityConstraints()
 				x.x = 0.0f;
 				x.y = - cp2->normalMass * b.y;
 				vn1 = c->K.col2.x * x.y + b.x;
-				vn2 = 0.0f;
+				vn2 = 0.0f;//Cocos2d Framework known issue
 
 				if (x.y >= 0.0f && vn1 >= 0.0f)
 				{

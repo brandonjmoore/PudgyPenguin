@@ -3,13 +3,16 @@
 //  PGLearningCocos2d
 //
 //  Created by Jonathan Urie on 10/18/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Vaux. All rights reserved.
 //
 
 #import "Platform.h"
 
 
 @implementation Platform
+
+#pragma mark -
+#pragma mark Body Creation Methods
 
 - (void)createNormalPlatformAtLocation:(CGPoint)location withRotation:(float)rotation {
     b2BodyDef bodyDef;
@@ -65,6 +68,9 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Mem Management
+
 -(void) dealloc {
     
     [super dealloc];
@@ -78,10 +84,9 @@
     return boxBox;
     
 }
-
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     //CCLOG(@"just called the bx updatestatewithdeltatime");
-
+    //Must be included to overide method in Game Object
+    
 }
-
 @end

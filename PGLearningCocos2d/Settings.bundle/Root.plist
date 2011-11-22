@@ -18,7 +18,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 2 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level2unlocked</string>
 			<key>DefaultValue</key>
@@ -28,7 +28,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 3 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level3unlocked</string>
 			<key>DefaultValue</key>
@@ -38,7 +38,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 4 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level4unlocked</string>
 			<key>DefaultValue</key>
@@ -48,7 +48,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 5 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level5unlocked</string>
 			<key>DefaultValue</key>
@@ -58,7 +58,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 6 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level6unlocked</string>
 			<key>DefaultValue</key>
@@ -68,7 +68,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 7 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level7unlocked</string>
 			<key>DefaultValue</key>
@@ -78,7 +78,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 8 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level8unlocked</string>
 			<key>DefaultValue</key>
@@ -88,7 +88,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 9 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level9unlocked</string>
 			<key>DefaultValue</key>
@@ -98,7 +98,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 10 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level10unlocked</string>
 			<key>DefaultValue</key>
@@ -108,7 +108,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 11 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level11unlocked</string>
 			<key>DefaultValue</key>
@@ -118,7 +118,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Level 12 Unlocked</string>
+			<string></string>
 			<key>Key</key>
 			<string>level12unlocked</string>
 			<key>DefaultValue</key>
@@ -141,6 +141,36 @@
 			<string></string>
 			<key>Key</key>
 			<string>level14unlocked</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string></string>
+			<key>Key</key>
+			<string>level15unlocked</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string></string>
+			<key>Key</key>
+			<string>level16unlocked</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string></string>
+			<key>Key</key>
+			<string>level17unlocked</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

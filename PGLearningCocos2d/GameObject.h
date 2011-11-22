@@ -3,16 +3,13 @@
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/4/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Vaux. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Constants.h"
 #import "CommonProtocols.h"
-
-//Not listed in the book...
-//#import "CCSprite.h"
 
 @interface GameObject : CCSprite {
     BOOL isActive;

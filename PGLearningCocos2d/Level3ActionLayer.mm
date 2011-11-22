@@ -426,13 +426,6 @@
         //bouncybox
         [self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox];
         
-        
-
-
-
-
-        
-        
         [self createPenguin2AtLocation:ccp(winSize.width * 0.2f, winSize.height * 0.62f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];

@@ -3,7 +3,7 @@
 //  PGLearningCocos2d
 //
 //  Created by Jonathan Urie on 10/19/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Vaux. All rights reserved.
 //
 
 #import "Trash.h"
@@ -11,6 +11,8 @@
 
 @implementation Trash
 
+#pragma mark -
+#pragma mark Body Creation Methods
 
 - (void)createBodyAtLocation:(CGPoint)location {
     b2BodyDef bodyDef;
@@ -41,9 +43,10 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Mem Management
+
 -(void) dealloc {
-    
-    
     [super dealloc];
 }
 
@@ -58,10 +61,7 @@
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     //CCLOG(@"just called the trash updatestatewithdeltatime");
-    
+    //Must be included to overide method in Game Object
 }
-
-
-
 
 @end

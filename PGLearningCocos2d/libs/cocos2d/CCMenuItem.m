@@ -78,7 +78,7 @@ const uint32_t	kZoomActionTag = 0xc0c05002;
 #endif
 			[invocation_ setArgument:&self atIndex:2];
 			
-			[invocation_ retain];
+			[invocation_ retain];//Cocos2d Warning
 		}
 		
 		isEnabled_ = YES;

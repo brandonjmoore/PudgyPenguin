@@ -12,7 +12,6 @@
 #import "CreditsScene.h"
 #import "HighScoresScene.h"
 #import "IntroScene.h"
-//#import "PhysicsLayer.h"
 #import "Level1Scene.h"
 #import "Level2Scene.h"
 #import "Level3Scene.h"
@@ -27,17 +26,21 @@
 #import "Level12Scene.h"
 #import "Level13Scene.h"
 #import "Level14Scene.h"
+#import "Level15Scene.h"
+#import "Level16Scene.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
 @synthesize isMusicON;
+
+#pragma mark -
+#pragma mark Init Methods
 
 +(GameManager*)sharedGameManager {
     @synchronized([GameManager class])
     {
         if(!_sharedGameManager)
             _sharedGameManager = [[self alloc] init];
-            //[[self alloc] init];
         return _sharedGameManager;
     }
     return nil;
@@ -64,6 +67,9 @@ static GameManager* _sharedGameManager = nil;
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark Run Levels
 
 -(void)runSceneWithID:(SceneTypes)sceneID {
     SceneTypes oldScene = currentScene;
@@ -128,15 +134,11 @@ static GameManager* _sharedGameManager = nil;
             sceneToRun = [Level14Scene node];
             break;
         case kGameLevel15:
-            //sceneToRun = [Level15Scene node];
+            sceneToRun = [Level15Scene node];
             break;
         case kGameLevel16:
-            //sceneToRun = [Level16Scene node];
+            sceneToRun = [Level16Scene node];
             break;
-        case kCutSceneForLevel2:
-            //Placeholder for Platform Level
-            break;
-        
         default:
             CCLOG(@"Unknown ID, cannot switch scenes");
             return;
@@ -161,8 +163,11 @@ static GameManager* _sharedGameManager = nil;
     return currentScene;
 }
 
+#pragma mark -
+#pragma mark Misc Methods
+
 -(void)openSiteWithLinkType:(LinkTypes)linkTypeToOpen{
-    //Complete to visit webpages (Page 178)
+    //Future implementation
 }
 
 @end

@@ -14,7 +14,6 @@
 	if (self != nil) {
 		IntroLayer *myLayer = [IntroLayer node];
 		[self addChild:myLayer];
-		
 	}
 	return self;
 }

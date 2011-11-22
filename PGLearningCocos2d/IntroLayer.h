@@ -10,5 +10,6 @@
 #import "GameManager.h"
 
 @interface IntroLayer : CCLayer {
+    
 }
 @end

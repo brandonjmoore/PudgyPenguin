@@ -9,6 +9,9 @@
 #import "Box2DHelpers.h"
 #import "Box2DSprite.h"
 
+#pragma mark -
+#pragma mark Collision Method
+
 bool isBodyCollidingWithObjectType(b2Body *body, GameObjectType objectType) {
     b2ContactEdge* edge = body->GetContactList();
     while (edge) {

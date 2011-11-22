@@ -697,7 +697,7 @@ void b2World::SolveTOI(b2Body* body)
 		bool contactsOkay = solver.Solve(k_toiBaumgarte);
 		if (contactsOkay)
 		{
-			solved = true;
+			solved = true;//Cocos2d Framework known issue
 			break;
 		}
 	}

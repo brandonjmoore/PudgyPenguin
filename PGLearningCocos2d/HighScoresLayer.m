@@ -15,6 +15,9 @@
 	[[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
 }
 
+#pragma mark -
+#pragma mark Clear Scores Methods
+
 -(void)doNoClearScores {
     [[GameManager sharedGameManager] runSceneWithID:kHighScoresScene];
 }
@@ -61,6 +64,8 @@
     
 }
 
+#pragma mark -
+#pragma mark Init
 
 -(id)init {
 	self = [super init];
@@ -72,14 +77,6 @@
         
         //Get app delegate (used for high scores)
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-        
-        
-        //Set Up Clear High Scores Button
-//        CCLabelTTF *clearScoresButtonLabel = [CCLabelTTF labelWithString:@"Clear All Local Scores" fontName:@"Marker Felt" fontSize:18.0];
-//		CCMenuItemLabel	*clearScoresButton = [CCMenuItemLabel itemWithLabel:clearScoresButtonLabel target:self selector:@selector(clearAllScores)];
-//        clearAllScoresMenu = [CCMenu menuWithItems:clearScoresButton,nil];
-//        clearAllScoresMenu.position = ccp(screenSize.width * 0.25f, screenSize.height * 0.05f);
-        
         
         //Get High Scores and store in string
         NSString *highScoreTextLevel1 = [[NSString alloc] initWithFormat:@"Level 1: %d", [app getHighScoreForLevel:kLevel1]];
@@ -157,7 +154,6 @@
         [self addChild:textLevel13];
         [self addChild:textTotal];
         //[self addChild:clearAllScoresMenu];
-        
         
         [highScoreTextLevel1 release];
         [highScoreTextLevel2 release];

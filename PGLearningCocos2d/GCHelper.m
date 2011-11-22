@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Moore on 11/7/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
-//
+//  Used to integrate with Game Center
 
 #import "GCHelper.h"
 #import "GCDatabase.h"
@@ -14,6 +14,7 @@
 @synthesize scoresToReport;
 @synthesize userAuthenticated;
 
+#pragma mark -
 #pragma mark Loading/Saving
 
 static GCHelper *sharedHelper = nil;
@@ -67,6 +68,7 @@ static GCHelper *sharedHelper = nil;
     return self;
 }
 
+#pragma mark -
 #pragma mark Internal Functions
 
 -(void) sendScore:(GKScore *)score {
@@ -82,6 +84,7 @@ static GCHelper *sharedHelper = nil;
     }];
 }
 
+//To resend data when internet connection is available
 -(void)resendData {
     for (GKScore *score in scoresToReport) {
         [self sendScore:score];
@@ -101,6 +104,7 @@ static GCHelper *sharedHelper = nil;
     });
 }
 
+#pragma mark -
 #pragma mark User Functions
 
 -(void) authenticateLocalUser {
@@ -132,15 +136,6 @@ static GCHelper *sharedHelper = nil;
     NSMutableArray *theScoresToReport = [decoder decodeObjectForKey:@"ScoresToReport"];
     return [self initWithScoresToReport:theScoresToReport];
 }
-
-
-
-
-
-
-
-
-
 
 
 @end

@@ -349,7 +349,7 @@
 	NSUInteger offset = (NSUInteger)quads_;
 	// vertex
 	NSUInteger diff = offsetof( ccV3F_C4B_T2F, vertices);
-	glVertexPointer(3, GL_FLOAT, kQuadSize, (GLvoid*) (offset + diff) );
+	glVertexPointer(3, GL_FLOAT, kQuadSize, (GLvoid*) (offset + diff) );//Cocos2d Framework known issue
 	// color
 	diff = offsetof( ccV3F_C4B_T2F, colors);
 	glColorPointer(4, GL_UNSIGNED_BYTE, kQuadSize, (GLvoid*)(offset + diff));

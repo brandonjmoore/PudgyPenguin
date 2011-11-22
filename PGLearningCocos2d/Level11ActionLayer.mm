@@ -411,10 +411,6 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        
-        
-
-        
         //big horizontal
         [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
         
@@ -440,19 +436,7 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.55f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.55f) ofType:kBalloonBox];
         
-
-
-        
-        //bouncybox
-        //[self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox];
-        
-        
-
-
-
-
-        
-        
+        //penguin
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];

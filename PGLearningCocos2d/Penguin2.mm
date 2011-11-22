@@ -22,6 +22,9 @@
 
 @synthesize numFishEaten;
 
+#pragma mark -
+#pragma mark Body Creation Methods
+
 - (void)createBodyAtLocation:(CGPoint)location {
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
@@ -41,6 +44,7 @@
     body->CreateFixture(&fixtureDef);
 }
 
+//Creates the sprite and the Box2D Body
 - (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location {
     if((self = [super init])) {
         world = theWorld;
@@ -55,6 +59,10 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Mem Management
+
+//Dont forget to release animations
 -(void) dealloc {
     [penguinBlinkingAnim release];
     [penguinWalkingAnim release];
@@ -74,10 +82,13 @@
     [self setPenguinSatisfiedAnim:[self loadPlistForAnimationWithName:@"penguinSatisfiedAnim" andClassName:NSStringFromClass([self class])]];
 }
 
+#pragma mark -
+#pragma mark Penguin State Methods
+
+//Penguin states Used for animations
 -(void)changeState:(CharacterStates)newState {
     [self stopAllActions];
     
-    //TODO: what are these two variables for?
     id action = nil;
     //TODO: We might be able to use movement action and new position for walking (see pg 97)
     //id movementAction = nil;
@@ -103,12 +114,12 @@
             numFishEaten++;
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
             
-            if (numFishEaten >= kNumOfFishReqLev1) {
+            //If he has eaten the necessary # of fish, make him satisfied
+            if (numFishEaten >= kNumOfFishReq) {
                 [self changeState:kStateSatisfied];
             } else {
                 [self changeState:kStateIdle];                
-            } 
-
+            }
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
@@ -117,8 +128,6 @@
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
             //restoreOriginalFrame is set to no here because we want him to remain satisfied
-            //action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
-            //action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:NO];
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             break;
             
@@ -127,7 +136,6 @@
             //restoreOriginalFrame is set to no here because we want his mouth to remain open
             action = [CCAnimate actionWithAnimation:penguinOpenMouthAnim restoreOriginalFrame:NO];
             break;
-            
         default:
             CCLOG(@"Unhandled state %d in Penguin", newState);
             break;
@@ -141,16 +149,8 @@
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
 
-    
-
-    
-
-    
-    //if
-    //TODO: finish this method (pg 100)
-    
+    //Open penguin's mouth if fish is nearby
     if ([self numberOfRunningActions] == 0) {
-         
         if ((self.characterState != kStateMouthOpen) && (self.characterState != kStateSatisfied)){
             CGRect myBoundingBox = [self adjustedBoundingBox];
             for (GameCharacter *character in listOfGameObjects) {
@@ -167,6 +167,7 @@
             }
         }
         
+        //Make Penguin blink after so many seconds
         if (self.characterState == kStateIdle) {
             millisecondsStayingIdle = millisecondsStayingIdle + deltaTime;
             if (millisecondsStayingIdle > kPenguinBlinkTime) {
@@ -177,6 +178,7 @@
             millisecondsStayingIdle = 0.0f;
         }
         
+        //Close Penguin's mouth if fish is not nearby
         if (self.characterState == kStateMouthOpen) {
             millisecondsWithMouthOpen = millisecondsWithMouthOpen + deltaTime;
             if (millisecondsWithMouthOpen > kPenguinMouthOpenTime) {
@@ -191,6 +193,7 @@
   
 }
 
+//Used to detect nearby fish
 -(CGRect)adjustedBoundingBox {
     //Adjust the bounding box to the size of the sprite
     //Without transparent space
@@ -200,11 +203,5 @@
     return penguinBoundingBox;
     
 }
-
-
-
-
-
-
 
 @end

@@ -418,9 +418,7 @@
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.5f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
-        
-        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
-        
+                
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         

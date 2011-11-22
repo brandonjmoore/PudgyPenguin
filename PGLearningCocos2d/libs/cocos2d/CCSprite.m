@@ -590,7 +590,7 @@ struct transformValues_ {
 	
 	// vertex
 	NSInteger diff = offsetof( ccV3F_C4B_T2F, vertices);
-	glVertexPointer(3, GL_FLOAT, kQuadSize, (void*) (offset + diff) );
+	glVertexPointer(3, GL_FLOAT, kQuadSize, (void*) (offset + diff) );//Cocos2d Framework known issue
 	
 	// color
 	diff = offsetof( ccV3F_C4B_T2F, colors);

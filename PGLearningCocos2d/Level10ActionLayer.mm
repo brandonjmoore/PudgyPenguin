@@ -420,7 +420,6 @@
         
         [self createBoxAtLocation:ccp(winSize.width * 0.125f, winSize.height *0.10f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.375f, winSize.height *0.10f) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.15f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.625f, winSize.height *0.10f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.875f, winSize.height *0.10f) ofType:kBalloonBox];
         

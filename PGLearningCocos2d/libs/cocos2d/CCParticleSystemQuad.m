@@ -282,7 +282,7 @@
 
 	// vertex
 	NSUInteger diff = offsetof( ccV2F_C4B_T2F, vertices);
-	glVertexPointer(2,GL_FLOAT, kQuadSize, (GLvoid*) (offset+diff) );
+	glVertexPointer(2,GL_FLOAT, kQuadSize, (GLvoid*) (offset+diff) );//Cocos2d Framework known issue
 	
 	// color
 	diff = offsetof( ccV2F_C4B_T2F, colors);

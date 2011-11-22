@@ -12,6 +12,9 @@
 
 @implementation Fish2
 
+#pragma mark -
+#pragma mark Body Creation Methods
+
 - (void)createBodyAtLocation:(CGPoint)location {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -44,26 +47,21 @@
     return self;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
+#pragma mark -
+#pragma mark Mem Management
 
 -(void) dealloc {
     CCLOG(@"fish dealloc");
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark Character State Methods
+
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     Penguin2 *penguin2 = (Penguin2*)[[self parent]getChildByTag:kPenguinSpriteTagValue];
     
-    //b2Body *fishBody = self.body;
-    
+    //Detect if fish collides with penguin's mouth
     if (isBodyCollidingWithObjectType(self.body, kPenguinTypeBlack)){
             [self changeState:kStateHasBeenEaten];
             [penguin2 changeState:kStateEating];
@@ -74,11 +72,7 @@
 -(void)changeState:(CharacterStates)newState {
     [self stopAllActions];
     
-    //TODO: what are these two variables for?
     id action = nil;
-    //TODO: We might be able to use movement action and new position for walking (see pg 97)
-    //id movementAction = nil;
-    //CGPoint newPosition;
     [self setCharacterState:newState];
     
     switch (newState) {
@@ -96,9 +90,7 @@
                     [self removeFromParentAndCleanup:YES];
                 
             }
-
             break;
-            
         case kStateAboutToBeEaten:
             CCLOG(@"Fish->Changing State to aboutToBeEaten");
             //action  = [CCAnimate actionWithAnimation:becomeScared restoreOriginalFrame:NO];

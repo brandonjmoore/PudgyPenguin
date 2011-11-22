@@ -315,12 +315,12 @@ enum {
 	
 	CCMenuItem *item;
 	CCARRAY_FOREACH(children_, item)
-	    height += item.contentSize.height * item.scaleY + padding;
+	    height += item.contentSize.height * item.scaleY + padding;//Cocos2d Framework known issue
 
 	float y = height / 2.0f;
 	
 	CCARRAY_FOREACH(children_, item) {
-		CGSize itemSize = item.contentSize;
+		CGSize itemSize = item.contentSize;//Cocos2d Framework known issue
 	    [item setPosition:ccp(0, y - itemSize.height * item.scaleY / 2.0f)];
 	    y -= itemSize.height * item.scaleY + padding;
 	}
@@ -337,12 +337,12 @@ enum {
 	float width = -padding;
 	CCMenuItem *item;
 	CCARRAY_FOREACH(children_, item)
-	    width += item.contentSize.width * item.scaleX + padding;
+	    width += item.contentSize.width * item.scaleX + padding;//Cocos2d Framework known issue
 
 	float x = -width / 2.0f;
 	
 	CCARRAY_FOREACH(children_, item){
-		CGSize itemSize = item.contentSize;
+		CGSize itemSize = item.contentSize;//Cocos2d Framework known issue
 		[item setPosition:ccp(x + itemSize.width * item.scaleX / 2.0f, 0)];
 		x += itemSize.width * item.scaleX + padding;
 	}
@@ -376,7 +376,7 @@ enum {
 		rowColumns = [(NSNumber *) [rows objectAtIndex:row] unsignedIntegerValue];
 		NSAssert( rowColumns, @"Can't have zero columns on a row");
         
-		rowHeight = fmaxf(rowHeight, item.contentSize.height);
+		rowHeight = fmaxf(rowHeight, item.contentSize.height);//Cocos2d Framework known issue
 		++columnsOccupied;
         
 		if(columnsOccupied >= rowColumns) {
@@ -400,7 +400,7 @@ enum {
 			x = w;
 		}
 
-		CGSize itemSize = item.contentSize;
+		CGSize itemSize = item.contentSize;//Cocos2d Framework known issue
 		rowHeight = fmaxf(rowHeight, itemSize.height);
 		[item setPosition:ccp(x - winSize.width / 2,
 							  y - itemSize.height / 2)];
@@ -452,7 +452,7 @@ enum {
 		columnRows = [(NSNumber *) [columns objectAtIndex:column] unsignedIntegerValue];
 		NSAssert( columnRows, @"Can't have zero rows on a column");
 		
-		CGSize itemSize = item.contentSize;
+		CGSize itemSize = item.contentSize;//Cocos2d Framework known issue
 		columnWidth = fmaxf(columnWidth, itemSize.width);
 		columnHeight += itemSize.height + 5;
 		++rowsOccupied;
@@ -481,7 +481,7 @@ enum {
 			y = ([(NSNumber *) [columnHeights objectAtIndex:column] intValue] + winSize.height) / 2;
 		}
 		
-		CGSize itemSize = item.contentSize;
+		CGSize itemSize = item.contentSize;//Cocos2d Framework known issue
 		columnWidth = fmaxf(columnWidth, itemSize.width);
 		[item setPosition:ccp(x + [(NSNumber *) [columnWidths objectAtIndex:column] unsignedIntegerValue] / 2,
 							  y - winSize.height / 2)];

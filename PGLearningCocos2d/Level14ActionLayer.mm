@@ -72,7 +72,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.2, screenSize.height * 0.55f)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.15, screenSize.height * 1.05f)];
             numFishCreated++;
             
         }else {
@@ -278,7 +278,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"snow_bg.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"beach.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -410,33 +410,13 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
-        
-        
-//        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.05f) ofType:kBouncyBox];
-//        
-//        [self createBoxAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.05f) ofType:kBouncyBox];        
-//        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.05f) ofType:kBouncyBox];
-//        
-//        [self createBoxAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.05f) ofType:kBouncyBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.05f) ofType:kBouncyBox];
-//        
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.125f, winSize.height * 0.1f) ofType:kMediumPlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.125f, winSize.height * 0.65f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.275f, winSize.height * 0.1f) ofType:kLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.275f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.425f, winSize.height * 0.2f) ofType:kLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.425f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.575f, winSize.height * 0.25f) ofType:kExtraLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.575f, winSize.height * 0.85f) ofType:kLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.725f, winSize.height * 0.3f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.725f, winSize.height * 0.95f) ofType:kLargePlatform withRotation:0.0f];
-// 
-//        [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 1.5f) ofType:kExtraExtraLargePlatform withRotation:1.0f];
 
-
-        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:4.7];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.72f) ofType:kExtraLargePlatform withRotation:4.7];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.9f) ofType:kExtraLargePlatform withRotation:0.0];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.58f)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.1f) ofType:kBouncyBox];
+        
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         

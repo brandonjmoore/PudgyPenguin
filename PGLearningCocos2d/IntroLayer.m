@@ -30,7 +30,6 @@
 		CCSprite *introImage = [CCSprite spriteWithFile:@"instructions_screen.png"];
 		[introImage setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:introImage];
-		
 	}
 	return self;
 }

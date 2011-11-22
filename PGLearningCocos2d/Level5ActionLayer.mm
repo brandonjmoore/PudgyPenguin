@@ -412,8 +412,6 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         
-        
-        
         //Large icicle
         [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height * 0.75f) ofType:kExtraLargePlatform withRotation:0.85f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.35f) ofType:kExtraLargePlatform withRotation:0.85f];

@@ -3,7 +3,7 @@
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/1/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Copyright Vaux 2011. All rights reserved.
 //
 
 #import "cocos2d.h"
@@ -21,26 +21,14 @@
 @synthesize highScoresDictionary;
 @synthesize viewController;
 
+#pragma mark -
+#pragma mark Misc Startup
+
 - (void) removeStartupFlicker
 {
-	//
-	// THIS CODE REMOVES THE STARTUP FLICKER
-	//
-	// Uncomment the following code if you Application only supports landscape mode
-	//
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
-
-//	CC_ENABLE_DEFAULT_GL_STATES();
-//	CCDirector *director = [CCDirector sharedDirector];
-//	CGSize size = [director winSize];
-//	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
-//	sprite.position = ccp(size.width/2, size.height/2);
-//	sprite.rotation = -90;
-//	[sprite visit];
-//	[[director openGLView] swapBuffers];
-//	CC_ENABLE_DEFAULT_GL_STATES();
-	
-#endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
+    //This method is required by Cocos2d
+#endif
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
@@ -69,20 +57,22 @@ void uncaughtExceptionHandler(NSException *exception) {
     [defaultsToRegister release];
 }
 
+#pragma mark -
+#pragma mark Application Run Cycle
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
     
+    //Analytics
     [[GCHelper sharedInstance] authenticateLocalUser];
     
+    //Turn music on/off
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
-    CCLOG(@"music before is %@", ismusicon);
-    
     if(ismusicon == NULL) {
         [self registerDefaultsFromSettingsBundle];
-        ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     }
-    CCLOG(@"music after is %@", ismusicon);
     
+    //Load high scores
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
     NSString *documentsDirectory = [paths objectAtIndex:0]; 
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HighScores.plist"];
@@ -91,9 +81,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     } else {
         highScoresDictionary = [[NSMutableDictionary alloc] init]; 
     }
+
     
-    
-    
+    //Register for crashes (to be reported to flurry)
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
     
@@ -104,7 +94,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
-	
 	
 	CCDirector *director = [CCDirector sharedDirector];
 	
@@ -165,9 +154,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-	// Run the intro Scene
+	// Start the game!
 	[[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
-    //[[GameManager sharedGameManager] runSceneWithID:kGameLevel3 ];
 }
 
 
@@ -177,8 +165,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] resume];
-    //CCScene *currentScene = [[GameManager sharedGameManager] getCurrentScene];
-    //[currentScene doPause];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -208,6 +194,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
+
+#pragma mark -
+#pragma mark High Score Methods
 
 -(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -252,6 +241,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)clearAllHighScores {
     [highScoresDictionary removeAllObjects];
 }
+
+#pragma mark -
+#pragma mark Memory Management
 
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];

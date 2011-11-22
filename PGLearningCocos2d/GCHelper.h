@@ -4,7 +4,7 @@
 //
 //  Created by Brandon Moore on 11/7/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
-//
+//  Used to integrate with Game Center
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>

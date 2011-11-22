@@ -13,6 +13,10 @@
 
 
 @implementation MoreInfoLayer
+
+#pragma mark -
+#pragma mark Switch Menus
+
 -(void)returnToMainMenu {
 	[[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
@@ -23,6 +27,9 @@
 -(void)showHighScores {
 	[[GameManager sharedGameManager] runSceneWithID:kHighScoresScene];
 }
+
+#pragma mark -
+#pragma mark Game Center
 
 -(void)showGameCenter {
 	GKLeaderboardViewController *leaderBoardController = [[GKLeaderboardViewController alloc] init];
@@ -38,8 +45,6 @@
     } else {
         [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
     }
-
-    
 }
 
 -(void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *) viewController {
@@ -50,6 +55,10 @@
     [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
 }
 
+#pragma mark -
+#pragma mark Toggle Music
+
+//Turn music on/off
 -(void)musicTogglePressed {
 	if ([[GameManager sharedGameManager] isMusicON]) {
 		CCLOG(@"OptionsLayer-> Turning Game Music OFF");
@@ -67,6 +76,8 @@
 	}
 }
 
+#pragma mark -
+#pragma mark Init
 
 -(id)init {
 	self = [super init];
@@ -90,8 +101,7 @@
 										 
 		CCMenuItemToggle *musicToggle = [CCMenuItemToggle itemWithTarget:self 
 																selector:@selector(musicTogglePressed) 
-																   items:musicOnLabel,musicOffLabel,nil];//Error RemoveChildByTag: child not found!
-		
+																   items:musicOnLabel,musicOffLabel,nil];
 				
 		CCLabelTTF *creditsButtonLabel = [CCLabelTTF labelWithString:@"Credits" fontName:@"Marker Felt" fontSize:24.0];
 		CCMenuItemLabel	*creditsButton = [CCMenuItemLabel itemWithLabel:creditsButtonLabel target:self selector:@selector(showCredits)];
@@ -107,7 +117,7 @@
         backButtonMenu = [CCMenu menuWithItems:backButton, nil];
         
         [backButtonMenu setPosition:ccp(0,0)];
-        [self addChild:backButtonMenu z:1 tag:kButtonTagValue];
+        [self addChild:backButtonMenu z:kZeroZValue tag:kButtonTagValue];
 		
         if ([[GCHelper sharedInstance] userAuthenticated]) {
             CCLabelTTF *gameCenterButtonLabel = [CCLabelTTF labelWithString:@"Game Center" fontName:@"Marker Felt" fontSize:24.0];

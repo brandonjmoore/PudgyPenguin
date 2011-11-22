@@ -3,17 +3,13 @@
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/4/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Vaux. All rights reserved.
 //
 
 #ifndef PGLearningCocos2d_CommonProtocols_h
 #define PGLearningCocos2d_CommonProtocols_h
 
-typedef  enum {
-    kDirectionLeft,
-    kDirectionRight
-} PhaserDirection;
-
+//Character States
 typedef enum {
     kStateIdle,
     kStateAngry,
@@ -29,6 +25,7 @@ typedef enum {
     kStateMouthOpen
 } CharacterStates;
 
+//Object Types
 typedef enum {
     kObjectTypeNone,
     kFishType,
@@ -47,12 +44,14 @@ typedef enum {
     kPlatformTypeSmall
 } GameObjectType;
 
+//Box Types
 typedef enum {
     kNormalBox,
     kBouncyBox,
     kBalloonBox
 } BoxType;
 
+//Platform Types
 typedef enum {
     kExtraExtraLargePlatform,
     kExtraLargePlatform,
@@ -61,6 +60,7 @@ typedef enum {
     kSmallPlatform
 } PlatformType;
 
+//Protocol used to create objects
 @protocol GameplayLayerDelegate
 
 -(void)createObjectOfType: (GameObjectType)objectType atLocation:(CGPoint)startLocation withZValue:(int)ZValue; 

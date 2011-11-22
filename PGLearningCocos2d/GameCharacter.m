@@ -3,7 +3,7 @@
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/4/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Vaux. All rights reserved.
 //
 
 #import "GameCharacter.h"
@@ -16,7 +16,6 @@
     [super dealloc];
 }
 
-//TODO: Change these methods page 81
 -(int)addEatenFish{
     //default to zero fish
     CCLOG(@"addEatenFish should be overridden");

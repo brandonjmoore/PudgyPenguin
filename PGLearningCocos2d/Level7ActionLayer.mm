@@ -410,14 +410,8 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
-        
-        
-        
-
-        
-        //first row
-
-        
+ 
+        //first row        
         [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
         
@@ -475,19 +469,9 @@
         [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
-
-
-        
-        //bouncybox
-        //[self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox];
         
         
-
-
-
-
-        
-        
+        //penguin
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8f, winSize.height * 0.1f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];

@@ -144,8 +144,6 @@
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
     
-    
-    
     end = [touch previousLocationInView:[touch view]];
     end = [[CCDirector sharedDirector] convertToGL:end];
     
@@ -181,8 +179,8 @@
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     [lineArrayMaster addObject:[lineArray copy]];
-    [lineSpriteArrayMaster addObject:[lineSpriteArray copy]];
-    [lineSpriteArray removeAllObjects];
+    [lineSpriteArrayMaster addObject:[lineSpriteArray copy]];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
+    [lineSpriteArray removeAllObjects];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
     [lineArray removeAllObjects];
 }
 
@@ -233,7 +231,6 @@
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    //[[CCDirector sharedDirector] resume];
     [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];
 }
 
@@ -313,7 +310,6 @@
     CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
     levelScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.1f);
     [self addChild:levelScoreText z:10];
-    
     
     //Show total high score
     NSInteger totalHighScore = [app getTotalHighScore];

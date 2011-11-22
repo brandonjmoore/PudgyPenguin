@@ -433,7 +433,6 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.52f) ofType:kNormalBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.52f) ofType:kNormalBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.2f) ofType:kNormalBox];
-        //[self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.2f) ofType:kNormalBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.36f) ofType:kNormalBox];
         
         [self createBoxAtLocation:ccp(winSize.width * 0.8, winSize.height * 0.05) ofType:kBalloonBox];
@@ -442,17 +441,6 @@
         [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.05) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.4, winSize.height * 0.05) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.3, winSize.height * 0.05) ofType:kBalloonBox];
-        
-           
-        //[self createBoxAtLocation:ccp(winSize.width * 0.8, winSize.height * 0.15) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.1f) ofType:kNormalBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.05f, winSize.height *0.322f) ofType:kBouncyBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.05f, winSize.height *0.2395f) ofType:kBouncyBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.05f, winSize.height *0.157f) ofType:kBouncyBox];
-//        [self createBoxAtLocation:ccp(winSize.width * 0.05f, winSize.height *0.0745f) ofType:kBouncyBox];
-        
-        //[self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
-        
         
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];

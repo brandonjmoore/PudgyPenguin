@@ -3,13 +3,16 @@
 //  PGLearningCocos2d
 //
 //  Created by Jonathan Urie on 10/18/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Vaux. All rights reserved.
 //
 
 #import "Box.h"
 
 
 @implementation Box
+
+#pragma mark -
+#pragma mark Body Creation Methods
 
 - (void)createNormalBoxAtLocation:(CGPoint)location {
     b2BodyDef bodyDef;
@@ -87,7 +90,7 @@
     body->CreateFixture(&fixtureDef);
 }
 
-
+//Create specific types of boxes
 - (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType {
     if((self = [super init])) {
         world = theWorld;
@@ -115,10 +118,16 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Mem Management
+
 -(void) dealloc {
     
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Character State Methods
 
 -(CGRect)adjustedBoundingBox {
     //Adjust the bounding box to the size of the sprite
