@@ -9,12 +9,13 @@
 #import "Level1Scene.h"
 #import "Level1UILayer.h"
 #import "Level1ActionLayer.h"
+#import "UILayer.h"
 
 @implementation Level1Scene
 
 - (id)init {
     if ((self = [super init])) {
-        Level1UILayer *uiLayer = [Level1UILayer node];
+        UILayer *uiLayer = [UILayer node];
         [self addChild:uiLayer z:1];
         Level1ActionLayer *actionLayer = [[[Level1ActionLayer alloc]initWithLevel1UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];

@@ -20,6 +20,8 @@
     CCLOG(@"Level3ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
+    [lineArrayMaster release];
+    [lineSpriteArrayMaster release];
     
     [super dealloc];
 }
@@ -147,8 +149,6 @@
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
     
-    
-    
     end = [touch previousLocationInView:[touch view]];
     end = [[CCDirector sharedDirector] convertToGL:end];
     
@@ -182,16 +182,26 @@
     
 }
 
--(void) clearLines {
-    for (NSValue *bodyPtr in lineArray) {
-        b2Body *body = (b2Body*)[bodyPtr pointerValue];
-        world->DestroyBody(body);
-        
-    }
+-(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    [lineArrayMaster addObject:[lineArray copy]];
+    [lineSpriteArrayMaster addObject:[lineSpriteArray copy]];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
+    [lineSpriteArray removeAllObjects];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
     [lineArray removeAllObjects];
-    
-    for (streak in lineSpriteArray) {
-        [streak removeFromParentAndCleanup:YES];
+}
+
+-(void) clearLines {
+    if ([lineArrayMaster count] > 0) {
+        for (NSValue *bodyPtr in [lineArrayMaster lastObject]) {
+            b2Body *body = (b2Body*)[bodyPtr pointerValue];
+            world->DestroyBody(body);
+            
+        }
+        [lineArrayMaster removeLastObject];
+        
+        for (streak in [lineSpriteArrayMaster lastObject]) {
+            [streak removeFromParentAndCleanup:YES];
+        }
+        [lineSpriteArrayMaster removeLastObject];
     }
 }
 
@@ -392,6 +402,8 @@
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
+        lineArrayMaster = [[NSMutableArray array] retain];
+        lineSpriteArrayMaster = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
         remainingTime = 31;

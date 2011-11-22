@@ -43,6 +43,8 @@
     CGPoint end;
     NSMutableArray *lineArray;
     NSMutableArray *lineSpriteArray;
+    NSMutableArray *lineArrayMaster;
+    NSMutableArray *lineSpriteArrayMaster;
     CCMotionStreak *streak;
     
     

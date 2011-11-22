@@ -1,23 +1,23 @@
 //
-//  Level8ActionLayer.m
-//  PGLearningCocos2d
+//  ActionLayer.m
+//  PudgyPenguin
 //
-//  Created by Brandon Moore on 10/18/11.
+//  Created by Brandon Moore on 11/22/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level8ActionLayer.h"
+#import "ActionLayer.h"
 #import "Box2DSprite.h"
-#import "Level8UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
+#import "UILayer.h"
 
-@implementation Level8ActionLayer
+@implementation ActionLayer 
 
 -(void) dealloc {
-    CCLOG(@"Level8ActionLayer dealloc");
+    CCLOG(@"ActionLayer Super dealloc");
     [lineArray release];
     [lineSpriteArray release];
     [lineArrayMaster release];
@@ -54,14 +54,9 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
--(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType{
+-(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType {
     box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
-}
-
--(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation{
-    platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
-    [sceneSpriteBatchNode addChild:platform z:1];
 }
 
 -(void)createTrashAtLocation:(CGPoint)location {
@@ -70,32 +65,11 @@
 }
 
 -(void)addFish {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    //If the penguin is satisfied, dont add any more fish
-    if (penguin2 != nil) {
-        if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
-            numFishCreated++;
-            
-        }else {
-            //If the Penguin is satisfied, dont create fish
-            [self unschedule:@selector(addFish)];
-        }
-    }    
+    CCLOG(@"ActionLayer->addFish method should be overridden");   
 }
 
 -(void)addTrash {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    //If the penguin is satisfied, dont add any more fish
-    if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
-            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
-            
-        }else {
-            //If the Penguin is satisfied, dont create fish
-            [self unschedule:@selector(addTrash)];
-        }
-    }    
+    CCLOG(@"ActionLayer->addTrash method should be overridden");
 }
 
 #pragma mark -
@@ -132,8 +106,7 @@
 #pragma mark -
 #pragma mark Line Drawing
 
-- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
-{
+- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event {
     
     CGPoint pt = [self convertTouchToNodeSpace:touch];
 	_lastPt = pt;
@@ -190,6 +163,8 @@
 }
 
 -(void) clearLines {
+    
+    
     if ([lineArrayMaster count] > 0) {
         for (NSValue *bodyPtr in [lineArrayMaster lastObject]) {
             b2Body *body = (b2Body*)[bodyPtr pointerValue];
@@ -203,6 +178,8 @@
         }
         [lineSpriteArrayMaster removeLastObject];
     }
+    
+    
 }
 
 - (void)registerWithTouchDispatcher {
@@ -229,16 +206,11 @@
 }
 
 -(void) doResetLevel {
-    self.isTouchEnabled = YES;
-    
-    [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel8];//Level Specific: Change for new level
+    CCLOG(@"ActionLayer->doResetLevel method should be overridden");
 }
 
 -(void) doNextLevel {
-    self.isTouchEnabled = YES;
-    
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel9];
+    CCLOG(@"ActionLayer->doNextLevel method should be overridden");
 }
 
 -(void)doPause {
@@ -287,85 +259,18 @@
 #pragma mark Init and Update Stuffs
 
 -(void)setupBackground {
-    CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"night_background.png"];
-    CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
-    
-    [self addChild:backgroundImage z:-10 tag:0];
+    CCLOG(@"ActionLayer->setupBackground method should be overridden");
 }
 
 -(void)doHighScoreStuff {
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    //Get app delegate (used for high scores)
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    //Show level High Score (new high scores only)
-    if (remainingTime > [app getHighScoreForLevel:kLevel8]) {
-        NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
-        CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
-        levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
-        [self addChild:levelHighScoreLabel z:10];
-    }
-    
-    
-    //Set the High Score (if new value is greater than old value)
-    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel8];
-    
-    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel8];
-    NSString *levelScoreString = [NSString stringWithFormat:@"Level 8 high score: %d", levelHighScore];
-    CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
-    levelScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.1f);
-    [self addChild:levelScoreText z:10];
-    
-    
-    //Show total high score
-    NSInteger totalHighScore = [app getTotalHighScore];
-    
-    NSString *highScoreString = [NSString stringWithFormat:@"Total high score: %d", totalHighScore];
-    CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
-    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
-    [self addChild:highScoreText z:10];
+    CCLOG(@"ActionLayer->doHighScoreStuff method should be overridden");
 }
 
 -(void) gameOverPass: (id)sender {
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level9unlocked"];
-    
-    clearButton.isEnabled = NO;
-    pauseButton.isEnabled = NO;
-    self.isTouchEnabled = NO;
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
-    [self addChild:levelCompleteLayer z:9];
-    
-    CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
-    CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
-    
-    CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
-    
-    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
-    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
-    
-    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
-    
-    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
-    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
-    
-    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
-    
-    CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
-    [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
-    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
-    [self addChild:nextLevelMenu z:10];
-    
-    [self doHighScoreStuff];
+    CCLOG(@"ActionLayer->gameOverPass method should be overridden");
     
 }
-
-
 
 -(void) gameOverFail: (id)sender {
     clearButton.isEnabled = NO;
@@ -391,92 +296,18 @@
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
-    
 }
 
--(id)initWithLevel8UILayer:(Level8UILayer *)level8UILayer {
-    if ((self = [super init])) {
-        CGSize winSize = [CCDirector sharedDirector].winSize;
-        
-        [FlurryAnalytics logEvent:@"Level 8 Started"];
-        
-        lineArray = [[NSMutableArray array] retain];
-        lineSpriteArray = [[NSMutableArray array] retain];
-        lineArrayMaster = [[NSMutableArray array] retain];
-        lineSpriteArrayMaster = [[NSMutableArray array] retain];
-        
-        startTime = CACurrentMediaTime();
-        remainingTime = 31;
-   
-        [self setupBackground];
-        uiLayer = level8UILayer;
-        
-        [self setupWorld];
-        //[self setupDebugDraw];
-        [self scheduleUpdate];
-        [self schedule:@selector(updateTime) interval:1.0];
-        [self createPauseButton];
-        [self createClearButton];
-        self.isTouchEnabled = YES;
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
-        sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
-        [self addChild:sceneSpriteBatchNode z:-1];
-        
-        //[self createPlatformAtLocation:ccp(winSize.width * 0.3f,winSize.height * 0.4f) ofType:kExtraLargePlatform withRotation:1.6];
-        
-         [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.4) ofType:kBalloonBox];
-        
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.22f, winSize.height * 0.32f)];
-        
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.2f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.28f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.36f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.28f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.2f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.36f) ofType:kNormalBox];
-        
-        [self createBoxAtLocation:ccp(winSize.width * 0.8, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.7, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.6, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.3, winSize.height * 0.05) ofType:kBalloonBox];
-        
-        
-        penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
-        
-        //[uiLayer displayText:@"Go!" andOnCompleteCallTarget:nil selector:nil];
-        
-        //Create fish every so many seconds.
-        [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
-        
-        //create trash every so often
-        //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
-        
-        //Add snow
-        //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
-        //[self addChild:snowParticleSystem];
-        
-    }
-    return self;
+-(id)initWithLevel1UILayer:(UILayer *)UILayer {
+    CCLOG(@"ActionLayer->initWithLevel*Layer method should be overridden");
+    return nil;
 }
 
 -(void)update:(ccTime)dt {
     
     int32 velocityIterations = 3;
     int32 positionIterations = 2;
-
+    
     world->Step(dt, velocityIterations, positionIterations);
     
     for(b2Body *b=world->GetBodyList(); b!=NULL; b=b->GetNext()) {
@@ -496,15 +327,17 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
-
+            
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
                 [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
-            } else if (remainingTime <= 0) {
+            } else {
+                if (remainingTime <= 0) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
                     [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
+                }
             }
         }
     }
@@ -531,13 +364,11 @@
 
 -(void)updateTime {
     
-    if (!gameOver) {
+    if (!gameOver){
         remainingTime = remainingTime - 1.0;
         [uiLayer displaySecs:remainingTime];
     }
+    CCLOG(@"-----------%f", remainingTime);
 }
-
-
-
 
 @end
