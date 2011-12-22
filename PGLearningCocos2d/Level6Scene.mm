@@ -7,14 +7,14 @@
 //
 
 #import "Level6Scene.h"
-#import "Level6UILayer.h"
+#import "UILayer.h"
 #import "Level6ActionLayer.h"
 
 @implementation Level6Scene
 
 - (id)init {
     if ((self = [super init])) {
-        Level6UILayer *uiLayer = [Level6UILayer node];
+        UILayer *uiLayer = [UILayer node];
         [self addChild:uiLayer z:1];
         Level6ActionLayer *actionLayer = [[[Level6ActionLayer alloc]initWithLevel6UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];

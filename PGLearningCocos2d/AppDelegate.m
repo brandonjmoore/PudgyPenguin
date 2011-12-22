@@ -225,7 +225,11 @@ void uncaughtExceptionHandler(NSException *exception) {
         totalScore = totalScore + [tempScore integerValue];
     }
     
+    //TODO: Dont forget to uncomment this back before releasing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!***********************!!!!!!!!!!!!!!!!!!!!!!!!!!***********
     [[GCHelper sharedInstance] reportScore:kLeaderBoardCompletionTime score:totalScore];
+    
+    //TODO: Dont forget to uncomment this back before releasing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!***********************!!!!!!!!!!!!!!!!!!!!!!!!!!***********
+    
     
     return totalScore;
 }

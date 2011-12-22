@@ -7,14 +7,14 @@
 //
 
 #import "Level3Scene.h"
-#import "Level3UILayer.h"
 #import "Level3ActionLayer.h"
+#import "UILayer.h"
 
 @implementation Level3Scene
 
 - (id)init {
     if ((self = [super init])) {
-        Level3UILayer *uiLayer = [Level3UILayer node];
+        UILayer *uiLayer = [UILayer node];
         [self addChild:uiLayer z:1];
         Level3ActionLayer *actionLayer = [[[Level3ActionLayer alloc]initWithLevel3UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];

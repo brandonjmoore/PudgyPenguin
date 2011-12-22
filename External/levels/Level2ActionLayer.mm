@@ -1,27 +1,24 @@
 //
-//  ActionLayer.m
-//  PudgyPenguin
+//  Level2ActionLayer.m
+//  PGLearningCocos2d
 //
-//  Created by Brandon Moore on 11/22/11.
+//  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "ActionLayer.h"
+#import "Level2ActionLayer.h"
 #import "Box2DSprite.h"
+#import "Level2UILayer.h"
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
-#import "UILayer.h"
 
-@implementation ActionLayer 
+@implementation Level2ActionLayer
 
 -(void) dealloc {
-    CCLOG(@"ActionLayer Super dealloc");
+    CCLOG(@"Level2ActionLayer dealloc");
     [lineArray release];
     [lineSpriteArray release];
-    [lineArrayMaster release];
-    [lineSpriteArrayMaster release];
     
     [super dealloc];
 }
@@ -54,9 +51,14 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
--(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType {
+-(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType{
     box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
+}
+
+-(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation{
+    platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
+    [sceneSpriteBatchNode addChild:platform z:1];
 }
 
 -(void)createTrashAtLocation:(CGPoint)location {
@@ -64,17 +66,33 @@
     [sceneSpriteBatchNode addChild:trash z:1];
 }
 
--(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation {
-    platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
-    [sceneSpriteBatchNode addChild:platform z:1];
-}
-
 -(void)addFish {
-    CCLOG(@"ActionLayer->addFish method should be overridden");   
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    if (penguin2 != nil) {
+        if (!gameOver) {
+            [self createFish2AtLocation:ccp(screenSize.width * 0.5, screenSize.height * 0.95)];
+            numFishCreated++;
+            
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addFish)];
+        }
+    }    
 }
 
 -(void)addTrash {
-    CCLOG(@"ActionLayer->addTrash method should be overridden");
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    //If the penguin is satisfied, dont add any more fish
+    if (penguin2 != nil) {
+        if (penguin2.characterState != kStateSatisfied) {
+            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
+            
+        }else {
+            //If the Penguin is satisfied, dont create fish
+            [self unschedule:@selector(addTrash)];
+        }
+    }    
 }
 
 #pragma mark -
@@ -111,7 +129,8 @@
 #pragma mark -
 #pragma mark Line Drawing
 
-- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event {
+- (BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event
+{
     
     CGPoint pt = [self convertTouchToNodeSpace:touch];
 	_lastPt = pt;
@@ -126,6 +145,8 @@
 
 
 - (void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
+    
+    
     
     end = [touch previousLocationInView:[touch view]];
     end = [[CCDirector sharedDirector] convertToGL:end];
@@ -160,31 +181,17 @@
     
 }
 
--(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    [lineArrayMaster addObject:[lineArray copy]];
-    [lineSpriteArrayMaster addObject:[lineSpriteArray copy]];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
-    [lineSpriteArray removeAllObjects];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
-    [lineArray removeAllObjects];
-}
-
 -(void) clearLines {
-    
-    
-    if ([lineArrayMaster count] > 0) {
-        for (NSValue *bodyPtr in [lineArrayMaster lastObject]) {
-            b2Body *body = (b2Body*)[bodyPtr pointerValue];
-            world->DestroyBody(body);
-            
-        }
-        [lineArrayMaster removeLastObject];
+    for (NSValue *bodyPtr in lineArray) {
+        b2Body *body = (b2Body*)[bodyPtr pointerValue];
+        world->DestroyBody(body);
         
-        for (streak in [lineSpriteArrayMaster lastObject]) {
-            [streak removeFromParentAndCleanup:YES];
-        }
-        [lineSpriteArrayMaster removeLastObject];
     }
+    [lineArray removeAllObjects];
     
-    
+    for (streak in lineSpriteArray) {
+        [streak removeFromParentAndCleanup:YES];
+    }
 }
 
 - (void)registerWithTouchDispatcher {
@@ -211,11 +218,16 @@
 }
 
 -(void) doResetLevel {
-    CCLOG(@"ActionLayer->doResetLevel method should be overridden");
+    self.isTouchEnabled = YES;
+    
+    [[CCDirector sharedDirector] resume];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
-    CCLOG(@"ActionLayer->doNextLevel method should be overridden");
+    self.isTouchEnabled = YES;
+    
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel3];
 }
 
 -(void)doPause {
@@ -264,18 +276,51 @@
 #pragma mark Init and Update Stuffs
 
 -(void)setupBackground {
-    CCLOG(@"ActionLayer->setupBackground method should be overridden");
+    CCSprite *backgroundImage;
+    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
+    
+    [self addChild:backgroundImage z:-10 tag:0];
 }
 
--(void)doHighScoreStuff {
-    CCLOG(@"ActionLayer->doHighScoreStuff method should be overridden");
-}
 
 -(void) gameOverPass: (id)sender {
     
-    CCLOG(@"ActionLayer->gameOverPass method should be overridden");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"level3unlocked"];
+    
+    clearButton.isEnabled = NO;
+    pauseButton.isEnabled = NO;
+    self.isTouchEnabled = NO;
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
+    [self addChild:levelCompleteLayer z:9];
+    
+    CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
+    CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
+    
+    CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
+    
+    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
+    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
+    
+    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
+    
+    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
+    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
+    
+    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
+    
+    CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
+    [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
+    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
+    [self addChild:nextLevelMenu z:10];
     
 }
+
+
 
 -(void) gameOverFail: (id)sender {
     clearButton.isEnabled = NO;
@@ -301,18 +346,99 @@
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
+    
 }
 
--(id)initWithLevel1UILayer:(UILayer *)UILayer {
-    CCLOG(@"ActionLayer->initWithLevel*Layer method should be overridden");
-    return nil;
+-(id)initWithLevel2UILayer:(Level2UILayer *)level2UILayer {
+    if ((self = [super init])) {
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        lineArray = [[NSMutableArray array] retain];
+        lineSpriteArray = [[NSMutableArray array] retain];
+        
+        startTime = CACurrentMediaTime();
+        remainingTime = 31;
+   
+        [self setupBackground];
+        uiLayer = level2UILayer;
+        
+        [self setupWorld];
+        //[self setupDebugDraw];
+        [self scheduleUpdate];
+        [self schedule:@selector(updateTime) interval:1.0];
+        [self createPauseButton];
+        [self createClearButton];
+        self.isTouchEnabled = YES;
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
+        sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        [self addChild:sceneSpriteBatchNode z:-1];
+        
+        //outer concentric circle
+        //bottom right
+        [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.87f, winSize.height *0.39f) ofType:kSmallPlatform withRotation:-0.4];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.78f, winSize.height *0.30f) ofType:kSmallPlatform withRotation:-0.8];
+        //[self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.24f) ofType:kSmallPlatform withRotation:-1.2];
+        
+        //bottom left
+        [self createPlatformAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.13f, winSize.height *0.39f) ofType:kSmallPlatform withRotation:0.4];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.30f) ofType:kSmallPlatform withRotation:0.8];
+        //[self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.24f) ofType:kSmallPlatform withRotation:1.2];
+
+        //top left
+        [self createPlatformAtLocation:ccp(winSize.width * 0.13f, winSize.height *0.61f) ofType:kSmallPlatform withRotation:-0.4];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.70f) ofType:kSmallPlatform withRotation:-0.8];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.76f) ofType:kSmallPlatform withRotation:-1.2];
+
+        //top right
+        [self createPlatformAtLocation:ccp(winSize.width * 0.87f, winSize.height *0.61f) ofType:kSmallPlatform withRotation:0.4];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.78f, winSize.height *0.70f) ofType:kSmallPlatform withRotation:0.8];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.76f) ofType:kSmallPlatform withRotation:1.2];
+        
+        //topper
+        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.777f) ofType:kSmallPlatform withRotation:1.57];
+        
+        
+        //Inner concentric circle
+        //right
+        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.58f) ofType:kSmallPlatform withRotation:0.75];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.7f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.4f) ofType:kSmallPlatform withRotation:-0.75];
+        
+        //left
+        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.4f) ofType:kSmallPlatform withRotation:0.75];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.58f) ofType:kSmallPlatform withRotation:-0.75];
+        
+        //bottom-er
+        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.35f) ofType:kSmallPlatform withRotation:1.57];
+        
+        
+        //helper balloons
+        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.05f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.7f, winSize.height *0.05f) ofType:kBalloonBox];
+        
+        
+        
+        //penguin
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.45f)];
+        
+        
+        
+        //Create fish every so many seconds.
+        [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
+        
+        
+    }
+    return self;
 }
 
 -(void)update:(ccTime)dt {
     
     int32 velocityIterations = 3;
     int32 positionIterations = 2;
-    
+
     world->Step(dt, velocityIterations, positionIterations);
     
     for(b2Body *b=world->GetBodyList(); b!=NULL; b=b->GetNext()) {
@@ -332,7 +458,6 @@
         if (!gameOver){
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
-            
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
@@ -369,11 +494,14 @@
 
 -(void)updateTime {
     
-    if (!gameOver){
-        remainingTime = remainingTime - 1.0;
+    remainingTime = remainingTime - 1.0;
+    
+    if (!gameOver){    
         [uiLayer displaySecs:remainingTime];
     }
-    CCLOG(@"-----------%f", remainingTime);
 }
+
+
+
 
 @end

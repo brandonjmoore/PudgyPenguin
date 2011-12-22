@@ -312,7 +312,8 @@
     sceneSelectMenu1 = [CCMenu menuWithItems:playLevel1Button, playLevel2Button, playLevel3Button, playLevel4Button, nil];
     sceneSelectMenu2 = [CCMenu menuWithItems:playLevel5Button, playLevel6Button, playLevel7Button, playLevel8Button, nil];
     sceneSelectMenu3 = [CCMenu menuWithItems:playLevel9Button, playLevel10Button, playLevel11Button, playLevel12Button, nil];
-    sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, playLevel16Button, nil];
+    //sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, playLevel16Button, nil];
+    sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, nil];
     
     
     [sceneSelectMenu1 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];

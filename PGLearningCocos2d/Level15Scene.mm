@@ -7,14 +7,14 @@
 //
 
 #import "Level15Scene.h"
-#import "Level15UILayer.h"
+#import "UILayer.h"
 #import "Level15ActionLayer.h"
 
 @implementation Level15Scene
 
 - (id)init {
     if ((self = [super init])) {
-        Level15UILayer *uiLayer = [Level15UILayer node];
+        UILayer *uiLayer = [UILayer node];
         [self addChild:uiLayer z:1];
         Level15ActionLayer *actionLayer = [[[Level15ActionLayer alloc]initWithLevel15UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];

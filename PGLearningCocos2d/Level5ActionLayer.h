@@ -6,59 +6,17 @@
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "cocos2d.h"
-#import "Box2D.h"
-#import "GLES-Render.h"
-#import "Constants.h"
-#import "Box2DSprite.h"
-#import "Box.h"
-#import "Platform.h"
-#import "Trash.h"
-#import "AppDelegate.h"
+#import "ActionLayer.h"
 
 
-@class Level5UILayer;
-@class Penguin2;
-@class Fish2;
+//@class UILayer;
+//@class Penguin2;
+//@class Fish2;
 
-@interface Level5ActionLayer : CCLayer {
-    //Characters
-    Penguin2 *penguin2;
-    Fish2 *fish2;
-    Box *box;
-    Trash *trash;
-    Platform *platform;
+@interface Level5ActionLayer : ActionLayer {
     
-    //Menus
-    CCMenu *pauseButtonMenu;
-    CCMenu *clearButtonMenu;
-    CCLayerColor *pauseLayer;
-    CCMenuItemSprite *pauseButton;
-    CCMenuItemSprite *clearButton;
-    
-    
-    //Drawing
-    CGPoint _lastPt;//Must be declared to handle drawing a line
-    CGPoint end;
-    NSMutableArray *lineArray;
-    NSMutableArray *lineSpriteArray;
-    NSMutableArray *lineArrayMaster;
-    NSMutableArray *lineSpriteArrayMaster;
-    CCMotionStreak *streak;
-    
-    
-    b2World *world;
-    GLESDebugDraw *debugDraw;
-    CCSpriteBatchNode *sceneSpriteBatchNode;
-    Level5UILayer *uiLayer;
-    bool gameOver;
-    int numFishCreated;
-    int numFishLeftScene;
-    double startTime;
-    double currentMediaTime;
-    double remainingTime;
 }
 
--(id)initWithLevel5UILayer:(Level5UILayer *)level5UILayer;
-        
+-(id)initWithLevel5UILayer:(UILayer *)level5UILayer;
+
 @end
