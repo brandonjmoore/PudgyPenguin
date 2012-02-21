@@ -1,25 +1,26 @@
 //
-//  Box.mm
+//  MovingBox.mm
 //  PGLearningCocos2d
 //
 //  Created by Jonathan Urie on 10/18/11.
 //  Copyright 2011 Vaux. All rights reserved.
 //
 
-#import "Box.h"
+#import "MovingBox.h"
 
 
-@implementation Box
+@implementation MovingBox
 
 #pragma mark -
 #pragma mark Body Creation Methods
 
-- (void)createNormalBoxAtLocation:(CGPoint)location {
+- (b2Body*)createMovingNormalBoxAtLocation:(CGPoint)location withRotation:(float)rotation{
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
+    body->SetTransform((body->GetPosition()), rotation);
     
     b2FixtureDef fixtureDef;
     b2PolygonShape poly;
@@ -31,14 +32,16 @@
     fixtureDef.restitution = 0.5;
     
     body->CreateFixture(&fixtureDef);
+    return body;
 }
 
-- (void)createBouncyBoxAtLocation:(CGPoint)location {
+- (b2Body*)createMovingBouncyBoxAtLocation:(CGPoint)location withRotation:(float)rotation{
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
+    body->SetTransform((body->GetPosition()), rotation);
     
     b2FixtureDef fixtureDef;
     b2PolygonShape poly;
@@ -50,14 +53,16 @@
     fixtureDef.restitution = 2.0;
     
     body->CreateFixture(&fixtureDef);
+    return body;
 }
 
-- (void)createBalloonBoxAtLocation:(CGPoint)location {
+- (b2Body*)createMovingBalloonBoxAtLocation:(CGPoint)location withRotation:(float)rotation{
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
+    body->SetTransform((body->GetPosition()), rotation);
     
     b2FixtureDef fixtureDef;
     b2CircleShape circle;
@@ -69,49 +74,33 @@
     fixtureDef.restitution = 2.0;
     
     body->CreateFixture(&fixtureDef);
-}
-
-- (void)createPlatformBoxAtLocation:(CGPoint)location {
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_kinematicBody;
-    bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
-    body = world->CreateBody(&bodyDef);
-    body->SetUserData(self);
-    
-    b2FixtureDef fixtureDef;
-    b2PolygonShape poly;
-    poly.SetAsBox(self.contentSize.width/2/PTM_RATIO, self.contentSize.height/2/PTM_RATIO);
-    fixtureDef.shape = &poly;
-    
-    fixtureDef.density = 1.0;
-    fixtureDef.friction = 0.5;
-    fixtureDef.restitution = 2.0;
-    
-    body->CreateFixture(&fixtureDef);
+    return body;
 }
 
 //Create specific types of boxes
-- (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType {
+- (b2Body*)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(MovingBoxType)movingBoxType withRotation:(float)rotation {
+    b2Body *myBody;
     if((self = [super init])) {
+        
         world = theWorld;
-        if (boxType == kNormalBox) {
+        if (movingBoxType == kMovingNormalBox) {
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"box.png"]];
-            gameObjectType = kNormalBoxType;
-            [self createNormalBoxAtLocation:location];
-        } else if (boxType == kBouncyBox) {
+            gameObjectType = kMovingNormalBoxType;
+            myBody = [self createMovingNormalBoxAtLocation:location withRotation:rotation];
+        } else if (movingBoxType == kMovingBouncyBox) {
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bouncyblock.png"]];
-            gameObjectType = kBouncyBoxType;
-            [self createBouncyBoxAtLocation:location];
-        } else if (boxType == kBalloonBox) {
+            gameObjectType = kMovingBouncyBoxType;
+            myBody = [self createMovingBouncyBoxAtLocation:location withRotation:rotation];
+        } else if (movingBoxType == kMovingBalloonBox) {
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"balloon.png"]];
-            gameObjectType = kBalloonBoxType;
-            [self createBalloonBoxAtLocation:location];
-        } else{
-            CCLOG(@"Could not determine box type");
+            gameObjectType = kMovingBalloonBoxType;
+            myBody = [self createMovingBalloonBoxAtLocation:location withRotation:rotation];
+        } else {
+            CCLOG(@"Could not determine moving box type");
         }
             
     }
-    return self;
+    return myBody;
 }
 
 #pragma mark -
@@ -135,7 +124,7 @@
 }
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-    //CCLOG(@"just called the bx updatestatewithdeltatime");
+    //CCLOG(@"just called the movingbox updatestatewithdeltatime");
 
 }
 

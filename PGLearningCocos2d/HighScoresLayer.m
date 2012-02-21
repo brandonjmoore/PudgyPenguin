@@ -71,7 +71,7 @@
 	self = [super init];
 	if (self != nil) {
 		CGSize screenSize = [CCDirector sharedDirector].winSize; 
-		CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
+		CCSprite *background = [CCSprite spriteWithFile:@"ocean_no_block.png"];
 		[background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:background];
         
@@ -92,6 +92,9 @@
         NSString *highScoreTextLevel11 = [[NSString alloc] initWithFormat:@"Level 11: %d", [app getHighScoreForLevel:kLevel11]];
         NSString *highScoreTextLevel12 = [[NSString alloc] initWithFormat:@"Level 12: %d", [app getHighScoreForLevel:kLevel12]];
         NSString *highScoreTextLevel13 = [[NSString alloc] initWithFormat:@"Level 13: %d", [app getHighScoreForLevel:kLevel13]];
+        NSString *highScoreTextLevel14 = [[NSString alloc] initWithFormat:@"Level 14: %d", [app getHighScoreForLevel:kLevel14]];
+        NSString *highScoreTextLevel15 = [[NSString alloc] initWithFormat:@"Level 15: %d", [app getHighScoreForLevel:kLevel15]];
+        NSString *highScoreTextLevel16 = [[NSString alloc] initWithFormat:@"Level 16: %d", [app getHighScoreForLevel:kLevel16]];
         NSString *totalHighScoreText = [[NSString alloc] initWithFormat:@"Grand Total: %d", [app getTotalHighScore]];
         
 		
@@ -108,23 +111,29 @@
         CCLabelTTF *textLevel11 = [CCLabelTTF labelWithString:highScoreTextLevel11 fontName:@"Marker Felt" fontSize:20.0];
         CCLabelTTF *textLevel12 = [CCLabelTTF labelWithString:highScoreTextLevel12 fontName:@"Marker Felt" fontSize:20.0];
         CCLabelTTF *textLevel13 = [CCLabelTTF labelWithString:highScoreTextLevel13 fontName:@"Marker Felt" fontSize:20.0];
+        CCLabelTTF *textLevel14 = [CCLabelTTF labelWithString:highScoreTextLevel14 fontName:@"Marker Felt" fontSize:20.0];
+        CCLabelTTF *textLevel15 = [CCLabelTTF labelWithString:highScoreTextLevel15 fontName:@"Marker Felt" fontSize:20.0];
+        CCLabelTTF *textLevel16 = [CCLabelTTF labelWithString:highScoreTextLevel16 fontName:@"Marker Felt" fontSize:20.0];
         CCLabelTTF *textTotal = [CCLabelTTF labelWithString:totalHighScoreText fontName:@"Marker Felt" fontSize:28.0];
 
         
-        textLevel1.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.9f);
-        textLevel2.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.85f);
-        textLevel3.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.8f);		
-        textLevel4.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.75f);		
-        textLevel5.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.7f);		
-        textLevel6.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.65f);		
-        textLevel7.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.6f);		
-        textLevel8.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.55f);		
-        textLevel9.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.5f);		
-        textLevel10.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.45f);		
-        textLevel11.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.4f);		
-        textLevel12.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.35f);
-        textLevel13.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.3f);
-        textTotal.position = ccp(screenSize.width * 0.65f, screenSize.height * 0.2f);
+        textLevel1.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.95f);
+        textLevel2.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.9f);
+        textLevel3.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.85f);		
+        textLevel4.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.8f);		
+        textLevel5.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.75f);		
+        textLevel6.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.7f);		
+        textLevel7.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.65f);		
+        textLevel8.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.6f);		
+        textLevel9.position = ccp(screenSize.width * 0.77f, screenSize.height * 0.55f);		
+        textLevel10.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.5f);		
+        textLevel11.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.45f);		
+        textLevel12.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.4f);
+        textLevel13.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.35f);
+        textLevel14.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.3f);
+        textLevel15.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.25f);
+        textLevel16.position = ccp(screenSize.width * 0.75f, screenSize.height * 0.2f);
+        textTotal.position = ccp(screenSize.width * 0.65f, screenSize.height * 0.05f);
 		
 		//Set up the back button
         CCSprite *backButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
@@ -152,6 +161,9 @@
         [self addChild:textLevel11];
         [self addChild:textLevel12];
         [self addChild:textLevel13];
+        [self addChild:textLevel14];
+        [self addChild:textLevel15];
+        [self addChild:textLevel16];
         [self addChild:textTotal];
         //[self addChild:clearAllScoresMenu];
         
@@ -168,6 +180,9 @@
         [highScoreTextLevel11 release];
         [highScoreTextLevel12 release];
         [highScoreTextLevel13 release];
+        [highScoreTextLevel14 release];
+        [highScoreTextLevel15 release];
+        [highScoreTextLevel16 release];
 		[totalHighScoreText release];
 		
 	}

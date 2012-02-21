@@ -15,6 +15,7 @@
 #import "Trash.h"
 #import "AppDelegate.h"
 #import "Platform.h"
+#import "MovingBox.h"
 
 @class UILayer;
 @class Penguin2;
@@ -63,13 +64,18 @@
 - (void)setupDebugDraw;
 -(void)createPenguin2AtLocation:(CGPoint)location;
 -(void)createFish2AtLocation:(CGPoint)location;
--(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType;
+-(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType;
 -(void)createTrashAtLocation:(CGPoint)location;
 -(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation;
 -(void)addFish;
 -(void)addTrash;
 -(void) createPauseButton;
 -(void) createClearButton;
+
+
+
+-(b2Body*)createMovingBoxAtLocation:(CGPoint)location ofType:(MovingBoxType)movingBoxType withRotation:(float)rotation;
+
 //-(void) doResetLevel;
 //-(void) doNextLevel;
 //-(void)setupBackground;

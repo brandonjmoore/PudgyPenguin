@@ -14,7 +14,8 @@
 //@class Fish2;
 
 @interface Level16ActionLayer : ActionLayer {
-    
+    b2Body *myBody;
+    ccTime lastTimeMoved;
 }
 
 -(id)initWithLevel16UILayer:(UILayer *)level16UILayer;

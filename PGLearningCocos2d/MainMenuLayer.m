@@ -156,7 +156,7 @@
     
     [self removeChild:background cleanup:YES];
     
-    background = [CCSprite spriteWithFile:@"background.png"];
+    background = [CCSprite spriteWithFile:@"ocean_no_block.png"];
     [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [self addChild:background];
     
@@ -223,8 +223,8 @@
     CCSprite *level15ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_15.png"];
     CCSprite *level15ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_15_over.png"];
     
-    CCSprite *level16ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_1.png"];
-    CCSprite *level16ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_1_over.png"];
+    CCSprite *level16ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_16.png"];
+    CCSprite *level16ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_16_over.png"];
     
     
     CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:disabledSprite1 target:self selector:@selector(playScene:)];
@@ -305,15 +305,15 @@
     CCMenuItemSprite *playLevel16Button = [CCMenuItemSprite itemFromNormalSprite:level16ButtonNormal selectedSprite:level16ButtonSelected disabledSprite:disabledSprite16 target:self selector:@selector(playScene:)];
     [playLevel16Button setTag:16];
     
-    playLevel16Button.isEnabled = YES;
+    playLevel16Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level15unlocked"];;
     
     
     
     sceneSelectMenu1 = [CCMenu menuWithItems:playLevel1Button, playLevel2Button, playLevel3Button, playLevel4Button, nil];
     sceneSelectMenu2 = [CCMenu menuWithItems:playLevel5Button, playLevel6Button, playLevel7Button, playLevel8Button, nil];
     sceneSelectMenu3 = [CCMenu menuWithItems:playLevel9Button, playLevel10Button, playLevel11Button, playLevel12Button, nil];
-    //sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, playLevel16Button, nil];
-    sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, nil];
+    sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, playLevel16Button, nil];
+
     
     
     [sceneSelectMenu1 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
@@ -321,11 +321,11 @@
     [sceneSelectMenu3 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
     [sceneSelectMenu4 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
     
-    [sceneSelectMenu1 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.75f)];
-    [sceneSelectMenu2 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.6f)];
-    [sceneSelectMenu3 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.45f)];
-    [sceneSelectMenu4 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.3f)];
-    
+    [sceneSelectMenu1 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.8f)];
+    [sceneSelectMenu2 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.65f)];
+    [sceneSelectMenu3 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
+    [sceneSelectMenu4 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.35f)];
+
     [self addChild:sceneSelectMenu1 z:kOneZValue tag:kButtonTagValue];
     [self addChild:sceneSelectMenu2 z:kOneZValue tag:kButtonTagValue];
     [self addChild:sceneSelectMenu3 z:kOneZValue tag:kButtonTagValue];

@@ -37,6 +37,9 @@ typedef enum {
     kNormalBoxType,
     kBouncyBoxType,
     kBalloonBoxType,
+    kMovingNormalBoxType,
+    kMovingBouncyBoxType,
+    kMovingBalloonBoxType,
     kPlatformTypeExtraExtraLarge,
     kPlatformTypeExtraLarge,
     kPlatformTypeLarge,
@@ -50,6 +53,13 @@ typedef enum {
     kBouncyBox,
     kBalloonBox
 } BoxType;
+
+//Moving Box Types
+typedef enum {
+    kMovingNormalBox,
+    kMovingBouncyBox,
+    kMovingBalloonBox
+} MovingBoxType;
 
 //Platform Types
 typedef enum {

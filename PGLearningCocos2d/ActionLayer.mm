@@ -54,9 +54,20 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
--(void)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType {
+-(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType {
     box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
+    return box;
+}
+
+-(b2Body*)createMovingBoxAtLocation:(CGPoint)location ofType:(MovingBoxType)movingBoxType withRotation:(float)rotation{
+    b2Body *body = [[MovingBox alloc]initWithWorld:world atLocation:location ofType:movingBoxType withRotation:rotation];
+    if (body->GetUserData() != NULL) {
+        CCSprite *Data = (CCSprite *)body->GetUserData();
+        [sceneSpriteBatchNode addChild:Data z:1];
+    }
+    return body;
+    //[body autorelease];
 }
 
 -(void)createTrashAtLocation:(CGPoint)location {
@@ -317,9 +328,28 @@
     
     for(b2Body *b=world->GetBodyList(); b!=NULL; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
+            
+            //Update sprite position //works but only in one constant direction
             Box2DSprite *sprite = (Box2DSprite *) b->GetUserData();
             sprite.position = ccp(b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
             sprite.rotation = CC_RADIANS_TO_DEGREES(b->GetAngle() * -1);
+            
+            
+            //b.position
+            
+            
+            
+            
+            //update sprite position
+            ///////////////////////////added//////////////////////
+//            CCSprite *newSprite = (CCSprite *)b->GetUserData();
+//            
+//            b2Vec2 b2Position = b2Vec2(newSprite.position.x/PTM_RATIO,
+//                                       newSprite.position.y/PTM_RATIO);
+//            float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(newSprite.rotation);
+//            
+//            b->SetTransform(b2Position, b2Angle);
+            
         }
     }
     

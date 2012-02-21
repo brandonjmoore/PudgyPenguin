@@ -66,7 +66,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"moon.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"night_background.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -217,6 +217,9 @@
         //helper balloons
         [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.05f) ofType:kBalloonBox];
         [self createBoxAtLocation:ccp(winSize.width * 0.7f, winSize.height *0.05f) ofType:kBalloonBox];
+        
+        
+        //b2Body*myBody = [self creat
         
         
         

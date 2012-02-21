@@ -20,7 +20,7 @@
 	self = [super init];
 	if (self != nil) {
 		CGSize screenSize = [CCDirector sharedDirector].winSize; 
-		CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
+		CCSprite *background = [CCSprite spriteWithFile:@"ocean_no_block.png"];
 		[background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:background];
 		
