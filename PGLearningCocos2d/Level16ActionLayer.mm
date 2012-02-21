@@ -337,6 +337,7 @@
             if (penguin2.characterState == kStateSatisfied) {
                 gameOver = true;
                 CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
+                
                 //[uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
             } else {
                 if (remainingTime <= 0) {

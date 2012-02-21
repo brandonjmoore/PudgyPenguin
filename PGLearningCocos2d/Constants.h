@@ -26,7 +26,7 @@
 #define kFishIdleTime               10.0f
 #define kTimeBetweenFishCreation    2.0f
 #define kTimeBetweenTrashCreation   10.0f
-#define kNumOfFishReq               5
+#define kNumOfFishReq               1
 
 #pragma mark -
 #pragma mark Game Manager Constants

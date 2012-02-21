@@ -93,7 +93,10 @@
     //TODO: We might be able to use movement action and new position for walking (see pg 97)
     //id movementAction = nil;
     //CGPoint newPosition;
-    [self setCharacterState:newState];
+
+        [self setCharacterState:newState];
+
+    
     
     switch (newState) {
         case kStateIdle:
@@ -110,16 +113,17 @@
             [self changeState:kStateIdle];
             break;
         case kStateEating:
-            CCLOG(@"Penguin->Changing State to Eating");
-            numFishEaten++;
-            action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
-            
-            //If he has eaten the necessary # of fish, make him satisfied
-            if (numFishEaten >= kNumOfFishReq) {
-                [self changeState:kStateSatisfied];
-            } else {
-                [self changeState:kStateIdle];                
-            }
+               
+                CCLOG(@"Penguin->Changing State to Eating");
+                numFishEaten++;
+                action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+                
+                //If he has eaten the necessary # of fish, make him satisfied
+                if (numFishEaten >= kNumOfFishReq) {
+                    [self changeState:kStateSatisfied];
+                } else {
+                    [self changeState:kStateIdle];                
+                }
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
@@ -127,8 +131,9 @@
             break;
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
-            //restoreOriginalFrame is set to no here because we want him to remain satisfied
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
+            action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:YES];
+            action = [CCRepeat actionWithAction:action times:6];
             break;
             
         case kStateMouthOpen:

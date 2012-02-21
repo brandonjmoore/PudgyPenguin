@@ -58,6 +58,7 @@
 		BF1EC8B6143ED0D30083412C /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF1EC8B5143ED0D30083412C /* GameManager.mm */; };
 		BF1EF60014F3198A00A66771 /* ocean_no_block.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EF5FF14F3198A00A66771 /* ocean_no_block.png */; };
 		BF1EF60314F3199100A66771 /* ocean_no_block-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1EF60214F3199100A66771 /* ocean_no_block-hd.png */; };
+		BF1EF60A14F325D300A66771 /* myPauser.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1EF60914F325D300A66771 /* myPauser.m */; };
 		BF28F351146852BC0024F825 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF28F34E146852860024F825 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BF28F354146852F80024F825 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF28F353146852F80024F825 /* GCHelper.m */; };
 		BF28F35714685C500024F825 /* GCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = BF28F35614685C500024F825 /* GCDatabase.m */; };
@@ -358,6 +359,8 @@
 		BF1EC8B5143ED0D30083412C /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
 		BF1EF5FF14F3198A00A66771 /* ocean_no_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ocean_no_block.png; sourceTree = "<group>"; };
 		BF1EF60214F3199100A66771 /* ocean_no_block-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ocean_no_block-hd.png"; sourceTree = "<group>"; };
+		BF1EF60814F325D300A66771 /* myPauser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPauser.h; sourceTree = "<group>"; };
+		BF1EF60914F325D300A66771 /* myPauser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPauser.m; sourceTree = "<group>"; };
 		BF28F34E146852860024F825 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		BF28F352146852F80024F825 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		BF28F353146852F80024F825 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
@@ -1464,6 +1467,8 @@
 			children = (
 				BF5D2CA8144EB07F00EFD358 /* PauseMenu.h */,
 				BF5D2CA9144EB07F00EFD358 /* PauseMenu.m */,
+				BF1EF60814F325D300A66771 /* myPauser.h */,
+				BF1EF60914F325D300A66771 /* myPauser.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -2024,6 +2029,7 @@
 				BF1B7383147C03B900C9E0A4 /* ActionLayer.mm in Sources */,
 				BF1B7387147C0DB600C9E0A4 /* UILayer.m in Sources */,
 				BFAF208B14A3EA020030AB6B /* MovingBox.mm in Sources */,
+				BF1EF60A14F325D300A66771 /* myPauser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2090,7 +2096,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = PGLearningCocos2d/libs;
 				INFOPLIST_FILE = PGLearningCocos2d/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
@@ -2099,7 +2105,7 @@
 				PRODUCT_NAME = PudgyPenguin;
 				PROVISIONING_PROFILE = "E0733050-CE9D-45C9-B729-21E418067E91";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E0733050-CE9D-45C9-B729-21E418067E91";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2123,7 +2129,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = PGLearningCocos2d/libs;
 				INFOPLIST_FILE = PGLearningCocos2d/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
@@ -2133,7 +2139,7 @@
 				PROVISIONING_PROFILE = "CCF64B87-2F56-406E-9235-623F901216D8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CCF64B87-2F56-406E-9235-623F901216D8";
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
