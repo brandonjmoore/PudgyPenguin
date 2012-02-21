@@ -56,7 +56,9 @@
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
-    [[CCDirector sharedDirector] resume];
+    
+    //This is only needed if you are pausing the shared director when they complete the level
+    //[[CCDirector sharedDirector] resume];
     
     [[GameManager sharedGameManager] runSceneWithID:kGameLevel10];
 }
@@ -111,7 +113,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"level10unlocked"];
     
-    [[CCDirector sharedDirector] pause];
+    //So that fish dont bounce forever
+    //[[CCDirector sharedDirector] pause];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;

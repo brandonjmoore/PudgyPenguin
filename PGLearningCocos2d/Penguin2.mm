@@ -96,8 +96,6 @@
 
         [self setCharacterState:newState];
 
-    
-    
     switch (newState) {
         case kStateIdle:
             CCLOG(@"Penguin->Changing State to Idle");
