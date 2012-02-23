@@ -392,6 +392,8 @@
         [self addChild:background];
         //Add the buttons to the screen
         [self displayMainMenu];
+        snowParticleSystem = [CCParticleSnow node];
+        [self addChild:snowParticleSystem z:100];
     }    
     return self;
 }

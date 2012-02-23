@@ -21,6 +21,7 @@
     CCMenu *backButtonMenu;
     CCMenu *moreInfoMenu;
     CCSprite *background;
+    CCParticleSystem *snowParticleSystem;
     
     //Audio
     SimpleAudioEngine *soundEngine;
