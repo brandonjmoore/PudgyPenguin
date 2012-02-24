@@ -21,6 +21,7 @@
 @synthesize penguinSatisfiedAnim;
 
 @synthesize numFishEaten;
+@synthesize hasTimeExpired;
 
 #pragma mark -
 #pragma mark Body Creation Methods
@@ -113,15 +114,19 @@
         case kStateEating:
                
                 CCLOG(@"Penguin->Changing State to Eating");
+            if (!self.hasTimeExpired) {
                 numFishEaten++;
-                action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+            }
                 
-                //If he has eaten the necessary # of fish, make him satisfied
-                if (numFishEaten >= kNumOfFishReq) {
-                    [self changeState:kStateSatisfied];
-                } else {
-                    [self changeState:kStateIdle];                
-                }
+            action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+            
+            //If he has eaten the necessary # of fish, make him satisfied
+            if (numFishEaten >= kNumOfFishReq) {
+                
+                [self changeState:kStateSatisfied];
+            } else {
+                [self changeState:kStateIdle];                
+            }
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
@@ -131,7 +136,7 @@
             CCLOG(@"Penguin->Changing State to Satisfied");
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:YES];
-            action = [CCRepeat actionWithAction:action times:6];
+            action = [CCRepeat actionWithAction:action times:kPenguinDanceNumber];
             break;
             
         case kStateMouthOpen:

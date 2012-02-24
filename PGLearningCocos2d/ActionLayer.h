@@ -57,6 +57,7 @@
     double startTime;
     double currentMediaTime;
     double remainingTime;
+    BOOL isBuzzerBeater;
     
 }
 

@@ -33,6 +33,7 @@
     b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
     bool doSleep = true;
     world = new b2World(gravity, doSleep);
+    self.isAccelerometerEnabled = TRUE;
 }
 
 - (void)setupDebugDraw {
@@ -140,6 +141,9 @@
     
     end = [touch previousLocationInView:[touch view]];
     end = [[CCDirector sharedDirector] convertToGL:end];
+    
+    //This code will draw the line above the user's finger, but it doesnt feel right
+//    end.y = end.y + 25;
     
     float distance = ccpDistance(_lastPt, end);
     
@@ -364,11 +368,20 @@
             [uiLayer displayNumFish:numFishText];
             
             if (penguin2.characterState == kStateSatisfied) {
-                gameOver = true;
-                CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
-                [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
+                if (remainingTime == 1) {
+                    gameOver = true;
+                    CCSprite *gameOverText = [CCLabelTTF labelWithString:@"Buzzer Beater!!!" fontName:@"Marker Felt" fontSize:48];
+                    [gameOverText setTag:kBuzzerBeaterSpriteTag];
+                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
+                } else {
+                    gameOver = true;
+                    CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Passed.png"];
+                    [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverPass:)];
+                }
             } else {
                 if (remainingTime <= 0) {
+                    //Needed so that penguin doesnt dance after time expires
+                    penguin2.hasTimeExpired = YES;
                     gameOver = true;
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"Failed.png"];
                     [uiLayer displayText:gameOverText andOnCompleteCallTarget:self selector:@selector(gameOverFail:)];
@@ -404,6 +417,12 @@
         [uiLayer displaySecs:remainingTime];
     }
     CCLOG(@"-----------%f", remainingTime);
+}
+
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    b2Vec2 oldGravity = world->GetGravity();
+    b2Vec2 gravity(acceleration.x * kAccelerometerMultiplier, oldGravity.y);
+    world->SetGravity(gravity);
 }
 
 @end

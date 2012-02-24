@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "Constants.h"
 
 @interface UILayer : CCLayer {
     CCLabelTTF *label;

@@ -28,6 +28,7 @@
     float millisecondsWithMouthOpen;
     
     BOOL isFishCloseBy;
+    BOOL hasTimeExpired;
     
     int numFishEaten;
 }
@@ -40,6 +41,7 @@
 @property (nonatomic,retain) CCAnimation *penguinSatisfiedAnim;
 @property (nonatomic,retain) CCAnimation *penguinOpenMouthAnim;
 @property (nonatomic, assign) int numFishEaten;
+@property (nonatomic, assign) BOOL hasTimeExpired;
 
 -(void)initAnimations;
 

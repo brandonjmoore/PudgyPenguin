@@ -47,12 +47,26 @@
     [sprite stopAllActions];
     [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.75f)];
     
-    CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
-    CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.1 scale:1.0];
-    CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
-    CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
-    [self addChild:sprite z:10];
-    [sprite runAction:sequence];
+    if (sprite.tag == kBuzzerBeaterSpriteTag) {
+        [sprite setScale:10];
+        //CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.0 scale:10];
+        CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.5 scale:1.0];
+        CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
+        //CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
+        CCSequence *sequence = [CCSequence actions:scaleBack, onComplete, nil];
+        [self addChild:sprite z:10];
+        [sprite runAction:sequence];
+        
+    } else {
+    
+        CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.5 scale:1.2];
+        CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.5 scale:1.0];
+        CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
+        CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
+        [self addChild:sprite z:10];
+        [sprite runAction:sequence];
+        
+    }
     return TRUE;
     
 }
