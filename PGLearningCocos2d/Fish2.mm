@@ -36,7 +36,6 @@
     fixtureDef.restitution = 0.25;
     
 
-    
     body->CreateFixture(&fixtureDef);
 }
 

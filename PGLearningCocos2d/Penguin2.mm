@@ -156,24 +156,10 @@
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
-
-    //Open penguin's mouth if fish is nearby
+    
+    isFishCloseBy = NO;
+    
     if ([self numberOfRunningActions] == 0) {
-        if ((self.characterState != kStateMouthOpen) && (self.characterState != kStateSatisfied)){
-            CGRect myBoundingBox = [self adjustedBoundingBox];
-            for (GameCharacter *character in listOfGameObjects) {
-                CGRect characterBox = [character boundingBox];
-                
-                if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
-                    if ([character gameObjectType] == kFishType) {
-                        [self changeState:kStateMouthOpen];
-                        if (character.characterState != kStateAboutToBeEaten) {
-                            [character changeState:kStateAboutToBeEaten];
-                        }
-                    } 
-                }
-            }
-        }
         
         //Make Penguin blink after so many seconds
         if (self.characterState == kStateIdle) {
@@ -186,16 +172,39 @@
             millisecondsStayingIdle = 0.0f;
         }
         
-        //Close Penguin's mouth if fish is not nearby
-        if (self.characterState == kStateMouthOpen) {
-            millisecondsWithMouthOpen = millisecondsWithMouthOpen + deltaTime;
+        
+        //Check what is close by
+        CGRect myBoundingBox = [self adjustedBoundingBox];
+        for (GameCharacter *character in listOfGameObjects) {
+            CGRect characterBox = [character boundingBox];
+            //This catches if ANYTHING (PILLAR, BOX, FISH, ICICLE, ETC.) are in penguin's bounding box
+            if (CGRectIntersectsRect(myBoundingBox, characterBox)) {
+                if ([character gameObjectType] == kFishType) {
+                    isFishCloseBy = YES;
+                    if (character.characterState != kStateAboutToBeEaten) {
+                        [character changeState:kStateAboutToBeEaten];
+                    }
+                }
+            } 
+        }
+        
+        
+        //Keeping this here in case bugs come up
+        //if (isFishCloseBy && (self.characterState != kStateMouthOpen) && (self.characterState != kStateSatisfied)){
+        //Open penguin's mouth if fish is nearby or close mouth if fish are not near by
+        if (isFishCloseBy && (self.characterState != kStateMouthOpen)) {
+            [self changeState:kStateMouthOpen];
+        
+        } else if (self.characterState == kStateMouthOpen && !isFishCloseBy) {
             if (millisecondsWithMouthOpen > kPenguinMouthOpenTime) {
                 [self changeState:kStateIdle];
                 millisecondsWithMouthOpen = 0.0f;
+            } else {
+                millisecondsWithMouthOpen = millisecondsWithMouthOpen + deltaTime;
             }
-        } else {
-            millisecondsWithMouthOpen = 0.0f;
+            
         }
+        
         
     }
   
