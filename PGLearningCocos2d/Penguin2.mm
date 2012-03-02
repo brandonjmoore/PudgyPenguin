@@ -115,8 +115,10 @@
             break;
         case kStateEating:
                
-                CCLOG(@"Penguin->Changing State to Eating");
-            if (!self.hasTimeExpired) {
+            //Make sure numfish is not incremented if time has expired or they have eaten the number of required fish
+            //TODO: it might be better to increment fish when the collision happens, but for now, this is working.
+            CCLOG(@"Penguin->Changing State to Eating");
+            if (!self.hasTimeExpired && self.numFishEaten < kNumOfFishReq) {
                 numFishEaten++;
             }
                 
