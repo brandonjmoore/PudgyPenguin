@@ -84,7 +84,14 @@
 	if (self != nil) {
 		CGSize screenSize = [CCDirector sharedDirector].winSize; 
 		
-		CCSprite *background = [CCSprite spriteWithFile:@"ocean_no_block.png"];
+		CCSprite *background;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            background = [CCSprite spriteWithFile:@"ocean_no_block_iPad.png"];
+        }else {
+            background = [CCSprite spriteWithFile:@"ocean_no_block.png"];
+        }
+        
 		[background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:background];
 		

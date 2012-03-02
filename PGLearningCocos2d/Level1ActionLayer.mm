@@ -36,7 +36,7 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
+        if (!gameOver) {
             [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
             
         }else {
@@ -67,7 +67,13 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            backgroundImage = [CCSprite spriteWithFile:@"background_iPad.png"];
+    }else {
+            backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    }
+    
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -145,6 +151,9 @@
 
 -(id)initWithLevel1UILayer:(UILayer *)level1UILayer {
     if ((self = [super init])) {
+        
+        
+        
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
         [FlurryAnalytics logEvent:@"Level 1 Started"];
@@ -169,7 +178,8 @@
         [self createClearButton];
         self.isTouchEnabled = YES;
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
+        //I dont think we need this because they are already in the cache
+        //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
@@ -182,7 +192,7 @@
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
         //create trash every so often
-        //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
+        [self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
         
         //Add snow
         //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];

@@ -98,6 +98,9 @@
         } else {
             CCLOG(@"Could not determine moving box type");
         }
+        //Places sprite in the right position with the right rotation
+        [self setRotation:(-1 * RAD_TO_DEG(rotation))];
+        [self setPosition:location];
             
     }
     return myBody;

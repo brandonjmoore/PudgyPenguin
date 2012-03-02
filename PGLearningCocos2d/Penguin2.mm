@@ -52,6 +52,8 @@
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"PenguinIdle.png"]];
         gameObjectType = kPenguinTypeBlack;
         [self createBodyAtLocation:location];
+        [self setPosition:location];
+        //[self setRotation:3];
         
         millisecondsStayingIdle = 0.0f;
         millisecondsStayingAngry = 0.0f;
@@ -130,7 +132,10 @@
             break;
         case kStateAngry:
             CCLOG(@"Penguin->Changing State to Angry");
-            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:YES];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
+            action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:NO];
+            //This keeps the penguin from eating when he is angry
+            body->SetActive(NO);
             break;
         case kStateSatisfied:
             CCLOG(@"Penguin->Changing State to Satisfied");
@@ -153,11 +158,32 @@
     }
 }
 
+//This method is needed so that we can call change state after a delay
+-(void)changeToIdle {
+    //let the penguin eat again
+    body->SetActive(YES);
+    [self changeState:kStateIdle ];
+}
+
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
     if (self.characterState == kStateSatisfied) 
         return; //Nothing to do if the Penguin is satisfied
     
+    if (self.characterState == kStateAngry) {
+        millisecondsStayingAngry = millisecondsStayingAngry + deltaTime;
+        if (millisecondsStayingAngry > kPenguinAngryTime) {
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"penguinAngry_1.png"]];
+            //TODO: Check if this causes a leak
+            //This is needed to offer a smoother transition to the idle state
+            [self performSelector:@selector(changeToIdle) withObject:NULL afterDelay:.05];
+            //[self changeState:kStateIdle ];
+            millisecondsStayingAngry = 0.0f;
+        }
+        return;
+    }
+    
     isFishCloseBy = NO;
+    isTrashCloseBy = NO;
     
     if ([self numberOfRunningActions] == 0) {
         
@@ -184,6 +210,8 @@
                     if (character.characterState != kStateAboutToBeEaten) {
                         [character changeState:kStateAboutToBeEaten];
                     }
+                } else if ([character gameObjectType] == kTrashType) {
+                    isTrashCloseBy = YES;
                 }
             } 
         }
@@ -192,10 +220,10 @@
         //Keeping this here in case bugs come up
         //if (isFishCloseBy && (self.characterState != kStateMouthOpen) && (self.characterState != kStateSatisfied)){
         //Open penguin's mouth if fish is nearby or close mouth if fish are not near by
-        if (isFishCloseBy && (self.characterState != kStateMouthOpen)) {
+        if ((isFishCloseBy | isTrashCloseBy) && (self.characterState != kStateMouthOpen)) {
             [self changeState:kStateMouthOpen];
         
-        } else if (self.characterState == kStateMouthOpen && !isFishCloseBy) {
+        } else if (self.characterState == kStateMouthOpen && !isFishCloseBy && !isTrashCloseBy) {
             if (millisecondsWithMouthOpen > kPenguinMouthOpenTime) {
                 [self changeState:kStateIdle];
                 millisecondsWithMouthOpen = 0.0f;

@@ -36,6 +36,7 @@
 
 - (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float)rotation {
     if((self = [super init])) {
+        
         if (platformType == kExtraExtraLargePlatform) {
             world = theWorld;
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"icicle_xxl.png"]];
@@ -64,6 +65,9 @@
         } else {
             CCLOG(@"Could not determine platform type");
         }
+        //Places sprite in the right position with the right rotation
+        [self setRotation:(-1 * RAD_TO_DEG(rotation))];
+        [self setPosition:location];
     }
     return self;
 }

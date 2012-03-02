@@ -5,6 +5,7 @@
 //  Created by Brandon Moore on 10/4/11.
 //  Copyright 2011 Vaux. All rights reserved.
 //
+#import "math.h"
 
 #ifndef PGLearningCocos2d_Constants_h
 #define PGLearningCocos2d_Constants_h
@@ -18,6 +19,7 @@
 #define kPenguinBlinkTime           5.0f
 #define kPenguinAngryTime           5.0f
 #define kPenguinMouthOpenTime       2.0f
+#define kPenguinDanceNumber         5
 
 #pragma mark -
 #pragma mark Fish Constants
@@ -25,8 +27,8 @@
 #define kFishZValue                 5
 #define kFishIdleTime               10.0f
 #define kTimeBetweenFishCreation    2.0f
-#define kTimeBetweenTrashCreation   10.0f
-#define kNumOfFishReq               1
+#define kTimeBetweenTrashCreation   5.0f
+#define kNumOfFishReq               5
 
 #pragma mark -
 #pragma mark Game Manager Constants
@@ -35,6 +37,8 @@
 #define kIntroMenuTagValue          10
 #define kSceneMenuTagValue          20
 #define kBackButtonMenuTagValue     20
+#define kAccelerometerMultiplier    1
+#define kBuzzerBeaterSpriteTag      88
 
 #pragma mark -
 #pragma mark Level Constants
@@ -61,7 +65,8 @@
 
 #define kZeroZValue                 0
 #define kOneZValue                  1
-
+#define kTwoZValue                  2
+#define kThreeZValue                3
 
 #pragma mark -
 #pragma mark Scene Enumerations
@@ -131,6 +136,8 @@ typedef enum {
 // 0 for OFF, 1 for ON
 #define ENEMY_STATE_DEBUG           0
 //Box2d ratio convert meters to points
-#define PTM_RATIO                  21
+#define PTM_RATIO                   21
+#define DEG_TO_RAD(degree)          (degree/M_PI*180)
+#define RAD_TO_DEG(radians)         (radians*180/M_PI)
 
 #endif

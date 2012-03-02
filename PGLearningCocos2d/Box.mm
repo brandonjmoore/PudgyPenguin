@@ -109,6 +109,8 @@
         } else{
             CCLOG(@"Could not determine box type");
         }
+        //Places sprite in the right position
+        [self setPosition:location];
             
     }
     return self;

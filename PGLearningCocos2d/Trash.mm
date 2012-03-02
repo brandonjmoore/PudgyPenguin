@@ -7,6 +7,8 @@
 //
 
 #import "Trash.h"
+#import "Penguin2.h"
+#import "Box2DHelpers.h"
 
 
 @implementation Trash
@@ -23,7 +25,7 @@
     
     b2FixtureDef fixtureDef;
     b2CircleShape shape;
-    shape.m_radius = self.contentSize.width/2/PTM_RATIO;
+    shape.m_radius = self.contentSize.width/3/PTM_RATIO;
     fixtureDef.shape = &shape;
     
     fixtureDef.density = 1.0;
@@ -36,8 +38,9 @@
 - (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location {
     if((self = [super init])) {
         world = theWorld;
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Scene2ButtonNormal.png"]];
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"trash_3.png"]];
         gameObjectType = kTrashType;
+        [self setPosition:location];
         [self createBodyAtLocation:location];
     }
     return self;
@@ -60,8 +63,19 @@
 }
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-    //CCLOG(@"just called the trash updatestatewithdeltatime");
-    //Must be included to overide method in Game Object
+    CCLOG(@"just called the trash updatestatewithdeltatime");
+    Penguin2 *penguin2 = (Penguin2*)[[self parent]getChildByTag:kPenguinSpriteTagValue];
+    
+    //Detect if trash collides with penguin's mouth
+    if (isBodyCollidingWithObjectType(self.body, kPenguinTypeBlack)){
+        [penguin2 changeState:kStateAngry];
+        if ([self numberOfRunningActions] == 0) {
+            world->DestroyBody(self.body);
+            [self setVisible:NO];
+            [self removeFromParentAndCleanup:YES];
+            
+        }
+    }
 }
 
 @end

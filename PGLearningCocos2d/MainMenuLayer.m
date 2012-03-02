@@ -116,7 +116,11 @@
     
     [self removeChild:background cleanup:YES];
     
-    background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        background = [CCSprite spriteWithFile:@"ocean_no_block_iPad.png"];
+    }else {
+        background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+    }
     [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [self addChild:background];
     
@@ -138,8 +142,8 @@
     moreInfoMenu = [CCMenu menuWithItems:moreInfoButton, nil];
     [moreInfoMenu setPosition:ccp(screenSize.width * 0.94f, screenSize.height * 0.05f)];
 
-    [self addChild:mainMenu z:kZeroZValue tag:kButtonTagValue];
-    [self addChild:moreInfoMenu z:kZeroZValue tag:kButtonTagValue];
+    [self addChild:mainMenu z:kTwoZValue tag:kButtonTagValue];
+    [self addChild:moreInfoMenu z:kTwoZValue tag:kButtonTagValue];
                                       
 }
 
@@ -160,159 +164,35 @@
     [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
     [self addChild:background];
     
-    CCSprite *disabledSprite1 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite2 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite3 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite4 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite5 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite6 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite7 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite8 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite9 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite10 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite11 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite12 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite13 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite14 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite15 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-    CCSprite *disabledSprite16 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
 
+    NSMutableArray *menuItemArray = [[NSMutableArray alloc] init];
     
-    CCSprite *levelOneButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonNormal.png"];
-    CCSprite *levelOneButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene1ButtonSelected.png"];
-    
-    CCSprite *level2ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonNormal.png"];
-    CCSprite *level2ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"Scene2ButtonSelected.png"];
-    
-    CCSprite *level3ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_3.png"];
-    CCSprite *level3ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_3_over.png"];
-    
-    CCSprite *level4ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_4.png"];
-    CCSprite *level4ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_4_over.png"];
-    
-    CCSprite *level5ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_5.png"];
-    CCSprite *level5ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_5_over.png"];
-    
-    CCSprite *level6ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_6.png"];
-    CCSprite *level6ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_6_over.png"];
-    
-    CCSprite *level7ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_7.png"];
-    CCSprite *level7ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_7_over.png"];
-    
-    CCSprite *level8ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_8.png"];
-    CCSprite *level8ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_8_over.png"];
-    
-    CCSprite *level9ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_9.png"];
-    CCSprite *level9ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_9_over.png"];
-    
-    CCSprite *level10ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_10.png"];
-    CCSprite *level10ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_10_over.png"];
-    
-    CCSprite *level11ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_11.png"];
-    CCSprite *level11ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_11_over.png"];
-    
-    CCSprite *level12ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_12.png"];
-    CCSprite *level12ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_12_over.png"];
-    
-    CCSprite *level13ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_13.png"];
-    CCSprite *level13ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_13_over.png"];
-    
-    CCSprite *level14ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_14.png"];
-    CCSprite *level14ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_14_over.png"];
-
-    CCSprite *level15ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_15.png"];
-    CCSprite *level15ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_15_over.png"];
-    
-    CCSprite *level16ButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_16.png"];
-    CCSprite *level16ButtonSelected = [CCSprite spriteWithSpriteFrameName:@"lvl_16_over.png"];
-    
-    
-    CCMenuItemSprite *playLevel1Button = [CCMenuItemSprite itemFromNormalSprite:levelOneButtonNormal selectedSprite:levelOneButtonSelected disabledSprite:disabledSprite1 target:self selector:@selector(playScene:)];
-    [playLevel1Button setTag:1];
-    
-    playLevel1Button.isEnabled = YES;
-    
-    CCMenuItemSprite *playLevel2Button = [CCMenuItemSprite itemFromNormalSprite:level2ButtonNormal selectedSprite:level2ButtonSelected disabledSprite:disabledSprite2 target:self selector:@selector(playScene:)];
-    [playLevel2Button setTag:2];
-    
-    playLevel2Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level2unlocked"];
-    
-    CCMenuItemSprite *playLevel3Button = [CCMenuItemSprite itemFromNormalSprite:level3ButtonNormal selectedSprite:level3ButtonSelected disabledSprite:disabledSprite3 target:self selector:@selector(playScene:)];
-    [playLevel3Button setTag:3];
-    
-    playLevel3Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level3unlocked"];
-    
-    CCMenuItemSprite *playLevel4Button = [CCMenuItemSprite itemFromNormalSprite:level4ButtonNormal selectedSprite:level4ButtonSelected disabledSprite:disabledSprite4 target:self selector:@selector(playScene:)];
-    [playLevel4Button setTag:4];
-    
-    playLevel4Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level4unlocked"];
-    
-    CCMenuItemSprite *playLevel5Button = [CCMenuItemSprite itemFromNormalSprite:level5ButtonNormal selectedSprite:level5ButtonSelected disabledSprite:disabledSprite5 target:self selector:@selector(playScene:)];
-    [playLevel5Button setTag:5];
-    
-    playLevel5Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level5unlocked"];
-    
-    CCMenuItemSprite *playLevel6Button = [CCMenuItemSprite itemFromNormalSprite:level6ButtonNormal selectedSprite:level6ButtonSelected disabledSprite:disabledSprite6 target:self selector:@selector(playScene:)];
-    [playLevel6Button setTag:6];
-    
-    playLevel6Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level6unlocked"];
-    
-    CCMenuItemSprite *playLevel7Button = [CCMenuItemSprite itemFromNormalSprite:level7ButtonNormal selectedSprite:level7ButtonSelected disabledSprite:disabledSprite7 target:self selector:@selector(playScene:)];
-    [playLevel7Button setTag:7];
-   
-    playLevel7Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level7unlocked"];
-    
-    CCMenuItemSprite *playLevel8Button = [CCMenuItemSprite itemFromNormalSprite:level8ButtonNormal selectedSprite:level8ButtonSelected disabledSprite:disabledSprite8 target:self selector:@selector(playScene:)];
-    [playLevel8Button setTag:8];
-    
-    playLevel8Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level8unlocked"];
-    
-    CCMenuItemSprite *playLevel9Button = [CCMenuItemSprite itemFromNormalSprite:level9ButtonNormal selectedSprite:level9ButtonSelected disabledSprite:disabledSprite9 target:self selector:@selector(playScene:)];
-    [playLevel9Button setTag:9];
-    
-    playLevel9Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level9unlocked"];
-    
-    CCMenuItemSprite *playLevel10Button = [CCMenuItemSprite itemFromNormalSprite:level10ButtonNormal selectedSprite:level10ButtonSelected disabledSprite:disabledSprite10 target:self selector:@selector(playScene:)];
-    [playLevel10Button setTag:10];
-    
-    playLevel10Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level10unlocked"];
-    
-    CCMenuItemSprite *playLevel11Button = [CCMenuItemSprite itemFromNormalSprite:level11ButtonNormal selectedSprite:level11ButtonSelected disabledSprite:disabledSprite11 target:self selector:@selector(playScene:)];
-    [playLevel11Button setTag:11];
-    
-    playLevel11Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level11unlocked"];
-    
-    CCMenuItemSprite *playLevel12Button = [CCMenuItemSprite itemFromNormalSprite:level12ButtonNormal selectedSprite:level12ButtonSelected disabledSprite:disabledSprite12 target:self selector:@selector(playScene:)];
-    [playLevel12Button setTag:12];
-    
-    playLevel12Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level12unlocked"];
-    
-    CCMenuItemSprite *playLevel13Button = [CCMenuItemSprite itemFromNormalSprite:level13ButtonNormal selectedSprite:level13ButtonSelected disabledSprite:disabledSprite13 target:self selector:@selector(playScene:)];
-    [playLevel13Button setTag:13];
-    
-    playLevel13Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level13unlocked"];
-    
-    CCMenuItemSprite *playLevel14Button = [CCMenuItemSprite itemFromNormalSprite:level14ButtonNormal selectedSprite:level14ButtonSelected disabledSprite:disabledSprite14 target:self selector:@selector(playScene:)];
-    [playLevel14Button setTag:14];
-    
-    playLevel14Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level14unlocked"];
-    
-    CCMenuItemSprite *playLevel15Button = [CCMenuItemSprite itemFromNormalSprite:level15ButtonNormal selectedSprite:level15ButtonSelected disabledSprite:disabledSprite15 target:self selector:@selector(playScene:)];
-    [playLevel15Button setTag:15];
-    
-    playLevel15Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level15unlocked"];
-    
-    CCMenuItemSprite *playLevel16Button = [CCMenuItemSprite itemFromNormalSprite:level16ButtonNormal selectedSprite:level16ButtonSelected disabledSprite:disabledSprite16 target:self selector:@selector(playScene:)];
-    [playLevel16Button setTag:16];
-    
-    playLevel16Button.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"level15unlocked"];;
-    
-    
-    
-    sceneSelectMenu1 = [CCMenu menuWithItems:playLevel1Button, playLevel2Button, playLevel3Button, playLevel4Button, nil];
-    sceneSelectMenu2 = [CCMenu menuWithItems:playLevel5Button, playLevel6Button, playLevel7Button, playLevel8Button, nil];
-    sceneSelectMenu3 = [CCMenu menuWithItems:playLevel9Button, playLevel10Button, playLevel11Button, playLevel12Button, nil];
-    sceneSelectMenu4 = [CCMenu menuWithItems:playLevel13Button, playLevel14Button, playLevel15Button, playLevel16Button, nil];
+    for (int i = 1; i <= 16; i++) {
+        CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i.png", i]];
+        CCSprite *levelButtonSelected = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i_over.png", i]];
+ 
+        
+        CCSprite *disabledSprite1 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
+        
+        CCMenuItemSprite *playLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButtonNormal selectedSprite:levelButtonSelected disabledSprite:disabledSprite1 target:self selector:@selector(playScene:)];
+        [playLevelButton setTag:i];
+        
+        if (i == 1) {
+            playLevelButton.isEnabled = YES;
+        } else {
+            
+        playLevelButton.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"level%iunlocked", i]];
+            
+        }
+        
+        [menuItemArray addObject:playLevelButton];
+        
+    }
+        
+    sceneSelectMenu1 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:0], [menuItemArray objectAtIndex:1], [menuItemArray objectAtIndex:2], [menuItemArray objectAtIndex:3], nil];
+    sceneSelectMenu2 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:4], [menuItemArray objectAtIndex:5], [menuItemArray objectAtIndex:6], [menuItemArray objectAtIndex:7], nil];
+    sceneSelectMenu3 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:8], [menuItemArray objectAtIndex:9], [menuItemArray objectAtIndex:10], [menuItemArray objectAtIndex:11], nil];
+    sceneSelectMenu4 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:12], [menuItemArray objectAtIndex:13], [menuItemArray objectAtIndex:14], [menuItemArray objectAtIndex:15], nil];
 
     
     
@@ -326,10 +206,10 @@
     [sceneSelectMenu3 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
     [sceneSelectMenu4 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.35f)];
 
-    [self addChild:sceneSelectMenu1 z:kOneZValue tag:kButtonTagValue];
-    [self addChild:sceneSelectMenu2 z:kOneZValue tag:kButtonTagValue];
-    [self addChild:sceneSelectMenu3 z:kOneZValue tag:kButtonTagValue];
-    [self addChild:sceneSelectMenu4 z:kOneZValue tag:kButtonTagValue];
+    [self addChild:sceneSelectMenu1 z:kTwoZValue tag:kButtonTagValue];
+    [self addChild:sceneSelectMenu2 z:kTwoZValue tag:kButtonTagValue];
+    [self addChild:sceneSelectMenu3 z:kTwoZValue tag:kButtonTagValue];
+    [self addChild:sceneSelectMenu4 z:kTwoZValue tag:kButtonTagValue];
 
     //Set up the back button
     CCSprite *backButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
@@ -341,7 +221,9 @@
     backButtonMenu = [CCMenu menuWithItems:backButton, nil];
     
     [backButtonMenu setPosition:ccp(0,0)];
-    [self addChild:backButtonMenu z:1 tag:kButtonTagValue];
+    [self addChild:backButtonMenu z:1 tag:kTwoZValue];
+    
+    [menuItemArray release];
     
 }
 
@@ -387,13 +269,18 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];//Analyzer shows error here, but we have confirmed that mainMenuSpriteBatchNode is used
         
-        background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            background = [CCSprite spriteWithFile:@"ocean_no_block_iPad.png"];
+        }else {
+            background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+        }
+        
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:background];
         //Add the buttons to the screen
         [self displayMainMenu];
         snowParticleSystem = [CCParticleSnow node];
-        [self addChild:snowParticleSystem z:100];
+        [self addChild:snowParticleSystem z:kOneZValue];
     }    
     return self;
 }

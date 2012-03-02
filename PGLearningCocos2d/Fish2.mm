@@ -45,6 +45,8 @@
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"FishIdle.png"]];
         [self changeState:kStateIdle];
         gameObjectType = kFishType;
+        //Places sprites in the right position
+        [self setPosition:location];
         [self createBodyAtLocation:location];
     }
     return self;

@@ -34,7 +34,7 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
+        if (!gameOver) {
             [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
             
         }else {
@@ -64,7 +64,13 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        backgroundImage = [CCSprite spriteWithFile:@"ocean_no_block_iPad.png"];
+    }else {
+        backgroundImage = [CCSprite spriteWithFile:@"ocean_no_block.png"];
+    }
+    
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -160,7 +166,7 @@
         uiLayer = level2UILayer;
         
         [self setupWorld];
-        //[self setupDebugDraw];
+        [self setupDebugDraw];
         [self scheduleUpdate];
         [self schedule:@selector(updateTime) interval:1.0];
         [self createPauseButton];
@@ -177,12 +183,11 @@
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8168f, winSize.height * 0.5f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
-                
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
         //create trash every so often
-        //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
+        [self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
         
         //Add snow
         //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];

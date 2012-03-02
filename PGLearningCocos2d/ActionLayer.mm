@@ -367,7 +367,9 @@
             NSString *numFishText = [NSString stringWithFormat:@"%d/5", penguin2.numFishEaten];
             [uiLayer displayNumFish:numFishText];
             
-            if (penguin2.characterState == kStateSatisfied) {
+            //Change this so that if he is angry, you can still win the game
+            //if (penguin2.characterState == kStateSatisfied) {
+            if (penguin2.numFishEaten >= kNumOfFishReq) {
                 if (remainingTime == 1) {
                     gameOver = true;
                     CCSprite *gameOverText = [CCLabelTTF labelWithString:@"Buzzer Beater!!!" fontName:@"Marker Felt" fontSize:48];

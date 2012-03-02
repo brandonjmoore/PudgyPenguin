@@ -34,7 +34,7 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
+        if (!gameOver) {
             [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
             
         }else {
@@ -64,7 +64,13 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        backgroundImage = [CCSprite spriteWithFile:@"background_iPad.png"];
+    }else {
+        backgroundImage = [CCSprite spriteWithFile:@"background.png"];
+    }
+    
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     

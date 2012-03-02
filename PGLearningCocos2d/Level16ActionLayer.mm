@@ -35,7 +35,7 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
-        if (penguin2.characterState != kStateSatisfied) {
+        if (!gameOver) {
             [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
             
         }else {

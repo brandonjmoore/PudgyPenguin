@@ -28,6 +28,7 @@
     float millisecondsWithMouthOpen;
     
     BOOL isFishCloseBy;
+    BOOL isTrashCloseBy;
     BOOL hasTimeExpired;
     
     int numFishEaten;
