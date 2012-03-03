@@ -20,8 +20,11 @@
     CCLOG(@"ActionLayer Super dealloc");
     [lineArray release];
     [lineSpriteArray release];
+    
+    //releases all arrays inside. A leak occurrs if the inside arrays have a retain count higher than 1 prior to this line.
     [lineArrayMaster release];
     [lineSpriteArrayMaster release];
+    
     
     [super dealloc];
 }
@@ -163,7 +166,6 @@
         [lineArray addObject:[NSValue valueWithPointer:body]];
         
         
-        
         b2PolygonShape shape;
         shape.SetAsEdge(b2Vec2(s.x, s.y), b2Vec2(e.x, e.y));
         body->CreateFixture(&shape, 0.0f);
@@ -176,10 +178,19 @@
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    [lineArrayMaster addObject:[lineArray copy]];
-    [lineSpriteArrayMaster addObject:[lineSpriteArray copy]];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
-    [lineSpriteArray removeAllObjects];//The copy of lineSpriteArray will be deallocated with lineSpriteArrayMaster in the dealloc method
+    NSArray *newBodyArray = [lineArray copy];//+1 to the retain count of newBodyArray
+    NSArray *newSpriteArray = [lineSpriteArray copy];//+1 to the retain count of newSpriteArray
+    
+    [lineArrayMaster addObject:newBodyArray];//+1 to the retain count of newBodyArray
+    [lineSpriteArrayMaster addObject:newSpriteArray];//+1 to the retain count of newSpriteArray
+    
+    //clear out all the lines so new lines can be added
+    [lineSpriteArray removeAllObjects];
     [lineArray removeAllObjects];
+    
+    //Release these 2 arrays as they will be released when their respective master arrays get released (lineArrayMaster and lineSpriteMasterArray)
+    [newBodyArray release];//-1 to the retain count     (currently at 1)
+    [newSpriteArray release];//-1 to the retain count   (currently at 1)
 }
 
 -(void) clearLines {
@@ -191,14 +202,14 @@
             world->DestroyBody(body);
             
         }
-        [lineArrayMaster removeLastObject];
+        [lineArrayMaster removeLastObject];//releases the last object in the array and removes it
         
         for (streak in [lineSpriteArrayMaster lastObject]) {
+            [streak setVisible:NO];
             [streak removeFromParentAndCleanup:YES];
         }
-        [lineSpriteArrayMaster removeLastObject];
+        [lineSpriteArrayMaster removeLastObject];//releases the last object in the array and removes it
     }
-    
     
 }
 
@@ -425,6 +436,11 @@
     b2Vec2 oldGravity = world->GetGravity();
     b2Vec2 gravity(acceleration.x * kAccelerometerMultiplier, oldGravity.y);
     world->SetGravity(gravity);
+}
+
+- (void)onExit {
+	[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+	[super onExit];
 }
 
 @end

@@ -63,7 +63,6 @@
 }
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-    CCLOG(@"just called the trash updatestatewithdeltatime");
     Penguin2 *penguin2 = (Penguin2*)[[self parent]getChildByTag:kPenguinSpriteTagValue];
     
     //Detect if trash collides with penguin's mouth
