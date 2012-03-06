@@ -174,7 +174,7 @@
         
         CCSprite *disabledSprite1 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
         
-        CCMenuItemSprite *playLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButtonNormal selectedSprite:levelButtonSelected disabledSprite:disabledSprite1 target:self selector:@selector(playScene:)];
+        CCMenuItemSprite *playLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButtonNormal selectedSprite:nil disabledSprite:disabledSprite1 target:self selector:@selector(playScene:)];
         [playLevelButton setTag:i];
         
         if (i == 1) {
@@ -189,27 +189,41 @@
         
     }
         
-    sceneSelectMenu1 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:0], [menuItemArray objectAtIndex:1], [menuItemArray objectAtIndex:2], [menuItemArray objectAtIndex:3], nil];
-    sceneSelectMenu2 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:4], [menuItemArray objectAtIndex:5], [menuItemArray objectAtIndex:6], [menuItemArray objectAtIndex:7], nil];
-    sceneSelectMenu3 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:8], [menuItemArray objectAtIndex:9], [menuItemArray objectAtIndex:10], [menuItemArray objectAtIndex:11], nil];
-    sceneSelectMenu4 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:12], [menuItemArray objectAtIndex:13], [menuItemArray objectAtIndex:14], [menuItemArray objectAtIndex:15], nil];
-
+    SlidingMenuGrid* menuGrid = [SlidingMenuGrid
+                                 menuWithArray:menuItemArray
+                                 cols:3
+                                 rows:3
+                                 position:CGPointMake(80.f, 400.f)
+                                 padding:CGPointMake(75.f, 75.f)
+                                 verticalPaging:false];
+    
+    [self addChild:menuGrid];
     
     
-    [sceneSelectMenu1 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-    [sceneSelectMenu2 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-    [sceneSelectMenu3 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-    [sceneSelectMenu4 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
     
-    [sceneSelectMenu1 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.8f)];
-    [sceneSelectMenu2 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.65f)];
-    [sceneSelectMenu3 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
-    [sceneSelectMenu4 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.35f)];
-
-    [self addChild:sceneSelectMenu1 z:kTwoZValue tag:kButtonTagValue];
-    [self addChild:sceneSelectMenu2 z:kTwoZValue tag:kButtonTagValue];
-    [self addChild:sceneSelectMenu3 z:kTwoZValue tag:kButtonTagValue];
-    [self addChild:sceneSelectMenu4 z:kTwoZValue tag:kButtonTagValue];
+//    sceneSelectMenu1 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:0], [menuItemArray objectAtIndex:1], [menuItemArray objectAtIndex:2], [menuItemArray objectAtIndex:3], nil];
+//    sceneSelectMenu2 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:4], [menuItemArray objectAtIndex:5], [menuItemArray objectAtIndex:6], [menuItemArray objectAtIndex:7], nil];
+//    sceneSelectMenu3 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:8], [menuItemArray objectAtIndex:9], [menuItemArray objectAtIndex:10], [menuItemArray objectAtIndex:11], nil];
+//    sceneSelectMenu4 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:12], [menuItemArray objectAtIndex:13], [menuItemArray objectAtIndex:14], [menuItemArray objectAtIndex:15], nil];
+//
+//    
+//    [sceneSelectMenu1 alignItemsInColumns:[NSNumber numberWithUnsignedInt:2],[NSNumber numberWithUnsignedInt:2], nil];
+//    
+//    
+//    //[sceneSelectMenu1 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+//    [sceneSelectMenu2 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+//    [sceneSelectMenu3 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+//    [sceneSelectMenu4 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
+//    
+//    [sceneSelectMenu1 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.8f)];
+//    [sceneSelectMenu2 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.65f)];
+//    [sceneSelectMenu3 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
+//    [sceneSelectMenu4 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.35f)];
+//
+//    [self addChild:sceneSelectMenu1 z:kTwoZValue tag:kButtonTagValue];
+////    [self addChild:sceneSelectMenu2 z:kTwoZValue tag:kButtonTagValue];
+////    [self addChild:sceneSelectMenu3 z:kTwoZValue tag:kButtonTagValue];
+////    [self addChild:sceneSelectMenu4 z:kTwoZValue tag:kButtonTagValue];
 
     //Set up the back button
     CCSprite *backButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];

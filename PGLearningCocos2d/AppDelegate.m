@@ -35,6 +35,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
+#pragma mark -
+#pragma mark Default Settings
+
+
 - (void)registerDefaultsFromSettingsBundle {
     NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     if(!settingsBundle) {
@@ -65,7 +69,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     //Analytics
     [[GCHelper sharedInstance] authenticateLocalUser];
-    
+
     //Turn music on/off
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
     if(ismusicon == NULL) {

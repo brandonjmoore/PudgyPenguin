@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "GameManager.h"
 #import "SimpleAudioEngine.h"
+#import "SlidingMenuGrid.h"
 
 @interface MainMenuLayer : CCLayer {
     CCMenu *mainMenu;

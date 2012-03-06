@@ -12,10 +12,14 @@
 #import "GameManager.h"
 #import "SimpleAudioEngine.h"
 #import <GameKit/GameKit.h>
+#import "FBConnect.h"
 
-@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate> {
+@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate, FBSessionDelegate, FBDialogDelegate> {
     CCMenu *backButtonMenu;
     CCMenu *optionsMenu;
+    Facebook *facebook;
 }
+
+@property (nonatomic, retain) Facebook *facebook;
 
 @end
