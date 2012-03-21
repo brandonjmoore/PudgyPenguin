@@ -37,6 +37,17 @@
     bool doSleep = true;
     world = new b2World(gravity, doSleep);
     self.isAccelerometerEnabled = TRUE;
+    
+    // TODO: Find a better place for this
+    lineImage = @"Start.png";
+    lineWidth = kLineWidth;
+    lineLength = kLineLength;
+    if (CC_CONTENT_SCALE_FACTOR() == 2.0f) {
+        lineImage = @"Start-hd.png";
+        lineLength = kRetinaLineLength;
+        lineWidth = kRetinaLineWidth;
+    }
+    //streak = [[CCRibbon alloc]init];
 }
 
 - (void)setupDebugDraw {
@@ -58,8 +69,8 @@
     [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
 }
 
--(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType {
-    box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType]autorelease];
+-(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation{
+    box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType withRotation:rotation]autorelease];
     [sceneSpriteBatchNode addChild:box z:1];
     return box;
 }
@@ -114,7 +125,7 @@
     CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"clear.png"];
     CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"clear_over.png"];
     
-    clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
+    clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(gameOverPass:)];
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
@@ -132,7 +143,9 @@
 	_lastPt = pt;
     
     // create the streak object and add it to the scene
-    streak = [CCMotionStreak streakWithFade:200 minSeg:10 image:@"Start.png" width:5 length:20 color:ccc4(255,255,255,255)];
+    //streak = [CCMotionStreak streakWithFade:200 minSeg:1 image:lineImage width:5 length:20 color:ccc4(255,255,255,255)];
+    
+    streak = [CCRibbon ribbonWithWidth:lineWidth image:lineImage length:lineLength color:ccc4(255,255,255,255) fade:0];
     [self addChild:streak];
     [lineSpriteArray addObject:streak];
     
@@ -150,7 +163,8 @@
     
     float distance = ccpDistance(_lastPt, end);
     
-    [streak setPosition:end];
+    //[streak setPosition:end];
+    [streak addPointAt:end width:10];
     
     if (distance > 10) {
         

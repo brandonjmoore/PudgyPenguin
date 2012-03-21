@@ -44,7 +44,9 @@
     NSMutableArray *lineSpriteArray;
     NSMutableArray *lineArrayMaster;
     NSMutableArray *lineSpriteArrayMaster;
-    CCMotionStreak *streak;
+    CCRibbon *streak;
+    int lineLength;
+    int lineWidth;
     
     
     b2World *world;
@@ -58,6 +60,7 @@
     double currentMediaTime;
     double remainingTime;
     BOOL isBuzzerBeater;
+    NSString *lineImage;
     
 }
 
@@ -65,7 +68,7 @@
 - (void)setupDebugDraw;
 -(void)createPenguin2AtLocation:(CGPoint)location;
 -(void)createFish2AtLocation:(CGPoint)location;
--(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType;
+-(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation;
 -(void)createTrashAtLocation:(CGPoint)location;
 -(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation;
 -(void)addFish;
