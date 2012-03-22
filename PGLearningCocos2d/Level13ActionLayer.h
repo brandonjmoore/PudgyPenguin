@@ -14,6 +14,7 @@
 //@class Fish2;
 
 @interface Level13ActionLayer : ActionLayer {
+    AppDelegate *app;
     
 }
 

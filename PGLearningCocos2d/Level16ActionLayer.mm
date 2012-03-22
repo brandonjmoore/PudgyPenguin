@@ -177,17 +177,17 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
 
-        CCSprite*mySprite = [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.85f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.77f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.69f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.61f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.22f, winSize.height*0.61f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.34f, winSize.height*0.61f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.61f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.61f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.69f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.77f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.85f) ofType:kBalloonBox];
+        CCSprite*mySprite = [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.85f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.77f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.69f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.22f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.34f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.69f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.77f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.85f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         [mySprite runAction:[CCRepeatForever actionWithAction: [CCSequence actions:
                          [CCMoveTo actionWithDuration:1.0 position:ccp(300,100)],
@@ -199,13 +199,13 @@
         
         
         //Bottom line of balloons
-        //[self createBoxAtLocation:ccp(winSize.width*0.05f, winSize.height*0.1f) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width*0.17f, winSize.height*0.1f) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width*0.29f, winSize.height*0.1f) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width*0.41f, winSize.height*0.1f) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width*0.53f, winSize.height*0.1f) ofType:kBalloonBox];
-        //[self createBoxAtLocation:ccp(winSize.width*0.65f, winSize.height*0.1f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width*0.93f, winSize.height*0.1f) ofType:kBalloonBox];
+        //[self createBoxAtLocation:ccp(winSize.width*0.05f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        //[self createBoxAtLocation:ccp(winSize.width*0.17f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        //[self createBoxAtLocation:ccp(winSize.width*0.29f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        //[self createBoxAtLocation:ccp(winSize.width*0.41f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        //[self createBoxAtLocation:ccp(winSize.width*0.53f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        //[self createBoxAtLocation:ccp(winSize.width*0.65f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width*0.93f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         
         myBody = [self createMovingBoxAtLocation:ccp(winSize.width*0.5f, winSize.height*0.25f) ofType:kMovingBouncyBox withRotation:0.0f];

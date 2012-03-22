@@ -12,8 +12,6 @@
 
 @implementation MoreInfoLayer
 
-@synthesize facebook;
-
 #pragma mark -
 #pragma mark Switch Menus
 
@@ -60,7 +58,7 @@
 
 //Turn music on/off
 -(void)musicTogglePressed {
-	if ([[GameManager sharedGameManager] isMusicON]) {
+    if ([[GameManager sharedGameManager] isMusicON]) {
 		CCLOG(@"OptionsLayer-> Turning Game Music OFF");
 		[[GameManager sharedGameManager] setIsMusicON:NO];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -76,56 +74,12 @@
 	}
 }
 
-#pragma mark -
-#pragma mark Facebook Stuff
 
--(void)doFacebookStuff {
-    //Facebook
-    facebook = [[Facebook alloc] initWithAppId:kFacebookAppID andDelegate:self];
+-(void)fbLogout {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
-    //check for previously saved access token information
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"FBAccessTokenKey"] 
-        && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }
-    
-    //Check for a valid session and if it is not valid call the authorize method which will both log the user in and prompt the user to authorize the app
-    if (![facebook isSessionValid]) {
-        [facebook authorize:nil];
-    }
+    [[app facebook] logout];
 }
-
-// Pre 4.2 support
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
-    return [facebook handleOpenURL:url]; 
-}
-
-// For 4.2+ support
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [facebook handleOpenURL:url]; 
-}
-
--(void)postToFacebook {
-    
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: kFacebookAppID, @"app_id", @"http://developers.facebook.com/docs/reference/dialogs/", @"link", @"http://fbrell.com/f8.jpg", @"picture", @"Facebook Dialogs", @"name", @"Reference Documentation", @"caption", @"Using Dialogs to interact with users.", @"description", @"Facebook Dialogs are so easy!",  @"message", nil];
-    
-    [facebook dialog:@"feed" andParams:params andDelegate:self];
-    
-}
-
-- (void)fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-    
-    
-}
-
 
 
 #pragma mark -
@@ -165,11 +119,9 @@
 		CCLabelTTF *creditsButtonLabel = [CCLabelTTF labelWithString:@"Credits" fontName:@"Marker Felt" fontSize:24.0];
 		CCMenuItemLabel	*creditsButton = [CCMenuItemLabel itemWithLabel:creditsButtonLabel target:self selector:@selector(showCredits)];
 		
-        CCLabelTTF *facebookButtonLabel = [CCLabelTTF labelWithString:@"Facebook" fontName:@"Marker Felt" fontSize:24.0];
-		CCMenuItemLabel	*facebookButton = [CCMenuItemLabel itemWithLabel:facebookButtonLabel target:self selector:@selector(doFacebookStuff)];
+        CCLabelTTF *facebookButtonLabel = [CCLabelTTF labelWithString:@"Logout of Facebook" fontName:@"Marker Felt" fontSize:24.0];
+		CCMenuItemLabel	*facebookButton = [CCMenuItemLabel itemWithLabel:facebookButtonLabel target:self selector:@selector(fbLogout)];
 		
-        CCLabelTTF *facebookFeedButtonLabel = [CCLabelTTF labelWithString:@"Feed" fontName:@"Marker Felt" fontSize:24.0];
-		CCMenuItemLabel	*facebookFeedButton = [CCMenuItemLabel itemWithLabel:facebookFeedButtonLabel target:self selector:@selector(postToFacebook)];
         
 		//Set up the back button
         CCSprite *backButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
@@ -187,10 +139,10 @@
             CCLabelTTF *gameCenterButtonLabel = [CCLabelTTF labelWithString:@"Game Center" fontName:@"Marker Felt" fontSize:24.0];
             CCMenuItemLabel	*gameCenterButton = [CCMenuItemLabel itemWithLabel:gameCenterButtonLabel target:self selector:@selector(showGameCenter)];
             optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
-                                   creditsButton,gameCenterButton, facebookButton,facebookFeedButton, nil];
+                                   creditsButton,gameCenterButton, facebookButton, nil];
         } else {
             optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
-                                   creditsButton, facebookButton, facebookFeedButton, nil];
+                                   creditsButton, facebookButton, nil];
         }
             
             

@@ -64,7 +64,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    backgroundImage = [CCSprite spriteWithFile:@"snow_bg.png"];
+    backgroundImage = [CCSprite spriteWithFile:@"PP BackgroundiPad-hd.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -176,10 +176,10 @@
         [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.35f) ofType:kExtraLargePlatform withRotation:0.85f];
         
         //regular box
-        [self createBoxAtLocation:ccp(winSize.width * 0.10f, winSize.height *0.05f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.10f, winSize.height *0.05f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
         
         //bouncy box
-        [self createBoxAtLocation:ccp(winSize.width * 0.95f, winSize.height *0.3f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.95f, winSize.height *0.3f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.10f, winSize.height * 0.17f)];

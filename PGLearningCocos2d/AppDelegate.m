@@ -20,6 +20,7 @@
 @synthesize window;
 @synthesize highScoresDictionary;
 @synthesize viewController;
+@synthesize facebook;
 
 #pragma mark -
 #pragma mark Misc Startup
@@ -59,7 +60,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
     [defaultsToRegister release];
-}
+}    
 
 #pragma mark -
 #pragma mark Application Run Cycle
@@ -69,6 +70,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     //Analytics
     [[GCHelper sharedInstance] authenticateLocalUser];
+    
+    //Facebook
+    facebook = [[Facebook alloc] initWithAppId:kFacebookAppID andDelegate:self];
 
     //Turn music on/off
     NSNumber *ismusicon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ismusicon"];
@@ -251,12 +255,137 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 #pragma mark -
+#pragma mark Facebook Stuff
+
+-(void)saveFacebookParams:(NSMutableDictionary*) parameters {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"FacebookParams.plist"];
+    
+    [parameters writeToFile:path atomically:YES];
+    
+}
+
+-(NSMutableDictionary*)getFacebookParameters {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"FacebookParams.plist"];
+
+    NSMutableDictionary *retrievedFacebookParams = [[[NSMutableDictionary alloc]initWithContentsOfFile:path]autorelease];
+    return retrievedFacebookParams;
+}
+
+-(void)eraseFacebookParametersFile {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"FacebookParams.plist"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    BOOL fileExists = [fileManager fileExistsAtPath:path];
+    if (fileExists) {
+        BOOL success = [fileManager removeItemAtPath:path error:&error];
+        if (!success) {
+            CCLOG(@"Could not delete FacebookParams.plist: %@", [error localizedDescription]);
+        }
+    }
+    
+}
+
+-(void)doFacebookStuff:(NSMutableDictionary*)parameters {
+    
+    
+    //check for previously saved access token information
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"] 
+        && [defaults objectForKey:@"FBExpirationDateKey"]) {
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+    
+    //Check for a valid session and if it is not valid call the authorize method which will both log the user in and prompt the user to authorize the app
+    if (![facebook isSessionValid]) {
+        //Save parameters so they can be accessed when we re-enter the app
+        [self saveFacebookParams:parameters];
+        [facebook authorize:nil];
+    } else {
+        [facebook dialog:@"feed" andParams:parameters andDelegate:self];
+    }
+}
+
+// Pre 4.2 support
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    return [facebook handleOpenURL:url]; 
+}
+
+// For 4.2+ support
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [facebook handleOpenURL:url]; 
+}
+
+- (void)fbDidLogin {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    
+    [facebook dialog:@"feed" andParams:[self getFacebookParameters] andDelegate:self];
+    [self eraseFacebookParametersFile];
+}
+
+- (void)fbDidLogout {
+    // Remove saved authorization information if it exists
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"]) {
+        [defaults removeObjectForKey:@"FBAccessTokenKey"];
+        [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults synchronize];
+    }
+}
+
+- (void)dialogDidComplete:(FBDialog *)dialog {
+    [FlurryAnalytics logEvent:@"Submitted Facebook Dialog"];
+}
+
+- (void)dialog:(FBDialog*)dialog didFailWithError:(NSError *)error {
+    CCLOG(@"The post failed: %@", error.description);
+    [FlurryAnalytics logEvent:@"Facebook Post Failed"];
+}
+
+- (void)dialogDidNotComplete:(FBDialog *)dialog {
+    CCLOG(@"dialogDidNotComplete");
+    [FlurryAnalytics logEvent:@"Cancelled Facebook Dialog"];
+}
+
+- (void)dialogDidNotCompleteWithUrl:(NSURL *)url {
+    CCLOG(@"dialogDidNotCompleteWithURL");
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled {
+    [FlurryAnalytics logEvent:@"Cancelled Facebook Login"];
+    CCLOG(@"User cancelled Facebook login");
+}
+
+- (void)fbDidExtendToken:(NSString*)accessToken
+               expiresAt:(NSDate*)expiresAt {
+    CCLOG(@"Facebook access token was extended");
+}
+
+- (void)fbSessionInvalidated {
+    CCLOG(@"Facebook Session was invalidated");
+}
+
+
+#pragma mark -
 #pragma mark Memory Management
 
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];
 	[window release];
     [highScoresDictionary release];
+    [facebook release];
 	[super dealloc];
 }
 

@@ -13,6 +13,7 @@
 
 @implementation Level13ActionLayer
 
+
 #pragma mark - Add Fish/Trash
 
 -(void)addFish {
@@ -61,6 +62,42 @@
 }
 
 #pragma mark -
+#pragma mark Facebook Stuff
+
+-(void)doFacebookStuff {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                                       kFacebookAppID, @"app_id", 
+                                       @"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#", @"link", 
+                                       @"http://a1.mzstatic.com/us/r1000/116/Purple/cb/e5/08/mzl.jgtgkwba.175x175-75.jpg", @"picture", 
+                                       @"Pudgy Penguin!!!", @"name", 
+                                       @"New High Score!", @"caption", 
+                                       [NSString stringWithFormat:@"I just threw down %i points in Pudgy Penguin! What's your high score?", [app getTotalHighScore]], @"description", 
+                                       @"And boom goes the dynamite!",  @"message", nil];
+    [app doFacebookStuff:params];
+}
+
+//// Pre 4.2 support
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    
+//    return [facebook handleOpenURL:url]; 
+//}
+//
+//// For 4.2+ support
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+//    return [facebook handleOpenURL:url]; 
+//}
+
+//- (void)fbDidLogin {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+//    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+//    [defaults synchronize];
+//    
+//    
+//}
+
+#pragma mark -
 #pragma mark Init and Update Stuffs
 
 -(void)setupBackground {
@@ -74,8 +111,7 @@
 
 -(void)doHighScoreStuff {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    //Get app delegate (used for high scores)
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
     
     //Show level High Score (new high scores only)
     if (remainingTime > [app getHighScoreForLevel:kLevel13]) {
@@ -123,6 +159,14 @@
     
     CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
     
+    CCSprite *facebookButton = [CCSprite spriteWithFile:@"Facebook.png"];
+    
+    CCMenuItemSprite *facebookMenuItem = [CCMenuItemSprite itemFromNormalSprite:facebookButton selectedSprite:nil disabledSprite:nil target:self selector:@selector(doFacebookStuff)];
+    
+    CCMenu *facebookMenu = [CCMenu menuWithItems:facebookMenuItem, nil];
+    [facebookMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
+    [self addChild:facebookMenu];
+    
     //CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
     //CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
     
@@ -136,8 +180,9 @@
     //CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
     CCMenu *nextLevelMenu = [CCMenu menuWithItems:mainMenuButton, resetButton, nil];
     [nextLevelMenu alignItemsHorizontallyWithPadding:winSize.width * 0.04f];
-    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.1f)];
+    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.2f)];
     [self addChild:nextLevelMenu z:10];
+    
     
     [self doHighScoreStuff];
     
@@ -148,6 +193,9 @@
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
         [FlurryAnalytics logEvent:@"Level 13 Started"];
+        
+        //Get app delegate (used for high scores and Facebook)
+        app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
@@ -173,13 +221,13 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.05f) ofType:kBouncyBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.05f) ofType:kBouncyBox];        
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.05f) ofType:kBouncyBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];        
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.05f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.05f) ofType:kBouncyBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.125f, winSize.height * 0.1f) ofType:kMediumPlatform withRotation:0.0f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.125f, winSize.height * 0.65f) ofType:kExtraExtraLargePlatform withRotation:0.0f];

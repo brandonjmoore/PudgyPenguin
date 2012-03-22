@@ -172,19 +172,19 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.1f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.18f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.26f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.34f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.42f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.50f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.1f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.18f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.26f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.34f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.42f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.50f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
         
         
         //Large icicle
         [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.75f) ofType:kExtraLargePlatform withRotation:0.0f];
         
         //bouncybox
-        [self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.1f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.2f, winSize.height * 0.62f)];
         

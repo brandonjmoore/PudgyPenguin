@@ -184,8 +184,8 @@
         
 
         //balloons
-        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.20f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height *0.4f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.20f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height *0.4f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
 
         //icy prison
         [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.3f) ofType:kMediumPlatform withRotation:4.7f];
@@ -194,11 +194,11 @@
 
 
         //boxes
-        [self createBoxAtLocation:ccp(winSize.width * 0.85f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.70f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.55f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.40f, winSize.height *0.55f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.55f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.85f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.70f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.55f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.40f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
 
 
         

@@ -176,14 +176,14 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.9f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.8f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.7f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.6f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.5f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4f, winSize.height *0.4f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.1f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8168f, winSize.height *0.18f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.415f) ofType:kMediumPlatform withRotation:4.7];
         

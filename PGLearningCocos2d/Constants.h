@@ -130,6 +130,13 @@ typedef enum {
 #define AUDIO_MAX_WAITTIME 150
 
 #pragma mark -
+#pragma mark Line Constants
+#define kRetinaLineWidth            10
+#define kRetinaLineLength           40
+#define kLineWidth                  5
+#define kLineLength                 20
+
+#pragma mark -
 #pragma mark Misc
 
 //Debug Enemy States with Labels
@@ -139,5 +146,6 @@ typedef enum {
 #define PTM_RATIO                   21
 #define DEG_TO_RAD(degree)          (degree/M_PI*180)
 #define RAD_TO_DEG(radians)         (radians*180/M_PI)
+#define kFacebookAppID              @"385665668110717"
 
 #endif

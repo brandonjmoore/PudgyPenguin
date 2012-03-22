@@ -179,33 +179,33 @@
         
         //[self createPlatformAtLocation:ccp(winSize.width * 0.3f,winSize.height * 0.4f) ofType:kExtraLargePlatform withRotation:1.6];
         
-         [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.4) ofType:kBalloonBox];
+         [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.4) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.22f, winSize.height * 0.32f)];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.2f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.28f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.36f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.44f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.28f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.52f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.2f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.36f) ofType:kNormalBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.2f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.28f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.36f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.44f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.44f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.44f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.44f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.44f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.28f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.52f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.34f, winSize.height *0.52f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.52f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.46f, winSize.height *0.52f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.52f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.2f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.58f, winSize.height *0.36f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.8, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.7, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.6, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.4, winSize.height * 0.05) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.3, winSize.height * 0.05) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8, winSize.height * 0.05) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.7, winSize.height * 0.05) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.6, winSize.height * 0.05) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * 0.05) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.4, winSize.height * 0.05) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.3, winSize.height * 0.05) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];

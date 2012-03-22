@@ -98,17 +98,20 @@
 
 -(void)displayMainMenu {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
-    if (sceneSelectMenu1 != nil) {
-        [sceneSelectMenu1 removeFromParentAndCleanup:YES];
-    }
-    if (sceneSelectMenu2 != nil) {
-        [sceneSelectMenu2 removeFromParentAndCleanup:YES];
-    }
-    if (sceneSelectMenu3 != nil) {
-        [sceneSelectMenu3 removeFromParentAndCleanup:YES];
-    }
-    if (sceneSelectMenu4 != nil) {
-        [sceneSelectMenu4 removeFromParentAndCleanup:YES];
+//    if (sceneSelectMenu1 != nil) {
+//        [sceneSelectMenu1 removeFromParentAndCleanup:YES];
+//    }
+//    if (sceneSelectMenu2 != nil) {
+//        [sceneSelectMenu2 removeFromParentAndCleanup:YES];
+//    }
+//    if (sceneSelectMenu3 != nil) {
+//        [sceneSelectMenu3 removeFromParentAndCleanup:YES];
+//    }
+//    if (sceneSelectMenu4 != nil) {
+//        [sceneSelectMenu4 removeFromParentAndCleanup:YES];
+//    }
+    if (menuGrid != nil) {
+        [menuGrid removeFromParentAndCleanup:YES];
     }
     if (backButtonMenu != nil) {
         [backButtonMenu removeFromParentAndCleanup:YES];
@@ -189,7 +192,7 @@
         
     }
         
-    SlidingMenuGrid* menuGrid = [SlidingMenuGrid
+    menuGrid = [SlidingMenuGrid
                                  menuWithArray:menuItemArray
                                  cols:3
                                  rows:3
@@ -197,7 +200,7 @@
                                  padding:CGPointMake(75.f, 75.f)
                                  verticalPaging:false];
     
-    [self addChild:menuGrid];
+    [self addChild:menuGrid z:kTwoZValue];
     
     
     

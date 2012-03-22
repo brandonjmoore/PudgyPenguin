@@ -14,12 +14,10 @@
 #import <GameKit/GameKit.h>
 #import "FBConnect.h"
 
-@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate, FBSessionDelegate, FBDialogDelegate> {
+@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate> {
     CCMenu *backButtonMenu;
     CCMenu *optionsMenu;
-    Facebook *facebook;
+    NSDictionary *plistDictionary;
 }
-
-@property (nonatomic, retain) Facebook *facebook;
 
 @end

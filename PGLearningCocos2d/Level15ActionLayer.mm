@@ -178,51 +178,11 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
 
-        //outer concentric circle
-        //bottom right
-        [self createPlatformAtLocation:ccp(winSize.width * 0.9f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.87f, winSize.height *0.39f) ofType:kSmallPlatform withRotation:-0.4];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.78f, winSize.height *0.30f) ofType:kSmallPlatform withRotation:-0.8];
-        //[self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.24f) ofType:kSmallPlatform withRotation:-1.2];
+        [self createPlatformAtLocation:ccp(winSize.width * .1, winSize.height * .5) ofType:kExtraExtraLargePlatform withRotation:DEG_TO_RAD(0)];
+        [self createPlatformAtLocation:ccp(winSize.width * .2, winSize.height * .55) ofType:kExtraLargePlatform withRotation:DEG_TO_RAD(0)];
         
-        //bottom left
-        [self createPlatformAtLocation:ccp(winSize.width * 0.1f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.13f, winSize.height *0.39f) ofType:kSmallPlatform withRotation:0.4];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.30f) ofType:kSmallPlatform withRotation:0.8];
-        //[self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.24f) ofType:kSmallPlatform withRotation:1.2];
+        [self createBoxAtLocation:ccp(winSize.width * .13, winSize.height * .15) ofType:kBouncyBox withRotation:DEG_TO_RAD(-35)];
         
-        //top left
-        [self createPlatformAtLocation:ccp(winSize.width * 0.13f, winSize.height *0.61f) ofType:kSmallPlatform withRotation:-0.4];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.22f, winSize.height *0.70f) ofType:kSmallPlatform withRotation:-0.8];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.76f) ofType:kSmallPlatform withRotation:-1.2];
-        
-        //top right
-        [self createPlatformAtLocation:ccp(winSize.width * 0.87f, winSize.height *0.61f) ofType:kSmallPlatform withRotation:0.4];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.78f, winSize.height *0.70f) ofType:kSmallPlatform withRotation:0.8];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.76f) ofType:kSmallPlatform withRotation:1.2];
-        
-        //topper
-        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.777f) ofType:kSmallPlatform withRotation:1.57];
-        
-        
-        //Inner concentric circle
-        //right
-        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.58f) ofType:kSmallPlatform withRotation:0.75];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.7f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.4f) ofType:kSmallPlatform withRotation:-0.75];
-        
-        //left
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.4f) ofType:kSmallPlatform withRotation:0.75];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.5f) ofType:kSmallPlatform withRotation:0.0];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.58f) ofType:kSmallPlatform withRotation:-0.75];
-        
-        //bottom-er
-        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.35f) ofType:kSmallPlatform withRotation:1.57];
-        
-        
-        //helper balloons
-        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.05f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.7f, winSize.height *0.05f) ofType:kBalloonBox];
         
         
         //b2Body*myBody = [self creat
@@ -242,8 +202,8 @@
         //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
         
         //Add snow
-        //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
-        //[self addChild:snowParticleSystem];
+        CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
+        [self addChild:snowParticleSystem];
         
     }
     return self;

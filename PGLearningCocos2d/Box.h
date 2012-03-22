@@ -15,6 +15,6 @@
     CCSpriteFrame *standingFrame;
 }
 
--(id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType;
+-(id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation;
 
 @end

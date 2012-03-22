@@ -14,12 +14,13 @@
 #pragma mark -
 #pragma mark Body Creation Methods
 
-- (void)createNormalBoxAtLocation:(CGPoint)location {
+- (void)createNormalBoxAtLocation:(CGPoint)location withRotation:(float)rotation {
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
+    body->SetTransform((body->GetPosition()), rotation);
     
     b2FixtureDef fixtureDef;
     b2PolygonShape poly;
@@ -33,12 +34,13 @@
     body->CreateFixture(&fixtureDef);
 }
 
-- (void)createBouncyBoxAtLocation:(CGPoint)location {
+- (void)createBouncyBoxAtLocation:(CGPoint)location withRotation:(float)rotation {
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
+    body->SetTransform((body->GetPosition()), rotation);
     
     b2FixtureDef fixtureDef;
     b2PolygonShape poly;
@@ -52,12 +54,13 @@
     body->CreateFixture(&fixtureDef);
 }
 
-- (void)createBalloonBoxAtLocation:(CGPoint)location {
+- (void)createBalloonBoxAtLocation:(CGPoint)location withRotation:(float)rotation {
     b2BodyDef bodyDef;
     bodyDef.type = b2_kinematicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
+    body->SetTransform((body->GetPosition()), rotation);
     
     b2FixtureDef fixtureDef;
     b2CircleShape circle;
@@ -91,25 +94,26 @@
 }
 
 //Create specific types of boxes
-- (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType {
+- (id)initWithWorld:(b2World *)theWorld atLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation {
     if((self = [super init])) {
         world = theWorld;
         if (boxType == kNormalBox) {
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"box.png"]];
             gameObjectType = kNormalBoxType;
-            [self createNormalBoxAtLocation:location];
+            [self createNormalBoxAtLocation:location withRotation:rotation];
         } else if (boxType == kBouncyBox) {
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bouncyblock.png"]];
             gameObjectType = kBouncyBoxType;
-            [self createBouncyBoxAtLocation:location];
+            [self createBouncyBoxAtLocation:location withRotation:rotation];
         } else if (boxType == kBalloonBox) {
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"balloon.png"]];
             gameObjectType = kBalloonBoxType;
-            [self createBalloonBoxAtLocation:location];
+            [self createBalloonBoxAtLocation:location withRotation:rotation];
         } else{
             CCLOG(@"Could not determine box type");
         }
         //Places sprite in the right position
+        [self setRotation:(-1 * RAD_TO_DEG(rotation))];
         [self setPosition:location];
             
     }

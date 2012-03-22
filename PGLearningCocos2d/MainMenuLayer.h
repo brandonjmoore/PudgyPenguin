@@ -23,6 +23,7 @@
     CCMenu *moreInfoMenu;
     CCSprite *background;
     CCParticleSystem *snowParticleSystem;
+    SlidingMenuGrid* menuGrid;
     
     //Audio
     SimpleAudioEngine *soundEngine;

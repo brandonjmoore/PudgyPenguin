@@ -7,22 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Facebook.h"
 
 @class RootViewController;
+//@protocol FacebookReturnDelegate;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate, FBSessionDelegate, FBDialogDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
     NSMutableDictionary *highScoresDictionary;
+    Facebook *facebook;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain)NSMutableDictionary *highScoresDictionary;
 @property (nonatomic, assign) RootViewController *viewController;
+@property (nonatomic, assign) Facebook *facebook;
+//@property(nonatomic, assign) id<FacebookReturnDelegate> facebookDelegate;
 
 -(void)setHighScore:(NSNumber*)highScore forLevel:(NSInteger)level;
 -(NSInteger)getTotalHighScore;
 -(NSInteger)getHighScoreForLevel:(NSInteger)level;
 -(void)clearAllHighScores;
+-(void)doFacebookStuff:(NSMutableDictionary*)params;
 
 @end
+
+//@protocol FacebookReturnDelegate <NSObject>

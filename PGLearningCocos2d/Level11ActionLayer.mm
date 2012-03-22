@@ -188,19 +188,19 @@
         [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.45f) ofType:kSmallPlatform withRotation:0.0f];
         
         //boxes
-        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.05f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.13f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.21f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.05f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.13f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.21f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         //stack 2
-        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.05f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.13f) ofType:kNormalBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.21f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.05f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.13f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.21f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
 
         
         
         //balloon
-        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.55f) ofType:kBalloonBox];
-        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.55f) ofType:kBalloonBox];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.55f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.55f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
         
         //penguin
         [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
