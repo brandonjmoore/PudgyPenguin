@@ -85,7 +85,7 @@
     }
     if ([itemPassedIn tag] == 16) {
         CCLOG(@"Tag 16 found, Scene 16");
-        [[GameManager sharedGameManager] runSceneWithID:kGameLevel16];
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel17];
     }
     else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
@@ -194,10 +194,10 @@
         
     menuGrid = [SlidingMenuGrid
                                  menuWithArray:menuItemArray
-                                 cols:3
-                                 rows:3
-                                 position:CGPointMake(80.f, 400.f)
-                                 padding:CGPointMake(75.f, 75.f)
+                                 cols:4
+                                 rows:4
+                                 position:CGPointMake(50.f, 400.f)
+                                 padding:CGPointMake(65.f, 65.f)
                                  verticalPaging:false];
     
     [self addChild:menuGrid z:kTwoZValue];

@@ -28,6 +28,7 @@
 #import "Level14Scene.h"
 #import "Level15Scene.h"
 #import "Level16Scene.h"
+#import "Level17Scene.h"
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
@@ -138,6 +139,9 @@ static GameManager* _sharedGameManager = nil;
             break;
         case kGameLevel16:
             sceneToRun = [Level16Scene node];
+            break;
+        case kGameLevel17:
+            sceneToRun = [Level17Scene node];
             break;
         default:
             CCLOG(@"Unknown ID, cannot switch scenes");

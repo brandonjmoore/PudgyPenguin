@@ -22,7 +22,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 1.05)];
             numFishCreated++;
             
         }else {
@@ -191,8 +191,6 @@
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
-        //create trash every so often
-        [self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
         
         //Add snow
         //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];

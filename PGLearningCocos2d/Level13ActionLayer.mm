@@ -21,7 +21,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.2, screenSize.height * 0.9f)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.2, screenSize.height * 1.05)];
             numFishCreated++;
             
         }else {
@@ -220,6 +220,10 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];
+        
+        penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+        
         
         [self createBoxAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
@@ -244,9 +248,7 @@
 
         [self createPlatformAtLocation:ccp(winSize.width * 0.93f, winSize.height *0.72f) ofType:kSmallPlatform withRotation:4.7];
         
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];
         
-        penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
         
         //Create fish every so many seconds.

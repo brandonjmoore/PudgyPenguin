@@ -20,7 +20,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 1.05)];
             numFishCreated++;
             
         }else {

@@ -13,7 +13,7 @@
 #pragma mark -
 #pragma mark Penguin Constants
 
-#define kPenguinSpriteTagValue      0
+
 #define kPenguinZValue              100
 //Idle time is used for idle actions (blinking, yawning, etc.)
 #define kPenguinBlinkTime           5.0f
@@ -29,6 +29,16 @@
 #define kTimeBetweenFishCreation    2.0f
 #define kTimeBetweenTrashCreation   5.0f
 #define kNumOfFishReq               5
+
+#pragma mark -
+#pragma mark Sprite Tags
+#define kPenguinSpriteTagValue      0
+#define kFishSpriteTagValue         1
+#define kTrashSpriteTagValue        2
+#define kNormalBoxTag               3
+#define kBouncyBoxTag               4
+#define kBalloonBoxTag              5
+#define kPlatformTag                6
 
 #pragma mark -
 #pragma mark Game Manager Constants
@@ -59,10 +69,14 @@
 #define kLevel14                    14
 #define kLevel15                    15
 #define kLevel16                    16
+#define kLevel17                    17
 
 #pragma mark -
 #pragma mark Z Values
 
+#define kNegThreeValue              -3
+#define kNegTwoZValue               -2
+#define kNegOneZValue               -1
 #define kZeroZValue                 0
 #define kOneZValue                  1
 #define kTwoZValue                  2
@@ -93,7 +107,8 @@ typedef enum {
     kGameLevel13=113,
     kGameLevel14=114,
     kGameLevel15=115,
-    kGameLevel16=116
+    kGameLevel16=116,
+    kGameLevel17=117
 } SceneTypes;
 
 #pragma mark -
@@ -146,6 +161,10 @@ typedef enum {
 #define PTM_RATIO                   21
 #define DEG_TO_RAD(degree)          (degree/M_PI*180)
 #define RAD_TO_DEG(radians)         (radians*180/M_PI)
+#define VEL_TO_SEC(distance,velocity)        (distance/(.065*(sqrt(velocity*velocity))))
 #define kFacebookAppID              @"385665668110717"
+#define ARC4RANDOM_MAX              0x100000000
+#define MAX_BOUNCE_ANIM_VELOCITY    5
+
 
 #endif

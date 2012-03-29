@@ -38,6 +38,11 @@
     world = new b2World(gravity, doSleep);
     self.isAccelerometerEnabled = TRUE;
     
+    //This keeps bodies from getting stuck together. Also might be helpful when playing sounds
+    //Causes fast moving fish to move through a line - look into maximum velocity for fish
+    world->SetContinuousPhysics(true);
+    
+    
     // TODO: Find a better place for this
     lineImage = @"Start.png";
     lineWidth = kLineWidth;
@@ -66,12 +71,30 @@
 
 -(void)createFish2AtLocation:(CGPoint)location {
     fish2 = [[[Fish2 alloc]initWithWorld:world atLocation:location]autorelease];
-    [sceneSpriteBatchNode addChild:fish2 z:1 tag:111];
+    [sceneSpriteBatchNode addChild:fish2 z:1 tag:kFishSpriteTagValue];
 }
 
--(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation{
+-(Box2DSprite*)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation{
     box = [[[Box alloc]initWithWorld:world atLocation:location ofType:boxType withRotation:rotation]autorelease];
-    [sceneSpriteBatchNode addChild:box z:1];
+    
+    switch (boxType) {
+        case kNormalBox:
+            [sceneSpriteBatchNode addChild:box z:1 tag:kNormalBoxTag];
+            break;
+        case kBouncyBox:
+            [sceneSpriteBatchNode addChild:box z:1 tag:kBouncyBoxTag];
+            break;
+        case kBalloonBox:
+            [sceneSpriteBatchNode addChild:box z:1 tag:kBalloonBoxTag];
+            break;   
+        default:
+            [sceneSpriteBatchNode addChild:box z:1];
+            break;
+    }
+    
+    
+        
+    
     return box;
 }
 
@@ -87,12 +110,12 @@
 
 -(void)createTrashAtLocation:(CGPoint)location {
     trash = [[[Trash alloc]initWithWorld:world atLocation:location]autorelease];
-    [sceneSpriteBatchNode addChild:trash z:1];
+    [sceneSpriteBatchNode addChild:trash z:1 tag:kTrashSpriteTagValue];
 }
 
 -(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation {
     platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
-    [sceneSpriteBatchNode addChild:platform z:1];
+    [sceneSpriteBatchNode addChild:platform z:1 tag:kPlatformTag];
 }
 
 -(void)addFish {
@@ -125,7 +148,7 @@
     CCSprite *clearButtonNormal = [CCSprite spriteWithSpriteFrameName:@"clear.png"];
     CCSprite *clearButtonSelected = [CCSprite spriteWithSpriteFrameName:@"clear_over.png"];
     
-    clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(gameOverPass:)];
+    clearButton = [CCMenuItemSprite itemFromNormalSprite:clearButtonNormal selectedSprite:clearButtonSelected disabledSprite:nil target:self selector:@selector(clearLines)];
     
     clearButtonMenu = [CCMenu menuWithItems:clearButton, nil];
     
@@ -348,6 +371,18 @@
     return nil;
 }
 
+// convenience method to convert a CGPoint to a b2Vec2
+-(b2Vec2)toMeters:(CGPoint)point
+{
+    return b2Vec2(point.x / PTM_RATIO, point.y / PTM_RATIO);
+}
+
+// convenience method to convert a b2Vec2 to a CGPoint
+-(CGPoint)toPixels:(b2Vec2)vec
+{
+    return ccpMult(CGPointMake(vec.x, vec.y), PTM_RATIO);
+}
+
 -(void)update:(ccTime)dt {
     
     int32 velocityIterations = 3;
@@ -358,10 +393,27 @@
     for(b2Body *b=world->GetBodyList(); b!=NULL; b=b->GetNext()) {
         if (b->GetUserData() != NULL) {
             
-            //Update sprite position //works but only in one constant direction
-            Box2DSprite *sprite = (Box2DSprite *) b->GetUserData();
-            sprite.position = ccp(b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
-            sprite.rotation = CC_RADIANS_TO_DEGREES(b->GetAngle() * -1);
+            
+            //This check allows us to move static bodies via their sprite (important for moving objects)
+            if (b->GetType() == b2_dynamicBody) {
+                //Update sprite position //works but only in one constant direction
+                Box2DSprite *sprite = (Box2DSprite *) b->GetUserData();
+                sprite.position = ccp(b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
+                sprite.rotation = CC_RADIANS_TO_DEGREES(b->GetAngle() * -1);
+            } else {
+                Box2DSprite *sprite = (Box2DSprite*)b->GetUserData();
+                // and this would do the exact opposite
+                b2Vec2 pos = [self toMeters:sprite.position];
+                b->SetTransform(pos, CC_DEGREES_TO_RADIANS(sprite.rotation * -1));
+                b->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
+                b->SetAngularVelocity(0.0f);
+            }
+            
+            
+            
+
+            
+            
             
             
             //b.position
@@ -416,6 +468,24 @@
             }
         }
     }
+    
+//    std::vector<MyContact>::iterator pos;
+//    for(pos = _contactListener->_contacts.begin(); 
+//        pos != _contactListener->_contacts.end(); ++pos) {
+//        MyContact contact = *pos;
+//        
+//        
+//        
+//        if (contact.fixtureA->GetBody()->GetUserData() != NULL && contact.fixtureB->GetBody()->GetUserData() != NULL) {
+//            CCSprite *spriteA = (CCSprite*)contact.fixtureA->GetBody()->GetUserData();
+//            CCSprite *spriteB = (CCSprite*)contact.fixtureB->GetBody()->GetUserData();
+//            
+//            if ((spriteA.tag == kFishSpriteTagValue && spriteB.tag == kBouncyBoxTag) ||
+//                (spriteA.tag == kBouncyBoxTag && spriteB.tag == kFishSpriteTagValue)) {
+//                CCLOG(@"Fish hit BouncyBox!");
+//            }
+//        }
+//    }
     
 }
 

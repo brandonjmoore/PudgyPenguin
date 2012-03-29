@@ -7,6 +7,7 @@
 //
 
 #import "Box.h"
+#import "Box2DHelpers.h"
 
 
 @implementation Box
@@ -115,6 +116,8 @@
         //Places sprite in the right position
         [self setRotation:(-1 * RAD_TO_DEG(rotation))];
         [self setPosition:location];
+        
+        readyForWiggle = YES;
             
     }
     return self;
@@ -141,7 +144,20 @@
 }
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects {
-    //CCLOG(@"just called the bx updatestatewithdeltatime");
+    
+    if (self.gameObjectType == kBouncyBoxType | self.gameObjectType == kBalloonBoxType) {
+    
+        //Detect if fish collides with bouncy box
+        if (isBodyCollidingWithObjectType(self.body, kFishType) | isBodyCollidingWithObjectType(self.body, kTrashType)){
+            
+            CCScaleTo * scaleUp = [CCScaleTo actionWithDuration:.075 scale:1.1];
+            CCScaleTo * scaleDown = [CCScaleTo actionWithDuration:.075 scale:1];
+            CCSequence * scaleSeq = [CCSequence actions:scaleUp, scaleDown, nil];
+            
+            [self runAction:scaleSeq];
+            
+        }
+    }
 
 }
 

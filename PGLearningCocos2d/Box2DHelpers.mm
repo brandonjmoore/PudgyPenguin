@@ -23,6 +23,20 @@ bool isBodyCollidingWithObjectType(b2Body *body, GameObjectType objectType) {
             b2Body *bodyB = fixtureB->GetBody();
             Box2DSprite *spriteA = (Box2DSprite *) bodyA->GetUserData();
             Box2DSprite *spriteB = (Box2DSprite *) bodyB->GetUserData();
+            
+            //These lines prevent the bouncy blocks from constantly bouncing if a fish is resting on top
+            if ((spriteA.tag == kBouncyBoxTag || spriteA.tag == kBalloonBoxTag) && (spriteB.tag == kFishSpriteTagValue || spriteB.tag == kTrashSpriteTagValue)) {
+                if (fabsf(bodyB->GetLinearVelocity().x) < MAX_BOUNCE_ANIM_VELOCITY && fabsf(bodyB->GetLinearVelocity().y) < MAX_BOUNCE_ANIM_VELOCITY) {
+                    return false;
+                }
+            }
+            if ((spriteB.tag == kBouncyBoxTag || spriteB.tag == kBouncyBoxTag) && (spriteA.tag == kFishSpriteTagValue || spriteA.tag == kTrashSpriteTagValue)) {
+                if (fabsf(bodyA->GetLinearVelocity().x) < MAX_BOUNCE_ANIM_VELOCITY && fabsf(bodyB->GetLinearVelocity().y) < MAX_BOUNCE_ANIM_VELOCITY) {
+                    return false;
+                }
+            }
+            
+            
             if((spriteA != NULL && spriteA.gameObjectType == objectType) || (spriteB != NULL && spriteB.gameObjectType == objectType)) {
                 return true;
             }
@@ -31,3 +45,4 @@ bool isBodyCollidingWithObjectType(b2Body *body, GameObjectType objectType) {
     }
     return false;
 }
+

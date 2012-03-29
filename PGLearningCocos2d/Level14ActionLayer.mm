@@ -170,19 +170,21 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
-
-        [self createPlatformAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.72f) ofType:kExtraLargePlatform withRotation:4.7];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.9f) ofType:kExtraLargePlatform withRotation:0.0];
-        
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.1f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
         [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];
-        
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
-        
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
+
+        [self createPlatformAtLocation:ccp(winSize.width * 0.8f, winSize.height *0.72f) ofType:kExtraLargePlatform withRotation:4.7];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.9f) ofType:kExtraLargePlatform withRotation:0.0];
+
+        [self createBoxAtLocation:ccp(winSize.width * 0.5, winSize.height * .1) ofType:kBouncyBox withRotation:0];
+        
+        
+        
+        
         
         //create trash every so often
         //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];

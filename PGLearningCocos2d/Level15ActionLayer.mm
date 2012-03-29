@@ -20,7 +20,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.5, screenSize.height * 0.95)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 1.05)];
             numFishCreated++;
             
         }else {
@@ -35,13 +35,39 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
+            [self createTrashAtLocation:ccp(screenSize.width * 0.25, screenSize.height * 1.05)];
             
         }else {
             //If the Penguin is satisfied, dont create fish
             [self unschedule:@selector(addTrash)];
         }
     }    
+}
+
+#pragma mark -
+#pragma mark Box2d Body
+
+- (void)setupWorld {
+    b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
+    bool doSleep = true;
+    world = new b2World(gravity, doSleep);
+    self.isAccelerometerEnabled = TRUE;
+    
+    //This keeps bodies from getting stuck together. Also might be helpful when playing sounds
+    //Causes fast moving fish to move through a line - look into maximum velocity for fish
+    world->SetContinuousPhysics(false);
+    
+    
+    // TODO: Find a better place for this
+    lineImage = @"Start.png";
+    lineWidth = kLineWidth;
+    lineLength = kLineLength;
+    if (CC_CONTENT_SCALE_FACTOR() == 2.0f) {
+        lineImage = @"Start-hd.png";
+        lineLength = kRetinaLineLength;
+        lineWidth = kRetinaLineWidth;
+    }
+    //streak = [[CCRibbon alloc]init];
 }
 
 #pragma mark -
@@ -70,7 +96,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         backgroundImage = [CCSprite spriteWithFile:@"night_background_iPad.png"];
     }else {
-        backgroundImage = [CCSprite spriteWithFile:@"night_background.png"];
+        backgroundImage = [CCSprite spriteWithFile:@"ocean_no_block.png"];
     }
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -149,6 +175,23 @@
     
 }
 
+-(void)addBalloons {
+    double val = ((double)arc4random() / ARC4RANDOM_MAX);
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    Box2DSprite *myBalloon = [self createBoxAtLocation:ccp(winSize.width * val,winSize.height * -.05) ofType:kBalloonBox withRotation:0];
+    
+    [myBalloon runAction:[CCMoveTo actionWithDuration:15 position:ccp(winSize.width * val,winSize.height * 1.05)]];
+    
+    CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.2 angle:-4.0];
+    CCRotateTo * rotCenter = [CCRotateBy actionWithDuration:0.2 angle:0.0];
+    CCRotateTo * rotRight = [CCRotateBy actionWithDuration:0.2 angle:4.0];
+    CCSequence * rotSeq = [CCSequence actions:rotLeft, rotCenter, rotRight, rotCenter, nil];
+    [myBalloon runAction:[CCRepeatForever actionWithAction:rotSeq]];
+}
+
+
+
 -(id)initWithLevel15UILayer:(UILayer *)level15UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -178,10 +221,10 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
 
-        [self createPlatformAtLocation:ccp(winSize.width * .1, winSize.height * .5) ofType:kExtraExtraLargePlatform withRotation:DEG_TO_RAD(0)];
-        [self createPlatformAtLocation:ccp(winSize.width * .2, winSize.height * .55) ofType:kExtraLargePlatform withRotation:DEG_TO_RAD(0)];
-        
-        [self createBoxAtLocation:ccp(winSize.width * .13, winSize.height * .15) ofType:kBouncyBox withRotation:DEG_TO_RAD(-35)];
+//        [self createPlatformAtLocation:ccp(winSize.width * .1, winSize.height * .5) ofType:kExtraExtraLargePlatform withRotation:DEG_TO_RAD(0)];
+//        [self createPlatformAtLocation:ccp(winSize.width * .2, winSize.height * .55) ofType:kExtraLargePlatform withRotation:DEG_TO_RAD(0)];
+//        
+//        [self createBoxAtLocation:ccp(winSize.width * .125, winSize.height * .145) ofType:kBouncyBox withRotation:DEG_TO_RAD(-34.5)];
         
         
         
@@ -190,20 +233,22 @@
         
         
         //penguin
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.5f, winSize.height * 0.45f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * .9f, winSize.height * 0.2f)];
         
-        penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+        //Ice Block
+        CCSprite *iceBlock = [CCSprite spriteWithFile:@"iceblock.png"];
+        iceBlock.position = ccp(winSize.width * .9f,winSize.height * .1f);
+        [self addChild:iceBlock z:kNegTwoZValue];
+        
+        
         
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
-        //create trash every so often
-        //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
+        [self schedule:@selector(addTrash) interval:7];
         
-        //Add snow
-        CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
-        [self addChild:snowParticleSystem];
+        [self schedule:@selector(addBalloons) interval:2];
         
     }
     return self;

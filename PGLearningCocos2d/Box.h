@@ -11,6 +11,7 @@
 
 @interface Box : Box2DSprite {
     b2World *world;
+    BOOL readyForWiggle;
     
     CCSpriteFrame *standingFrame;
 }
