@@ -1,30 +1,28 @@
 //
-//  Level1ActionLayer.m
+//  Level26ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level1ActionLayer.h"
+#import "Level26ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
+#import "math.h"
 
+@implementation Level26ActionLayer
 
-@implementation Level1ActionLayer
-
-#pragma mark -
-#pragma mark Add Fish/Trash
+#pragma mark - Add Fish/Trash
 
 -(void)addFish {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25, screenSize.height * 1.05)];
+            [self createFish2AtLocation:ccp(screenSize.width * -.03,screenSize.height * .425)];
             numFishCreated++;
-            
         }else {
             //If the Penguin is satisfied, dont create fish
             [self unschedule:@selector(addFish)];
@@ -37,7 +35,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createTrashAtLocation:ccp(screenSize.width * 0.8, screenSize.height * 0.95)];
+            [self createTrashAtLocation:ccp(screenSize.width * -.03,screenSize.height * .425)];
             
         }else {
             //If the Penguin is satisfied, dont create fish
@@ -47,19 +45,20 @@
 }
 
 #pragma mark -
-#pragma mark Level Specific Pause Stuff
+#pragma mark Pause Stuff
 
 -(void) doResetLevel {
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel26];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel2];
+    //[[GameManager sharedGameManager] runSceneWithID:kGameLevel27];
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
 #pragma mark -
@@ -67,13 +66,7 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            backgroundImage = [CCSprite spriteWithFile:@"background_iPad.png"];
-    }else {
-            backgroundImage = [CCSprite spriteWithFile:@"background.png"];
-    }
-    
+    backgroundImage = [CCSprite spriteWithFile:@"ocean_no_block.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
     
@@ -86,7 +79,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //Show level High Score (new high scores only)
-    if (remainingTime > [app getHighScoreForLevel:kLevel1]) {
+    if (remainingTime > [app getHighScoreForLevel:kLevel26]) {
         NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
         CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
         levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
@@ -95,27 +88,28 @@
     
     
     //Set the High Score (if new value is greater than old value)
-    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel1];
+    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel26];
     
-    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel1];
-    NSString *levelScoreString = [NSString stringWithFormat:@"Level 1 high score: %d", levelHighScore];
+    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel26];
+    NSString *levelScoreString = [NSString stringWithFormat:@"Level 26 high score: %d", levelHighScore];
     CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
-    levelScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.1f);
+    levelScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.1f);
     [self addChild:levelScoreText z:10];
+    
     
     //Show total high score
     NSInteger totalHighScore = [app getTotalHighScore];
     
     NSString *highScoreString = [NSString stringWithFormat:@"Total high score: %d", totalHighScore];
     CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
-    highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
+    highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
 }
 
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level2unlocked"];
+    [defaults setBool:YES forKey:@"level27unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -124,55 +118,53 @@
     
     CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
     [self addChild:levelCompleteLayer z:9];
-    
-    CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
-    CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
-    
-    CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
-    
+
     CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
     CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
     
     CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
     
+    //CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
+    //CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
+    
+    //CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
+    
     CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
     CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
     
     CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
-    
-    CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
+   
+    CCMenu *nextLevelMenu = [CCMenu menuWithItems:mainMenuButton, resetButton, nil];
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
     
     [self doHighScoreStuff];
-
+    
 }
 
--(void)addBalloons {
-    double val = ((double)arc4random() / ARC4RANDOM_MAX);
+-(void)createPlatformAtWidth:(float)yPosition {
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
-    Box2DSprite *myBalloon = [self createBoxAtLocation:ccp(winSize.width * val,winSize.height * -.05) ofType:kBalloonBox withRotation:0];
     
-    [myBalloon runAction:[CCMoveTo actionWithDuration:15 position:ccp(winSize.width * val,winSize.height * 1.05)]];
+    CCMoveTo *mov1 = [CCMoveTo actionWithDuration:VEL_TO_SEC((1.1 - yPosition), 1.5) position:ccp(0,winSize.height * 1.1f)];
+    CCLOG(@"%f",(winSize.width + .1)/yPosition);
+    CCMoveTo *mov2 = [CCMoveTo actionWithDuration:0 position:ccp(0, winSize.height * -0.1f)];
+    CCMoveTo *mov3 = [CCMoveTo actionWithDuration:VEL_TO_SEC((yPosition + .1), 1.5) position:ccp(0, winSize.height * yPosition)];
+    CCSequence *seq = [CCSequence actions:mov1,mov2,mov3, nil];
     
-    CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.2 angle:-4.0];
-    CCRotateTo * rotCenter = [CCRotateBy actionWithDuration:0.2 angle:0.0];
-    CCRotateTo * rotRight = [CCRotateBy actionWithDuration:0.2 angle:4.0];
-    CCSequence * rotSeq = [CCSequence actions:rotLeft, rotCenter, rotRight, rotCenter, nil];
-    [myBalloon runAction:[CCRepeatForever actionWithAction:rotSeq]];
+    
+    [[self createPlatformAtLocation:ccp(0, winSize.height * yPosition) ofType:kMediumPlatform withRotation:CC_DEGREES_TO_RADIANS(88)]runAction:[CCRepeatForever actionWithAction:seq]];
+    
+    
+    
 }
 
--(id)initWithLevel1UILayer:(UILayer *)level1UILayer {
+-(id)initWithLevel26UILayer:(UILayer *)level26UILayer {
     if ((self = [super init])) {
-        
-        
-        
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 1 Started"];
-
+        [FlurryAnalytics logEvent:@"Level 26 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
@@ -180,10 +172,10 @@
         lineSpriteArrayMaster = [[NSMutableArray array] retain];
         
         startTime = CACurrentMediaTime();
-        remainingTime = 31;
+        remainingTime = 30;
    
         [self setupBackground];
-        uiLayer = level1UILayer;
+        uiLayer = level26UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -193,27 +185,41 @@
         [self createClearButton];
         self.isTouchEnabled = YES;
         
-        //I dont think we need this because they are already in the cache
-        //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.215f)];
-        
+        [self createPenguin2AtLocation:ccp(winSize.width * .9, winSize.height * -.1)];
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
+        
+        
+        CCMoveBy *mov = [CCMoveBy actionWithDuration:35 position:ccp(0, winSize.height * 1.25)];
+        [mov setTag:kMoveActionTag];
+        
+        [penguin2 runAction:mov];
+        
+        Box2DSprite *myBox =[self createBoxAtLocation:ccp(winSize.width * .9,winSize.height * -.2) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        
+        [myBox runAction:[CCMoveBy actionWithDuration:35 position:ccp(0, winSize.height * 1.25)]];
+        
+        for (float i = 0; i < 1.1; i=i+.15) {
+            [self createPlatformAtWidth:i];
+        }
+        
+        //[self createPlatformAtLocation:ccp(winSize.width * .05,winSize.height * .5) ofType:kExtraExtraLargePlatform withRotation:CC_DEGREES_TO_RADIANS(0)];
+        
+        [self createBoxAtLocation:ccp(winSize.width * 0.3,winSize.height * .05) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
-        [self schedule:@selector(addBalloons) interval:2];
-        
-        //Add snow
-        //CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
-        //[self addChild:snowParticleSystem];
+        //create trash every so often
+        [self schedule:@selector(addTrash) interval:6];
         
     }
     return self;
 }
+
 
 @end

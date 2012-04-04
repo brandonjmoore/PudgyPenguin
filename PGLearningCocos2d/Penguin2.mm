@@ -90,7 +90,10 @@
 
 //Penguin states Used for animations
 -(void)changeState:(CharacterStates)newState {
-    [self stopAllActions];
+    
+    // TODO: This was commented out because if 
+    //the penguin ate a fish he would stop moving.
+    //[self stopAllActions];
     
     id action = nil;
     //TODO: We might be able to use movement action and new position for walking (see pg 97)
@@ -144,6 +147,9 @@
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:YES];
             action = [CCRepeat actionWithAction:action times:kPenguinDanceNumber];
+            
+            //Added this so that penguin doesnt keep eating after he is satisfied.
+            self.body->SetActive(false);
             break;
             
         case kStateMouthOpen:
@@ -187,7 +193,10 @@
     isFishCloseBy = NO;
     isTrashCloseBy = NO;
     
-    if ([self numberOfRunningActions] == 0) {
+    // TODO: Make sure this doesnt cause problems
+    //This was changed so that penguin would open his mouth while moving.
+    // TODO: Add check for blinking so that he will open his mouth while he is blinking
+    if ([self numberOfRunningActions] == 0 || ([self numberOfRunningActions] == 1 && [self getActionByTag:kMoveActionTag] != nil)) {
         
         //Make Penguin blink after so many seconds
         if (self.characterState == kStateIdle) {

@@ -85,7 +85,47 @@
     }
     if ([itemPassedIn tag] == 16) {
         CCLOG(@"Tag 16 found, Scene 16");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel16];
+    }
+    if ([itemPassedIn tag] == 17) {
+        CCLOG(@"Tag 17 found, Scene 17");
         [[GameManager sharedGameManager] runSceneWithID:kGameLevel17];
+    }
+    if ([itemPassedIn tag] == 18) {
+        CCLOG(@"Tag 18 found, Scene 18");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel18];
+    }
+    if ([itemPassedIn tag] == 19) {
+        CCLOG(@"Tag 19 found, Scene 19");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel19];
+    }
+    if ([itemPassedIn tag] == 20) {
+        CCLOG(@"Tag 20 found, Scene 20");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel20];
+    }
+    if ([itemPassedIn tag] == 21) {
+        CCLOG(@"Tag 21 found, Scene 21");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel21];
+    }
+    if ([itemPassedIn tag] == 22) {
+        CCLOG(@"Tag 22 found, Scene 22");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel22];
+    }
+    if ([itemPassedIn tag] == 23) {
+        CCLOG(@"Tag 23 found, Scene 23");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel23];
+    }
+    if ([itemPassedIn tag] == 24) {
+        CCLOG(@"Tag 24 found, Scene 24");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel24];
+    }
+    if ([itemPassedIn tag] == 25) {
+        CCLOG(@"Tag 24 found, Scene 24");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel25];
+    }
+    if ([itemPassedIn tag] == 26) {
+        CCLOG(@"Tag 26 found, Scene 26");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel26];
     }
     else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
@@ -191,11 +231,30 @@
         [menuItemArray addObject:playLevelButton];
         
     }
+    
+    
+    
+    
+    for (int i = 17; i <= 26; i++) {
+        
+        CCSprite *levelButtonNormal17 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_16.png"]];
+        CCSprite *levelButtonSelected17 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_16_over.png"]];
+        
+        CCSprite *disabledSprite17 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
+        
+        CCMenuItemSprite *playLevelButton17 = [CCMenuItemSprite itemFromNormalSprite:levelButtonNormal17 selectedSprite:nil disabledSprite:disabledSprite17 target:self selector:@selector(playScene:)];
+        [playLevelButton17 setTag:i];
+        
+        playLevelButton17.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"level%iunlocked", i]];
+        
+        [menuItemArray addObject:playLevelButton17];
+        
+    }
         
     menuGrid = [SlidingMenuGrid
                                  menuWithArray:menuItemArray
                                  cols:4
-                                 rows:4
+                                 rows:6
                                  position:CGPointMake(50.f, 400.f)
                                  padding:CGPointMake(65.f, 65.f)
                                  verticalPaging:false];
@@ -280,7 +339,6 @@
         [self loadAudio];
         
         CGSize screenSize = [CCDirector sharedDirector].winSize;
-        
         
         CCSpriteBatchNode *mainMenuSpriteBatchNode;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];

@@ -66,12 +66,13 @@
 
 -(void)createPenguin2AtLocation:(CGPoint)location {
     penguin2 = [[[Penguin2 alloc]initWithWorld:world atLocation:location]autorelease];
-    [sceneSpriteBatchNode addChild:penguin2 z:1 tag:kPenguinSpriteTagValue];
+    [sceneSpriteBatchNode addChild:penguin2 z:kPenguinZValue tag:kPenguinSpriteTagValue];
 }
 
--(void)createFish2AtLocation:(CGPoint)location {
+-(Box2DSprite *)createFish2AtLocation:(CGPoint)location {
     fish2 = [[[Fish2 alloc]initWithWorld:world atLocation:location]autorelease];
-    [sceneSpriteBatchNode addChild:fish2 z:1 tag:kFishSpriteTagValue];
+    [sceneSpriteBatchNode addChild:fish2 z:kFishZValue tag:kFishSpriteTagValue];
+    return fish2;
 }
 
 -(Box2DSprite*)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation{
@@ -79,16 +80,16 @@
     
     switch (boxType) {
         case kNormalBox:
-            [sceneSpriteBatchNode addChild:box z:1 tag:kNormalBoxTag];
+            [sceneSpriteBatchNode addChild:box z:kBoxZValue tag:kNormalBoxTag];
             break;
         case kBouncyBox:
-            [sceneSpriteBatchNode addChild:box z:1 tag:kBouncyBoxTag];
+            [sceneSpriteBatchNode addChild:box z:kBoxZValue tag:kBouncyBoxTag];
             break;
         case kBalloonBox:
-            [sceneSpriteBatchNode addChild:box z:1 tag:kBalloonBoxTag];
+            [sceneSpriteBatchNode addChild:box z:kBoxZValue tag:kBalloonBoxTag];
             break;   
         default:
-            [sceneSpriteBatchNode addChild:box z:1];
+            [sceneSpriteBatchNode addChild:box z:kBoxZValue];
             break;
     }
     
@@ -110,12 +111,13 @@
 
 -(void)createTrashAtLocation:(CGPoint)location {
     trash = [[[Trash alloc]initWithWorld:world atLocation:location]autorelease];
-    [sceneSpriteBatchNode addChild:trash z:1 tag:kTrashSpriteTagValue];
+    [sceneSpriteBatchNode addChild:trash z:kTrashZValue tag:kTrashSpriteTagValue];
 }
 
--(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation {
+-(Box2DSprite*)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation {
     platform = [[[Platform alloc]initWithWorld:world atLocation:location ofType:platformType withRotation:rotation]autorelease];
-    [sceneSpriteBatchNode addChild:platform z:1 tag:kPlatformTag];
+    [sceneSpriteBatchNode addChild:platform z:kPlatformZValue tag:kPlatformTag];
+    return platform;
 }
 
 -(void)addFish {
@@ -191,7 +193,7 @@
     
     if (distance > 10) {
         
-        
+                
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
         b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
         
@@ -516,11 +518,11 @@
     CCLOG(@"-----------%f", remainingTime);
 }
 
--(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    b2Vec2 oldGravity = world->GetGravity();
-    b2Vec2 gravity(acceleration.x * kAccelerometerMultiplier, oldGravity.y);
-    world->SetGravity(gravity);
-}
+//-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+//    b2Vec2 oldGravity = world->GetGravity();
+//    b2Vec2 gravity(acceleration.x * kAccelerometerMultiplier, oldGravity.y);
+//    world->SetGravity(gravity);
+//}
 
 - (void)onExit {
 	[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];

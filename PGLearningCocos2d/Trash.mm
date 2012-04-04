@@ -22,7 +22,7 @@
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
 
     //Dont allow bodies to sleep (needed for accelerometer)
-    bodyDef.allowSleep = false;
+    //bodyDef.allowSleep = false;
     
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
@@ -33,8 +33,11 @@
     fixtureDef.shape = &shape;
     
     fixtureDef.density = 1.0;
-    fixtureDef.friction = 0.5;
-    fixtureDef.restitution = 0.4;
+    fixtureDef.friction = 0.25;
+    fixtureDef.restitution = 0.25;
+    
+    //This makes it so the trash doesnt get stuck to moving objects
+    body->SetBullet(true);
     
     body->CreateFixture(&fixtureDef);
 }

@@ -47,6 +47,7 @@
     CCRibbon *streak;
     int lineLength;
     int lineWidth;
+    BOOL isValidTouch;
     
     
     b2World *world;
@@ -67,10 +68,10 @@
 - (void)setupWorld;
 - (void)setupDebugDraw;
 -(void)createPenguin2AtLocation:(CGPoint)location;
--(void)createFish2AtLocation:(CGPoint)location;
--(id)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation;
--(void)createTrashAtLocation:(CGPoint)location;
--(void)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation;
+-(Box2DSprite *)createFish2AtLocation:(CGPoint)location;
+-(Box2DSprite*)createBoxAtLocation:(CGPoint)location ofType:(BoxType)boxType withRotation:(float)rotation;
+-(Box2DSprite*)createTrashAtLocation:(CGPoint)location;
+-(Box2DSprite*)createPlatformAtLocation:(CGPoint)location ofType:(PlatformType)platformType withRotation:(float) rotation;
 -(void)addFish;
 -(void)addTrash;
 -(void) createPauseButton;

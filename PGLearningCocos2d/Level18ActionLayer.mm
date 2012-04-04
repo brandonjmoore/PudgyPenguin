@@ -1,18 +1,18 @@
 //
-//  Level17ActionLayer.m
+//  Level18ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level17ActionLayer.h"
+#import "Level18ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
 #import "math.h"
 
-@implementation Level17ActionLayer
+@implementation Level18ActionLayer
 
 #pragma mark - Add Fish/Trash
 
@@ -21,7 +21,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.15f, screenSize.height * 1.05f)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.25f, screenSize.height * 1.05f)];
             numFishCreated++;
             
         }else {
@@ -53,13 +53,13 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel17];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel18];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    //[[GameManager sharedGameManager] runSceneWithID:kGameLevel18];
+    //[[GameManager sharedGameManager] runSceneWithID:kGameLevel19];
     [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
@@ -81,7 +81,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //Show level High Score (new high scores only)
-    if (remainingTime > [app getHighScoreForLevel:kLevel17]) {
+    if (remainingTime > [app getHighScoreForLevel:kLevel18]) {
         NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
         CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
         levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
@@ -90,10 +90,10 @@
     
     
     //Set the High Score (if new value is greater than old value)
-    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel17];
+    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel18];
     
-    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel17];
-    NSString *levelScoreString = [NSString stringWithFormat:@"Level 17 high score: %d", levelHighScore];
+    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel18];
+    NSString *levelScoreString = [NSString stringWithFormat:@"Level 18 high score: %d", levelHighScore];
     CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
     levelScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.1f);
     [self addChild:levelScoreText z:10];
@@ -111,7 +111,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level18unlocked"];
+    [defaults setBool:YES forKey:@"level19unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -162,11 +162,11 @@
     
 }
 
--(id)initWithLevel17UILayer:(UILayer *)level17UILayer {
+-(id)initWithLevel18UILayer:(UILayer *)level18UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 17 Started"];
+        [FlurryAnalytics logEvent:@"Level 18 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
@@ -177,7 +177,7 @@
         remainingTime = 30;
    
         [self setupBackground];
-        uiLayer = level17UILayer;
+        uiLayer = level18UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -191,72 +191,22 @@
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
         
-        
-        
-        
-        
-
-//        CCSprite*mySprite = [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.85f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.77f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.69f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.22f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.34f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.1f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.61f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.69f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.77f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.46f, winSize.height*0.85f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        
-//        [mySprite runAction:[CCRepeatForever actionWithAction: [CCSequence actions:
-//                         [CCMoveTo actionWithDuration:1.0 position:ccp(300,100)],
-//                         [CCMoveTo actionWithDuration:1.0 position:ccp(200,200)],
-//                         [CCMoveTo actionWithDuration:1.0 position:ccp(100,100)],
-//                         nil]]];
-//        
-//        [mySprite runAction:[CCMoveTo actionWithDuration:2.0 position:ccp(winSize.width*0.5f,winSize.height*0.5f)]];
-//        
-//        
-//        //Bottom line of balloons
-//        //[self createBoxAtLocation:ccp(winSize.width*0.05f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        //[self createBoxAtLocation:ccp(winSize.width*0.17f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        //[self createBoxAtLocation:ccp(winSize.width*0.29f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        //[self createBoxAtLocation:ccp(winSize.width*0.41f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        //[self createBoxAtLocation:ccp(winSize.width*0.53f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        //[self createBoxAtLocation:ccp(winSize.width*0.65f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        [self createBoxAtLocation:ccp(winSize.width*0.93f, winSize.height*0.1f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-//        
-//        
-//        myBody = [self createMovingBoxAtLocation:ccp(winSize.width*0.5f, winSize.height*0.25f) ofType:kMovingBouncyBox withRotation:0.0f];
-//        
-//        
-////        b2Vec2 currentPosition = myBody->GetPosition();
-////        b2Vec2 desiredPosition = b2Vec2(100.0f,100.0f);
-////        b2Vec2 necessaryMovement = desiredPosition - currentPosition;
-////        float necessaryDistance = necessaryMovement.Length();
-////        necessaryMovement.Normalize();
-////        float forceMagnitude = b2Min(1000.0f, necessaryDistance);
-////        b2Vec2 force = forceMagnitude * necessaryMovement;
-////        myBody->ApplyForce( force, myBody->GetWorldCenter() );
-//        
-//        
-//        
-//        //This works!
-//        //myBody->SetLinearVelocity(b2Vec2(1.0f, 0.0f));
-//        
-//        //[self schedule:@selector(moveBox) interval:kTimeBetweenFishCreation + 1];
-        
-        
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.9f, winSize.height * 0.8f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.05, winSize.height * 0.6f)];
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        [self createPlatformAtLocation:ccp(winSize.width * .95, winSize.height *0.72f) ofType:kMediumPlatform withRotation:CC_DEGREES_TO_RADIANS(270)];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.9f) ofType:kExtraLargePlatform withRotation:0.0];
+        [penguin2 setRotation:90];
+
+        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height *0.675f) ofType:kExtraExtraLargePlatform withRotation:0.0];
         
-        for (float i = 0; i < 1.1; i=i+.2) {
-            [self createBoxAtWidth:i];
-        }
+        [self createBoxAtLocation:ccp(winSize.width * .95,winSize.height * .1) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(-10)];
         
+
+//        CCDelayTime *mov1 = [CCDelayTime actionWithDuration:2];
+//        CCRotateTo *mov2 = [CCMoveTo actionWithDuration:.05 position:ccp(winSize.width * .9,winSize.height * .1)];
+//        CCRotateTo *mov3 = [CCMoveTo actionWithDuration:2 position:ccp(winSize.width,winSize.height * .1)];
+//        CCSequence *seq = [CCSequence actions:mov1,mov2,mov3, nil];
+        
+        //[bouncyBox runAction:[CCRepeatForever actionWithAction:seq]];
         
         
         
@@ -264,7 +214,7 @@
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
         //create trash every so often
-        [self schedule:@selector(addTrash) interval:15];
+        //[self schedule:@selector(addTrash) interval:15];
         
     }
     return self;

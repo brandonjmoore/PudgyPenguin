@@ -1,17 +1,18 @@
 //
-//  Level15ActionLayer.m
+//  Level21ActionLayer.m
 //  PGLearningCocos2d
 //
 //  Created by Brandon Moore on 10/18/11.
 //  Copyright (c) 2011 Vaux, Inc. All rights reserved.
 //
 
-#import "Level15ActionLayer.h"
+#import "Level21ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
+#import "math.h"
 
-@implementation Level15ActionLayer
+@implementation Level21ActionLayer
 
 #pragma mark - Add Fish/Trash
 
@@ -20,7 +21,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.9, screenSize.height * 1.05)];
+            [self createFish2AtLocation:ccp(screenSize.width * .8,screenSize.height * 1.05)];
             numFishCreated++;
             
         }else {
@@ -35,8 +36,9 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createTrashAtLocation:ccp(screenSize.width * 0.25, screenSize.height * 1.05)];
+            [self createTrashAtLocation:ccp(screenSize.width * .8,screenSize.height * 1.05)];
             
+            [self unschedule:@selector(addTrash)];
         }else {
             //If the Penguin is satisfied, dont create fish
             [self unschedule:@selector(addTrash)];
@@ -51,14 +53,14 @@
     self.isTouchEnabled = YES;
     
     [[CCDirector sharedDirector] resume];
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel15];//Level Specific: Change for new level
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel21];//Level Specific: Change for new level
 }
 
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel16];
-    //[[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
+    //[[GameManager sharedGameManager] runSceneWithID:kGameLevel22];
+    [[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 }
 
 #pragma mark -
@@ -66,17 +68,10 @@
 
 -(void)setupBackground {
     CCSprite *backgroundImage;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        backgroundImage = [CCSprite spriteWithFile:@"night_background_iPad.png"];
-    }else {
-        backgroundImage = [CCSprite spriteWithFile:@"ocean_no_block.png"];
-    }
-    
-    
+    backgroundImage = [CCSprite spriteWithFile:@"ocean_no_block.png"];
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
     [backgroundImage setPosition:CGPointMake(screenSize.width/2, screenSize.height/2)];
-    [backgroundImage flipY];
+    
     [self addChild:backgroundImage z:-10 tag:0];
 }
 
@@ -86,7 +81,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //Show level High Score (new high scores only)
-    if (remainingTime > [app getHighScoreForLevel:kLevel15]) {
+    if (remainingTime > [app getHighScoreForLevel:kLevel21]) {
         NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
         CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
         levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
@@ -95,10 +90,10 @@
     
     
     //Set the High Score (if new value is greater than old value)
-    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel15];
+    [app setHighScore:[NSNumber numberWithDouble:remainingTime] forLevel:kLevel21];
     
-    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel15];
-    NSString *levelScoreString = [NSString stringWithFormat:@"Level 15 high score: %d", levelHighScore];
+    NSInteger levelHighScore = [app getHighScoreForLevel:kLevel21];
+    NSString *levelScoreString = [NSString stringWithFormat:@"Level 21 high score: %d", levelHighScore];
     CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
     levelScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.1f);
     [self addChild:levelScoreText z:10];
@@ -116,7 +111,7 @@
 -(void) gameOverPass: (id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"level16unlocked"];
+    [defaults setBool:YES forKey:@"level22unlocked"];
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -131,17 +126,17 @@
     
     CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
     
-    CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
-    CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
+    //CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
+    //CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
     
-    CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
+    //CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
     
     CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
     CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
     
     CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
    
-    CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
+    CCMenu *nextLevelMenu = [CCMenu menuWithItems:mainMenuButton, resetButton, nil];
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
@@ -150,13 +145,11 @@
     
 }
 
-
-
--(id)initWithLevel15UILayer:(UILayer *)level15UILayer {
+-(id)initWithLevel21UILayer:(UILayer *)level21UILayer {
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 15 Started"];
+        [FlurryAnalytics logEvent:@"Level 21 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
@@ -167,7 +160,7 @@
         remainingTime = 30;
    
         [self setupBackground];
-        uiLayer = level15UILayer;
+        uiLayer = level21UILayer;
         
         [self setupWorld];
         //[self setupDebugDraw];
@@ -180,44 +173,66 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
         sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
         [self addChild:sceneSpriteBatchNode z:-1];
-
         
-        //penguin
-        [self createPenguin2AtLocation:ccp(winSize.width * .1f, winSize.height * 0.2f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * .1, winSize.height * .15)];
+        penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
         //Ice Block
         CCSprite *iceBlock = [CCSprite spriteWithFile:@"iceblock.png"];
-        iceBlock.position = ccp(winSize.width * .1f,winSize.height * .1f);
+        iceBlock.position = ccp(winSize.width * .1f,winSize.height * .05f);
         [self addChild:iceBlock z:kNegTwoZValue];
         
         
         
+        //Box2DSprite *myPlatform = [self createPlatformAtLocation:ccp(winSize.width * .25,winSize.height * .3) ofType:kLargePlatform withRotation:CC_DEGREES_TO_RADIANS(90)];
+        
+        Box2DSprite *myBox = [self createBoxAtLocation:ccp(winSize.width * .1,winSize.height * .4) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        
+        Box2DSprite *myBox2 = [self createBoxAtLocation:ccp(winSize.width * .9,winSize.height * .6) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        
+//        CCDelayTime *mov1 = [CCDelayTime actionWithDuration:3];
+//        CCMoveTo *mov4 = [CCMoveTo actionWithDuration:.1 position:ccp(winSize.width * .25,winSize.height * .275)];
+//        CCMoveTo *mov2 = [CCMoveTo actionWithDuration:.1 position:ccp(winSize.width * .25,winSize.height * .4)];
+//        CCMoveTo *mov3 = [CCMoveTo actionWithDuration:1 position:ccp(winSize.width * .25,winSize.height * .3)];
+//        CCSequence *seq = [CCSequence actions:mov1,mov4,mov2,mov3, nil];
+        
+        [myBox runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:3 angle:360]]];
+        id mov1 = [CCMoveBy actionWithDuration:4 position:ccp(winSize.width * .8,0)];
+        id mov2 = [mov1 reverse];
+        CCSequence *seq = [CCSequence actions:mov1,mov2, nil];
+        [myBox runAction:[CCRepeatForever actionWithAction:seq]];
+        
+        [myBox2 runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:3 angle:-360]]];
+        id mov3 = [CCMoveBy actionWithDuration:4 position:ccp(winSize.width * -.8,0)];
+        id mov4 = [mov3 reverse];
+        CCSequence *seq2 = [CCSequence actions:mov3,mov4, nil];
+        [myBox2 runAction:[CCRepeatForever actionWithAction:seq2]];
         
         
-        Box2DSprite * myPlatform = [self createPlatformAtLocation:ccp(winSize.width * 1.075,winSize.height * .5) ofType:kExtraExtraLargePlatform withRotation:CC_DEGREES_TO_RADIANS(270)];
         
-        CCDelayTime *rot1 = [CCDelayTime actionWithDuration:3];
-        CCRotateTo *rot2 = [CCRotateTo actionWithDuration:2 angle:155];
-        CCRotateTo *rot3 = [CCRotateTo actionWithDuration:2 angle:90];
-        CCSequence *seq = [CCSequence actions:rot1,rot2,rot3, nil];
+//        [self createBoxAtLocation:ccp(winSize.width * .8,winSize.height * .05) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(-45)];
+//        [self createBoxAtLocation:ccp(winSize.width * .05,winSize.height * .25) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(25)];
+//        [self createBoxAtLocation:ccp(winSize.width * .85,winSize.height * .6) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(-20)];
         
-        [myPlatform runAction:[CCRepeatForever actionWithAction:seq]];
+
+//        CCDelayTime *mov1 = [CCDelayTime actionWithDuration:2];
+//        CCRotateTo *mov2 = [CCMoveTo actionWithDuration:.05 position:ccp(winSize.width * .9,winSize.height * .1)];
+//        CCRotateTo *mov3 = [CCMoveTo actionWithDuration:2 position:ccp(winSize.width,winSize.height * .1)];
+//        CCSequence *seq = [CCSequence actions:mov1,mov2,mov3, nil];
         
-        Box2DSprite * myPlatform2 = [self createPlatformAtLocation:ccp(winSize.width * -.075,winSize.height * .49) ofType:kExtraExtraLargePlatform withRotation:CC_DEGREES_TO_RADIANS(90)];
+        //[bouncyBox runAction:[CCRepeatForever actionWithAction:seq]];
         
-        CCDelayTime *rot4 = [CCDelayTime actionWithDuration:3];
-        CCRotateTo *rot5 = [CCRotateTo actionWithDuration:2 angle:205];
-        CCRotateTo *rot6 = [CCRotateTo actionWithDuration:2 angle:270];
-        CCSequence *seq2 = [CCSequence actions:rot4,rot5,rot6, nil];
         
-        [myPlatform2 runAction:[CCRepeatForever actionWithAction:seq2]];
         
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
+        //create trash every so often
+        [self schedule:@selector(addTrash) interval:7];
         
     }
     return self;
 }
+
 
 @end

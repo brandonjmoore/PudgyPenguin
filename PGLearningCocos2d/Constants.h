@@ -14,7 +14,7 @@
 #pragma mark Penguin Constants
 
 
-#define kPenguinZValue              100
+
 //Idle time is used for idle actions (blinking, yawning, etc.)
 #define kPenguinBlinkTime           5.0f
 #define kPenguinAngryTime           5.0f
@@ -24,7 +24,7 @@
 #pragma mark -
 #pragma mark Fish Constants
 
-#define kFishZValue                 5
+
 #define kFishIdleTime               10.0f
 #define kTimeBetweenFishCreation    2.0f
 #define kTimeBetweenTrashCreation   5.0f
@@ -39,6 +39,15 @@
 #define kBouncyBoxTag               4
 #define kBalloonBoxTag              5
 #define kPlatformTag                6
+
+#pragma mark -
+#pragma mark Z Values
+
+#define kPenguinZValue              1
+#define kFishZValue                 2
+#define kTrashZValue                2
+#define kBoxZValue                  3
+#define kPlatformZValue             3
 
 #pragma mark -
 #pragma mark Game Manager Constants
@@ -70,6 +79,21 @@
 #define kLevel15                    15
 #define kLevel16                    16
 #define kLevel17                    17
+#define kLevel18                    18
+#define kLevel19                    19
+#define kLevel20                    20
+#define kLevel21                    21
+#define kLevel22                    22
+#define kLevel23                    23
+#define kLevel24                    24
+#define kLevel25                    25
+#define kLevel26                    26
+#define kLevel27                    27
+#define kLevel28                    28
+#define kLevel29                    29
+#define kLevel30                    30
+#define kLevel31                    31
+#define kLevel32                    32
 
 #pragma mark -
 #pragma mark Z Values
@@ -108,7 +132,22 @@ typedef enum {
     kGameLevel14=114,
     kGameLevel15=115,
     kGameLevel16=116,
-    kGameLevel17=117
+    kGameLevel17=117,
+    kGameLevel18=118,
+    kGameLevel19=119,
+    kGameLevel20=120,
+    kGameLevel21=121,
+    kGameLevel22=122,
+    kGameLevel23=123,
+    kGameLevel24=124,
+    kGameLevel25=125,
+    kGameLevel26=126,
+    kGameLevel27=127,
+    kGameLevel28=128,
+    kGameLevel29=129,
+    kGameLevel30=130,
+    kGameLevel31=131,
+    kGameLevel32=132
 } SceneTypes;
 
 #pragma mark -
@@ -165,6 +204,7 @@ typedef enum {
 #define kFacebookAppID              @"385665668110717"
 #define ARC4RANDOM_MAX              0x100000000
 #define MAX_BOUNCE_ANIM_VELOCITY    5
+#define kMoveActionTag               1
 
 
 #endif

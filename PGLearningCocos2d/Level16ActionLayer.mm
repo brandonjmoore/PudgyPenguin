@@ -21,7 +21,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.2f, screenSize.height * 1.05f)];
+            [self createFish2AtLocation:ccp(screenSize.width * 0.5f, screenSize.height * 1.05f)];
             numFishCreated++;
             
         }else {
@@ -144,8 +144,19 @@
     
 }
 
--(void)moveBox{
-    myBody->SetLinearVelocity(b2Vec2(1.0f, 0.0f));
+-(void)addBalloons {
+    double val = ((double)arc4random() / ARC4RANDOM_MAX);
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    Box2DSprite *myBalloon = [self createBoxAtLocation:ccp(winSize.width * val,winSize.height * -.05) ofType:kBalloonBox withRotation:0];
+    
+    [myBalloon runAction:[CCMoveTo actionWithDuration:15 position:ccp(winSize.width * val,winSize.height * 1.05)]];
+    
+    CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.2 angle:-4.0];
+    CCRotateTo * rotCenter = [CCRotateBy actionWithDuration:0.2 angle:0.0];
+    CCRotateTo * rotRight = [CCRotateBy actionWithDuration:0.2 angle:4.0];
+    CCSequence * rotSeq = [CCSequence actions:rotLeft, rotCenter, rotRight, rotCenter, nil];
+    [myBalloon runAction:[CCRepeatForever actionWithAction:rotSeq]];
 }
 
 -(id)initWithLevel16UILayer:(UILayer *)level16UILayer {
@@ -193,8 +204,12 @@
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
-        penguin2.body->SetLinearVelocity(b2Vec2(-1.0f, 0.0f));
-        [iceBlock runAction:[CCMoveTo actionWithDuration:VEL_TO_SEC(1.3,-1) position:ccp(winSize.width * -0.15f,winSize.height * .1f)]];
+        CCMoveTo *mov = [CCMoveTo actionWithDuration:30 position:ccp(winSize.width * -0.25f,winSize.height * .2f)];
+        //The tag is needed to detect 
+        mov.tag = kMoveActionTag;
+        
+        [penguin2 runAction:mov];
+        [iceBlock runAction:[CCMoveTo actionWithDuration:30 position:ccp(winSize.width * -0.25f,winSize.height * .1f)]];
         
         CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.2 angle:-1.0];
         CCRotateTo * rotCenter = [CCRotateBy actionWithDuration:0.2 angle:0.0];
@@ -206,12 +221,13 @@
         //Create fish every so many seconds.
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
+        //[self schedule:@selector(addBalloons) interval:2];
         //create trash every so often
         //[self schedule:@selector(addTrash) interval:kTimeBetweenTrashCreation];
         
         //Add snow
-        CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
-        [self addChild:snowParticleSystem];
+//        CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
+//        [self addChild:snowParticleSystem];
         
     }
     return self;

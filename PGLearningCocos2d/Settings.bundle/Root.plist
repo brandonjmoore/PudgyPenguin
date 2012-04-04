@@ -128,7 +128,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string></string>
+			<string>Is Level 13 Unlocked</string>
 			<key>Key</key>
 			<string>level13unlocked</string>
 			<key>DefaultValue</key>
