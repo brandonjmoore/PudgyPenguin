@@ -163,7 +163,10 @@
 	
 	// Activate the menu item if we are touching one.
 	selectedItem = [self GetItemWithinTouch:touch];
-	[selectedItem selected];
+    if (selectedItem.isEnabled) {
+        [selectedItem selected];
+    }
+	
 	
 	// Only track touch if we are either in our menu system or dont care if they are outside of the menu grid.
 	if (!bSwipeOnlyOnMenu || (bSwipeOnlyOnMenu && selectedItem) )
@@ -175,12 +178,18 @@
 	return NO;
 }
 
+-(void) jumpToCurrentPage {
+    // Perform the action
+	id action = [CCMoveTo actionWithDuration:(0) position:[self GetPositionOfCurrentPage]];
+	[self runAction:action];
+}
+
 // Run the action necessary to slide the menu grid to the current page.
 - (void) moveToCurrentPage
 {
 	
 	// Perform the action
-	id action = [CCMoveTo actionWithDuration:(fAnimSpeed*0.5) position:[self GetPositionOfCurrentPage]];
+	id action = [CCEaseBounce actionWithAction:[CCMoveTo actionWithDuration:(fAnimSpeed*0.3) position:[self GetPositionOfCurrentPage]]];
 	[self runAction:action];
 }
 
@@ -218,8 +227,10 @@
 	// User wasn't sliding menu and simply tapped the screen. Activate the menu item.
 	else 
 	{
-		[selectedItem unselected];
-		[selectedItem activate];
+        if (selectedItem.isEnabled) {
+            [selectedItem unselected];
+            [selectedItem activate];
+        }
 	}
 
 	// Back to waiting state.

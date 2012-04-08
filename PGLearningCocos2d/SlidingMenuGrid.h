@@ -47,6 +47,8 @@
 - (bool) IsVerticallyPaged;
 - (void) SetVerticalPaging:(bool)bValue;
 
+- (void) jumpToCurrentPage;
+
 @property (nonatomic, readwrite) CGPoint padding;
 @property (nonatomic, readwrite) CGPoint menuOrigin;
 @property (nonatomic, readwrite) CGPoint touchOrigin;
