@@ -24,10 +24,10 @@
             Box2DSprite * fish = [self createFish2AtLocation:ccp(screenSize.width * .9,screenSize.height * -.05)];
             numFishCreated++;
             if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                fish.body->ApplyLinearImpulse(b2Vec2(0,7.3), fish.body->GetWorldCenter());
+                fish.body->ApplyLinearImpulse(b2Vec2(0,7.1), fish.body->GetWorldCenter());
                 fish.body->ApplyAngularImpulse(-.025);
             } else {
-                fish.body->ApplyLinearImpulse(b2Vec2(0,6), fish.body->GetWorldCenter());
+                fish.body->ApplyLinearImpulse(b2Vec2(0,5.8), fish.body->GetWorldCenter());
                 fish.body->ApplyAngularImpulse(-.025);
             }
             
