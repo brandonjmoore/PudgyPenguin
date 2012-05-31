@@ -47,6 +47,7 @@ enum {
 @implementation CCMenu
 
 @synthesize opacity = opacity_, color = color_;
+@synthesize isTouchUp; //Added by Mauricio Torres
 
 - (id) init
 {
@@ -183,6 +184,10 @@ enum {
 	
 	if( selectedItem_ ) {
 		state_ = kCCMenuStateTrackingTouch;
+        if(isTouchUp) //Added by Mauricio Torres
+        {
+            [selectedItem_ activate];
+        }
 		return YES;
 	}
 	return NO;
@@ -193,7 +198,10 @@ enum {
 	NSAssert(state_ == kCCMenuStateTrackingTouch, @"[Menu ccTouchEnded] -- invalid state");
 	
 	[selectedItem_ unselected];
-	[selectedItem_ activate];
+	if(!isTouchUp) //Added by Mauricio Torres
+    {
+        [selectedItem_ activate];
+    }
 	
 	state_ = kCCMenuStateWaiting;
 }

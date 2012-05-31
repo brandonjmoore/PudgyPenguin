@@ -75,30 +75,51 @@
 		// emits per frame
 		emissionRate = totalParticles/life;
 		
+//		// color of particles
+//		startColor.r = 0.5f;
+//		startColor.g = 0.5f;
+//		startColor.b = 0.5f;
+//		startColor.a = 1.0f;
+//		startColorVar.r = 0.5f;
+//		startColorVar.g = 0.5f;
+//		startColorVar.b = 0.5f;
+//		startColorVar.a = 0.1f;
+//		endColor.r = 0.1f;
+//		endColor.g = 0.1f;
+//		endColor.b = 0.1f;
+//		endColor.a = 0.2f;
+//		endColorVar.r = 0.1f;
+//		endColorVar.g = 0.1f;
+//		endColorVar.b = 0.1f;
+//		endColorVar.a = 0.2f;
+
+        
+        //Only white fireworks
 		// color of particles
-		startColor.r = 0.5f;
-		startColor.g = 0.5f;
-		startColor.b = 0.5f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.5f;
-		startColorVar.g = 0.5f;
-		startColorVar.b = 0.5f;
-		startColorVar.a = 0.1f;
-		endColor.r = 0.1f;
-		endColor.g = 0.1f;
-		endColor.b = 0.1f;
-		endColor.a = 0.2f;
-		endColorVar.r = 0.1f;
-		endColorVar.g = 0.1f;
-		endColorVar.b = 0.1f;
-		endColorVar.a = 0.2f;
-		
+        startColor.r = 1.0f;
+        startColor.g = 1.0f;
+        startColor.b = 1.0f;
+        startColor.a = 1.0f;
+        startColorVar.r = 0.0f;
+        startColorVar.g = 0.0f;
+        startColorVar.b = 0.0f;
+        startColorVar.a = 0.0f;
+        endColor.r = 0.1f;
+        endColor.g = 0.1f;
+        endColor.b = 0.1f;
+        endColor.a = 0.0f;
+        endColorVar.r = 0.0f;
+        endColorVar.g = 0.0f;
+        endColorVar.b = 0.0f;
+        endColorVar.a = 0.0f;
+
+        
 		// size, in pixels
 		startSize = 8.0f;
 		startSizeVar = 2.0f;
 		endSize = kCCParticleStartSizeEqualToEndSize;
 
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 
 		// additive
 		self.blendAdditive = NO;
@@ -178,7 +199,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 		
 		// additive
 		self.blendAdditive = YES;
@@ -261,7 +282,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 	}
 		
 	return self;
@@ -341,7 +362,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 
 		// additive
 		self.blendAdditive = YES;
@@ -424,7 +445,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 
 		// additive
 		self.blendAdditive = YES;
@@ -507,7 +528,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 		
 		// additive
 		self.blendAdditive = YES;
@@ -590,7 +611,7 @@
 		endColorVar.b = 0.5f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 
 		// additive
 		self.blendAdditive = NO;
@@ -654,25 +675,44 @@
 		// emits per second
 		emissionRate = totalParticles/duration;
 		
+//		// color of particles
+//		startColor.r = 0.7f;
+//		startColor.g = 0.1f;
+//		startColor.b = 0.2f;
+//		startColor.a = 1.0f;
+//		startColorVar.r = 0.5f;
+//		startColorVar.g = 0.5f;
+//		startColorVar.b = 0.5f;
+//		startColorVar.a = 0.0f;
+//		endColor.r = 0.5f;
+//		endColor.g = 0.5f;
+//		endColor.b = 0.5f;
+//		endColor.a = 0.0f;
+//		endColorVar.r = 0.5f;
+//		endColorVar.g = 0.5f;
+//		endColorVar.b = 0.5f;
+//		endColorVar.a = 0.0f;
+
+		//Only white fireworks
 		// color of particles
-		startColor.r = 0.7f;
-		startColor.g = 0.1f;
-		startColor.b = 0.2f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.5f;
-		startColorVar.g = 0.5f;
-		startColorVar.b = 0.5f;
-		startColorVar.a = 0.0f;
-		endColor.r = 0.5f;
-		endColor.g = 0.5f;
-		endColor.b = 0.5f;
-		endColor.a = 0.0f;
-		endColorVar.r = 0.5f;
-		endColorVar.g = 0.5f;
-		endColorVar.b = 0.5f;
-		endColorVar.a = 0.0f;
-		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+        startColor.r = 1.0f;
+        startColor.g = 1.0f;
+        startColor.b = 1.0f;
+        startColor.a = 1.0f;
+        startColorVar.r = 0.0f;
+        startColorVar.g = 0.0f;
+        startColorVar.b = 0.0f;
+        startColorVar.a = 0.0f;
+        endColor.r = 0.1f;
+        endColor.g = 0.1f;
+        endColor.b = 0.1f;
+        endColor.a = 0.0f;
+        endColorVar.r = 0.0f;
+        endColorVar.g = 0.0f;
+        endColorVar.b = 0.0f;
+        endColorVar.a = 0.0f;
+        
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 
 		// additive
 		self.blendAdditive = NO;
@@ -751,7 +791,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 		
 		// additive
 		self.blendAdditive = NO;
@@ -915,7 +955,7 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
 		
 		// additive
 		self.blendAdditive = NO;

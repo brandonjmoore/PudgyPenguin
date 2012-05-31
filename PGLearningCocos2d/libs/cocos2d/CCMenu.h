@@ -49,6 +49,7 @@ enum {
  */
 @interface CCMenu : CCLayer <CCRGBAProtocol>
 {
+    BOOL isTouchUp; //Added by Mauricio Torres
 	tCCMenuState state_;
 	CCMenuItem	*selectedItem_;
 	GLubyte		opacity_;
@@ -89,5 +90,7 @@ enum {
 @property (nonatomic,readonly) GLubyte opacity;
 /** conforms to CCRGBAProtocol protocol */
 @property (nonatomic,readonly) ccColor3B color;
+
+@property (nonatomic,readwrite) BOOL isTouchUp; //Added by Mauricio Torres
 
 @end

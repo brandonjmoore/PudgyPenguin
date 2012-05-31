@@ -92,7 +92,9 @@ typedef float float32;
 
 /// The maximum linear velocity of a body. This limit is very large and is used
 /// to prevent numerical problems. You shouldn't need to adjust this.
-#define b2_maxTranslation			2.0f
+//TODO: Make sure this doesnt mess things up
+//Changed this from 2 to .5 so that the fish dont go super fast
+#define b2_maxTranslation			0.5f
 #define b2_maxTranslationSquared	(b2_maxTranslation * b2_maxTranslation)
 
 /// The maximum angular velocity of a body. This limit is very large and is used
