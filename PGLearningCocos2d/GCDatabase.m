@@ -11,7 +11,7 @@
 NSString * pathForFile(NSString *filename) {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    return [documentsDirectory stringByAppendingFormat:filename];
+    return [documentsDirectory stringByAppendingPathComponent:filename];
 }
 
 id loadData(NSString *filename) {

@@ -57,6 +57,13 @@
 -(void) doNextLevel {
     self.isTouchEnabled = YES;
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"level8unlocked"];
+    [defaults synchronize];
+    if (appDel != nil) {
+        [appDel saveMaxLevelUnlocked:[NSNumber numberWithInt:8]];
+    }
+    
     [[GameManager sharedGameManager] runSceneWithID:kGameLevel8];
 }
 
@@ -67,7 +74,7 @@
     CCSprite *backgroundImage;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        backgroundImage = [CCSprite spriteWithFile:@"night_background_iPad.png"];
+        backgroundImage = [CCSprite spriteWithFile:@"night_background_ipad.png"];
     }else {
         backgroundImage = [CCSprite spriteWithFile:@"night_background.png"];
     }
@@ -84,11 +91,17 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     //Show level High Score (new high scores only)
-    if (remainingTime > [app getHighScoreForLevel:kLevel7]) {
+    if (remainingTime > [app getHighScoreForLevel:kLevel7] && [app getHighScoreForLevel:kLevel7] > 0) {
         NSString *levelHighScoreText = [NSString stringWithFormat:@"New High Score!"];
-        CCLabelTTF *levelHighScoreLabel = [CCLabelTTF labelWithString:levelHighScoreText fontName:@"Marker Felt" fontSize:24.0];
+        CCLabelBMFont *levelHighScoreLabel = [CCLabelBMFont labelWithString:levelHighScoreText fntFile:kFONT];
         levelHighScoreLabel.position = ccp(winSize.width * 0.5f, winSize.height * 0.25f);
         [self addChild:levelHighScoreLabel z:10];
+        
+        CCParticleExplosion *explosion = [CCParticleExplosion node];
+        [explosion autoRemoveOnFinish];
+        explosion.position = levelHighScoreLabel.position;
+        [explosion setSpeed:50];
+        [self addChild:explosion z:10];
     }
     
     
@@ -97,7 +110,8 @@
     
     NSInteger levelHighScore = [app getHighScoreForLevel:kLevel7];
     NSString *levelScoreString = [NSString stringWithFormat:@"Level 7 high score: %d", levelHighScore];
-    CCLabelTTF *levelScoreText = [CCLabelTTF labelWithString:levelScoreString fontName:@"Marker Felt" fontSize:16.0];
+    CCLabelBMFont *levelScoreText = [CCLabelBMFont labelWithString:levelScoreString fntFile:kFONT];
+    [levelScoreText setScale:.67];
     levelScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.1f);
     [self addChild:levelScoreText z:10];
     
@@ -106,7 +120,8 @@
     NSInteger totalHighScore = [app getTotalHighScore];
     
     NSString *highScoreString = [NSString stringWithFormat:@"Total high score: %d", totalHighScore];
-    CCLabelTTF *highScoreText = [CCLabelTTF labelWithString:highScoreString fontName:@"Marker Felt" fontSize:16.0];
+    CCLabelBMFont *highScoreText = [CCLabelBMFont labelWithString:highScoreString fntFile:kFONT];
+    [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
 }
@@ -115,6 +130,10 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"level8unlocked"];
+    [defaults synchronize];
+    if (appDel != nil) {
+        [appDel saveMaxLevelUnlocked:[NSNumber numberWithInt:8]];
+    }
     
     clearButton.isEnabled = NO;
     pauseButton.isEnabled = NO;
@@ -124,22 +143,7 @@
     CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
     [self addChild:levelCompleteLayer z:9];
     
-    CCSprite *nextLevelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"next_button.png"];
-    CCSprite *nextLevelButtonSelected = [CCSprite spriteWithSpriteFrameName:@"next_button_over.png"];
-    
-    CCMenuItemSprite *nextLevelButton = [CCMenuItemSprite itemFromNormalSprite:nextLevelButtonNormal selectedSprite:nextLevelButtonSelected disabledSprite:nil target:self selector:@selector(doNextLevel)];
-    
-    CCSprite *mainMenuButtonNormal = [CCSprite spriteWithSpriteFrameName:@"menu.png"];
-    CCSprite *mainMenuButtonSelected = [CCSprite spriteWithSpriteFrameName:@"menu_over.png"];
-    
-    CCMenuItemSprite *mainMenuButton = [CCMenuItemSprite itemFromNormalSprite:mainMenuButtonNormal selectedSprite:mainMenuButtonSelected disabledSprite:nil target:self selector:@selector(doReturnToMainMenu)];
-    
-    CCSprite *resetButtonNormal = [CCSprite spriteWithSpriteFrameName:@"reset.png"];
-    CCSprite *resetButtonSelected = [CCSprite spriteWithSpriteFrameName:@"reset_over.png"];
-    
-    CCMenuItemSprite *resetButton = [CCMenuItemSprite itemFromNormalSprite:resetButtonNormal selectedSprite:resetButtonSelected disabledSprite:nil target:self selector:@selector(doResetLevel)];
-    
-    CCMenu *nextLevelMenu = [CCMenu menuWithItems:nextLevelButton, mainMenuButton, resetButton, nil];
+    CCMenu *nextLevelMenu = [self createMenu];
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
@@ -173,21 +177,24 @@
         [self createClearButton];
         self.isTouchEnabled = YES;
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
-        sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas_iPad.png"];
+        }else {
+            sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];
+        }
         [self addChild:sceneSpriteBatchNode z:-1];
  
         //first row        
         [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.38f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.38f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.48f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.72f) ofType:kSmallPlatform withRotation:0.75f];
         
@@ -195,10 +202,10 @@
         [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.20f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.3f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.6f) ofType:kSmallPlatform withRotation:-0.75f];
@@ -209,30 +216,30 @@
         //third row
             
         [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.38f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.48f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.65f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:-0.75f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.5f) ofType:kSmallPlatform withRotation:0.75f];
         
         
         //fourth row
         [self createPlatformAtLocation:ccp(winSize.width * 0.05f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.15f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.25f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.45f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
         [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.75f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:-0.75f];
         
         [self createPlatformAtLocation:ccp(winSize.width * 0.95f, winSize.height * 0.35f) ofType:kSmallPlatform withRotation:0.75f];
         

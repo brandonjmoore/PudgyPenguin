@@ -10,9 +10,10 @@
 #import "Constants.h"
 
 @interface UILayer : CCLayer {
-    CCLabelTTF *label;
-    CCLabelTTF *timeLabel;
-    CCLabelTTF *fishLabel;
+    CCLabelBMFont *label;
+    CCLabelBMFont *timeLabel;
+    CCLabelBMFont *fishLabel;
+    NSDictionary *starScoresDictionary;
 }
 
 -(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector;

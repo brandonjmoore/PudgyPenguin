@@ -98,7 +98,7 @@
 	{
 		// Calculate the position of our menu item. 
 		item.position = CGPointMake(self.position.x + col * padding.x , self.position.y - row * padding.y + (iPageCount * winSize.height));
-		
+        
 		// Increment our positions for the next item(s).
 		++col;
 		if (col == cols)
@@ -180,8 +180,10 @@
 
 -(void) jumpToCurrentPage {
     // Perform the action
-	id action = [CCMoveTo actionWithDuration:(0) position:[self GetPositionOfCurrentPage]];
-	[self runAction:action];
+	//id action = [CCMoveTo actionWithDuration:(0) position:[self GetPositionOfCurrentPage]];
+	//[self runAction:action];
+    
+    self.position = [self GetPositionOfCurrentPage];
 }
 
 // Run the action necessary to slide the menu grid to the current page.

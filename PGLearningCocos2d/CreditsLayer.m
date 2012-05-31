@@ -32,26 +32,30 @@
 		[self addChild:background];
 		
 		
-		CCLabelTTF *brandonText = [CCLabelTTF labelWithString:@"Programming: Brandon Moore" fontName:@"Marker Felt" fontSize:20.0];
-
-		CCLabelTTF *jonathanText = [CCLabelTTF labelWithString:@"Programming and Art: Jonathan Urie" fontName:@"Marker Felt" fontSize:20.0];
-        
-		CCLabelTTF *andyText = [CCLabelTTF labelWithString:@"Music: Andy Thomas" fontName:@"Marker Felt" fontSize:20.0];
-        
-        CCLabelTTF *alexText = [CCLabelTTF labelWithString:@"Conceptual Design: Alex Sherrick" fontName:@"Marker Felt" fontSize:20.0];
-        
-        CCLabelTTF *byuText = [CCLabelTTF labelWithString:@"A Special Thanks to" fontName:@"Marker Felt" fontSize:16.0];
-        CCLabelTTF *byuText2 = [CCLabelTTF labelWithString:@"The BYU Mobile App Competition" fontName:@"Marker Felt" fontSize:16.0];
-        
-        CCLabelTTF *cocos2dText = [CCLabelTTF labelWithString:@"Made with Cocos2d and Box2d" fontName:@"Marker Felt" fontSize:16.0];
-        
-        brandonText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.85f);
-        jonathanText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.8f);
-        alexText.position = ccp(screenSize.width * 0.5, screenSize.height * 0.75f);
-        andyText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.7f);
-		byuText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.65f);
-        byuText2.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.61f);
-        cocos2dText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.05f);
+//		CCLabelBMFont *brandonText = [CCLabelBMFont labelWithString:@"Programming: Brandon Moore" fntFile:kFONT];
+//        
+//        [brandonText setScale:.67];
+//        
+//		CCLabelBMFont *jonathanText = [CCLabelBMFont labelWithString:@"Programming and Art: Jonathan Urie" fntFile:kFONT];
+//        
+//		CCLabelBMFont *andyText = [CCLabelBMFont labelWithString:@"Music: Andy Thomas" fntFile:kFONT];
+//        
+//        CCLabelBMFont *alexText = [CCLabelBMFont labelWithString:@"Conceptual Design: Alex Sherrick" fntFile:kFONT];
+//        
+//        CCLabelBMFont *byuText = [CCLabelBMFont labelWithString:@"A Special Thanks to" fntFile:kFONT];
+//        CCLabelBMFont *byuText2 = [CCLabelBMFont labelWithString:@"The BYU Mobile App Competition" fntFile:kFONT];
+//        
+//        CCLabelBMFont *cocos2dText = [CCLabelBMFont labelWithString:@"Made with Cocos2d and Box2d" fntFile:kFONT];
+//        CCLabelBMFont *nounproject = [CCLabelBMFont labelWithString:@"Clock by Taylor Medlin, from The Noun Project" fntFile:kFONT];
+//        
+//        brandonText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.85f);
+//        jonathanText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.8f);
+//        alexText.position = ccp(screenSize.width * 0.5, screenSize.height * 0.75f);
+//        andyText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.7f);
+//		byuText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.65f);
+//        byuText2.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.61f);
+//        cocos2dText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.05f);
+//        nounproject.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.01f);
 		
 		
 		//Set up the back button
@@ -67,13 +71,14 @@
         [self addChild:backButtonMenu z:1 tag:kButtonTagValue];
                                    
 		
-		[self addChild:brandonText];
-        [self addChild:jonathanText];
-        [self addChild:alexText];
-        [self addChild:andyText];
-        [self addChild:byuText];
-        [self addChild:byuText2];
-        [self addChild:cocos2dText];
+//		[self addChild:brandonText];
+//        [self addChild:jonathanText];
+//        [self addChild:alexText];
+//        [self addChild:andyText];
+//        [self addChild:byuText];
+//        [self addChild:byuText2];
+//        [self addChild:cocos2dText];
+//        [self addChild:nounproject];
 		
 		
 	}

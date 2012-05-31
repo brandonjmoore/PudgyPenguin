@@ -12,6 +12,7 @@
 #import "CreditsScene.h"
 #import "HighScoresScene.h"
 #import "IntroScene.h"
+#import "LevelSelectScene.h"
 #import "Level1Scene.h"
 #import "Level2Scene.h"
 #import "Level3Scene.h"
@@ -38,10 +39,23 @@
 #import "Level24Scene.h"
 #import "Level25Scene.h"
 #import "Level26Scene.h"
+#import "Level27Scene.h"
+#import "Level28Scene.h"
+#import "Level29Scene.h"
+#import "Level30Scene.h"
+#import "Level31Scene.h"
+#import "Level32Scene.h"
+#import "Level33Scene.h"
+#import "Level34Scene.h"
+
 
 @implementation GameManager
 static GameManager* _sharedGameManager = nil;
-@synthesize isMusicON;
+@synthesize isMusicON,isSoundEffectOn;
+@synthesize managerSoundState;
+@synthesize listOfSoundEffectFiles;
+@synthesize soundEffectsState;
+@synthesize lastLevelPlayed;
 
 #pragma mark -
 #pragma mark Init Methods
@@ -67,11 +81,134 @@ static GameManager* _sharedGameManager = nil;
     return nil;
 }
 
+//-(void)loadAudio {
+//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+//    
+//    if (managerSoundState == kAudioManagerInitializing) {
+//        int waitCycles = 0;
+//        while (waitCycles < AUDIO_MAX_WAITTIME) {
+//            [NSThread sleepForTimeInterval:0.1f];
+//            if ((managerSoundState == kAudioManagerReady) || (managerSoundState == kAudioManagerFailed)) {
+//                break;
+//            }
+//            waitCycles = waitCycles + 1;
+//        }
+//    }
+//    
+//    if (managerSoundState == kAudioManagerFailed) {
+//        return;
+//    }
+//    
+//    
+//    if ((soundEffectsState == nil) || ([soundEffectsState count] < 1)) {
+//        [self setSoundEffectsState:[[NSMutableDictionary alloc]init]];
+//        CCLOG(@"Loading audio files");
+//        [soundEngine preloadEffect:LEVEL_FAILED_SOUND];
+//        [soundEffectsState setObject:[NSNumber numberWithBool:SFX_LOADED ] forKey:LEVEL_FAILED_SOUND];
+//    }
+//    
+//    
+//    
+//    [pool release];
+//    
+//}
+//
+//-(void)playBackgroundTrack:(NSString *)trackFileName {
+//    //Wait to make sure soundEngine is initialized
+//    if ((managerSoundState != kAudioManagerReady) && (managerSoundState != kAudioManagerFailed)) {
+//        int waitCycles = 0;
+//        while (waitCycles < AUDIO_MAX_WAITTIME) {
+//            [NSThread sleepForTimeInterval:0.1f];
+//            if ((managerSoundState == kAudioManagerReady) || (managerSoundState == kAudioManagerFailed)) {
+//                break;
+//            }
+//            waitCycles = waitCycles + 1;
+//        }
+//    }
+//    
+//    if (managerSoundState == kAudioManagerReady) {
+//        if ([soundEngine isBackgroundMusicPlaying]) {
+//            [soundEngine stopBackgroundMusic];
+//        }
+//        [soundEngine preloadBackgroundMusic:trackFileName];
+//        [soundEngine playBackgroundMusic:trackFileName loop:YES];
+//    }
+//}
+//
+//-(void)stopSoundEffect:(ALuint)soundEffectID {
+//    if (managerSoundState == kAudioManagerReady) {
+//        [soundEngine stopEffect:soundEffectID];
+//    }
+//}
+//
+//-(ALuint)playSoundEffect:(NSString *)soundEffectKey {
+//    ALuint soundID = 0;
+//    if (managerSoundState == kAudioManagerReady) {
+//        NSNumber *isFXLoaded = [soundEffectsState objectForKey:soundEffectKey];
+//        if ([isFXLoaded boolValue] == SFX_LOADED) {
+//            soundID = [soundEngine playEffect:soundEffectKey];
+//        } else {
+//            CCLOG(@"GameManager: Sound Effect %@ is not loaded.",soundEffectKey);
+//        }
+//    } else {
+//        CCLOG(@"GameManager: Sound Manager is not ready, cannot play %@", soundEffectKey);
+//    }
+//    return soundID;
+//}
+//
+//
+//-(void)initAudioAsync {
+//    //Initialize the audio engine asynchronously
+//    managerSoundState = kAudioManagerInitializing;
+//    //Indicate that we are tring to start up the Audio Manager
+//    [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
+//    
+//    //Init the audio manager asynchronously as it can take a few seconds
+//    //The FXPlusMusicIfNoOtherAudio mode will check if the user is
+//    //playing music and disable background music playback if that is the case
+//    [CDAudioManager initAsynchronously:kAMM_FxPlusMusicIfNoOtherAudio];
+//    
+//    //Wait for the audio manager to initialize
+//    while ([CDAudioManager sharedManagerState] != kAMStateInitialised) {
+//        [NSThread sleepForTimeInterval:0.1];
+//    }
+//    
+//    //At this point the CocosDenshion should be initialized
+//    //Grab the CDAudioManager and check the state
+//    CDAudioManager *audioManager = [CDAudioManager sharedManager];
+//    if (audioManager.soundEngine == nil || audioManager.soundEngine.functioning == NO) {
+//        CCLOG(@"CocosDenshion failed to init, no audio will play");
+//        managerSoundState = kAudioManagerFailed;
+//    } else {
+//        [audioManager setResignBehavior:kAMRBStopPlay autoHandle:YES];
+//        soundEngine = [SimpleAudioEngine sharedEngine];
+//        managerSoundState = kAudioManagerReady;
+//        CCLOG(@"CocosDenshion is Ready");
+//    }
+//    
+//}
+//
+//-(void)setupAudioEngine {
+//    if (hasAudioBeenInitialized == YES) {
+//        return;
+//    } else {
+//        hasAudioBeenInitialized = YES;
+//        NSOperationQueue *queue = [[NSOperationQueue new] autorelease];
+//        NSInvocationOperation *asyncSetupOperation = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(initAudioAsync) object:nil];
+//        [queue addOperation:asyncSetupOperation];
+//        [asyncSetupOperation autorelease];
+//    }
+//}
+
 - (id)init {
     self = [super init];
     if (self != nil) {
         //Game Manager initialized
         CCLOG(@"Game Manager Singleton, init");
+//        hasAudioBeenInitialized = NO;
+//        soundEngine = nil;
+//        managerSoundState = kAudioManagerUninitialized;
+        
         isMusicON = [[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"];
         currentScene = kNoSceneUninitialized;
     }
@@ -88,6 +225,9 @@ static GameManager* _sharedGameManager = nil;
     switch (sceneID) {
         case kMainMenuScene:
             sceneToRun = [MainMenuScene node];
+            break;
+        case kLevelSelectScene:
+            sceneToRun = [LevelSelectScene node];
             break;
         case kMoreInfoScene:
             sceneToRun = [MoreInfoScene node];
@@ -171,13 +311,37 @@ static GameManager* _sharedGameManager = nil;
             sceneToRun = [Level23Scene node];
             break;
         case kGameLevel24:
-            sceneToRun = [Level24Scene node];
-            break;
-        case kGameLevel25:
             sceneToRun = [Level25Scene node];
             break;
-        case kGameLevel26:
+        case kGameLevel25:
             sceneToRun = [Level26Scene node];
+            break;
+        case kGameLevel26:
+            sceneToRun = [Level24Scene node];
+            break;
+        case kGameLevel27:
+            sceneToRun = [Level27Scene node];
+            break;
+        case kGameLevel28:
+            sceneToRun = [Level28Scene node];
+            break;
+        case kGameLevel29:
+            sceneToRun = [Level29Scene node];
+            break;
+        case kGameLevel30:
+            sceneToRun = [Level30Scene node];
+            break;
+        case kGameLevel31:
+            sceneToRun = [Level31Scene node];
+            break;
+        case kGameLevel32:
+            sceneToRun = [Level32Scene node];
+            break;
+        case kGameLevel33:
+            sceneToRun = [Level33Scene node];
+            break;
+        case kGameLevel34:
+            sceneToRun = [Level34Scene node];
             break;
         default:
             CCLOG(@"Unknown ID, cannot switch scenes");
@@ -190,6 +354,10 @@ static GameManager* _sharedGameManager = nil;
         currentScene = oldScene;
         return;
     }
+    
+    lastLevelPlayed = sceneID;
+    
+    //[self performSelectorInBackground:@selector(loadAudio) withObject:nil];
     
     if ([[CCDirector sharedDirector] runningScene] == nil) {
         [[CCDirector sharedDirector] runWithScene:sceneToRun];

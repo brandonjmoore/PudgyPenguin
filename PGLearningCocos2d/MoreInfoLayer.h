@@ -14,7 +14,7 @@
 #import <GameKit/GameKit.h>
 #import "FBConnect.h"
 
-@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate> {
+@interface MoreInfoLayer : CCLayer <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate> {
     CCMenu *backButtonMenu;
     CCMenu *optionsMenu;
     NSDictionary *plistDictionary;

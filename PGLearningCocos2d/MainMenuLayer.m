@@ -7,6 +7,7 @@
 //
 
 #import "MainMenuLayer.h"
+#import "FlurryAnalytics.h"
 
 @interface MainMenuLayer ()
 -(void)displayMainMenu;
@@ -127,10 +128,39 @@
         CCLOG(@"Tag 26 found, Scene 26");
         [[GameManager sharedGameManager] runSceneWithID:kGameLevel26];
     }
+    if ([itemPassedIn tag] == 27) {
+        CCLOG(@"Tag 27 found, Scene 27");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel27];
+    }
+    if ([itemPassedIn tag] == 28) {
+        CCLOG(@"Tag 28 found, Scene 28");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel28];
+    }
+    if ([itemPassedIn tag] == 29) {
+        CCLOG(@"Tag 29 found, Scene 29");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel29];
+    }
+    if ([itemPassedIn tag] == 30) {
+        CCLOG(@"Tag 30 found, Scene 30");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel30];
+    }
+    if ([itemPassedIn tag] == 31) {
+        CCLOG(@"Tag 31 found, Scene 31");
+        [[GameManager sharedGameManager] runSceneWithID:kGameLevel31];
+    }
     else {
         CCLOG(@"Tag was: %d", [itemPassedIn tag]);
-        CCLOG(@"Placeholder for next chapters");
     }
+}
+
+-(void)openFacebookPage {
+    if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://page/119643394810914"]]) {
+        if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.facebook.com/pudgypenguin"]]) {
+            CCLOG(@"Failed to open facebook url");
+            [FlurryAnalytics logEvent:@"Facebook like failed"];
+        }
+    }
+    
 }
 
 #pragma mark -
@@ -150,6 +180,14 @@
 //    if (sceneSelectMenu4 != nil) {
 //        [sceneSelectMenu4 removeFromParentAndCleanup:YES];
 //    }
+    
+    
+    //TODO: Check if this works
+//    if ([[GameManager sharedGameManager]returnToLevels]) {
+//        [self displaySceneSelection];
+//        return;
+//    }
+    
     if (menuGrid != nil) {
         [menuGrid removeFromParentAndCleanup:YES];
     }
@@ -160,7 +198,7 @@
     [self removeChild:background cleanup:YES];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        background = [CCSprite spriteWithFile:@"ocean_no_block_iPad.png"];
+        background = [CCSprite spriteWithFile:@"MainMenuBG_iPad.png"];
     }else {
         background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
     }
@@ -174,137 +212,40 @@
     CCSprite *moreButtonNormal = [CCSprite spriteWithSpriteFrameName:@"help.png"];
     CCSprite *moreButtonSelected = [CCSprite spriteWithSpriteFrameName:@"help_over.png"];
     
+    CCSprite *facebookLikeSprite = [CCSprite spriteWithSpriteFrameName:@"facebook_like.png"];
+    
     
     CCMenuItemSprite *playGameButton = [CCMenuItemSprite itemFromNormalSprite:startButtonNormal selectedSprite:startButtonSelected disabledSprite:nil target:self selector:@selector(displaySceneSelection)];
     CCMenuItemSprite *moreInfoButton = [CCMenuItemSprite itemFromNormalSprite:moreButtonNormal selectedSprite:moreButtonSelected disabledSprite:nil target:self selector:@selector(displayMoreInfo)];
+    CCMenuItemSprite *facebookLikeButton = [CCMenuItemSprite itemFromNormalSprite:facebookLikeSprite selectedSprite:nil disabledSprite:nil target:self selector:@selector(openFacebookPage)];
     
     mainMenu = [CCMenu menuWithItems:playGameButton, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
-    [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
+    [mainMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * .45)];
+    
+    CCMenu *facebookMenu = [CCMenu menuWithItems:facebookLikeButton, nil];
+    [facebookMenu setPosition:ccp(screenSize.width * 0.5,screenSize.height * 0.25)];
     
     moreInfoMenu = [CCMenu menuWithItems:moreInfoButton, nil];
     [moreInfoMenu setPosition:ccp(screenSize.width * 0.94f, screenSize.height * 0.05f)];
+    
+    
 
     [self addChild:mainMenu z:kTwoZValue tag:kButtonTagValue];
     [self addChild:moreInfoMenu z:kTwoZValue tag:kButtonTagValue];
+    [self addChild:facebookMenu z:kTwoZValue tag:kButtonTagValue];
                                       
 }
 
 //Display levels
 -(void)displaySceneSelection {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-    if (mainMenu != nil) {
-        [mainMenu removeFromParentAndCleanup:YES];
-    }
     
-    if (moreInfoMenu != nil) {
-        [moreInfoMenu removeFromParentAndCleanup:YES];
-    }
-    
-    [self removeChild:background cleanup:YES];
-    
-    background = [CCSprite spriteWithFile:@"ocean_no_block.png"];
-    [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
-    [self addChild:background];
-    
-
-    NSMutableArray *menuItemArray = [[NSMutableArray alloc] init];
-    
-    for (int i = 1; i <= 16; i++) {
-        CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i.png", i]];
-        CCSprite *levelButtonSelected = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i_over.png", i]];
- 
-        
-        CCSprite *disabledSprite1 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-        
-        CCMenuItemSprite *playLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButtonNormal selectedSprite:nil disabledSprite:disabledSprite1 target:self selector:@selector(playScene:)];
-        [playLevelButton setTag:i];
-        
-        if (i == 1) {
-            playLevelButton.isEnabled = YES;
-        } else {
-            
-        playLevelButton.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"level%iunlocked", i]];
-            
-        }
-        
-        [menuItemArray addObject:playLevelButton];
-        
-    }
-    
-    
-    
-    
-    for (int i = 17; i <= 26; i++) {
-        
-        CCSprite *levelButtonNormal17 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_16.png"]];
-        CCSprite *levelButtonSelected17 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_16_over.png"]];
-        
-        CCSprite *disabledSprite17 = [CCSprite spriteWithSpriteFrameName:@"lock.png"];
-        
-        CCMenuItemSprite *playLevelButton17 = [CCMenuItemSprite itemFromNormalSprite:levelButtonNormal17 selectedSprite:nil disabledSprite:disabledSprite17 target:self selector:@selector(playScene:)];
-        [playLevelButton17 setTag:i];
-        
-        playLevelButton17.isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"level%iunlocked", i]];
-        
-        [menuItemArray addObject:playLevelButton17];
-        
-    }
-        
-    menuGrid = [SlidingMenuGrid
-                                 menuWithArray:menuItemArray
-                                 cols:4
-                                 rows:6
-                                 position:CGPointMake(50.f, 400.f)
-                                 padding:CGPointMake(65.f, 65.f)
-                                 verticalPaging:false];
-    
-    [self addChild:menuGrid z:kTwoZValue];
-    
-    
-    
-//    sceneSelectMenu1 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:0], [menuItemArray objectAtIndex:1], [menuItemArray objectAtIndex:2], [menuItemArray objectAtIndex:3], nil];
-//    sceneSelectMenu2 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:4], [menuItemArray objectAtIndex:5], [menuItemArray objectAtIndex:6], [menuItemArray objectAtIndex:7], nil];
-//    sceneSelectMenu3 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:8], [menuItemArray objectAtIndex:9], [menuItemArray objectAtIndex:10], [menuItemArray objectAtIndex:11], nil];
-//    sceneSelectMenu4 = [CCMenu menuWithItems:[menuItemArray objectAtIndex:12], [menuItemArray objectAtIndex:13], [menuItemArray objectAtIndex:14], [menuItemArray objectAtIndex:15], nil];
-//
-//    
-//    [sceneSelectMenu1 alignItemsInColumns:[NSNumber numberWithUnsignedInt:2],[NSNumber numberWithUnsignedInt:2], nil];
-//    
-//    
-//    //[sceneSelectMenu1 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-//    [sceneSelectMenu2 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-//    [sceneSelectMenu3 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-//    [sceneSelectMenu4 alignItemsHorizontallyWithPadding:screenSize.width * 0.059f];
-//    
-//    [sceneSelectMenu1 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.8f)];
-//    [sceneSelectMenu2 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.65f)];
-//    [sceneSelectMenu3 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
-//    [sceneSelectMenu4 setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.35f)];
-//
-//    [self addChild:sceneSelectMenu1 z:kTwoZValue tag:kButtonTagValue];
-////    [self addChild:sceneSelectMenu2 z:kTwoZValue tag:kButtonTagValue];
-////    [self addChild:sceneSelectMenu3 z:kTwoZValue tag:kButtonTagValue];
-////    [self addChild:sceneSelectMenu4 z:kTwoZValue tag:kButtonTagValue];
-
-    //Set up the back button
-    CCSprite *backButtonNormal = [CCSprite spriteWithSpriteFrameName:@"BackButtonNormal.png"];
-    CCSprite *backButtonSelected = [CCSprite spriteWithSpriteFrameName:@"BackButtonSelected.png"];
-    
-    CCMenuItemSprite *backButton = [CCMenuItemSprite itemFromNormalSprite:backButtonNormal selectedSprite:backButtonSelected disabledSprite:nil target:self selector:@selector(displayMainMenu)];
-    [backButton setPosition:ccp(screenSize.width * 0.13f, screenSize.height * 0.95f)];
-    
-    backButtonMenu = [CCMenu menuWithItems:backButton, nil];
-    
-    [backButtonMenu setPosition:ccp(0,0)];
-    [self addChild:backButtonMenu z:1 tag:kTwoZValue];
-    
-    [menuItemArray release];
+    [[GameManager sharedGameManager]runSceneWithID:kLevelSelectScene];
     
 }
 
 -(void)displayMoreInfo {
-    CCLOG(@"Show the more info screen");
+    [FlurryAnalytics logEvent:@"More Info Button Tapped"];
     [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
 }
 
@@ -315,16 +256,20 @@
     soundEngine = [SimpleAudioEngine sharedEngine];
     if ((([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) && (![soundEngine isBackgroundMusicPlaying])) {
         
-        [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_MID];
+        [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
         
         [[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
         
-        [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK];
-        CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-        CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
+        [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+//        CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+//        CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
         
     
-        [soundEngine playBackgroundMusic:BACKGROUND_TRACK];
+        [soundEngine playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+        
+        //[soundEngine setBackgroundMusicVolume:.5];
+        
+//        [soundEngine preloadEffect:@"Level Failed.mp3"];
     }
 }
 
@@ -341,21 +286,31 @@
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         
         CCSpriteBatchNode *mainMenuSpriteBatchNode;
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
-        mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];//Analyzer shows error here, but we have confirmed that mainMenuSpriteBatchNode is used
+        
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             background = [CCSprite spriteWithFile:@"ocean_no_block_iPad.png"];
+            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas_iPad.plist"];
+            mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas_iPad.png"];//Analyzer shows error here, but we have confirmed that mainMenuSpriteBatchNode is used
         }else {
             background = [CCSprite spriteWithFile:@"MainMenuBG.png"];
+            [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"scene1atlas.plist"];
+            mainMenuSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas.png"];//Analyzer shows error here, but we have confirmed that mainMenuSpriteBatchNode is used
         }
+        
+        //Get app delegate (used for high scores)
+        app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        maxLevelUnlocked = [app getMaxLevelUnlocked];
+        
         
         [background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
         [self addChild:background];
         //Add the buttons to the screen
         [self displayMainMenu];
-        snowParticleSystem = [CCParticleSnow node];
-        [self addChild:snowParticleSystem z:kOneZValue];
+//        snowParticleSystem = [CCParticleSnow node];
+//        [self addChild:snowParticleSystem z:kOneZValue];
+        
+        
     }    
     return self;
 }

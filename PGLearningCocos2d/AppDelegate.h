@@ -17,6 +17,7 @@
 	RootViewController	*viewController;
     NSMutableDictionary *highScoresDictionary;
     Facebook *facebook;
+    NSMutableDictionary *maxLevelDictionary;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -30,6 +31,8 @@
 -(NSInteger)getHighScoreForLevel:(NSInteger)level;
 -(void)clearAllHighScores;
 -(void)doFacebookStuff:(NSMutableDictionary*)params;
+-(NSInteger)getMaxLevelUnlocked;
+-(void)saveMaxLevelUnlocked:(NSNumber*)levelNumber;
 
 @end
 

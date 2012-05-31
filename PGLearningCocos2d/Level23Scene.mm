@@ -18,6 +18,7 @@
         [self addChild:uiLayer z:1];
         Level23ActionLayer *actionLayer = [[[Level23ActionLayer alloc]initWithLevel23UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];
+        [self setTag:kLevel23];
     }
     
     return self;

@@ -20,8 +20,8 @@
     bodyDef.type = b2_dynamicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
     
-    //Dont allow bodies to sleep (needed for accelerometer)
-    //bodyDef.allowSleep = false;
+    //Dont allow bodies to sleep (needed for interaction with objects)
+    bodyDef.allowSleep = false;
     
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);
@@ -31,9 +31,17 @@
     shape.m_radius = self.contentSize.width*0.33/PTM_RATIO;
     fixtureDef.shape = &shape;
     
-    fixtureDef.density = 1.0;
-    fixtureDef.friction = 0.25;
-    fixtureDef.restitution = 0.25;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        fixtureDef.density = 1.0;
+        fixtureDef.friction = 0.125;
+        fixtureDef.restitution = 0.25;
+    }else {
+        fixtureDef.density = 1.0;
+        fixtureDef.friction = 0.25;
+        fixtureDef.restitution = 0.25;
+    }
+    
+    
     
     //This makes it so the fish doesnt get stuck to moving objects
     body->SetBullet(true);
@@ -57,7 +65,6 @@
 #pragma mark Mem Management
 
 -(void) dealloc {
-    CCLOG(@"fish dealloc");
     [super dealloc];
 }
 
@@ -83,12 +90,12 @@
     
     switch (newState) {
         case kStateIdle:
-            CCLOG(@"Fish->Changing State to Idle");
+//            CCLOG(@"Fish->Changing State to Idle");
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"FishIdle.png"]];
             break;
             
         case kStateHasBeenEaten:
-            CCLOG(@"Fish->Changing State to hasBeenEaten");
+//            CCLOG(@"Fish->Changing State to hasBeenEaten");
             //Remove from parent
             if ([self numberOfRunningActions] == 0) {
                     world->DestroyBody(self.body);

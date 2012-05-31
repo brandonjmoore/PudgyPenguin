@@ -21,8 +21,8 @@
     bodyDef.type = b2_dynamicBody;
     bodyDef.position = b2Vec2(location.x/PTM_RATIO,  location.y/PTM_RATIO);
 
-    //Dont allow bodies to sleep (needed for accelerometer)
-    //bodyDef.allowSleep = false;
+    //Dont allow bodies to sleep (needed for interaction with objects)
+    bodyDef.allowSleep = false;
     
     body = world->CreateBody(&bodyDef);
     body->SetUserData(self);

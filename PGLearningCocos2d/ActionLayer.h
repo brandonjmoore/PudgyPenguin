@@ -48,6 +48,8 @@
     int lineLength;
     int lineWidth;
     BOOL isValidTouch;
+    BOOL isPaused;
+    BOOL wasJustATap;
     
     
     b2World *world;
@@ -62,6 +64,7 @@
     double remainingTime;
     BOOL isBuzzerBeater;
     NSString *lineImage;
+    AppDelegate *appDel;
     
 }
 
@@ -76,10 +79,12 @@
 -(void)addTrash;
 -(void) createPauseButton;
 -(void) createClearButton;
+-(CCMenu*) createMenu;
+-(void)doPause;
 
-
-
--(b2Body*)createMovingBoxAtLocation:(CGPoint)location ofType:(MovingBoxType)movingBoxType withRotation:(float)rotation;
+@property (readwrite) BOOL isPaused;
+@property (readonly) bool gameOver;
+@property (nonatomic,readonly,assign)double remainingTime;
 
 //-(void) doResetLevel;
 //-(void) doNextLevel;

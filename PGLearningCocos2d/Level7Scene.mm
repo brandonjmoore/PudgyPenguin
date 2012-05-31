@@ -18,6 +18,7 @@
         [self addChild:uiLayer z:1];
         Level7ActionLayer *actionLayer = [[[Level7ActionLayer alloc]initWithLevel7UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];
+        [self setTag:kLevel7];
     }
     
     return self;

@@ -12,6 +12,7 @@
 @implementation GCHelper
 
 @synthesize scoresToReport;
+@synthesize achievementsToReport;
 @synthesize userAuthenticated;
 
 #pragma mark -
@@ -23,7 +24,7 @@ static GCHelper *sharedHelper = nil;
         if (!sharedHelper) {
             sharedHelper = [loadData(@"GameCenterData") retain];
             if (!sharedHelper) {
-                [[self alloc] initWithScoresToReport:[NSMutableArray array]];
+                [[self alloc]initWithScoresToReport:[NSMutableArray array] achievementsToReport:[NSMutableArray array]];
             }
         }
         return sharedHelper;
@@ -56,9 +57,10 @@ static GCHelper *sharedHelper = nil;
     return (gcClass && osVersionSupported);
 }
 
--(id) initWithScoresToReport:(NSMutableArray *)theScoresToReport {
+-(id) initWithScoresToReport:(NSMutableArray *)theScoresToReport achievementsToReport: (NSMutableArray *)theAchievementsToReport {
     if ((self = [super init])) {
         self.scoresToReport = theScoresToReport;
+        self.achievementsToReport = theAchievementsToReport;
         gameCenterAvailable = [self isGameCenterAvailable];
         if (gameCenterAvailable) {
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -70,6 +72,19 @@ static GCHelper *sharedHelper = nil;
 
 #pragma mark -
 #pragma mark Internal Functions
+
+-(void)sendAchievement:(GKAchievement *)achievement {
+    [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            if (error == NULL) {
+                NSLog(@"Successfully sent achievement!");
+                [achievementsToReport removeObject:achievement];
+            } else {
+                NSLog(@"Achievement failed to send...will try again later. Reason: %@", error.localizedDescription);
+            }
+        });
+    }];
+}
 
 -(void) sendScore:(GKScore *)score {
     [score reportScoreWithCompletionHandler:^(NSError *error) {
@@ -86,6 +101,10 @@ static GCHelper *sharedHelper = nil;
 
 //To resend data when internet connection is available
 -(void)resendData {
+    for(GKAchievement *achievement in achievementsToReport) {
+        [self sendAchievement:achievement];
+    }
+    
     for (GKScore *score in scoresToReport) {
         [self sendScore:score];
     }
@@ -128,13 +147,25 @@ static GCHelper *sharedHelper = nil;
     [self sendScore:score];
 }
 
+-(void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete {
+    GKAchievement *achievement = [[[GKAchievement alloc]initWithIdentifier:identifier]autorelease];
+    achievement.percentComplete = percentComplete;
+    [achievementsToReport addObject:achievement];
+    [self save];
+    
+    if (!gameCenterAvailable || !userAuthenticated) return;
+    [self sendAchievement:achievement];
+}
+
 -(void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:scoresToReport forKey:@"ScoresToReport"];
+    [encoder encodeObject:achievementsToReport forKey:@"AchievementsToReport"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder {
     NSMutableArray *theScoresToReport = [decoder decodeObjectForKey:@"ScoresToReport"];
-    return [self initWithScoresToReport:theScoresToReport];
+    NSMutableArray *theAchievementsToReport = [decoder decodeObjectForKey:@"AchievementsToReport"];
+    return [self initWithScoresToReport:theScoresToReport achievementsToReport:theAchievementsToReport];
 }
 
 

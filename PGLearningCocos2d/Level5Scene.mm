@@ -18,6 +18,7 @@
         [self addChild:uiLayer z:1];
         Level5ActionLayer *actionLayer = [[[Level5ActionLayer alloc]initWithLevel5UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];
+        [self setTag:kLevel5];
     }
     
     return self;

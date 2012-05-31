@@ -9,6 +9,7 @@
 #import "MoreInfoLayer.h"
 #import "AppDelegate.h"
 #import "GCHelper.h"
+#import "FlurryAnalytics.h"
 
 @implementation MoreInfoLayer
 
@@ -45,6 +46,27 @@
     }
 }
 
+-(void)showAchievements {
+    GKAchievementViewController *achievementController = [[GKAchievementViewController alloc] init];
+    
+    if (achievementController != NULL) {
+        achievementController.achievementDelegate = self;
+        //Get app delegate (used for high scores)
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        [app.viewController presentModalViewController:achievementController animated:YES];
+    } else {
+        [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
+    }
+}
+
+-(void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController {
+    //Get app delegate (used for high scores)
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [app.viewController dismissModalViewControllerAnimated: YES];
+    [viewController release];
+    [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
+}
+
 -(void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *) viewController {
     //Get app delegate (used for high scores)
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -59,18 +81,20 @@
 //Turn music on/off
 -(void)musicTogglePressed {
     if ([[GameManager sharedGameManager] isMusicON]) {
-		CCLOG(@"OptionsLayer-> Turning Game Music OFF");
+		[FlurryAnalytics logEvent:@"Turned Music Off"];
 		[[GameManager sharedGameManager] setIsMusicON:NO];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:NO forKey:@"ismusicon"];
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+        [defaults synchronize];
         
 	} else {
-		CCLOG(@"OptionsLayer-> Turning Game Music ON");
+		[FlurryAnalytics logEvent:@"Turned Music On"];
 		[[GameManager sharedGameManager] setIsMusicON:YES];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"ismusicon"];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:BACKGROUND_TRACK];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+        [defaults synchronize];
 	}
 }
 
@@ -101,11 +125,15 @@
 		[background setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:background];
 		
-        CCLabelTTF *highScoresButtonLabel = [CCLabelTTF labelWithString:@"High Scores" fontName:@"Marker Felt" fontSize:24.0];
+//        CCLabelBMFont *highScoresButtonLabel = [CCLabelBMFont labelWithString:@"High Scores" fntFile:kFONT];
+        CCLabelBMFont *highScoresButtonLabel = [CCLabelBMFont labelWithString:@"High Scores" fntFile:kFONT];
 		CCMenuItemLabel	*highScoresButton = [CCMenuItemLabel itemWithLabel:highScoresButtonLabel target:self selector:@selector(showHighScores)];
+        
 		
-		CCLabelTTF *musicOnLabelText = [CCLabelTTF labelWithString:@"Music is ON" fontName:@"Marker Felt" fontSize:24.0];
-		CCLabelTTF *musicOffLabelText = [CCLabelTTF labelWithString:@"Music is OFF" fontName:@"Marker Felt" fontSize:24.0];
+		
+		CCLabelBMFont *musicOnLabelText = [CCLabelBMFont labelWithString:@"Music is ON" fntFile:kFONT];
+		CCLabelBMFont *musicOffLabelText = [CCLabelBMFont labelWithString:@"Music is OFF" fntFile:kFONT];
+        [musicOnLabelText setColor:ccWHITE];
     
 		
 		CCMenuItemLabel *musicOnLabel = [CCMenuItemLabel itemWithLabel:musicOnLabelText target:self selector:nil];
@@ -115,11 +143,12 @@
 		CCMenuItemToggle *musicToggle = [CCMenuItemToggle itemWithTarget:self 
 																selector:@selector(musicTogglePressed) 
 																   items:musicOnLabel,musicOffLabel,nil];
+        [musicToggle setColor:ccWHITE];
 				
-		CCLabelTTF *creditsButtonLabel = [CCLabelTTF labelWithString:@"Credits" fontName:@"Marker Felt" fontSize:24.0];
+		CCLabelBMFont *creditsButtonLabel = [CCLabelBMFont labelWithString:@"Credits" fntFile:kFONT];
 		CCMenuItemLabel	*creditsButton = [CCMenuItemLabel itemWithLabel:creditsButtonLabel target:self selector:@selector(showCredits)];
 		
-        CCLabelTTF *facebookButtonLabel = [CCLabelTTF labelWithString:@"Logout of Facebook" fontName:@"Marker Felt" fontSize:24.0];
+        CCLabelBMFont *facebookButtonLabel = [CCLabelBMFont labelWithString:@"Logout of Facebook" fntFile:kFONT];
 		CCMenuItemLabel	*facebookButton = [CCMenuItemLabel itemWithLabel:facebookButtonLabel target:self selector:@selector(fbLogout)];
 		
         
@@ -136,9 +165,13 @@
         [self addChild:backButtonMenu z:kZeroZValue tag:kButtonTagValue];
 		
         if ([[GCHelper sharedInstance] userAuthenticated]) {
-            CCLabelTTF *gameCenterButtonLabel = [CCLabelTTF labelWithString:@"Game Center" fontName:@"Marker Felt" fontSize:24.0];
+            CCLabelBMFont *gameCenterButtonLabel = [CCLabelBMFont labelWithString:@"Game Center" fntFile:kFONT];
             CCMenuItemLabel	*gameCenterButton = [CCMenuItemLabel itemWithLabel:gameCenterButtonLabel target:self selector:@selector(showGameCenter)];
-            optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
+            
+            CCLabelBMFont *achievementsButtonLabel = [CCLabelBMFont labelWithString:@"Achievements" fntFile:kFONT];
+            CCMenuItemLabel	*achievementsButton = [CCMenuItemLabel itemWithLabel:achievementsButtonLabel target:self selector:@selector(showAchievements)];
+            
+            optionsMenu = [CCMenu menuWithItems: achievementsButton,highScoresButton, musicToggle,
                                    creditsButton,gameCenterButton, facebookButton, nil];
         } else {
             optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
@@ -147,8 +180,8 @@
             
             
         
-		[optionsMenu alignItemsVerticallyWithPadding:40.0f];
-		[optionsMenu setPosition:ccp(screenSize.width * 0.75f, screenSize.height/2)];
+		[optionsMenu alignItemsVerticallyWithPadding:20.0f];
+		[optionsMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
 		[self addChild:optionsMenu];
         
         if ([[GameManager sharedGameManager] isMusicON] == NO) {

@@ -20,7 +20,7 @@
 @synthesize penguinAngryAnim;
 @synthesize penguinSatisfiedAnim;
 
-@synthesize numFishEaten;
+@synthesize numFishEaten,numFishRequired;
 @synthesize hasTimeExpired;
 
 #pragma mark -
@@ -58,6 +58,7 @@
         millisecondsStayingIdle = 0.0f;
         millisecondsStayingAngry = 0.0f;
         [self initAnimations];
+        [self setNumFishRequired:kNumOfFishReq];
     }
     return self;
 }
@@ -104,31 +105,34 @@
 
     switch (newState) {
         case kStateIdle:
-            CCLOG(@"Penguin->Changing State to Idle");
+//            CCLOG(@"Penguin->Changing State to Idle");
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             break;
         case kStateWalking:
-            CCLOG(@"Penguin->Changing State to Walking");
+//            CCLOG(@"Penguin->Changing State to Walking");
             action = [CCAnimate actionWithAnimation:penguinWalkingAnim restoreOriginalFrame:YES];
             break;
         case kStateBlinking:
-            CCLOG(@"Penguin->Changing State to Blinking");
+//            CCLOG(@"Penguin->Changing State to Blinking");
             action = [CCAnimate actionWithAnimation:penguinBlinkingAnim restoreOriginalFrame:YES];
+            //This is so the penguin will still open his mouth
+            //even if he is blinkingr
+            [action setTag:kBlinkActionTag];
             [self changeState:kStateIdle];
             break;
         case kStateEating:
                
             //Make sure numfish is not incremented if time has expired or they have eaten the number of required fish
             //TODO: it might be better to increment fish when the collision happens, but for now, this is working.
-            CCLOG(@"Penguin->Changing State to Eating");
-            if (!self.hasTimeExpired && self.numFishEaten < kNumOfFishReq) {
+//            CCLOG(@"Penguin->Changing State to Eating");
+            if (!self.hasTimeExpired && self.numFishEaten < self.numFishRequired) {
                 numFishEaten++;
             }
                 
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
             
             //If he has eaten the necessary # of fish, make him satisfied
-            if (numFishEaten >= kNumOfFishReq) {
+            if (numFishEaten >= self.numFishRequired) {
                 
                 [self changeState:kStateSatisfied];
             } else {
@@ -136,24 +140,30 @@
             }
             break;
         case kStateAngry:
-            CCLOG(@"Penguin->Changing State to Angry");
+//            CCLOG(@"Penguin->Changing State to Angry");
+            //You need to stop satisfied actions or glitches occur when he is happy and eats fish
+            [self stopActionByTag:kSatisfiedTag];
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             action = [CCAnimate actionWithAnimation:penguinAngryAnim restoreOriginalFrame:NO];
             //This keeps the penguin from eating when he is angry
             body->SetActive(NO);
+
             break;
         case kStateSatisfied:
-            CCLOG(@"Penguin->Changing State to Satisfied");
+//            CCLOG(@"Penguin->Changing State to Satisfied");
+            [self stopActionByTag:kSatisfiedTag];
+            isPenguinSatisfied = YES;
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]spriteFrameByName:@"PenguinIdle.png"]];
             action = [CCAnimate actionWithAnimation:penguinSatisfiedAnim restoreOriginalFrame:YES];
             action = [CCRepeat actionWithAction:action times:kPenguinDanceNumber];
+            [action setTag:kSatisfiedTag];
             
             //Added this so that penguin doesnt keep eating after he is satisfied.
-            self.body->SetActive(false);
+//            self.body->SetActive(false);
             break;
             
         case kStateMouthOpen:
-            CCLOG(@"Penguin->Changing State to MouthOpen");
+//            CCLOG(@"Penguin->Changing State to MouthOpen");
             //restoreOriginalFrame is set to no here because we want his mouth to remain open
             action = [CCAnimate actionWithAnimation:penguinOpenMouthAnim restoreOriginalFrame:NO];
             break;
@@ -195,8 +205,11 @@
     
     // TODO: Make sure this doesnt cause problems
     //This was changed so that penguin would open his mouth while moving.
-    // TODO: Add check for blinking so that he will open his mouth while he is blinking
-    if ([self numberOfRunningActions] == 0 || ([self numberOfRunningActions] == 1 && [self getActionByTag:kMoveActionTag] != nil)) {
+    // TODO: Make it so if he is blinking AND moving, he will still open his mouth
+    if ([self numberOfRunningActions] == 0 || 
+        ([self numberOfRunningActions] == 1 && [self getActionByTag:kMoveActionTag] != nil) || 
+        ([self numberOfRunningActions] == 1 && [self getActionByTag:kBlinkActionTag] != nil) || 
+        ([self numberOfRunningActions] == 2 && [self getActionByTag:kBlinkActionTag] != nil && [self getActionByTag:kMoveActionTag] != nil)) {
         
         //Make Penguin blink after so many seconds
         if (self.characterState == kStateIdle) {

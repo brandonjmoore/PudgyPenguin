@@ -6,6 +6,7 @@
 //  Copyright 2011 Vaux. All rights reserved.
 //
 #import "math.h"
+#import "cocos2d.h"
 
 #ifndef PGLearningCocos2d_Constants_h
 #define PGLearningCocos2d_Constants_h
@@ -58,10 +59,14 @@
 #define kBackButtonMenuTagValue     20
 #define kAccelerometerMultiplier    1
 #define kBuzzerBeaterSpriteTag      88
+#define kAchievementUnlockedBuzzerBeater    89
+#define kMaxNumBuzzerBeaters        5
 
 #pragma mark -
 #pragma mark Level Constants
 
+#define kActionLayer                184
+#define kLevelTag                   
 #define kLevel1                     1
 #define kLevel2                     2
 #define kLevel3                     3
@@ -94,6 +99,22 @@
 #define kLevel30                    30
 #define kLevel31                    31
 #define kLevel32                    32
+#define kLevel33                    33
+#define kLevel34                    34
+#define kLevel35                    35
+#define kLevel36                    36
+#define kLevel37                    37
+#define kLevel38                    38
+#define kLevel39                    39
+#define kLevel40                    40
+#define kLevel41                    41
+#define kLevel42                    42
+#define kLevel43                    43
+#define kLevel44                    44
+#define kLevel45                    45
+#define kLevel46                    46
+#define kLevel47                    47
+#define kLevel48                    48
 
 #pragma mark -
 #pragma mark Z Values
@@ -116,6 +137,7 @@ typedef enum {
     kCreditsScene=3,
     kIntroScene=4,
     kHighScoresScene=5,
+    kLevelSelectScene=6,
     kGameLevel1=101,
     kGameLevel2=102,
     kGameLevel3=103,
@@ -147,7 +169,23 @@ typedef enum {
     kGameLevel29=129,
     kGameLevel30=130,
     kGameLevel31=131,
-    kGameLevel32=132
+    kGameLevel32=132,
+    kGameLevel33=133,
+    kGameLevel34=134,
+    kGameLevel35=135,
+    kGameLevel36=136,
+    kGameLevel37=137,
+    kGameLevel38=138,
+    kGameLevel39=139,
+    kGameLevel40=140,
+    kGameLevel41=141,
+    kGameLevel42=142,
+    kGameLevel43=143,
+    kGameLevel44=144,
+    kGameLevel45=145,
+    kGameLevel46=146,
+    kGameLevel47=147,
+    kGameLevel48=148
 } SceneTypes;
 
 #pragma mark -
@@ -177,9 +215,19 @@ typedef enum {
 
 #define SFX_NOTLOADED NO
 #define SFX_LOADED YES
-// Background Music
-// Menu Scenes
-#define BACKGROUND_TRACK @"pudgypenguin.mp3"
+
+#define PLAYSOUNDEFFECT(...) \
+[[GameManager sharedGameManager] playSoundEffect:@#__VA_ARGS__]
+
+#define STOPSOUNDEFFECT(...) \
+[[GameManager sharedGameManager] stopSoundEffect:@#__VA_ARGS__]
+
+
+#define BACKGROUND_TRACK_MAIN_MENU @"MainMenuMusic.mp3"
+#define BACKGROUND_TRACK_GAMEPLAY @"pudgypenguin.mp3"
+#define LEVEL_FAILED_SOUND @"Level Failed.mp3"
+#define LEVEL_PASSED_SOUND @"Level Passed.mp3"
+
 // Audio Items
 #define AUDIO_MAX_WAITTIME 150
 
@@ -188,7 +236,7 @@ typedef enum {
 #define kRetinaLineWidth            10
 #define kRetinaLineLength           40
 #define kLineWidth                  5
-#define kLineLength                 20
+#define kLineLength                 25
 
 #pragma mark -
 #pragma mark Misc
@@ -197,14 +245,17 @@ typedef enum {
 // 0 for OFF, 1 for ON
 #define ENEMY_STATE_DEBUG           0
 //Box2d ratio convert meters to points
-#define PTM_RATIO                   21
+#define PTM_RATIO                   ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 41 : 21)
+#define kFONT                       ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"51.fnt" : @"24.fnt")
 #define DEG_TO_RAD(degree)          (degree/M_PI*180)
 #define RAD_TO_DEG(radians)         (radians*180/M_PI)
 #define VEL_TO_SEC(distance,velocity)        (distance/(.065*(sqrt(velocity*velocity))))
 #define kFacebookAppID              @"385665668110717"
 #define ARC4RANDOM_MAX              0x100000000
 #define MAX_BOUNCE_ANIM_VELOCITY    5
-#define kMoveActionTag               1
+#define kMoveActionTag              1
+#define kBlinkActionTag             2
+#define kSatisfiedTag               3
 
 
 #endif

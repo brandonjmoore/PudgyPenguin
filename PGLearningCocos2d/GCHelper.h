@@ -10,21 +10,25 @@
 #import <GameKit/GameKit.h>
 
 #define kLeaderBoardCompletionTime @"com.vaux.PudgyPenguin.leaderboard.completion"
+#define kAchievement5BuzzerBeaters @"com.vaux.PudgyPenguin.achievement.5BuzzerBeaters"
 
-@interface GCHelper : NSObject {
+@interface GCHelper : NSObject <NSCoding>{
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
     NSMutableArray *scoresToReport;
+    NSMutableArray *achievementsToReport;
 }
 
 @property (retain) NSMutableArray *scoresToReport;
+@property (retain) NSMutableArray *achievementsToReport;
 @property (assign) BOOL userAuthenticated;
 
 +(GCHelper *) sharedInstance;
 -(void) authenticationChanged;
 -(void) authenticateLocalUser;
 -(void)save;
--(id)initWithScoresToReport:(NSMutableArray *)scoresToReport;
+-(id) initWithScoresToReport:(NSMutableArray *)theScoresToReport achievementsToReport: (NSMutableArray *)theAchievementsToReport;
 -(void)reportScore:(NSString *)identifier score:(int)rawScore;
+-(void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete;    
 
 @end

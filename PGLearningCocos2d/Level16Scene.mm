@@ -18,6 +18,7 @@
         [self addChild:uiLayer z:1];
         Level16ActionLayer *actionLayer = [[[Level16ActionLayer alloc]initWithLevel16UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];
+        [self setTag:kLevel16];
     }
     
     return self;

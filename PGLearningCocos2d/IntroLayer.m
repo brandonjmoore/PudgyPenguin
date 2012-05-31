@@ -27,7 +27,12 @@
 		
 		// Create the intro image
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
-		CCSprite *introImage = [CCSprite spriteWithFile:@"instructions_screen.png"];
+        CCSprite *introImage;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            introImage = [CCSprite spriteWithFile:@"instructions_screen_ipad.png"];
+        }else {
+            introImage = [CCSprite spriteWithFile:@"instructions_screen.png"];
+        }
 		[introImage setPosition:ccp(screenSize.width/2, screenSize.height/2)];
 		[self addChild:introImage];
 	}

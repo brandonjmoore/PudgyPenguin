@@ -12,6 +12,7 @@
 #import "GameManager.h"
 #import "SimpleAudioEngine.h"
 #import "SlidingMenuGrid.h"
+#import "AppDelegate.h"
 
 @interface MainMenuLayer : CCLayer {
     CCMenu *mainMenu;
@@ -24,6 +25,9 @@
     CCSprite *background;
     CCParticleSystem *snowParticleSystem;
     SlidingMenuGrid* menuGrid;
+    AppDelegate *app;
+    
+    NSInteger maxLevelUnlocked;
     
     //Audio
     SimpleAudioEngine *soundEngine;

@@ -20,7 +20,6 @@
 - (id)init {
     //This line calls CCSprite
     if ((self=[super init])) {
-        CCLOG(@"GameObject init");
         screenSize = [CCDirector sharedDirector].winSize;
         isActive = TRUE;
         gameObjectType = kObjectTypeNone;

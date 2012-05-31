@@ -30,8 +30,10 @@
     BOOL isFishCloseBy;
     BOOL isTrashCloseBy;
     BOOL hasTimeExpired;
+    BOOL isPenguinSatisfied;
     
     int numFishEaten;
+    int numFishRequired;
 }
 
 //Standing
@@ -42,6 +44,7 @@
 @property (nonatomic,retain) CCAnimation *penguinSatisfiedAnim;
 @property (nonatomic,retain) CCAnimation *penguinOpenMouthAnim;
 @property (nonatomic, assign) int numFishEaten;
+@property (nonatomic, assign) int numFishRequired;
 @property (nonatomic, assign) BOOL hasTimeExpired;
 
 -(void)initAnimations;

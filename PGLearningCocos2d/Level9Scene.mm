@@ -18,6 +18,7 @@
         [self addChild:uiLayer z:1];
         Level9ActionLayer *actionLayer = [[[Level9ActionLayer alloc]initWithLevel9UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];
+        [self setTag:kLevel9];
     }
     
     return self;

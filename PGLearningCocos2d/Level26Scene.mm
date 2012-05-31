@@ -18,6 +18,7 @@
         [self addChild:uiLayer z:1];
         Level26ActionLayer *actionLayer = [[[Level26ActionLayer alloc]initWithLevel26UILayer:uiLayer]autorelease];
         [self addChild:actionLayer z:0];
+        [self setTag:kLevel26];
     }
     
     return self;
