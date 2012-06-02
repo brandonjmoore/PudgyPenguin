@@ -236,7 +236,7 @@ typedef enum {
 #define kRetinaLineWidth            10
 #define kRetinaLineLength           40
 #define kLineWidth                  5
-#define kLineLength                 25
+#define kLineLength                 20
 
 #pragma mark -
 #pragma mark Misc

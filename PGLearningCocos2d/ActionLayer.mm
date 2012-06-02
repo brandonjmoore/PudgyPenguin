@@ -49,12 +49,14 @@
     
     // TODO: Find a better place for this
     lineImage = @"Start.png";
-    lineLength = kLineLength;
-    lineWidth = .01; 
-    if (CC_CONTENT_SCALE_FACTOR() == 2.0f) {
-        lineImage = @"Start.png";
-        lineLength = kRetinaLineLength;
-        lineWidth = kRetinaLineWidth;
+    lineLength = 30;
+    lineWidth = 7.5; 
+    if (CC_CONTENT_SCALE_FACTOR() == 2.0f && [[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        lineLength = 50;
+        lineWidth = 10;
+    } else if (CC_CONTENT_SCALE_FACTOR() == 1.0f && [[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        lineLength = 20;
+        lineWidth = 5;
     }
     //streak = [[CCRibbon alloc]init];
 }
@@ -230,14 +232,15 @@
 	_lastPt = pt;
     
     // create the streak object and add it to the scene
-    //streak = [CCMotionStreak streakWithFade:200 minSeg:1 image:lineImage width:5 length:20 color:ccc4(255,255,255,255)];
+//    streak = [CCMotionStreak streakWithFade:200 minSeg:1 image:lineImage width:5 length:20 color:ccc4(255,255,255,255)];
     
     streak = [CCRibbon ribbonWithWidth:lineWidth image:lineImage length:lineLength color:ccc4(255,255,255,255) fade:0];
+    
     [self addChild:streak];
     [lineSpriteArray addObject:streak];
     
     //[streak setPosition:end];
-    [streak addPointAt:pt width:10];
+    [streak addPointAt:pt width:lineWidth];
     
 	return YES;
 }
@@ -260,7 +263,7 @@
         wasJustATap = NO;
                 
         //[streak setPosition:end];
-        [streak addPointAt: end width:10];
+        [streak addPointAt: end width:lineWidth];
         
         b2Vec2 s(_lastPt.x/PTM_RATIO, _lastPt.y/PTM_RATIO);
         b2Vec2 e(end.x/PTM_RATIO, end.y/PTM_RATIO);
