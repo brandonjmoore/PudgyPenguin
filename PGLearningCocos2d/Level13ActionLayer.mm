@@ -158,6 +158,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -177,17 +183,9 @@
     CCLayerColor *levelCompleteLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 100)];
     [self addChild:levelCompleteLayer z:9];
     
-    CCSprite *facebookButton = [CCSprite spriteWithFile:@"Facebook.png"];
-    
-    CCMenuItemSprite *facebookMenuItem = [CCMenuItemSprite itemFromNormalSprite:facebookButton selectedSprite:nil disabledSprite:nil target:self selector:@selector(doFacebookStuff)];
-    
-    CCMenu *facebookMenu = [CCMenu menuWithItems:facebookMenuItem, nil];
-    [facebookMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
-    [self addChild:facebookMenu];
-    
     CCMenu *nextLevelMenu = [self createMenu];
-    [nextLevelMenu alignItemsHorizontallyWithPadding:winSize.width * 0.04f];
-    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.2f)];
+    [nextLevelMenu alignItemsVerticallyWithPadding:winSize.width * 0.04f];
+    [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
     
     

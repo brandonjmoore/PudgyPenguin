@@ -8,6 +8,9 @@
 
 #import "MainMenuLayer.h"
 #import "FlurryAnalytics.h"
+#import "GameState.h"
+#import "GCHelper.h"
+#import "GKAchievementHandler.h"
 
 @interface MainMenuLayer ()
 -(void)displayMainMenu;
@@ -17,7 +20,12 @@
 @implementation MainMenuLayer
 
 -(void)openFacebookPage {
-    if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://profile/119643394810914"]]) {
+    if (![GameState sharedInstance].fbLike) {
+        [GameState sharedInstance].fbLike = true;
+        [[GameState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:kAchievementFBLike percentComplete:100.0];
+    }
+    if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://page/119643394810914"]]) {
         if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.facebook.com/pudgypenguin"]]) {
             CCLOG(@"Failed to open facebook url");
             [FlurryAnalytics logEvent:@"Facebook like failed"];

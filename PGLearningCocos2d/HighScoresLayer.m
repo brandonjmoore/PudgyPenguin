@@ -36,8 +36,6 @@
     backButtonMenu.isTouchEnabled = NO;
     clearAllScoresMenu.isTouchEnabled = NO;
     
-    CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    
     CCLayerColor *clearScoresLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 200)];
     
     

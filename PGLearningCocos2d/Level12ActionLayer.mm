@@ -124,6 +124,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -185,32 +191,32 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
         //big horizontal
-        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];        
+        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 0.6f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];        
         
 
         //balloons
-        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.20f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height *0.4f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height * 0.10f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.8198f, winSize.height *0.3f) ofType:kBalloonBox withRotation:DEG_TO_RAD(0)];
 
         //icy prison
-        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.3f) ofType:kMediumPlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.5f) ofType:kExtraLargePlatform withRotation:4.7f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.42f, winSize.height * 0.40f) ofType:kMediumPlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.55f, winSize.height * 0.2f) ofType:kMediumPlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.6f, winSize.height * 0.4f) ofType:kExtraLargePlatform withRotation:4.7f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.42f, winSize.height * 0.30f) ofType:kMediumPlatform withRotation:0.0f];
 
 
         //boxes
-        [self createBoxAtLocation:ccp(winSize.width * 0.85f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.70f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.55f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.40f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.55f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.85f, winSize.height *0.45f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.70f, winSize.height *0.45f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.55f, winSize.height *0.45f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.40f, winSize.height *0.45f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.25f, winSize.height *0.45f) ofType:kNormalBox withRotation:DEG_TO_RAD(0)];
 
 
         
         //penguin
-        [self createPenguin2AtLocation:ccp(winSize.width * 0.58f, winSize.height * 0.38f)];
+        [self createPenguin2AtLocation:ccp(winSize.width * 0.58f, winSize.height * 0.28f)];
         
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         

@@ -12,6 +12,7 @@
 #import "CreditsScene.h"
 #import "HighScoresScene.h"
 #import "IntroScene.h"
+#import "CongratsScene.h"
 #import "LevelSelectScene.h"
 #import "Level1Scene.h"
 #import "Level2Scene.h"
@@ -237,6 +238,9 @@ static GameManager* _sharedGameManager = nil;
             break;
         case kHighScoresScene:
             sceneToRun = [HighScoresScene node];
+            break;
+        case kCongratsScene:
+            sceneToRun = [CongratsScene node];
             break;
         case kIntroScene:
             sceneToRun = [IntroScene node];

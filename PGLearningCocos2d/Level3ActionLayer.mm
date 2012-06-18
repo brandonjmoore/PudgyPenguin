@@ -10,6 +10,8 @@
 #import "Penguin2.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
+#import "UILayer.h"
+
 
 @implementation Level3ActionLayer
 
@@ -122,6 +124,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -174,6 +182,8 @@
         [self createPauseButton];
         [self createClearButton];
         self.isTouchEnabled = YES;
+        
+        [uiLayer.timeLabel setPosition:ccp(winSize.width * .55,winSize.height * .93)];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas_iPad.png"];

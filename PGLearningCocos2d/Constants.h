@@ -11,10 +11,11 @@
 #ifndef PGLearningCocos2d_Constants_h
 #define PGLearningCocos2d_Constants_h
 
+//Notification Constants
+#define kGCAuthenticationChangedNotification @"GCAuthenticationChanged"
+
 #pragma mark -
 #pragma mark Penguin Constants
-
-
 
 //Idle time is used for idle actions (blinking, yawning, etc.)
 #define kPenguinBlinkTime           5.0f
@@ -65,6 +66,7 @@
 #pragma mark -
 #pragma mark Level Constants
 
+#define kMoreInfoTag                -100
 #define kActionLayer                184
 #define kLevelTag                   
 #define kLevel1                     1
@@ -138,6 +140,7 @@ typedef enum {
     kIntroScene=4,
     kHighScoresScene=5,
     kLevelSelectScene=6,
+    kCongratsScene=7,
     kGameLevel1=101,
     kGameLevel2=102,
     kGameLevel3=103,

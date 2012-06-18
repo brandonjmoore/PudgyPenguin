@@ -123,6 +123,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -219,13 +225,13 @@
         
         
         
-        Box2DSprite *balloon1 = [self createBoxAtLocation:ccp(winSize.width * .75,winSize.height * .3) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
-        Box2DSprite *balloon2 = [self createBoxAtLocation:ccp(winSize.width * .76,winSize.height * .57) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
-        Box2DSprite *balloon3 = [self createBoxAtLocation:ccp(winSize.width * .37,winSize.height * .7) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
-        Box2DSprite *balloon4 = [self createBoxAtLocation:ccp(winSize.width * .67,winSize.height * .67) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
-        Box2DSprite *balloon5 = [self createBoxAtLocation:ccp(winSize.width * .45,winSize.height * .48) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
-        Box2DSprite *balloon6 = [self createBoxAtLocation:ccp(winSize.width * .22,winSize.height * .48) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
-         Box2DSprite *balloon7 = [self createBoxAtLocation:ccp(winSize.width * .6,winSize.height * .35) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .75,winSize.height * .3) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .76,winSize.height * .57) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .37,winSize.height * .7) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .67,winSize.height * .67) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .45,winSize.height * .48) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .22,winSize.height * .48) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        [self createBoxAtLocation:ccp(winSize.width * .6,winSize.height * .35) ofType:kBalloonBox withRotation:CC_DEGREES_TO_RADIANS(0)];
 //        
 //        CCRotateTo * rotLeft = [CCRotateBy actionWithDuration:0.2 angle:-1.0];
 //        CCRotateTo * rotCenter = [CCRotateBy actionWithDuration:0.2 angle:0.0];

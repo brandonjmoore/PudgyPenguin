@@ -372,6 +372,11 @@
     CCLOG(@"ActionLayer->doNextLevel method should be overridden");
 }
 
+-(void) skipButtonPressed{
+    [[CCDirector sharedDirector] resume];
+    [self doNextLevel];
+}
+
 -(void)pauseGame
 {
 //    ccColor4B c = {100,100,0,100};
@@ -423,11 +428,11 @@
     CCSprite *skipButtonNormal = [CCSprite spriteWithSpriteFrameName:@"skip.png"];
     CCSprite *skipButtonSelected = [CCSprite spriteWithSpriteFrameName:@"skip_over.png"];
     
-    CCMenuItemSprite *skipButton = [CCMenuItemSprite itemFromNormalSprite:skipButtonNormal selectedSprite:skipButtonSelected target:self selector:@selector(doNextLevel)];
+    CCMenuItemSprite *skipButton = [CCMenuItemSprite itemFromNormalSprite:skipButtonNormal selectedSprite:skipButtonSelected target:self selector:@selector(skipButtonPressed)];
     
-//    [skipButton setScale:.5];
+    [skipButton setScale:.75];
     
-    pauseButtonMenu = [CCMenu menuWithItems:resumeButton, resetButton, mainMenuButton,nil];
+    pauseButtonMenu = [CCMenu menuWithItems:resumeButton, resetButton, mainMenuButton, skipButton, nil];
     
     [pauseButtonMenu alignItemsVerticallyWithPadding:screenSize.height * 0.02f];
     [pauseButtonMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * 0.5f)];
@@ -435,6 +440,29 @@
     [pauseLayer addChild:pauseButtonMenu z:10 tag:kButtonTagValue];
     [pauseLayer addChild:pauseText];
     self.isTouchEnabled = NO;
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    NSInteger levelHighScore = [app getHighScoreForLevel:[[GameManager sharedGameManager]lastLevelPlayed]-100];
+    if (levelHighScore > 0) {
+        NSString *levelScoreString = [NSString stringWithFormat:@"Level %i high score: %d",[[GameManager sharedGameManager]lastLevelPlayed]-100, levelHighScore];
+        CCLabelBMFont *levelScoreText = [CCLabelBMFont labelWithString:levelScoreString fntFile:kFONT];
+        [levelScoreText setScale:.67];
+        levelScoreText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.1f);
+        [pauseLayer addChild:levelScoreText z:10];
+    }
+    
+    
+    //Show total high score
+    NSInteger totalHighScore = [app getTotalHighScore];
+    if (totalHighScore > 0) {
+        NSString *highScoreString = [NSString stringWithFormat:@"Total high score: %d", totalHighScore];
+        CCLabelBMFont *highScoreText = [CCLabelBMFont labelWithString:highScoreString fntFile:kFONT];
+        [highScoreText setScale:.67];
+        highScoreText.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.05f);
+        [pauseLayer addChild:highScoreText z:10];
+    }
+    
     
     
 }
@@ -472,6 +500,35 @@
     [nextLevelMenu alignItemsVerticallyWithPadding:winSize.height * 0.04f];
     [nextLevelMenu setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.5f)];
     [self addChild:nextLevelMenu z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    NSInteger levelHighScore = [app getHighScoreForLevel:[[GameManager sharedGameManager]lastLevelPlayed]-100];
+    if (levelHighScore > 0) {
+        NSString *levelScoreString = [NSString stringWithFormat:@"Level %i high score: %d",[[GameManager sharedGameManager]lastLevelPlayed]-100, levelHighScore];
+        CCLabelBMFont *levelScoreText = [CCLabelBMFont labelWithString:levelScoreString fntFile:kFONT];
+        [levelScoreText setScale:.67];
+        levelScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.1f);
+        [self addChild:levelScoreText z:10];
+    }
+    
+    
+    //Show total high score
+    NSInteger totalHighScore = [app getTotalHighScore];
+    if (totalHighScore > 0) {
+        NSString *highScoreString = [NSString stringWithFormat:@"Total high score: %d", totalHighScore];
+        CCLabelBMFont *highScoreText = [CCLabelBMFont labelWithString:highScoreString fntFile:kFONT];
+        [highScoreText setScale:.67];
+        highScoreText.position = ccp(winSize.width * 0.5f, winSize.height * 0.05f);
+        [self addChild:highScoreText z:10];
+    }
+    
 }
 
 -(id)initWithLevel1UILayer:(UILayer *)UILayer {
@@ -557,8 +614,8 @@
             if (penguin2.numFishEaten >= penguin2.numFishRequired) {
                 if (remainingTime == 1) {
                     gameOver = true;
-                    //CCSprite *gameOverText = [CCSprite spriteWithFile:@"buzzer_beater.png"];
                     CCSprite *gameOverText = [CCSprite spriteWithSpriteFrameName:@"buzzer_beater.png"];
+                    
                     [gameOverText setTag:kBuzzerBeaterSpriteTag];
                     if ([GameState sharedInstance].numBuzzerBeaters < kMaxNumBuzzerBeaters) {
                         [GameState sharedInstance].numBuzzerBeaters++;

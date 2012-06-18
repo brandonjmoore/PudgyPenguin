@@ -21,7 +21,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            [self createFish2AtLocation:ccp(screenSize.width * 0.25f, screenSize.height * 1.05f)];
+            [self createFish2AtLocation:ccp(screenSize.width * -.05,screenSize.height * .63)];
             numFishCreated++;
             
         }else {
@@ -124,6 +124,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -188,11 +194,18 @@
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         
         [penguin2 setRotation:270];
+        
+        [self createPlatformAtLocation:ccp(winSize.width * -.05,winSize.height * .6) ofType:kMediumPlatform withRotation:CC_DEGREES_TO_RADIANS(-280)];
 
         [self createPlatformAtLocation:ccp(winSize.width * 0.85f, winSize.height *0.9f) ofType:kLargePlatform withRotation:0.0];
         
         [self createBoxAtLocation:ccp(winSize.width * .65,winSize.height * .15) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(-45)];
-        [self createBoxAtLocation:ccp(winSize.width * .05,winSize.height * .3) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(15)];
+//        [self createBoxAtLocation:ccp(winSize.width * .05,winSize.height * .35) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        
+        
+        for (float i = .32; i < .55; i=i+.08125) {
+            [self createBoxAtLocation:ccp(winSize.width * .05,winSize.height * i) ofType:kBouncyBox withRotation:CC_DEGREES_TO_RADIANS(0)];
+        }
         
 
 //        CCDelayTime *mov1 = [CCDelayTime actionWithDuration:2];
@@ -208,7 +221,7 @@
         [self schedule:@selector(addFish) interval:kTimeBetweenFishCreation];
         
         //create trash every so often
-        [self schedule:@selector(addTrash) interval:11];
+//        [self schedule:@selector(addTrash) interval:11];
         
     }
     return self;

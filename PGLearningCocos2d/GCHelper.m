@@ -8,6 +8,7 @@
 
 #import "GCHelper.h"
 #import "GCDatabase.h"
+#import "Constants.h"
 
 @implementation GCHelper
 
@@ -116,9 +117,11 @@ static GCHelper *sharedHelper = nil;
             NSLog(@"Authentication changed: player authenticated.");
             userAuthenticated = TRUE;
             [self resendData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGCAuthenticationChangedNotification object:nil];
         } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
             NSLog(@"Authentication changed: player not authenticated");
             userAuthenticated = FALSE;
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGCAuthenticationChangedNotification object:nil];
         }
     });
 }

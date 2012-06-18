@@ -10,9 +10,17 @@
 			<key>Key</key>
 			<string>VersionValue</string>
 			<key>Title</key>
-			<string>Version Number</string>
+			<string>Version</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Credits</string>
+			<key>File</key>
+			<string>Acknowledgments</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -139,8 +147,6 @@
 			<false/>
 			<key>Key</key>
 			<string>level13unlocked</string>
-			<key>Title</key>
-			<string>Is Level 13 Unlocked</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

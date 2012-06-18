@@ -14,6 +14,8 @@
 
 @implementation UILayer
 
+@synthesize fishLabel,timeLabel;
+
 - (id)init {
     
     if ((self = [super init])) {
@@ -30,7 +32,6 @@
         label.visible = NO;
         [self addChild:label];
         
-        float fontSize = 28.0;
         timeLabel = [CCLabelBMFont labelWithString:@"" fntFile:kFONT];
         timeLabel.anchorPoint = ccp(0.5f, 0);
         timeLabel.position = ccp(winSize.width *0.5f, winSize.height *0.93f);
@@ -77,7 +78,7 @@
     
     
     [sprite stopAllActions];
-    [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.8f)];
+    [sprite setPosition:ccp(winSize.width * 0.5f, winSize.height * 0.85f)];
     
     if (sprite.tag == kBuzzerBeaterSpriteTag) {
         
@@ -106,15 +107,16 @@
 //        
 //        [self addChild:fireworks2 z:-100];
         
-        [sprite setScale:20];
-        //CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.0 scale:10];
+        CCParticleSystem *partSys = [CCParticleFlower node];
+        [partSys setPosition: sprite.position];
+        [partSys autoRemoveOnFinish];
+        [self addChild:partSys];
+        
+        [sprite setScale:10];
         CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.5 scale:1.0];
         CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
-        //CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
-        CCSequence *sequence = [CCSequence actions:onComplete, scaleBack, nil];
+        CCSequence *sequence = [CCSequence actions:scaleBack, onComplete, nil];
         [self addChild:sprite z:10];
-        CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:0.5];
-        [sprite runAction:fadeIn];
         [sprite runAction:sequence];
         
     } else if (sprite.tag == kAchievementUnlockedBuzzerBeater){
@@ -150,15 +152,16 @@
 //        
 //        [self addChild:fireworks2 z:-100];
         
+        CCParticleSystem *partSys = [CCParticleFlower node];
+        [partSys setPosition: sprite.position];
+        [partSys autoRemoveOnFinish];
+        [self addChild:partSys];
+        
         [sprite setScale:10];
-        //CCScaleTo *scaleUp = [CCScaleTo actionWithDuration:0.0 scale:10];
         CCScaleTo *scaleBack = [CCScaleTo actionWithDuration:0.5 scale:1.0];
         CCCallFuncN *onComplete = [CCCallFuncN actionWithTarget:target selector:selector];
-        //CCSequence *sequence = [CCSequence actions:scaleUp, scaleBack, onComplete, nil];
-        CCSequence *sequence = [CCSequence actions:onComplete, scaleBack, nil];
+        CCSequence *sequence = [CCSequence actions:scaleBack, onComplete, nil];
         [self addChild:sprite z:10];
-        CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:0.5];
-        [sprite runAction:fadeIn];
         [sprite runAction:sequence];
         
         
@@ -219,13 +222,6 @@
             }
         }
     }
-    
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSInteger retrievedScore = [app getHighScoreForLevel:levelTag];
-    
-//    if (retrievedScore) {
-//        <#statements#>
-//    }
     
     return TRUE;
     

@@ -196,7 +196,10 @@ void uncaughtExceptionHandler(NSException *exception) {
             [layer doPause];
         }
         
-    }
+    } 
+//    else if (current.tag == kMoreInfoTag) {
+//        [[GameManager sharedGameManager]runSceneWithID:kMainMenuScene];
+//    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

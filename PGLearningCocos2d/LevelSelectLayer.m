@@ -8,6 +8,9 @@
 
 #import "LevelSelectLayer.h"
 #import "FlurryAnalytics.h"
+#import "GameState.h"
+#import "GCHelper.h"
+#import "GKAchievementHandler.h"
 
 @interface LevelSelectLayer ()
 -(void)displaySceneSelection;
@@ -195,7 +198,9 @@
 
     NSMutableArray *menuItemArray = [[NSMutableArray alloc] init];
     
-    for (int i = 1; i <= 34; i++) {
+    didBeatAllLevelsWith3Stars = YES;
+    
+    for (int i = 1; i <= 32; i++) {
         
 //        CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i.png", i]];
         CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_blank.png"];
@@ -251,6 +256,7 @@
                 [star setScale:.5];
                 [star setPosition:ccp(playLevelButton.contentSize.width * .25,playLevelButton.contentSize.height * .1)];
                 [playLevelButton addChild:star];
+                didBeatAllLevelsWith3Stars = NO;
             }
             
             if (retrievedScore >= medScore) {
@@ -263,6 +269,7 @@
                 [star setScale:.5];
                 [star setPosition:ccp(playLevelButton.contentSize.width * .5,playLevelButton.contentSize.height * .1)];
                 [playLevelButton addChild:star];
+                didBeatAllLevelsWith3Stars = NO;
             }
             
             if (retrievedScore >= highScore) {
@@ -275,6 +282,7 @@
                 [star setScale:.5];
                 [star setPosition:ccp(playLevelButton.contentSize.width * .75,playLevelButton.contentSize.height * .1)];
                 [playLevelButton addChild:star];
+                didBeatAllLevelsWith3Stars = NO;
             }
         }
         
@@ -396,6 +404,15 @@
     [menuItemArray release];
     
     
+    if (didBeatAllLevelsWith3Stars) {
+        if (![GameState sharedInstance].allLevels3Stars) {
+            [GameState sharedInstance].allLevels3Stars = true;
+            [[GameState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:kAchievement3Stars percentComplete:100.0];
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Achievement Unlocked" andMessage:@"Penguin Perfectionist"];
+        }
+    }
+    
 }
 
 #pragma mark -
@@ -418,6 +435,9 @@
             //TODO: Do something if file didnt exist
             //starScoresDictionary = [[NSMutableDictionary alloc] init]; 
         }
+        
+        
+        
         
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

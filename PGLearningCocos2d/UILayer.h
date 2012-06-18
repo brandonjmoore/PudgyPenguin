@@ -16,6 +16,9 @@
     NSDictionary *starScoresDictionary;
 }
 
+@property (nonatomic, readwrite, retain) CCLabelBMFont *timeLabel;
+@property (nonatomic, readwrite, retain) CCLabelBMFont *fishLabel;
+
 -(BOOL)displayText:(CCSprite *)sprite andOnCompleteCallTarget:(id)target selector:(SEL)selector;
 -(void) displaySecs:(double)secs;
 -(void)displayNumFish:(NSString *)numFish;

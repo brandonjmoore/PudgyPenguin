@@ -10,11 +10,15 @@
 
 @interface GameState : NSObject <NSCoding> {
     int numBuzzerBeaters;
+    BOOL fbLike;
+    BOOL allLevels3Stars;
 }
 
 +(GameState *) sharedInstance;
 -(void)save;
 
 @property (assign) int numBuzzerBeaters;
+@property (assign) BOOL fbLike;
+@property (assign) BOOL allLevels3Stars;
 
 @end

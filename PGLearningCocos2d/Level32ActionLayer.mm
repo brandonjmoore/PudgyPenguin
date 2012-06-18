@@ -23,7 +23,7 @@
     //If the penguin is satisfied, dont add any more fish
     if (penguin2 != nil) {
         if (!gameOver) {
-            Box2DSprite *fish = [self createFish2AtLocation:ccp(screenSize.width * -.03,screenSize.height * .11)];
+            [self createFish2AtLocation:ccp(screenSize.width * -.03,screenSize.height * .11)];
 
             
             //fish.body->SetTransform(fish.body->GetPosition() , CC_DEGREES_TO_RADIANS(0));
@@ -68,7 +68,7 @@
         [appDel saveMaxLevelUnlocked:[NSNumber numberWithInt:33]];
     }
     
-    [[GameManager sharedGameManager] runSceneWithID:kGameLevel33];
+    [[GameManager sharedGameManager] runSceneWithID:kCongratsScene];
 }
 
 #pragma mark -
@@ -126,6 +126,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {

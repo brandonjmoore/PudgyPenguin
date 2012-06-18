@@ -123,6 +123,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -211,7 +217,7 @@
         
         
         
-        [myBox runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:3 angle:-360]]];
+        [myBox runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:3 angle:360]]];
         id mov1 = [CCMoveBy actionWithDuration:4 position:ccp(winSize.width * .8,0)];
         id mov2 = [mov1 reverse];
         CCSequence *seq = [CCSequence actions:mov1,mov2, nil];

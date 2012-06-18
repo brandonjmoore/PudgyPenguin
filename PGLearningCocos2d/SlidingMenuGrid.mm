@@ -314,7 +314,7 @@
 - (void) SetVerticalPaging:(bool)bValue
 {
 	bVerticalPaging = bValue;
-	[self buildGridVertical];
+	//[self buildGridVertical];
 }
 
 @end

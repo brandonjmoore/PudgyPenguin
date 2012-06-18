@@ -30,6 +30,8 @@
     NSInteger maxLevelUnlocked;
     NSDictionary *starScoresDictionary;
     
+    BOOL didBeatAllLevelsWith3Stars;
+    
     //Audio
     SimpleAudioEngine *soundEngine;
 }

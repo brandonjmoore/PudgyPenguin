@@ -13,6 +13,7 @@
 #import "math.h"
 
 #import "MyColorLayer.h"
+#import "UILayer.h"
 
 @implementation Level33ActionLayer
 
@@ -125,6 +126,12 @@
     [highScoreText setScale:.67];
     highScoreText.position = ccp(winSize.width * 0.48f, winSize.height * 0.05f);
     [self addChild:highScoreText z:10];
+    
+    if ([[GameManager sharedGameManager]lastLevelPlayed] > 100 ) {
+        CCLabelBMFont *currentLevelText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"level %i",[[GameManager sharedGameManager]lastLevelPlayed]-100] fntFile:kFONT];
+        [currentLevelText setPosition:ccp(winSize.width * 0.5, winSize.height * 0.7)];
+        [self addChild:currentLevelText z:10];
+    }
 }
 
 -(void) gameOverPass: (id)sender {
@@ -210,6 +217,8 @@
         [self createClearButton];
         self.isTouchEnabled = YES;
         
+        [uiLayer.timeLabel setPosition:ccp(winSize.width * .45,winSize.height * .93)];
+        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"scene1atlas_iPad.png"];
         }else {
@@ -218,7 +227,7 @@
         [self addChild:sceneSpriteBatchNode z:-1];
         
 //        [self createPenguin2AtLocation:ccp(winSize.width * .1, winSize.height * .125)];
-        [self createPenguin2AtLocation:ccp(winSize.width * 0, winSize.height * .6)];
+        [self createPenguin2AtLocation:ccp(winSize.width * .05, winSize.height * .6)];
         penguin2 = (Penguin2*)[sceneSpriteBatchNode getChildByTag:kPenguinSpriteTagValue];
         [penguin2 setNumFishRequired:5];
         [penguin2 setRotation:90];
@@ -230,28 +239,28 @@
         
 
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.65f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];        
-        [self createBoxAtLocation:ccp(winSize.width * 0.5f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.75f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];        
+        [self createBoxAtLocation:ccp(winSize.width * 0.6f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
-        [self createBoxAtLocation:ccp(winSize.width * 0.35f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
-        [self createBoxAtLocation:ccp(winSize.width * 0.2f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.45f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
+        [self createBoxAtLocation:ccp(winSize.width * 0.3f, winSize.height *0.05f) ofType:kBouncyBox withRotation:DEG_TO_RAD(0)];
         
-        [self createPlatformAtLocation:ccp(winSize.width * .575, winSize.height * 0.1f) ofType:kMediumPlatform withRotation:0.0f];
-        [self createPlatformAtLocation:ccp(winSize.width * .575, winSize.height * 0.65f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * .675, winSize.height * 0.1f) ofType:kMediumPlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * .675, winSize.height * 0.66f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.275f, winSize.height * 0.1f) ofType:kLargePlatform withRotation:0.0f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.275f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.375f, winSize.height * 0.1f) ofType:kLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.375f, winSize.height * 0.7f) ofType:kExtraLargePlatform withRotation:0.0f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.425f, winSize.height * 0.2f) ofType:kLargePlatform withRotation:0.0f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.425f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.525f, winSize.height * 0.2f) ofType:kLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.525f, winSize.height * 0.8f) ofType:kExtraLargePlatform withRotation:0.0f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * .125, winSize.height * 0.25f) ofType:kExtraLargePlatform withRotation:0.0f];
-        [self createPlatformAtLocation:ccp(winSize.width * .125, winSize.height * 0.85f) ofType:kLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * .225, winSize.height * 0.25f) ofType:kExtraLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * .225, winSize.height * 0.85f) ofType:kLargePlatform withRotation:0.0f];
         
-        [self createPlatformAtLocation:ccp(winSize.width * 0.725f, winSize.height * 0.3f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
-        [self createPlatformAtLocation:ccp(winSize.width * 0.725f, winSize.height * 0.95f) ofType:kLargePlatform withRotation:0.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.825f, winSize.height * 0.3f) ofType:kExtraExtraLargePlatform withRotation:0.0f];
+//        [self createPlatformAtLocation:ccp(winSize.width * 0.825f, winSize.height * 0.95f) ofType:kLargePlatform withRotation:0.0f];
 
-        [self createPlatformAtLocation:ccp(winSize.width * 0.4f, winSize.height * 1.5f) ofType:kExtraExtraLargePlatform withRotation:1.0f];
+        [self createPlatformAtLocation:ccp(winSize.width * 0.5f, winSize.height * 1.5f) ofType:kExtraExtraLargePlatform withRotation:1.0f];
         
         
         //create trash every so often

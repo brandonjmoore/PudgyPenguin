@@ -11,6 +11,10 @@
 
 #define kLeaderBoardCompletionTime @"com.vaux.PudgyPenguin.leaderboard.completion"
 #define kAchievement5BuzzerBeaters @"com.vaux.PudgyPenguin.achievement.5BuzzerBeaters"
+#define kAchievement3Stars @"com.vaux.PudgyPenguin.achievement.3Stars"
+#define kAchievementFBLike @"com.vaux.PudgyPenguin.achievement.fbLike"
+#define kAchievementPostToFacebook @"com.vaux.PudgyPenguin.achievement.postToFacebook"
+
 
 @interface GCHelper : NSObject <NSCoding>{
     BOOL gameCenterAvailable;

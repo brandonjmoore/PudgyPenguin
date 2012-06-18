@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "GCHelper.h"
 #import "FlurryAnalytics.h"
+#import <GameKit/GKScore.h>
 
 @implementation MoreInfoLayer
 
@@ -105,6 +106,81 @@
     [[app facebook] logout];
 }
 
+-(void)logInToGameCenter {
+    
+    if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"gamecenter:/"]]) {
+        [FlurryAnalytics logEvent:@"Game Center Link Failed"];
+    }
+                                                
+}
+
+#pragma mark -
+#pragma mark Facebook Stuff
+
+-(void)postScoreToFacebook {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                                   kFacebookAppID, @"app_id", 
+                                   @"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#", @"link", 
+                                   @"http://a1.mzstatic.com/us/r1000/116/Purple/cb/e5/08/mzl.jgtgkwba.175x175-75.jpg", @"picture", 
+                                   @"Pudgy Penguin!!!", @"name", 
+                                   @"My High Score", @"caption", 
+                                   [NSString stringWithFormat:@"I just threw down %i points in Pudgy Penguin! What's your high score?", [app getTotalHighScore]], @"description", 
+                                   @"And boom goes the dynamite!",  @"message", nil];
+    [app doFacebookStuff:params];
+}
+
+-(void)displayGameCenterStuff {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    
+    if (optionsMenu != nil) {
+        [self removeChild:optionsMenu cleanup:YES];
+    }
+    
+    CCLabelBMFont *musicOnLabelText = [CCLabelBMFont labelWithString:@"Music is ON" fntFile:kFONT];
+    CCLabelBMFont *musicOffLabelText = [CCLabelBMFont labelWithString:@"Music is OFF" fntFile:kFONT];
+    [musicOnLabelText setColor:ccWHITE];
+    
+    
+    CCMenuItemLabel *musicOnLabel = [CCMenuItemLabel itemWithLabel:musicOnLabelText target:self selector:nil];
+    CCMenuItemLabel *musicOffLabel = [CCMenuItemLabel itemWithLabel:musicOffLabelText target:self selector:nil];
+    
+    
+    CCMenuItemToggle *musicToggle = [CCMenuItemToggle itemWithTarget:self 
+                                                            selector:@selector(musicTogglePressed) 
+                                                               items:musicOnLabel,musicOffLabel,nil];
+    [musicToggle setColor:ccWHITE];
+    
+    if ([[GameManager sharedGameManager] isMusicON] == NO) {
+        [musicToggle setSelectedIndex:1]; // Music is OFF
+    }
+    
+    if ([[GCHelper sharedInstance] userAuthenticated]) {
+        CCLabelBMFont *gameCenterButtonLabel = [CCLabelBMFont labelWithString:@"Leaderboard" fntFile:kFONT];
+        CCMenuItemLabel	*gameCenterButton = [CCMenuItemLabel itemWithLabel:gameCenterButtonLabel target:self selector:@selector(showGameCenter)];
+        
+        CCLabelBMFont *achievementsButtonLabel = [CCLabelBMFont labelWithString:@"Achievements" fntFile:kFONT];
+        CCMenuItemLabel	*achievementsButton = [CCMenuItemLabel itemWithLabel:achievementsButtonLabel target:self selector:@selector(showAchievements)];
+        
+        optionsMenu = [CCMenu menuWithItems: gameCenterButton, achievementsButton, musicToggle, nil];
+        
+        
+    } else if (![[GCHelper sharedInstance] userAuthenticated]) {
+        CCLabelBMFont *gameCenterButtonLabel = [CCLabelBMFont labelWithString:@"Sign in to Game Center" fntFile:kFONT];
+        CCMenuItemLabel	*gameCenterButton = [CCMenuItemLabel itemWithLabel:gameCenterButtonLabel target:self selector:@selector(logInToGameCenter)];
+        optionsMenu = [CCMenu menuWithItems: gameCenterButton, musicToggle, nil];
+    } else {
+        optionsMenu = [CCMenu menuWithItems: musicToggle, nil];
+    }
+    
+    
+    
+    [optionsMenu alignItemsVerticallyWithPadding:20.0f];
+    [optionsMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height * .14)];
+    [self addChild:optionsMenu];
+}
+
 
 #pragma mark -
 #pragma mark Init
@@ -126,30 +202,31 @@
 		[self addChild:background];
 		
 //        CCLabelBMFont *highScoresButtonLabel = [CCLabelBMFont labelWithString:@"High Scores" fntFile:kFONT];
-        CCLabelBMFont *highScoresButtonLabel = [CCLabelBMFont labelWithString:@"High Scores" fntFile:kFONT];
-		CCMenuItemLabel	*highScoresButton = [CCMenuItemLabel itemWithLabel:highScoresButtonLabel target:self selector:@selector(showHighScores)];
+//        CCLabelBMFont *highScoresButtonLabel = [CCLabelBMFont labelWithString:@"High Scores" fntFile:kFONT];
+//		CCMenuItemLabel	*highScoresButton = [CCMenuItemLabel itemWithLabel:highScoresButtonLabel target:self selector:@selector(showHighScores)];
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        NSInteger highScore = [app getTotalHighScore];
         
+        if (highScore > 0) {
+            CCLabelBMFont *totalHighScoreText = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"Total Score: %d", highScore]  fntFile:kFONT];
+            [totalHighScoreText setPosition:ccp(screenSize.width * .5, screenSize.height * .8)];
+            [self addChild:totalHighScoreText];
+            
+            CCSprite *facebookButtonSprite = [CCSprite spriteWithSpriteFrameName:@"post_to_facebook.png"];
+            CCMenuItemSprite *facebookButton = [CCMenuItemSprite itemFromNormalSprite:facebookButtonSprite selectedSprite:nil disabledSprite:nil target:self selector:@selector(postScoreToFacebook)];
+            
+            CCMenu *facebookMenu = [CCMenu menuWithItems:facebookButton, nil];
+            [facebookMenu setPosition:ccp(screenSize.width * .5, screenSize.height * .7)];
+            [self addChild:facebookMenu];
+        }
 		
 		
-		CCLabelBMFont *musicOnLabelText = [CCLabelBMFont labelWithString:@"Music is ON" fntFile:kFONT];
-		CCLabelBMFont *musicOffLabelText = [CCLabelBMFont labelWithString:@"Music is OFF" fntFile:kFONT];
-        [musicOnLabelText setColor:ccWHITE];
-    
-		
-		CCMenuItemLabel *musicOnLabel = [CCMenuItemLabel itemWithLabel:musicOnLabelText target:self selector:nil];
-		CCMenuItemLabel *musicOffLabel = [CCMenuItemLabel itemWithLabel:musicOffLabelText target:self selector:nil];
-
-										 
-		CCMenuItemToggle *musicToggle = [CCMenuItemToggle itemWithTarget:self 
-																selector:@selector(musicTogglePressed) 
-																   items:musicOnLabel,musicOffLabel,nil];
-        [musicToggle setColor:ccWHITE];
 				
-		CCLabelBMFont *creditsButtonLabel = [CCLabelBMFont labelWithString:@"Credits" fntFile:kFONT];
-		CCMenuItemLabel	*creditsButton = [CCMenuItemLabel itemWithLabel:creditsButtonLabel target:self selector:@selector(showCredits)];
-		
-        CCLabelBMFont *facebookButtonLabel = [CCLabelBMFont labelWithString:@"Logout of Facebook" fntFile:kFONT];
-		CCMenuItemLabel	*facebookButton = [CCMenuItemLabel itemWithLabel:facebookButtonLabel target:self selector:@selector(fbLogout)];
+//		CCLabelBMFont *creditsButtonLabel = [CCLabelBMFont labelWithString:@"Credits" fntFile:kFONT];
+//		CCMenuItemLabel	*creditsButton = [CCMenuItemLabel itemWithLabel:creditsButtonLabel target:self selector:@selector(showCredits)];
+//		
+//        CCLabelBMFont *facebookButtonLabel = [CCLabelBMFont labelWithString:@"Logout of Facebook" fntFile:kFONT];
+//		CCMenuItemLabel	*facebookButton = [CCMenuItemLabel itemWithLabel:facebookButtonLabel target:self selector:@selector(fbLogout)];
 		
         
 		//Set up the back button
@@ -164,29 +241,10 @@
         [backButtonMenu setPosition:ccp(0,0)];
         [self addChild:backButtonMenu z:kZeroZValue tag:kButtonTagValue];
 		
-        if ([[GCHelper sharedInstance] userAuthenticated]) {
-            CCLabelBMFont *gameCenterButtonLabel = [CCLabelBMFont labelWithString:@"Game Center" fntFile:kFONT];
-            CCMenuItemLabel	*gameCenterButton = [CCMenuItemLabel itemWithLabel:gameCenterButtonLabel target:self selector:@selector(showGameCenter)];
-            
-            CCLabelBMFont *achievementsButtonLabel = [CCLabelBMFont labelWithString:@"Achievements" fntFile:kFONT];
-            CCMenuItemLabel	*achievementsButton = [CCMenuItemLabel itemWithLabel:achievementsButtonLabel target:self selector:@selector(showAchievements)];
-            
-            optionsMenu = [CCMenu menuWithItems: achievementsButton,highScoresButton, musicToggle,
-                                   creditsButton,gameCenterButton, facebookButton, nil];
-        } else {
-            optionsMenu = [CCMenu menuWithItems:highScoresButton, musicToggle,
-                                   creditsButton, facebookButton, nil];
-        }
-            
-            
+        [self displayGameCenterStuff];
         
-		[optionsMenu alignItemsVerticallyWithPadding:20.0f];
-		[optionsMenu setPosition:ccp(screenSize.width * 0.5f, screenSize.height/2)];
-		[self addChild:optionsMenu];
         
-        if ([[GameManager sharedGameManager] isMusicON] == NO) {
-            [musicToggle setSelectedIndex:1]; // Music is OFF
-        }
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(displayGameCenterStuff) name:kGCAuthenticationChangedNotification object:nil];
         
 	}
 	return self;
