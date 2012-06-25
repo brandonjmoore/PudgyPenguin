@@ -12,6 +12,7 @@
     int numBuzzerBeaters;
     BOOL fbLike;
     BOOL allLevels3Stars;
+    BOOL fbPost;
 }
 
 +(GameState *) sharedInstance;
@@ -20,5 +21,6 @@
 @property (assign) int numBuzzerBeaters;
 @property (assign) BOOL fbLike;
 @property (assign) BOOL allLevels3Stars;
+@property (assign) BOOL fbPost;
 
 @end

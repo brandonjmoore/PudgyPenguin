@@ -171,6 +171,14 @@
     [[GameManager sharedGameManager]runSceneWithID:kMainMenuScene];
 }
 
+-(void)buyMoreLevels
+{
+    [FlurryAnalytics logEvent:@"Tapped buy more levels"];
+    if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#"]]) {
+        [FlurryAnalytics logEvent:@"Failed to buy more levels"];
+    }
+}
+
 #pragma mark -
 #pragma mark Display Menus
 
@@ -200,8 +208,11 @@
     
     didBeatAllLevelsWith3Stars = YES;
     
+#if defined (FREEVERSION)
+    for (int i = 1; i <= 8; i++) {
+#else
     for (int i = 1; i <= 32; i++) {
-        
+#endif
 //        CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i.png", i]];
         CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_blank.png"];
         CCLabelBMFont *levelNumber = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%i",i] fntFile:kFONT];
@@ -402,14 +413,23 @@
     [self addChild:backButtonMenu z:1 tag:kTwoZValue];
     
     [menuItemArray release];
+        
+        
+#if defined (FREEVERSION)
+        CCLabelBMFont *moreLevelsButtonLabel = [CCLabelBMFont labelWithString:@"Get More Levels" fntFile:kFONT];
+        CCMenuItemLabel	*moreLevelsButton = [CCMenuItemLabel itemWithLabel:moreLevelsButtonLabel target:self selector:@selector(buyMoreLevels)];
+        CCMenu *moreLevelsMenu = [CCMenu menuWithItems:moreLevelsButton, nil];
+        [moreLevelsMenu setPosition:ccp(screenSize.width * .5, screenSize.height * .15)];
+        [self addChild:moreLevelsMenu];
+#endif
     
-    
+
     if (didBeatAllLevelsWith3Stars) {
         if (![GameState sharedInstance].allLevels3Stars) {
             [GameState sharedInstance].allLevels3Stars = true;
             [[GameState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:kAchievement3Stars percentComplete:100.0];
-            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Achievement Unlocked" andMessage:@"Penguin Perfectionist"];
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Achievement Unlocked" andMessage:@"Pudgy Perfectionist"];
         }
     }
     

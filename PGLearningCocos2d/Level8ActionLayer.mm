@@ -64,7 +64,13 @@
         [appDel saveMaxLevelUnlocked:[NSNumber numberWithInt:9]];
     }
     
+#if defined (FREEVERSION)
+    [[GameManager sharedGameManager] runSceneWithID:kCongratsScene];
+#else
     [[GameManager sharedGameManager] runSceneWithID:kGameLevel9];
+#endif
+    
+    
 }
 
 #pragma mark -

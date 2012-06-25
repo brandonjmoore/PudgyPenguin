@@ -16,6 +16,8 @@
 #import "GCHelper.h"
 #import "ActionLayer.h"
 #import "Appirater.h"
+#import "GameState.h"
+#import "GKAchievementHandler.h"
 
 @implementation AppDelegate
 
@@ -106,7 +108,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     //Register for crashes (to be reported to flurry)
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-	[FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
+#if defined (FREEVERSION)
+    [FlurryAnalytics startSession:@"Q5SYZ3V7735MXG7RTNT3"];
+#else
+    [FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
+#endif
+	
     
     // Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -402,7 +409,23 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)dialogDidComplete:(FBDialog *)dialog {
-    [FlurryAnalytics logEvent:@"Submitted Facebook Dialog"];
+    
+}
+
+- (void)dialogCompleteWithUrl:(NSURL *)url {
+    NSString *urlString = [url absoluteString];
+    if (urlString.length > 19) {
+        if (![GameState sharedInstance].fbPost) {
+            [GameState sharedInstance].fbPost = true;
+            [[GameState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:kAchievementPostToFacebook percentComplete:100.0];
+            [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Achievement Unlocked" andMessage:@"One Proud Pudgy"];
+        }
+        [FlurryAnalytics logEvent:@"Submitted Facebook Dialog"];
+    } else {
+        [FlurryAnalytics logEvent:@"Tapped cancel Facebook Dialog"];
+    }
+    
 }
 
 - (void)dialog:(FBDialog*)dialog didFailWithError:(NSError *)error {
@@ -412,7 +435,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)dialogDidNotComplete:(FBDialog *)dialog {
     CCLOG(@"dialogDidNotComplete");
-    [FlurryAnalytics logEvent:@"Cancelled Facebook Dialog"];
 }
 
 - (void)dialogDidNotCompleteWithUrl:(NSURL *)url {
@@ -431,6 +453,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)fbSessionInvalidated {
     CCLOG(@"Facebook Session was invalidated");
+    [facebook logout];
 }
 
 

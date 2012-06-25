@@ -119,7 +119,17 @@
 
 -(void)postScoreToFacebook {
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
+//#if defined (FREEVERSION)
+//    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+//                                   kFacebookAppID, @"app_id", 
+//                                   @"http://itunes.apple.com/us/app/pudgy-penguin/id539265401?ls=1&mt=8#", @"link", 
+//                                   @"http://a1.mzstatic.com/us/r1000/116/Purple/cb/e5/08/mzl.jgtgkwba.175x175-75.jpg", @"picture", 
+//                                   @"Pudgy Penguin Free!!!", @"name", 
+//                                   @"My High Score", @"caption", 
+//                                   [NSString stringWithFormat:@"I just threw down %i points in Pudgy Penguin Free! What's your high score?", [app getTotalHighScore]], @"description", 
+//                                   @"And boom goes the dynamite!",  @"message", nil];
+//    [app doFacebookStuff:params];
+//#else
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                    kFacebookAppID, @"app_id", 
                                    @"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#", @"link", 
@@ -129,6 +139,8 @@
                                    [NSString stringWithFormat:@"I just threw down %i points in Pudgy Penguin! What's your high score?", [app getTotalHighScore]], @"description", 
                                    @"And boom goes the dynamite!",  @"message", nil];
     [app doFacebookStuff:params];
+//#endif
+    
 }
 
 -(void)displayGameCenterStuff {

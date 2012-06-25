@@ -23,8 +23,20 @@
 #pragma mark Facebook Stuff
 
 -(void)postScoreToFacebook {
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
+AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+//#if defined (FREEVERSION)
+//    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+//                                   kFacebookAppID, @"app_id", 
+//                                   @"http://itunes.apple.com/us/app/pudgy-penguin/id539265401?ls=1&mt=8#", @"link", 
+//                                   @"http://a1.mzstatic.com/us/r1000/116/Purple/cb/e5/08/mzl.jgtgkwba.175x175-75.jpg", @"picture", 
+//                                   @"Pudgy Penguin Free!!!", @"name", 
+//                                   @"I beat Pudgy Penguin Free", @"caption", 
+//                                   [NSString stringWithFormat:@"I just beat Pudgy Penguin Free with %i points! What's your high score?", [app getTotalHighScore]], @"description", 
+//                                   @"And boom goes the dynamite!",  @"message", nil];
+//    [app doFacebookStuff:params];
+//#else
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                    kFacebookAppID, @"app_id", 
                                    @"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#", @"link", 
@@ -34,6 +46,20 @@
                                    [NSString stringWithFormat:@"I just beat Pudgy Penguin with %i points! What's your high score?", [app getTotalHighScore]], @"description", 
                                    @"And boom goes the dynamite!",  @"message", nil];
     [app doFacebookStuff:params];
+//#endif
+    
+    
+    
+    
+    
+}
+
+-(void)buyMoreLevels
+{
+    [FlurryAnalytics logEvent:@"Tapped buy more levels"];
+    if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#"]]) {
+        [FlurryAnalytics logEvent:@"Failed to buy more levels"];
+    }
 }
 
 
@@ -97,6 +123,14 @@
         CCParticleSystem *snowParticleSystem = [CCParticleSnow node];
         [snowParticleSystem autoRemoveOnFinish];
         [self addChild:snowParticleSystem];
+        
+#if defined (FREEVERSION)
+        CCLabelBMFont *moreLevelsButtonLabel = [CCLabelBMFont labelWithString:@"Get More Levels" fntFile:kFONT];
+        CCMenuItemLabel	*moreLevelsButton = [CCMenuItemLabel itemWithLabel:moreLevelsButtonLabel target:self selector:@selector(buyMoreLevels)];
+        CCMenu *moreLevelsMenu = [CCMenu menuWithItems:moreLevelsButton, nil];
+        [moreLevelsMenu setPosition:ccp(screenSize.width * .5, screenSize.height * .15)];
+        [self addChild:moreLevelsMenu];
+#endif
         
 	}
 	return self;

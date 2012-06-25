@@ -14,6 +14,7 @@
 @synthesize numBuzzerBeaters;
 @synthesize fbLike;
 @synthesize allLevels3Stars;
+@synthesize fbPost;
 
 static GameState *sharedInstance = nil;
 
@@ -49,6 +50,7 @@ static GameState *sharedInstance = nil;
 -(void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInt:numBuzzerBeaters forKey:@"NumBuzzerBeaters"];
     [aCoder encodeBool:fbLike forKey:@"FBLike"];
+    [aCoder encodeBool:fbPost forKey:@"FBPost"];
     [aCoder encodeBool:allLevels3Stars forKey:@"AllLevels3Stars"];
 }
 
@@ -56,6 +58,7 @@ static GameState *sharedInstance = nil;
     if ((self = [super init])) {
         numBuzzerBeaters = [aDecoder decodeIntForKey:@"NumBuzzerBeaters"];
         fbLike = [aDecoder decodeBoolForKey:@"FBLike"];
+        fbPost = [aDecoder decodeBoolForKey:@"FBPost"];
         allLevels3Stars = [aDecoder decodeBoolForKey:@"AllLevels3Stars"];
     }
     return self;

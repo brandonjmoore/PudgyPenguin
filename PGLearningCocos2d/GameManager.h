@@ -38,9 +38,5 @@
 -(void)runSceneWithID:(SceneTypes)sceneID;
 -(void)openSiteWithLinkType:(LinkTypes)linkTypeToOpen;
 -(SceneTypes)getCurrentScene;
--(void)setupAudioEngine;
--(ALuint)playSoundEffect:(NSString*)soundEffectKey;
--(void)stopSoundEffect:(ALuint)soundEffectID;
--(void)playBackgroundTrack:(NSString*)trackFileName;
 
 @end

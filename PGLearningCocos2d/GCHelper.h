@@ -9,11 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
+#if defined (FREEVERSION)
+#define kLeaderBoardCompletionTime @"com.vaux.PudgyPenguinFree.leaderboard.completion"
+#define kAchievement5BuzzerBeaters @"com.vaux.PudgyPenguinFree.achievement.5BuzzerBeaters"
+#define kAchievement3Stars @"com.vaux.PudgyPenguinFree.achievement.3Stars"
+#define kAchievementFBLike @"com.vaux.PudgyPenguinFree.achievement.fbLike"
+#define kAchievementPostToFacebook @"com.vaux.PudgyPenguinFree.achievement.postToFacebook"
+#else
 #define kLeaderBoardCompletionTime @"com.vaux.PudgyPenguin.leaderboard.completion"
 #define kAchievement5BuzzerBeaters @"com.vaux.PudgyPenguin.achievement.5BuzzerBeaters"
 #define kAchievement3Stars @"com.vaux.PudgyPenguin.achievement.3Stars"
 #define kAchievementFBLike @"com.vaux.PudgyPenguin.achievement.fbLike"
 #define kAchievementPostToFacebook @"com.vaux.PudgyPenguin.achievement.postToFacebook"
+#endif
+
 
 
 @interface GCHelper : NSObject <NSCoding>{

@@ -119,7 +119,11 @@
 		startSizeVar = 2.0f;
 		endSize = kCCParticleStartSizeEqualToEndSize;
 
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 
 		// additive
 		self.blendAdditive = NO;
@@ -181,25 +185,48 @@
 		// emits per frame
 		emissionRate = totalParticles/life;
 		
+		//		// color of particles
+        //		startColor.r = 0.7f;
+        //		startColor.g = 0.1f;
+        //		startColor.b = 0.2f;
+        //		startColor.a = 1.0f;
+        //		startColorVar.r = 0.5f;
+        //		startColorVar.g = 0.5f;
+        //		startColorVar.b = 0.5f;
+        //		startColorVar.a = 0.0f;
+        //		endColor.r = 0.5f;
+        //		endColor.g = 0.5f;
+        //		endColor.b = 0.5f;
+        //		endColor.a = 0.0f;
+        //		endColorVar.r = 0.5f;
+        //		endColorVar.g = 0.5f;
+        //		endColorVar.b = 0.5f;
+        //		endColorVar.a = 0.0f;
+        
+		//Only white fireworks
 		// color of particles
-		startColor.r = 0.76f;
-		startColor.g = 0.25f;
-		startColor.b = 0.12f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.0f;
-		startColorVar.g = 0.0f;
-		startColorVar.b = 0.0f;
-		startColorVar.a = 0.0f;
-		endColor.r = 0.0f;
-		endColor.g = 0.0f;
-		endColor.b = 0.0f;
-		endColor.a = 1.0f;
-		endColorVar.r = 0.0f;
-		endColorVar.g = 0.0f;
-		endColorVar.b = 0.0f;
-		endColorVar.a = 0.0f;
+        startColor.r = 1.0f;
+        startColor.g = 1.0f;
+        startColor.b = 1.0f;
+        startColor.a = 1.0f;
+        startColorVar.r = 0.0f;
+        startColorVar.g = 0.0f;
+        startColorVar.b = 0.0f;
+        startColorVar.a = 0.0f;
+        endColor.r = 0.1f;
+        endColor.g = 0.1f;
+        endColor.b = 0.1f;
+        endColor.a = 0.0f;
+        endColorVar.r = 0.0f;
+        endColorVar.g = 0.0f;
+        endColorVar.b = 0.0f;
+        endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 		
 		// additive
 		self.blendAdditive = YES;
@@ -264,25 +291,48 @@
 		// emits per seconds
 		emissionRate = totalParticles/life;
 		
+		//		// color of particles
+        //		startColor.r = 0.7f;
+        //		startColor.g = 0.1f;
+        //		startColor.b = 0.2f;
+        //		startColor.a = 1.0f;
+        //		startColorVar.r = 0.5f;
+        //		startColorVar.g = 0.5f;
+        //		startColorVar.b = 0.5f;
+        //		startColorVar.a = 0.0f;
+        //		endColor.r = 0.5f;
+        //		endColor.g = 0.5f;
+        //		endColor.b = 0.5f;
+        //		endColor.a = 0.0f;
+        //		endColorVar.r = 0.5f;
+        //		endColorVar.g = 0.5f;
+        //		endColorVar.b = 0.5f;
+        //		endColorVar.a = 0.0f;
+        
+		//Only white fireworks
 		// color of particles
-		startColor.r = 0.76f;
-		startColor.g = 0.25f;
-		startColor.b = 0.12f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.0f;
-		startColorVar.g = 0.0f;
-		startColorVar.b = 0.0f;
-		startColorVar.a = 0.0f;
-		endColor.r = 0.0f;
-		endColor.g = 0.0f;
-		endColor.b = 0.0f;
-		endColor.a = 1.0f;
-		endColorVar.r = 0.0f;
-		endColorVar.g = 0.0f;
-		endColorVar.b = 0.0f;
-		endColorVar.a = 0.0f;
+        startColor.r = 1.0f;
+        startColor.g = 1.0f;
+        startColor.b = 1.0f;
+        startColor.a = 1.0f;
+        startColorVar.r = 0.0f;
+        startColorVar.g = 0.0f;
+        startColorVar.b = 0.0f;
+        startColorVar.a = 0.0f;
+        endColor.r = 0.1f;
+        endColor.g = 0.1f;
+        endColor.b = 0.1f;
+        endColor.a = 0.0f;
+        endColorVar.r = 0.0f;
+        endColorVar.g = 0.0f;
+        endColorVar.b = 0.0f;
+        endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 	}
 		
 	return self;
@@ -344,25 +394,48 @@
 		// emits per second
 		emissionRate = totalParticles/life;
 		
+		//		// color of particles
+        //		startColor.r = 0.7f;
+        //		startColor.g = 0.1f;
+        //		startColor.b = 0.2f;
+        //		startColor.a = 1.0f;
+        //		startColorVar.r = 0.5f;
+        //		startColorVar.g = 0.5f;
+        //		startColorVar.b = 0.5f;
+        //		startColorVar.a = 0.0f;
+        //		endColor.r = 0.5f;
+        //		endColor.g = 0.5f;
+        //		endColor.b = 0.5f;
+        //		endColor.a = 0.0f;
+        //		endColorVar.r = 0.5f;
+        //		endColorVar.g = 0.5f;
+        //		endColorVar.b = 0.5f;
+        //		endColorVar.a = 0.0f;
+        
+		//Only white fireworks
 		// color of particles
-		startColor.r = 0.12f;
-		startColor.g = 0.25f;
-		startColor.b = 0.76f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.0f;
-		startColorVar.g = 0.0f;
-		startColorVar.b = 0.0f;
-		startColorVar.a = 0.0f;
-		endColor.r = 0.0f;
-		endColor.g = 0.0f;
-		endColor.b = 0.0f;
-		endColor.a = 1.0f;
-		endColorVar.r = 0.0f;
-		endColorVar.g = 0.0f;
-		endColorVar.b = 0.0f;
-		endColorVar.a = 0.0f;
+        startColor.r = 1.0f;
+        startColor.g = 1.0f;
+        startColor.b = 1.0f;
+        startColor.a = 1.0f;
+        startColorVar.r = 0.0f;
+        startColorVar.g = 0.0f;
+        startColorVar.b = 0.0f;
+        startColorVar.a = 0.0f;
+        endColor.r = 0.1f;
+        endColor.g = 0.1f;
+        endColor.b = 0.1f;
+        endColor.a = 0.0f;
+        endColorVar.r = 0.0f;
+        endColorVar.g = 0.0f;
+        endColorVar.b = 0.0f;
+        endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 
 		// additive
 		self.blendAdditive = YES;
@@ -378,7 +451,11 @@
 @implementation CCParticleFlower
 -(id) init
 {
-	return [self initWithTotalParticles:250];
+    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return [self initWithTotalParticles:300];
+    } else {
+        return [self initWithTotalParticles:500];
+    }
 }
 
 -(id) initWithTotalParticles:(NSUInteger) p
@@ -394,13 +471,23 @@
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
 		
-		// Gravity Mode: speed of particles
-		self.speed = 80;
-		self.speedVar = 10;
-		
-		// Gravity Mode: radial
-		self.radialAccel = -60;
-		self.radialAccelVar = 0;
+        if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            // Gravity Mode: speed of particles
+            self.speed = 80;
+            self.speedVar = 10;
+            
+            // Gravity Mode: radial
+            self.radialAccel = -60;
+            self.radialAccelVar = 0;
+        } else {
+            // Gravity Mode: speed of particles
+            self.speed = 160;
+            self.speedVar = 20;
+            
+            // Gravity Mode: radial
+            self.radialAccel = -120;
+            self.radialAccelVar = 0;
+        }
 		
 		// Gravity Mode: tagential
 		self.tangentialAccel = 15;
@@ -419,33 +506,64 @@
 		life = 4;
 		lifeVar = 1;
 		
-		// size, in pixels
-		startSize = 30.0f;
-		startSizeVar = 10.0f;
-		endSize = kCCParticleStartSizeEqualToEndSize;
+        if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            // size, in pixels
+            startSize = 20.0f;
+            startSizeVar = 2.0f;
+            endSize = kCCParticleStartSizeEqualToEndSize;
+        } else {
+            // size, in pixels
+            startSize = 30.0f;
+            startSizeVar = 5.0f;
+            endSize = kCCParticleStartSizeEqualToEndSize;
+        }
+		
 
 		// emits per second
 		emissionRate = totalParticles/life;
 		
+		//		// color of particles
+        //		startColor.r = 0.7f;
+        //		startColor.g = 0.1f;
+        //		startColor.b = 0.2f;
+        //		startColor.a = 1.0f;
+        //		startColorVar.r = 0.5f;
+        //		startColorVar.g = 0.5f;
+        //		startColorVar.b = 0.5f;
+        //		startColorVar.a = 0.0f;
+        //		endColor.r = 0.5f;
+        //		endColor.g = 0.5f;
+        //		endColor.b = 0.5f;
+        //		endColor.a = 0.0f;
+        //		endColorVar.r = 0.5f;
+        //		endColorVar.g = 0.5f;
+        //		endColorVar.b = 0.5f;
+        //		endColorVar.a = 0.0f;
+        
+		//Only white fireworks
 		// color of particles
-		startColor.r = 0.50f;
-		startColor.g = 0.50f;
-		startColor.b = 0.50f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.5f;
-		startColorVar.g = 0.5f;
-		startColorVar.b = 0.5f;
-		startColorVar.a = 0.5f;
-		endColor.r = 0.0f;
-		endColor.g = 0.0f;
-		endColor.b = 0.0f;
-		endColor.a = 1.0f;
-		endColorVar.r = 0.0f;
-		endColorVar.g = 0.0f;
-		endColorVar.b = 0.0f;
-		endColorVar.a = 0.0f;
+        startColor.r = 1.0f;
+        startColor.g = 1.0f;
+        startColor.b = 1.0f;
+        startColor.a = 1.0f;
+        startColorVar.r = 0.0f;
+        startColorVar.g = 0.0f;
+        startColorVar.b = 0.0f;
+        startColorVar.a = 0.0f;
+        endColor.r = 0.1f;
+        endColor.g = 0.1f;
+        endColor.b = 0.1f;
+        endColor.a = 0.0f;
+        endColorVar.r = 0.0f;
+        endColorVar.g = 0.0f;
+        endColorVar.b = 0.0f;
+        endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 
 		// additive
 		self.blendAdditive = YES;
@@ -528,7 +646,11 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 		
 		// additive
 		self.blendAdditive = YES;
@@ -611,7 +733,11 @@
 		endColorVar.b = 0.5f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 
 		// additive
 		self.blendAdditive = NO;
@@ -627,7 +753,11 @@
 @implementation CCParticleExplosion
 -(id) init
 {
-	return [self initWithTotalParticles:700];
+    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return [self initWithTotalParticles:700];
+    } else {
+        return [self initWithTotalParticles:1400];
+    }
 }
 
 -(id) initWithTotalParticles:(NSUInteger)p
@@ -712,7 +842,11 @@
         endColorVar.b = 0.0f;
         endColorVar.a = 0.0f;
         
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 
 		// additive
 		self.blendAdditive = NO;
@@ -791,7 +925,11 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 		
 		// additive
 		self.blendAdditive = NO;
@@ -873,7 +1011,12 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
+		
 		
 		// additive
 		self.blendAdditive = NO;
@@ -955,7 +1098,11 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+		if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow.png"];
+        } else {
+            self.texture = [[CCTextureCache sharedTextureCache] addImage: @"snow_iPad.png"];
+        }
 		
 		// additive
 		self.blendAdditive = NO;
