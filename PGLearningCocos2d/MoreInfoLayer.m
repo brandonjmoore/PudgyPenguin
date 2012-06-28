@@ -11,6 +11,7 @@
 #import "GCHelper.h"
 #import "FlurryAnalytics.h"
 #import <GameKit/GKScore.h>
+#import "CDAudioManager.h"
 
 @implementation MoreInfoLayer
 
@@ -95,6 +96,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"ismusicon"];
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+        
         [defaults synchronize];
 	}
 }

@@ -191,9 +191,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-	//[[CCDirector sharedDirector] pause];
-    
-    
     
     CCScene * current = [[CCDirector sharedDirector] runningScene];
     
@@ -203,14 +200,26 @@ void uncaughtExceptionHandler(NSException *exception) {
             [layer doPause];
         }
         
-    } 
+    } else {
+        //if not closing on a level then its ok to pause
+        [[CCDirector sharedDirector] pause];
+    }
+    
+    
+    
 //    else if (current.tag == kMoreInfoTag) {
 //        [[GameManager sharedGameManager]runSceneWithID:kMainMenuScene];
 //    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	//[[CCDirector sharedDirector] resume];
+    CCScene * current = [[CCDirector sharedDirector] runningScene];
+    if (current.tag > 0) {
+        //Do nothing
+    } else {
+        //Not entering a level so its ok to resume
+        [[CCDirector sharedDirector] resume];
+    }
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

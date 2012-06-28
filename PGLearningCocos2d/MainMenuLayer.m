@@ -134,8 +134,8 @@
 //        CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 //        CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
         
-    
         [soundEngine playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+        
         
         //[soundEngine setBackgroundMusicVolume:.5];
         
@@ -179,6 +179,7 @@
         [self displayMainMenu];
 //        snowParticleSystem = [CCParticleSnow node];
 //        [self addChild:snowParticleSystem z:kOneZValue];
+
         
         
     }    
