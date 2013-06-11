@@ -11,7 +11,7 @@
 #import "Penguin2.h"
 #import "Fish2.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "UILayer.h"
 #import "GameState.h"
 #import "GCHelper.h"

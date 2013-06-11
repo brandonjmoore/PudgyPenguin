@@ -12,7 +12,7 @@
 #import "GameConfig.h"
 #import "RootViewController.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "GCHelper.h"
 #import "ActionLayer.h"
 #import "Appirater.h"
@@ -37,7 +37,7 @@
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 #pragma mark -
@@ -109,9 +109,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     //Register for crashes (to be reported to flurry)
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 #if defined (FREEVERSION)
-    [FlurryAnalytics startSession:@"Q5SYZ3V7735MXG7RTNT3"];
+    [Flurry startSession:@"Q5SYZ3V7735MXG7RTNT3"];
 #else
-    [FlurryAnalytics startSession:@"RA7ILRNLYR732NDRBEBE"];
+    [Flurry startSession:@"RA7ILRNLYR732NDRBEBE"];
 #endif
 	
     
@@ -430,16 +430,16 @@ void uncaughtExceptionHandler(NSException *exception) {
             [[GCHelper sharedInstance] reportAchievement:kAchievementPostToFacebook percentComplete:100.0];
             [[GKAchievementHandler defaultHandler] notifyAchievementTitle:@"Achievement Unlocked" andMessage:@"One Proud Pudgy"];
         }
-        [FlurryAnalytics logEvent:@"Submitted Facebook Dialog"];
+        [Flurry logEvent:@"Submitted Facebook Dialog"];
     } else {
-        [FlurryAnalytics logEvent:@"Tapped cancel Facebook Dialog"];
+        [Flurry logEvent:@"Tapped cancel Facebook Dialog"];
     }
     
 }
 
 - (void)dialog:(FBDialog*)dialog didFailWithError:(NSError *)error {
     CCLOG(@"The post failed: %@", error.description);
-    [FlurryAnalytics logEvent:@"Facebook Post Failed"];
+    [Flurry logEvent:@"Facebook Post Failed"];
 }
 
 - (void)dialogDidNotComplete:(FBDialog *)dialog {
@@ -451,7 +451,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)fbDidNotLogin:(BOOL)cancelled {
-    [FlurryAnalytics logEvent:@"Cancelled Facebook Login"];
+    [Flurry logEvent:@"Cancelled Facebook Login"];
     CCLOG(@"User cancelled Facebook login");
 }
 

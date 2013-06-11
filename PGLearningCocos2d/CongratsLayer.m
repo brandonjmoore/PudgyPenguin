@@ -7,7 +7,7 @@
 //
 
 #import "CongratsLayer.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "AppDelegate.h"
 
 @implementation CongratsLayer
@@ -56,9 +56,9 @@ AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
 
 -(void)buyMoreLevels
 {
-    [FlurryAnalytics logEvent:@"Tapped buy more levels"];
+    [Flurry logEvent:@"Tapped buy more levels"];
     if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#"]]) {
-        [FlurryAnalytics logEvent:@"Failed to buy more levels"];
+        [Flurry logEvent:@"Failed to buy more levels"];
     }
 }
 

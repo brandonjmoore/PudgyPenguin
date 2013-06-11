@@ -13,6 +13,8 @@
 		BF030648146900CD00B92C49 /* Level14Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF030644146900CD00B92C49 /* Level14Scene.mm */; };
 		BF085C70156DFDC10051367A /* snow_bg_iPad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF085C6E156DFDC00051367A /* snow_bg_iPad-hd.png */; };
 		BF085C71156DFDC10051367A /* snow_bg_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = BF085C6F156DFDC10051367A /* snow_bg_iPad.png */; };
+		BF0CAB291766DB4C00019916 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0CAB281766DB4C00019916 /* libFlurry.a */; };
+		BF0CAB2A1766DB4C00019916 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0CAB281766DB4C00019916 /* libFlurry.a */; };
 		BF0D695415340F0D001DADD2 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D695315340F0D001DADD2 /* GameState.m */; };
 		BF0D6CEF158B10F800507FE9 /* snow_iPad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF0D6CEB158B10F800507FE9 /* snow_iPad-hd.png */; };
 		BF0D6CF0158B10F800507FE9 /* snow_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = BF0D6CEC158B10F800507FE9 /* snow_iPad.png */; };
@@ -266,7 +268,6 @@
 		BF12AE63159623A00097F1E6 /* Level34Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF2341801573D98F00024754 /* Level34Scene.mm */; };
 		BF12AE64159623A00097F1E6 /* CongratsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF41347F15885FFC00527968 /* CongratsLayer.m */; };
 		BF12AE65159623A00097F1E6 /* CongratsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF41348115885FFC00527968 /* CongratsScene.m */; };
-		BF12AE67159623A00097F1E6 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF727D18153523F4006C5420 /* libFlurryAnalytics.a */; };
 		BF12AE68159623A00097F1E6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF92E229156EE72600556A7A /* SystemConfiguration.framework */; };
 		BF12AE69159623A00097F1E6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF92E227156EE72000556A7A /* CFNetwork.framework */; };
 		BF12AE6A159623A00097F1E6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF28F34E146852860024F825 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -455,7 +456,6 @@
 		BF404B0E1583E63600EEF7D1 /* scene1atlas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF404B0C1583E63600EEF7D1 /* scene1atlas-hd.png */; };
 		BF41348215885FFC00527968 /* CongratsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF41347F15885FFC00527968 /* CongratsLayer.m */; };
 		BF41348315885FFC00527968 /* CongratsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF41348115885FFC00527968 /* CongratsScene.m */; };
-		BF413484158973DE00527968 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF727D18153523F4006C5420 /* libFlurryAnalytics.a */; };
 		BF44C36414402665005134E7 /* PenguinIdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36314402665005134E7 /* PenguinIdle-hd.png */; };
 		BF44C36614402678005134E7 /* PenguinIdle.png in Resources */ = {isa = PBXBuildFile; fileRef = BF44C36514402678005134E7 /* PenguinIdle.png */; };
 		BF4679CB15262C8500C8C1DA /* Level18ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF4679C715262BEB00C8C1DA /* Level18ActionLayer.mm */; };
@@ -730,6 +730,8 @@
 		BF030644146900CD00B92C49 /* Level14Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level14Scene.mm; sourceTree = "<group>"; };
 		BF085C6E156DFDC00051367A /* snow_bg_iPad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow_bg_iPad-hd.png"; sourceTree = "<group>"; };
 		BF085C6F156DFDC10051367A /* snow_bg_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow_bg_iPad.png; sourceTree = "<group>"; };
+		BF0CAB271766DB4200019916 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = PGLearningCocos2d/Flurry.h; sourceTree = SOURCE_ROOT; };
+		BF0CAB281766DB4C00019916 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry.a; path = PGLearningCocos2d/libFlurry.a; sourceTree = SOURCE_ROOT; };
 		BF0D695215340F0D001DADD2 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		BF0D695315340F0D001DADD2 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		BF0D6CEB158B10F800507FE9 /* snow_iPad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snow_iPad-hd.png"; sourceTree = "<group>"; };
@@ -1186,8 +1188,6 @@
 		BF62B2811456A72C0049369A /* Level10Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level10Scene.mm; sourceTree = "<group>"; };
 		BF69A0D81450E4B2005CC92B /* MainMenuBG-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainMenuBG-hd.png"; sourceTree = "<group>"; };
 		BF69A0DB1450E4BE005CC92B /* MainMenuBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenuBG.png; sourceTree = "<group>"; };
-		BF727D17153523E7006C5420 /* FlurryAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FlurryAnalytics.h; path = PGLearningCocos2d/FlurryAnalytics.h; sourceTree = SOURCE_ROOT; };
-		BF727D18153523F4006C5420 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryAnalytics.a; path = PGLearningCocos2d/libFlurryAnalytics.a; sourceTree = SOURCE_ROOT; };
 		BF78AECE14439D6100FFE2ED /* Penguin2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Penguin2.plist; sourceTree = "<group>"; };
 		BF7DCF851540FF5C0047B4BB /* Level30Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level30Scene.mm; sourceTree = "<group>"; };
 		BF7DCF861540FF5C0047B4BB /* Level30Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level30Scene.h; sourceTree = "<group>"; };
@@ -1384,7 +1384,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF12AE67159623A00097F1E6 /* libFlurryAnalytics.a in Frameworks */,
 				BF12AE68159623A00097F1E6 /* SystemConfiguration.framework in Frameworks */,
 				BF12AE69159623A00097F1E6 /* CFNetwork.framework in Frameworks */,
 				BF12AE6A159623A00097F1E6 /* GameKit.framework in Frameworks */,
@@ -1396,6 +1395,7 @@
 				BF12AE70159623A00097F1E6 /* UIKit.framework in Frameworks */,
 				BF12AE71159623A00097F1E6 /* Foundation.framework in Frameworks */,
 				BF12AE72159623A00097F1E6 /* CoreGraphics.framework in Frameworks */,
+				BF0CAB2A1766DB4C00019916 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1403,7 +1403,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF413484158973DE00527968 /* libFlurryAnalytics.a in Frameworks */,
 				BF92E22A156EE72600556A7A /* SystemConfiguration.framework in Frameworks */,
 				BF92E228156EE72000556A7A /* CFNetwork.framework in Frameworks */,
 				BF28F351146852BC0024F825 /* GameKit.framework in Frameworks */,
@@ -1415,6 +1414,7 @@
 				BF51C9BC1438244D00B64181 /* UIKit.framework in Frameworks */,
 				BF51C9BE1438244D00B64181 /* Foundation.framework in Frameworks */,
 				BF51C9C01438244D00B64181 /* CoreGraphics.framework in Frameworks */,
+				BF0CAB291766DB4C00019916 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2399,8 +2399,8 @@
 		BF8CFEF11455A8CC00A45C75 /* FlurryAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				BF727D17153523E7006C5420 /* FlurryAnalytics.h */,
-				BF727D18153523F4006C5420 /* libFlurryAnalytics.a */,
+				BF0CAB281766DB4C00019916 /* libFlurry.a */,
+				BF0CAB271766DB4200019916 /* Flurry.h */,
 			);
 			path = FlurryAnalytics;
 			sourceTree = "<group>";
@@ -3670,6 +3670,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
 					"\"$(SRCROOT)/PGLearningCocos2d\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v4/Flurry\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK viPhone 4/Flurry-iOS-4.2.1/Flurry\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguinFree;
@@ -3709,6 +3711,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
 					"\"$(SRCROOT)/PGLearningCocos2d\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v4/Flurry\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK viPhone 4/Flurry-iOS-4.2.1/Flurry\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguinFree;
@@ -3746,6 +3750,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
 					"\"$(SRCROOT)/PGLearningCocos2d\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v4/Flurry\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK viPhone 4/Flurry-iOS-4.2.1/Flurry\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguinFree;
@@ -3801,6 +3807,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
 					"\"$(SRCROOT)/PGLearningCocos2d\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v4/Flurry\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK viPhone 4/Flurry-iOS-4.2.1/Flurry\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguin;
@@ -3863,8 +3871,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Brandon Moore (H7XF53V3R8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brandon Moore (H7XF53V3R8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3878,11 +3886,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
 					"\"$(SRCROOT)/PGLearningCocos2d\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v4/Flurry\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK viPhone 4/Flurry-iOS-4.2.1/Flurry\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguin;
-				PROVISIONING_PROFILE = "8F906370-9A97-46C7-82C8-C7DCB0F0FC12";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F906370-9A97-46C7-82C8-C7DCB0F0FC12";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3912,6 +3922,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/PGLearningCocos2d/FlurryAnalytics\"",
 					"\"$(SRCROOT)/PGLearningCocos2d\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v4/Flurry\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK viPhone 4/Flurry-iOS-4.2.1/Flurry\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = PudgyPenguin;
