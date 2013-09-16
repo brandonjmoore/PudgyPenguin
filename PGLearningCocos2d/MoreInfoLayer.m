@@ -9,11 +9,16 @@
 #import "MoreInfoLayer.h"
 #import "AppDelegate.h"
 #import "GCHelper.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import <GameKit/GKScore.h>
 #import "CDAudioManager.h"
 
 @implementation MoreInfoLayer
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [super dealloc];
+}
 
 #pragma mark -
 #pragma mark Switch Menus
@@ -83,7 +88,7 @@
 //Turn music on/off
 -(void)musicTogglePressed {
     if ([[GameManager sharedGameManager] isMusicON]) {
-		[FlurryAnalytics logEvent:@"Turned Music Off"];
+		[Flurry logEvent:@"Turned Music Off"];
 		[[GameManager sharedGameManager] setIsMusicON:NO];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:NO forKey:@"ismusicon"];
@@ -91,7 +96,7 @@
         [defaults synchronize];
         
 	} else {
-		[FlurryAnalytics logEvent:@"Turned Music On"];
+		[Flurry logEvent:@"Turned Music On"];
 		[[GameManager sharedGameManager] setIsMusicON:YES];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"ismusicon"];
@@ -111,7 +116,7 @@
 -(void)logInToGameCenter {
     
     if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"gamecenter:/"]]) {
-        [FlurryAnalytics logEvent:@"Game Center Link Failed"];
+        [Flurry logEvent:@"Game Center Link Failed"];
     }
                                                 
 }

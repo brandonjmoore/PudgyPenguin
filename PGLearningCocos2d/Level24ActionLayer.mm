@@ -9,7 +9,7 @@
 #import "Level24ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "math.h"
 
 @implementation Level24ActionLayer
@@ -167,7 +167,7 @@
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 24 Started"];
+        [Flurry logEvent:@"Level 24 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];

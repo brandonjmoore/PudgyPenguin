@@ -9,7 +9,7 @@
 #import "Level13ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 @implementation Level13ActionLayer
 
@@ -197,7 +197,7 @@
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 13 Started"];
+        [Flurry logEvent:@"Level 13 Started"];
         
         //Get app delegate (used for high scores and Facebook)
         app = (AppDelegate*)[[UIApplication sharedApplication]delegate];

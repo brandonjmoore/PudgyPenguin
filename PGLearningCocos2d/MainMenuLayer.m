@@ -7,7 +7,7 @@
 //
 
 #import "MainMenuLayer.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "GameState.h"
 #import "GCHelper.h"
 #import "GKAchievementHandler.h"
@@ -28,7 +28,7 @@
     if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"fb://page/119643394810914"]]) {
         if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.facebook.com/pudgypenguin"]]) {
             CCLOG(@"Failed to open facebook url");
-            [FlurryAnalytics logEvent:@"Facebook like failed"];
+            [Flurry logEvent:@"Facebook like failed"];
         }
     }
     
@@ -115,7 +115,7 @@
 }
 
 -(void)displayMoreInfo {
-    [FlurryAnalytics logEvent:@"More Info Button Tapped"];
+    [Flurry logEvent:@"More Info Button Tapped"];
     [[GameManager sharedGameManager] runSceneWithID:kMoreInfoScene];
 }
 

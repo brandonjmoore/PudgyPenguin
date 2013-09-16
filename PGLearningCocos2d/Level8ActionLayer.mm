@@ -9,7 +9,7 @@
 #import "Level8ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 @implementation Level8ActionLayer
 
@@ -168,7 +168,7 @@
     if ((self = [super init])) {
         CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        [FlurryAnalytics logEvent:@"Level 8 Started"];
+        [Flurry logEvent:@"Level 8 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];

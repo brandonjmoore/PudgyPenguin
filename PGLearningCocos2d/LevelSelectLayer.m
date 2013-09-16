@@ -7,7 +7,7 @@
 //
 
 #import "LevelSelectLayer.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "GameState.h"
 #import "GCHelper.h"
 #import "GKAchievementHandler.h"
@@ -173,9 +173,9 @@
 
 -(void)buyMoreLevels
 {
-    [FlurryAnalytics logEvent:@"Tapped buy more levels"];
+    [Flurry logEvent:@"Tapped buy more levels"];
     if (![[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/pudgy-penguin/id475771110?ls=1&mt=8#"]]) {
-        [FlurryAnalytics logEvent:@"Failed to buy more levels"];
+        [Flurry logEvent:@"Failed to buy more levels"];
     }
 }
 
@@ -211,7 +211,7 @@
 #if defined (FREEVERSION)
     for (int i = 1; i <= 8; i++) {
 #else
-    for (int i = 1; i <= 32; i++) {
+    for (int i = 1; i <= 34; i++) {
 #endif
 //        CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"lvl_%i.png", i]];
         CCSprite *levelButtonNormal = [CCSprite spriteWithSpriteFrameName:@"lvl_blank.png"];

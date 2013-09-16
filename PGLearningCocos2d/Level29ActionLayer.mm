@@ -9,7 +9,7 @@
 #import "Level29ActionLayer.h"
 #import "Penguin2.h"
 #import "GameManager.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "math.h"
 
 #import "MyColorLayer.h"
@@ -183,7 +183,7 @@
         
         
         
-        [FlurryAnalytics logEvent:@"Level 29 Started"];
+        [Flurry logEvent:@"Level 29 Started"];
         
         lineArray = [[NSMutableArray array] retain];
         lineSpriteArray = [[NSMutableArray array] retain];
