@@ -18,6 +18,7 @@
 #import "Appirater.h"
 #import "GameState.h"
 #import "GKAchievementHandler.h"
+#import "Keys.h"
 
 @implementation AppDelegate
 
@@ -103,17 +104,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
     //Music
-//    [[GameManager sharedGameManager] setupAudioEngine];
+    [[GameManager sharedGameManager] setupAudioEngine];
 
     
     //Register for crashes (to be reported to flurry)
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-#if defined (FREEVERSION)
-    [Flurry startSession:@"Q5SYZ3V7735MXG7RTNT3"];
-#else
-    [Flurry startSession:@"RA7ILRNLYR732NDRBEBE"];
-#endif
-	
+    [Flurry startSession:kFlurryKey];	
     
     // Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -87,23 +87,23 @@
 
 //Turn music on/off
 -(void)musicTogglePressed {
-    if ([[GameManager sharedGameManager] isMusicON]) {
-		[Flurry logEvent:@"Turned Music Off"];
-		[[GameManager sharedGameManager] setIsMusicON:NO];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:NO forKey:@"ismusicon"];
-        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-        [defaults synchronize];
-        
-	} else {
-		[Flurry logEvent:@"Turned Music On"];
-		[[GameManager sharedGameManager] setIsMusicON:YES];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:YES forKey:@"ismusicon"];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
-        
-        [defaults synchronize];
-	}
+//    if ([[GameManager sharedGameManager] isMusicON]) {
+//		[Flurry logEvent:@"Turned Music Off"];
+//		[[GameManager sharedGameManager] setIsMusicON:NO];
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setBool:NO forKey:@"ismusicon"];
+//        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+//        [defaults synchronize];
+//        
+//	} else {
+//		[Flurry logEvent:@"Turned Music On"];
+//		[[GameManager sharedGameManager] setIsMusicON:YES];
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setBool:YES forKey:@"ismusicon"];
+//        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+//        
+//        [defaults synchronize];
+//	}
 }
 
 

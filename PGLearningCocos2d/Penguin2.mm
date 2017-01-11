@@ -8,6 +8,7 @@
 
 #import "Penguin2.h"
 #import "Box2DHelpers.h"
+#import "GameManager.h"
 
 @implementation Penguin2
 //Standing, blinking, walking,
@@ -130,6 +131,7 @@
             }
                 
             action = [CCAnimate actionWithAnimation:penguinEatingAnim restoreOriginalFrame:YES];
+            PLAYSOUNDEFFECT(FISH_EAT);
             
             //If he has eaten the necessary # of fish, make him satisfied
             if (numFishEaten >= self.numFishRequired) {

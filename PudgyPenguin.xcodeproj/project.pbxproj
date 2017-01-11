@@ -674,6 +674,16 @@
 		BFBD9B90145650BB0065C345 /* Level4ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFBD9B8B145650BB0065C345 /* Level4ActionLayer.mm */; };
 		BFBD9B91145650BB0065C345 /* Level4Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFBD9B8D145650BB0065C345 /* Level4Scene.mm */; };
 		BFBEAB381562E76600423A0F /* StarScores.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBEAB371562E76600423A0F /* StarScores.plist */; };
+		BFC366C617EE694500D93175 /* SoundEffects.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFC366C517EE694500D93175 /* SoundEffects.plist */; };
+		BFC366C717EE694500D93175 /* SoundEffects.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFC366C517EE694500D93175 /* SoundEffects.plist */; };
+		BFC366CA17EE6A5800D93175 /* level failed 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366C817EE6A5800D93175 /* level failed 1.mp3 */; };
+		BFC366CB17EE6A5800D93175 /* level failed 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366C817EE6A5800D93175 /* level failed 1.mp3 */; };
+		BFC366CC17EE6A5800D93175 /* Level Passed 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366C917EE6A5800D93175 /* Level Passed 1.mp3 */; };
+		BFC366CD17EE6A5800D93175 /* Level Passed 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366C917EE6A5800D93175 /* Level Passed 1.mp3 */; };
+		BFC366CF17EE6A8300D93175 /* Fish Eat 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366CE17EE6A8300D93175 /* Fish Eat 3.mp3 */; };
+		BFC366D017EE6A8300D93175 /* Fish Eat 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366CE17EE6A8300D93175 /* Fish Eat 3.mp3 */; };
+		BFC366D217EE6A9200D93175 /* boing 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366D117EE6A9200D93175 /* boing 4.mp3 */; };
+		BFC366D317EE6A9200D93175 /* boing 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BFC366D117EE6A9200D93175 /* boing 4.mp3 */; };
 		BFC46F501522D9ED007A1827 /* Level17ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFC46F4D1522D2FA007A1827 /* Level17ActionLayer.mm */; };
 		BFC46F511522D9ED007A1827 /* Level17Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFC46F4F1522D2FA007A1827 /* Level17Scene.mm */; };
 		BFC978BD1506FE9100F2C47F /* Facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC978BC1506FE9100F2C47F /* Facebook.png */; };
@@ -1170,6 +1180,7 @@
 		BF51CB161438244F00B64181 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		BF51CB171438244F00B64181 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		BF51CB1C1438244F00B64181 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		BF5552251E25FB3300BB61BB /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
 		BF5C7991158199B500FEA968 /* buzzer_beater_iPad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzer_beater_iPad-hd.png"; sourceTree = "<group>"; };
 		BF5C7992158199B500FEA968 /* buzzer_beater_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzzer_beater_iPad.png; sourceTree = "<group>"; };
 		BF5C7993158199B500FEA968 /* buzzer_beater-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzzer_beater-hd.png"; sourceTree = "<group>"; };
@@ -1302,6 +1313,11 @@
 		BFBD9B8C145650BB0065C345 /* Level4Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level4Scene.h; sourceTree = "<group>"; };
 		BFBD9B8D145650BB0065C345 /* Level4Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Level4Scene.mm; sourceTree = "<group>"; };
 		BFBEAB371562E76600423A0F /* StarScores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StarScores.plist; sourceTree = "<group>"; };
+		BFC366C517EE694500D93175 /* SoundEffects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundEffects.plist; sourceTree = "<group>"; };
+		BFC366C817EE6A5800D93175 /* level failed 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "level failed 1.mp3"; sourceTree = "<group>"; };
+		BFC366C917EE6A5800D93175 /* Level Passed 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Level Passed 1.mp3"; sourceTree = "<group>"; };
+		BFC366CE17EE6A8300D93175 /* Fish Eat 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fish Eat 3.mp3"; sourceTree = "<group>"; };
+		BFC366D117EE6A9200D93175 /* boing 4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "boing 4.mp3"; sourceTree = "<group>"; };
 		BFC46F4C1522D2FA007A1827 /* Level17ActionLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level17ActionLayer.h; sourceTree = "<group>"; };
 		BFC46F4D1522D2FA007A1827 /* Level17ActionLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Level17ActionLayer.mm; sourceTree = "<group>"; };
 		BFC46F4E1522D2FA007A1827 /* Level17Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level17Scene.h; sourceTree = "<group>"; };
@@ -1627,6 +1643,7 @@
 		BF151B6014411112000657EC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BF5552251E25FB3300BB61BB /* Keys.h */,
 				BF41347C15885FEE00527968 /* Congrats */,
 				BF92E206156EE3D100556A7A /* Appirater */,
 				BF262B261552144F00F5EAC1 /* GKNotification */,
@@ -1712,6 +1729,7 @@
 				BF78AECE14439D6100FFE2ED /* Penguin2.plist */,
 				BFBC1E9014572CD100D97F99 /* Entitlements.plist */,
 				BFBEAB371562E76600423A0F /* StarScores.plist */,
+				BFC366C517EE694500D93175 /* SoundEffects.plist */,
 			);
 			name = Plists;
 			path = ..;
@@ -2289,6 +2307,10 @@
 		BF62B26B14568E950049369A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				BFC366D117EE6A9200D93175 /* boing 4.mp3 */,
+				BFC366CE17EE6A8300D93175 /* Fish Eat 3.mp3 */,
+				BFC366C817EE6A5800D93175 /* level failed 1.mp3 */,
+				BFC366C917EE6A5800D93175 /* Level Passed 1.mp3 */,
 				BFACD9E315719DC700F03C66 /* pudgypenguin.mp3 */,
 			);
 			name = Sounds;
@@ -3010,6 +3032,11 @@
 				BF12AEFC159681830097F1E6 /* MainMenuBG-hd.png in Resources */,
 				BF12AEFD159681830097F1E6 /* MainMenuBG.png in Resources */,
 				BF12AEFF1596AF550097F1E6 /* Entitlements.plist in Resources */,
+				BFC366C717EE694500D93175 /* SoundEffects.plist in Resources */,
+				BFC366CB17EE6A5800D93175 /* level failed 1.mp3 in Resources */,
+				BFC366CD17EE6A5800D93175 /* Level Passed 1.mp3 in Resources */,
+				BFC366D017EE6A8300D93175 /* Fish Eat 3.mp3 in Resources */,
+				BFC366D317EE6A9200D93175 /* boing 4.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3112,6 +3139,11 @@
 				BF0D6CF2158B10F800507FE9 /* snow.png in Resources */,
 				BF40044F158C2ACF00816E1E /* Default.png in Resources */,
 				BF400452158C2ADC00816E1E /* Default@2x.png in Resources */,
+				BFC366C617EE694500D93175 /* SoundEffects.plist in Resources */,
+				BFC366CA17EE6A5800D93175 /* level failed 1.mp3 in Resources */,
+				BFC366CC17EE6A5800D93175 /* Level Passed 1.mp3 in Resources */,
+				BFC366CF17EE6A8300D93175 /* Fish Eat 3.mp3 in Resources */,
+				BFC366D217EE6A9200D93175 /* boing 4.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -253,11 +253,6 @@ typedef enum {
 #define DEG_TO_RAD(degree)          (degree/M_PI*180)
 #define RAD_TO_DEG(radians)         (radians*180/M_PI)
 #define VEL_TO_SEC(distance,velocity)        (distance/(.065*(sqrt(velocity*velocity))))
-#if defined (FREEVERSION)
-#define kFacebookAppID              @"354346491304435"
-#else
-#define kFacebookAppID              @"385665668110717"
-#endif
 
 #define ARC4RANDOM_MAX              0x100000000
 #define MAX_BOUNCE_ANIM_VELOCITY    5

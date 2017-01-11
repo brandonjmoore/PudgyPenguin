@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>kGameLevel1</key>
+	<dict>
+		<key>FISH_EAT</key>
+		<string>Fish Eat 3.mp2</string>
+		<key>LEVEL_PASSED</key>
+		<string>Level Passed 1.mp3</string>
+		<key>LEVEL_FAILED</key>
+		<string>level failed 1.mp3</string>
+	</dict>
+</dict>
+</plist>

@@ -529,6 +529,8 @@
         [self addChild:highScoreText z:10];
     }
     
+    PLAYSOUNDEFFECT(LEVEL_FAILED);
+    
 }
 
 -(id)initWithLevel1UILayer:(UILayer *)UILayer {

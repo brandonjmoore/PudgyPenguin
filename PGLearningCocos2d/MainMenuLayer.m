@@ -123,24 +123,24 @@
 #pragma mark Audio
 
 -(void)loadAudio {
-    soundEngine = [SimpleAudioEngine sharedEngine];
-    if ((([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) && (![soundEngine isBackgroundMusicPlaying])) {
-        
-        [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
-        
-        [[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
-        
-        [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
-//        CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-//        CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
-        
-        [soundEngine playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
-        
-        
-        //[soundEngine setBackgroundMusicVolume:.5];
-        
-//        [soundEngine preloadEffect:@"Level Failed.mp3"];
-    }
+//    soundEngine = [SimpleAudioEngine sharedEngine];
+//    if ((([[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]) == 1) && (![soundEngine isBackgroundMusicPlaying])) {
+//        
+//        [CDSoundEngine setMixerSampleRate:CD_SAMPLE_RATE_HIGH];
+//        
+//        [[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
+//        
+//        [soundEngine preloadBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+////        CCLOG(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+////        CCLOG(@"%d",[[NSUserDefaults standardUserDefaults] boolForKey:@"ismusicon"]);
+//        
+//        [soundEngine playBackgroundMusic:BACKGROUND_TRACK_GAMEPLAY];
+//        
+//        
+//        //[soundEngine setBackgroundMusicVolume:.5];
+//        
+////        [soundEngine preloadEffect:@"Level Failed.mp3"];
+//    }
 }
 
 #pragma mark -
